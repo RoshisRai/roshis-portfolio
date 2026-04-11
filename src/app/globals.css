@@ -5,22 +5,143 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  /* Colors */
+  --color-background: #0a0a0f;
+  --color-surface: #141419;
+  --color-surface-alt: #1a1a24;
+  --color-border: #1e1e26;
+  --color-text-primary: #e8e8ed;
+  --color-text-secondary: #8888a0;
+  --color-accent: #6366f1;
+  --color-accent-hover: #818cf8;
+  --color-accent-glow: oklch(0.585 0.233 277.117 / 0.2);
+
+  /* Typography */
+  --font-sans: 'Inter', 'Inter Variable', system-ui, sans-serif;
+  --font-display: 'Satoshi', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace; 
+
+  /* Spacing (8px grid) */
+  --spacing-section: 128px;
+  --spacing-section-mobile: 64px;
+
+  /* Animation */
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-expo: cubic-bezier(0.55, 0, 1, 0.45);
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 600ms;
+
+  /* Layout */
+  --max-width-content: 1280px;
+  --max-width-prose: 680px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* LIGHT THEME OVERRIDE  */
+[data-theme="light"] {
+  --color-background: #fafafa;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f4f4f5;
+  --color-border: #e4e4e7;
+  --color-text-primary: #18181b;
+  --color-text-secondary: #71717a;
+  --color-accent: #4f46e5;
+  --color-accent-hover: #6366f1;
+  --color-accent-glow: oklch(0.455 0.233 277.117 / 0.15);
+}
+
+/* GLOBAL RESETS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: auto;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  visibility: hidden; /* Prevent FOUC, GSAP sets visible */
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* VIEW TRANSITION KEYFRAMES */
+@keyframes morph-blur {
+  0%, 100% { filter: blur(0px); }
+  50% { filter: blur(2px); }
+}
+
+@keyframes slide-from-right {
+  from { transform: translateX(60px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slide-from-left {
+  from { transform: translateX(-60px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slide-to-right {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(60px); opacity: 0; }
+}
+
+@keyframes slide-to-left {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-60px); opacity: 0; }
+}
+
+@keyframes fade-in-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fade-out-down {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(20px); opacity: 0; }
+}
+
+/* View Transition rules for directional navigation */
+::view-transition-group(nav-forward) {
+  animation-duration: var(--duration-normal);
+  animation-timing-function: var(--ease-out-expo);
+}
+
+::view-transition-old(nav-forward) {
+  animation-name: slide-to-left;
+}
+
+::view-transition-new(nav-forward) {
+  animation-name: slide-from-right;
+}
+
+::view-transition-old(nav-back) {
+  animation-name: slide-to-right;
+}
+
+::view-transition-new(nav-back) {
+  animation-name: slide-from-left;
+}
+
+/* Shared element morph transition */
+::view-transition-old(project-morph),
+::view-transition-new(project-morph) {
+  animation: morph-blur var(--duration-normal) var(--ease-out-expo);
 }

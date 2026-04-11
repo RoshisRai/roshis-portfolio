@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "content": "velite --clean"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -41,6 +43,7 @@
     "eslint-config-prettier": "^10.1.8",
     "postcss": "^8.5.9",
     "prettier": "^3.8.2",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
