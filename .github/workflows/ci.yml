@@ -1,11 +1,13 @@
-name: CI
+name: CI/CD
 
+# ─── Triggers ────────────────────────────────────────────────────────────────
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
 
+# ─── Concurrency ─────────────────────────────────────────────────────────────
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
@@ -15,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # ── 1. Environment Setup ────────────────────────────────────────────────
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -40,14 +43,48 @@ jobs:
       
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
+        
+      # ── 2. Quality Gates ─────────────────────────────────────────────────────
       - name: Run Lint
         run: pnpm exec eslint . --max-warnings 10
 
       - name: Typecheck 
         run: pnpm exec tsc --noEmit
 
-      - name: Build Next.js app
-        run: pnpm run build
+      # ── 3. Vercel Pre-built Deployment ───────────────────────────────────────
+      # We pull project settings, build locally in the GitHub runner, and upload
+      # the final artifacts. This is more secure and faster than a standard build.
+
+      # Dynamically pulls 'preview' or 'production' environments
+      - name: Pull Vercel Environment Information
+        run: pnpm dlx vercel pull --yes --environment=${{ github.event_name == 'pull_request' && 'preview' || 'production' }} --token=${{ secrets.VERCEL_TOKEN }}
         env:
-          NEXT_PUBLIC_ANALYTICS_ID: "TEST"
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        
+      # Compiles the app using Vercel's build pipeline inside the runner.
+      # --prod flag is only passed for pushes to main, not for PRs.
+      - name: Build Project Artifacts
+        run: pnpm dlx vercel build ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && '--prod' || '' }} --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          NEXT_PUBLIC_ANALYTICS_ID: "TEST" #Stubbed for build purposes.
+
+      # ── 4. Deploy preview (PRs only) ─────────────────────────────────────────
+      # Uploads the prebuilt artifact to Vercel as a preview deployment.
+      - name: Deploy Preview to Vercel
+        if: github.event_name == 'pull_request'
+        run: pnpm dlx vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          
+      # ── 5. Deploy production (main only) ─────────────────────────────────────
+      # Uploads the prebuilt artifact to Vercel as a production deployment.
+      - name: Deploy Production to Vercel
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: pnpm dlx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
