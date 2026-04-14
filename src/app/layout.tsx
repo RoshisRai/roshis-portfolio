@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Script from 'next/script'
 import { fontSans, fontDisplay, fontMono } from "@/lib/fonts"
 import { Providers } from "@/providers/providers"
 import { Navbar } from "@/components/layout/navbar"
@@ -10,13 +11,11 @@ export const metadata: Metadata = {
     default: 'Roshis Rai — Full-Stack Software Engineer',
     template: '%s | Roshis Rai',
   },
-  description:
-    'Full-Stack Software Engineer building scalable web apps, APIs & intelligent systems.',
+  description: 'Full-Stack Software Engineer building scalable web apps, APIs & intelligent systems.',
   metadataBase: new URL('https://roshisrai.com'),
   openGraph: {
     title: 'Roshis Rai — Full-Stack Software Engineer',
-    description:
-      'I design and build end-to-end applications, from frontend UX to backend architecture.',
+    description: 'I design and build end-to-end applications, from frontend UX to backend architecture.',
     url: 'https://roshisrai.com',
     siteName: 'Roshis Rai',
     locale: 'en_US',
@@ -51,7 +50,9 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <Script id="theme-script" strategy="beforeInteractive">
+          {themeScript}
+        </Script>
       </head>
       <body>
         <Providers>
