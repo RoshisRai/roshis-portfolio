@@ -12,7 +12,6 @@ const Button = ({
     size = 'default',
     className,
     ref,
-    asChild,
     ...props 
 }: ButtonProps) => {
     return (

@@ -87,6 +87,7 @@ export function Navbar() {
                                 className={cn(
                                     'relative text-sm font-medium',
                                     'transition-colors duration-(--duration-fast)',
+                                    'cursor-pointer',
                                     isActive
                                         ? 'text-text-primary'
                                         : 'text-text-secondary hover:text-text-primary',
@@ -112,7 +113,7 @@ export function Navbar() {
                 {/* Right side — theme toggle + CTA */}
                 <div className="hidden items-center gap-3 md:flex">
                     <ThemeToggle />
-                    <Button size="sm" asChild onClick={() => scrollTo('/#contact')} className='cursor-pointer'>
+                    <Button size="sm" onClick={() => scrollTo('/#contact')} className='cursor-pointer'>
                         Let&apos;s Talk
                     </Button>
                 </div>

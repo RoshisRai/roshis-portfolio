@@ -15,7 +15,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
             touchMultiplier: 1.5,
         })
 
-        ;(window as any).__lenis = lenis
+        ;(window as Window & { __lenis?: Lenis | null }).__lenis = lenis
 
         lenis.on('scroll', ScrollTrigger.update)
 
@@ -27,7 +27,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
 
         return () => {
             lenis.destroy()
-            ;(window as any).__lenis = null
+            ;(window as Window & { __lenis?: Lenis | null }).__lenis = null
         }
     }, [])
 
