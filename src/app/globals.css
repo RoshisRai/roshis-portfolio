@@ -28,10 +28,17 @@
   --duration-fast: 200ms;
   --duration-normal: 400ms;
   --duration-slow: 600ms;
+  --duration-super-slow: 1000ms;
 
   /* Layout */
   --max-width-content: 1280px;
   --max-width-prose: 680px;
+
+  /* THEME TOGGLE KEYFRAMES */
+  @keyframes theme-toggle {
+    0%   { transform: rotate(-60deg); opacity: 0; }
+    100% { transform: rotate(0deg); opacity: 1; }
+  }
 
   /* VIEW TRANSITION KEYFRAMES */
   @keyframes morph-blur {
@@ -111,6 +118,25 @@
     -moz-osx-font-smoothing: grayscale;
     visibility: hidden; /* Prevent FOUC, GSAP sets visible */
   }
+
+  html[data-theme] {
+    transition:
+        background-color var(--duration-slow) var(--ease-out-expo),
+        color var(--duration-slow) var(--ease-out-expo);
+  }
+
+  html[data-theme] *:not([class*='transition']):not([class*='animate']):not([style*='transition']) {
+    transition:
+        background-color var(--duration-slow) var(--ease-out-expo),
+        border-color var(--duration-slow) var(--ease-out-expo),
+        color var(--duration-slow) var(--ease-out-expo);
+  }
+
+@layer utilities {
+  .animate-theme-toggle {
+    animation: theme-toggle var(--duration-slow) var(--ease-out-expo) forwards;
+  }
+}
 
   /* REDUCED MOTION */
   @media (prefers-reduced-motion: reduce) {

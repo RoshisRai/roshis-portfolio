@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Script from 'next/script'
 import { fontSans, fontDisplay, fontMono } from "@/lib/fonts"
 import { Providers } from "@/providers/providers"
 import { Navbar } from "@/components/layout/navbar"
@@ -50,9 +49,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <Script id="theme-script" strategy="beforeInteractive">
-          {themeScript}
-        </Script>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
         <Providers>
