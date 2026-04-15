@@ -35,9 +35,45 @@
   --max-width-prose: 680px;
 
   /* THEME TOGGLE KEYFRAMES */
+  --animate-theme-toggle: theme-toggle var(--duration-slow) var(--ease-out-expo) forwards;
+  
   @keyframes theme-toggle {
     0%   { transform: rotate(-60deg); opacity: 0; }
     100% { transform: rotate(0deg); opacity: 1; }
+  }
+
+  /* HERO SECTION KEYFRAMES */
+  /* Background Gradient Rotation */
+  @keyframes hero-rotate {
+    to { --hero-rot: 360deg; }
+  }
+
+  /* Particle Float (For Mobile Only) */
+  @keyframes particle-float {
+    0%, 100% { transform: translateY(0px); opacity: 0.4; }
+    50% { transform: translateY(-10px); opacity: 0.8; }
+  }
+
+  /* Status Dot Pulse */
+  @keyframes pulse-dot {
+    0% { transform: scale(1); opacity: 0.8; }
+    25% { transform: scale(1.3); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+  }
+
+  /* Scroll Indicator Dot */
+  @keyframes scroll-dot {
+    0% { transform: translate(-50%, 6px); opacity: 0; }
+    30% { opacity: 1; }
+    100% { transform: translate(-50%, 20px); opacity: 0; }
+  }
+
+  /* Text Breath Animation */
+  --animate-text-breath: text-breath 3s ease-in-out infinite;
+
+  @keyframes text-breath {
+    0%, 100% { opacity: 0.3; transform: translateY(0); }
+    50% { opacity: 0.8; transform: translateY(2px); }
   }
 
   /* VIEW TRANSITION KEYFRAMES */
@@ -132,9 +168,54 @@
         color var(--duration-slow) var(--ease-out-expo);
   }
 
+@property --hero-rot {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
 @layer utilities {
-  .animate-theme-toggle {
-    animation: theme-toggle var(--duration-slow) var(--ease-out-expo) forwards;
+  .hero-gradient-bg {
+    --hero-rot: 0deg;
+    background:
+      radial-gradient(60% 45% at 18% 20%, rgb(99 102 241 / 0.22), transparent 70%),
+      radial-gradient(55% 45% at 80% 25%, rgb(59 130 246 / 0.16), transparent 70%),
+      conic-gradient(from var(--hero-rot) at 55% 40%, rgb(99 102 241 / 0.12), rgb(147 51 234 / 0.08), rgb(37 99 235 / 0.12), rgb(99 102 241 / 0.12));
+    animation: hero-rotate 24s linear infinite;
+  }
+
+  .hero-particles {
+    background-image:
+      radial-gradient(circle at 20% 30%, rgb(99 102 241 / 0.25) .5rem, transparent 2px),
+      radial-gradient(circle at 70% 55%, rgb(59 130 246 / 0.24) .5rem, transparent 2px),
+      radial-gradient(circle at 40% 75%, rgb(168 85 247 / 0.24) .5rem, transparent 2px);
+    animation: particle-float 5s ease-in-out infinite;
+  }
+
+  .hero-status>span:first-child {
+    animation: pulse-dot 2s ease-in-out infinite;
+    box-shadow: 0 0 0 4px rgb(74 222 128 / 0.12);
+  }
+
+  .scroll-mouse {
+    position: relative;
+    display: inline-block;
+    width: 1.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 100%;
+    background: rgb(20 20 25 / 0.2);
+  }
+
+  .scroll-dot {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--color-text-secondary);
+    animation: scroll-dot 1.5s ease-in-out infinite;
   }
 }
 

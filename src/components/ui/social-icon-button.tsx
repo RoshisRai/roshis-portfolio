@@ -4,6 +4,7 @@ interface SocialIconButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorEle
     icon: React.ReactNode
     label: string
     variant?: 'ghost' | 'filled'
+    ref?: React.Ref<HTMLAnchorElement>
 }
 
 const SocialIconButton = ({
