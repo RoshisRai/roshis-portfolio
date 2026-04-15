@@ -1,5 +1,6 @@
 import { ScrollToSection } from "@/components/global/scroll-to-section"
 import { SectionWrapper } from "@/components/layout/section-wrapper"
+import HeroSection from "@/components/sections/hero/hero"
 
 export default function Home() {
     return (
@@ -7,20 +8,7 @@ export default function Home() {
             <ScrollToSection />
 
             {/* Hero — full bleed, no heading, no section padding */}
-            <SectionWrapper
-                id="hero"
-                contained={false}
-                className="flex min-h-screen items-center justify-center bg-background py-0"
-            >
-                <div className="text-center">
-                    <h1 className="font-display text-6xl font-bold text-text-primary">
-                        Roshis Rai
-                    </h1>
-                    <p className="mt-4 text-xl text-text-secondary">
-                        Full-Stack Software Engineer
-                    </p>
-                </div>
-            </SectionWrapper>
+            <HeroSection />
 
             {/* Projects */}
             <SectionWrapper

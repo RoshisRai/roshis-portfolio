@@ -13,7 +13,7 @@ const ThemeToggle = ({ className }: {className?: string }) => {
             onClick={toggleTheme}
             aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
             variant="icon"
-            className={cn('h-9 px-3 cursor-pointer', className)}
+            className={cn('h-9 px-2.5 cursor-pointer', className)}
         >
             {theme === 'dark' ? 
                 <Sun key="sun" size={16} className="animate-theme-toggle"/> : 

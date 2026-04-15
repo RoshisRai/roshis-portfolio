@@ -7,6 +7,9 @@ import { gsap } from 'gsap'
 import { cn } from '@/lib/utils'
 import { useActiveSection } from '@/hooks/use-active-section'
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll'
+import { Button } from '../ui/button'
+import { SocialIconButton } from '../ui/social-icon-button'
+import { socialLinks } from '@/lib/constants'
 
 interface NavLink {
     label: string
@@ -29,6 +32,7 @@ export function MobileMenu({ links }: MobileMenuProps) {
     const linkRefs = useRef<(HTMLButtonElement | null)[]>([])
     const ctaRef = useRef<HTMLButtonElement>(null)
     const tlRef = useRef<gsap.core.Timeline | null>(null)
+    const socialLinkRefs = useRef<(HTMLAnchorElement | null)[]>([])
 
     
     const open = () => {
@@ -53,12 +57,15 @@ export function MobileMenu({ links }: MobileMenuProps) {
         const backdrop = backdropRef.current
         const linkEls = linkRefs.current.filter(Boolean)
         const cta = ctaRef.current
+        const socialLinkEls = socialLinkRefs.current.filter(Boolean)
+
         if (!overlay || !backdrop) return
 
         gsap.set(overlay, { yPercent: -100, display: 'none' })
         gsap.set(backdrop, { opacity: 0, display: 'none' })
         gsap.set([linkEls, cta], { opacity: 0, y: 24 })
         // gsap.set([cta], { opacity: 0, y: 24 })
+        gsap.set([socialLinkEls, cta], { opacity: 0})
 
         tlRef.current = gsap.timeline({ paused: true })
             .to(backdrop, {
@@ -86,6 +93,13 @@ export function MobileMenu({ links }: MobileMenuProps) {
                 duration: 0,
                 ease: 'expo.out',
             }, '-=0.25')
+            .to(socialLinkEls, {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                ease: 'expo.out',
+                stagger: 0.09,
+            }, '-=0.28')
 
         return () => { tlRef.current?.kill() }
     }, [])
@@ -113,21 +127,14 @@ export function MobileMenu({ links }: MobileMenuProps) {
     return (
         <>
             {/* Hamburger */}
-            <button
+            <Button
                 onClick={toggle}
                 aria-label="Toggle menu"
-                className={cn(
-                    'inline-flex items-center justify-center',
-                    'w-9 h-9 rounded-lg',
-                    'border border-border text-text-secondary',
-                    'bg-transparent',
-                    'hover:bg-surface hover:text-text-primary',
-                    'transition-all duration-(--duration-fast)',
-                    'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent',
-                )}
+                variant="icon"
+                className={cn('h-9 px-2.5 cursor-pointer')}
             >
                 <Menu size={16} />
-            </button>
+            </Button>
 
             {/* Backdrop */}
             <div
@@ -146,20 +153,17 @@ export function MobileMenu({ links }: MobileMenuProps) {
                 )}
             >
                 {/* Close button */}
-                <button
+                <Button
                     onClick={close}
                     aria-label="Close menu"
+                    variant='icon'
                     className={cn(
                         'absolute top-4 right-6',
-                        'inline-flex items-center justify-center',
-                        'w-9 h-9 rounded-lg',
-                        'border border-border text-text-secondary',
-                        'hover:bg-surface hover:text-text-primary',
-                        'transition-all duration-(--duration-fast)',
+                        'h-9 px-2.5 cursor-pointer',
                     )}
                 >
                     <X size={16} />
-                </button>
+                </Button>
 
                 {/* Nav links */}
                 <nav className="flex flex-col items-center gap-2 w-full px-8">
@@ -188,21 +192,29 @@ export function MobileMenu({ links }: MobileMenuProps) {
                 </nav>
 
                 {/* CTA */}
-                <button
+                <Button
                     ref={ctaRef}
                     onClick={() => handleLinkClick('/#contact')}
-                    className={cn(
-                        'mt-8 inline-flex items-center justify-center',
-                        'h-12 px-8 rounded-xl',
-                        'text-[15px] font-semibold text-white',
-                        'bg-accent',
-                        'transition-all duration-(--duration-fast)',
-                        'hover:shadow-[0_8px_24px_var(--color-accent-glow)]',
-                        'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent',
-                    )}
+                    variant='primary'
+                    className={cn('mt-8 text-lg')}
                 >
                     Let&apos;s Talk
-                </button>
+                </Button>
+
+                {/* Social Icons */}
+                <div
+                    className='flex items-center justify-center gap-5 absolute bottom-12'
+                >
+                    {socialLinks.map((link, i) => (
+                        <SocialIconButton
+                            key={link.href}
+                            ref={(el) => { socialLinkRefs.current[i] = el }}
+                            href={link.href}
+                            label={link.label}
+                            icon={<link.icon size={16} />}
+                        />
+                    ))}
+                </div>
             </div>
         </>
     )
