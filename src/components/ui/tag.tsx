@@ -4,6 +4,7 @@ interface TagProps extends React.HTMLAttributes<HTMLButtonElement> {
     variant?: 'tech' | 'status' | 'filter'
     active?: boolean
     statusColor?: string
+    ref?: React.Ref<HTMLSpanElement>
 }
 
 const Tag = ({
@@ -12,10 +13,12 @@ const Tag = ({
     statusColor = '#4ade80',
     className,
     children,
+    ref,
     ...props
 }: TagProps) => {
     return (
         <span
+            ref={ref}
             className={cn(
                 // Base
                 'inline-flex items-center gap-1.5',
