@@ -9,7 +9,7 @@ export default function HeroSection() {
         <SectionWrapper
             id="hero"
             contained={false}
-            className="relative min-h-screen overflow-hidden"
+            className="relative min-h-screen overflow-hidden md:py-(--spacing-section-mobile) lg:py-(--spacing-section)"
         >
             {/* Animated gradient background */}
             <div aria-hidden className="hero-gradient-bg absolute inset-0" />
@@ -27,7 +27,7 @@ export default function HeroSection() {
                 {/* Mobile Fallback Visual */}
                 <div className="hero-particles order-1 h-[30vh] rounded-2xl md:hidden" />
 
-                <div className="order-2 flex flex-col justify-center py-8 lg:order-1 lg:col-span-5 lg:py-0 lg:min-h-[60vh]">
+                <div className="order-2 flex flex-col justify-center py-8 md:py-0 lg:order-1 lg:col-span-5 lg:py-0 lg:min-h-[60vh]">
                     <HeroContent />
                 </div>
             </div>
