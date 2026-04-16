@@ -54,7 +54,7 @@ export default function HeroContent() {
                 y: 16,
             })
 
-            gsap.set(buttons, { opacity: 0})
+            gsap.set(buttons, { autoAlpha: 0, opacity: 0})
 
             tl
                 .to(statusRef.current, {
@@ -83,6 +83,7 @@ export default function HeroContent() {
                     '-=0.2')
                 .to(buttons, {
                     opacity: 1,
+                    autoAlpha: 1,
                     duration: 0.5,
                     stagger: 0.1,
                 }, '-=0.1')
