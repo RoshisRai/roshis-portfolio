@@ -11,6 +11,7 @@ import { useSmoothScroll } from '@/hooks/use-smooth-scroll'
 import { scrollToTop } from '@/lib/animations'
 import { Button } from '../ui/button'
 import Image from 'next/image'
+import { Magnetic } from '../global/cursor/magnetic'
 
 const navLinks = [
     { label: 'Projects',   href: '/#projects'   },
@@ -113,9 +114,11 @@ export function Navbar() {
                 {/* Right side — theme toggle + CTA */}
                 <div className="hidden items-center gap-3 md:flex">
                     <ThemeToggle />
-                    <Button size="sm" onClick={() => scrollTo('/#contact')} className='cursor-pointer'>
-                        Let&apos;s Talk
-                    </Button>
+                    <Magnetic strength={0.6} elementPull={0.2}>
+                        <Button size="sm" onClick={() => scrollTo('/#contact')} className='cursor-pointer'>
+                            Let&apos;s Talk
+                        </Button>
+                    </Magnetic>
                 </div>
 
                 {/* Mobile */}

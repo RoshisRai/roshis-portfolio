@@ -194,13 +194,13 @@ const fragmentShader = /* glsl */ `
 
 // ─── component ─────────────────────────────────────────────────────
 interface ParticleMorphProps {
-  mouseX: number;
-  mouseY: number;
+  mouseXRef: React.RefObject<number>;
+  mouseYRef: React.RefObject<number>;
 }
 
 const PARTICLE_COUNT = 8000;
 
-export default function ParticleMorph({ mouseX, mouseY }: ParticleMorphProps) {
+export default function ParticleMorph({ mouseXRef, mouseYRef }: ParticleMorphProps) {
   const meshRef = useRef<THREE.Points>(null);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
 
@@ -266,8 +266,8 @@ export default function ParticleMorph({ mouseX, mouseY }: ParticleMorphProps) {
 
     // update uniforms
     mat.uniforms.uTime.value = elapsed;
-    mat.uniforms.uMouseX.value += (mouseX - mat.uniforms.uMouseX.value) * 0.05;
-    mat.uniforms.uMouseY.value += (mouseY - mat.uniforms.uMouseY.value) * 0.05;
+    mat.uniforms.uMouseX.value += (mouseXRef.current - mat.uniforms.uMouseX.value) * 0.05;
+    mat.uniforms.uMouseY.value += (mouseYRef.current - mat.uniforms.uMouseY.value) * 0.05;
 
     // auto-morph every 4 seconds
     if (elapsed > nextShapeTime.current && !isMorphing.current) {

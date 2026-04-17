@@ -4,6 +4,7 @@ import { Providers } from "@/providers/providers"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import "./globals.css"
+import { CursorZone } from "@/components/global/cursor/cursor-zone"
 
 export const metadata: Metadata = {
   title: {
@@ -11,11 +12,11 @@ export const metadata: Metadata = {
     template: '%s | Roshis Rai',
   },
   description: 'Full-Stack Software Engineer building scalable web apps, APIs & intelligent systems.',
-  metadataBase: new URL('https://roshisrai.com'),
+  metadataBase: new URL('https://roshis.dev'),
   openGraph: {
     title: 'Roshis Rai — Full-Stack Software Engineer',
     description: 'I design and build end-to-end applications, from frontend UX to backend architecture.',
-    url: 'https://roshisrai.com',
+    url: 'https://roshis.dev',
     siteName: 'Roshis Rai',
     locale: 'en_US',
     type: 'website',
@@ -53,7 +54,9 @@ export default function RootLayout({
       </head>
       <body>
         <Providers>
-          <Navbar />
+          <CursorZone variant="link">
+            <Navbar />
+          </CursorZone>
           <main>
             {children}
           </main>

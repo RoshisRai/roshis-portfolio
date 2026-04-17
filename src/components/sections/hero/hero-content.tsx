@@ -7,6 +7,8 @@ import { Tag } from '@/components/ui/tag'
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll'
 import { ArrowDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { CursorZone } from '@/components/global/cursor/cursor-zone'
+import { Magnetic } from '@/components/global/cursor/magnetic'
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -224,23 +226,29 @@ export default function HeroContent() {
                 ref={ctaRef}
                 className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center"
             >
-                <Button
-                    onClick={() => scrollTo('/#projects')}
-                    className="group h-12 w-full px-6 text-[15px] cursor-pointer sm:w-auto transition"
-                >
-                    View My Work
-                    <ArrowDown
-                        size={16}
-                        className="transition-transform duration-(--duration-fast) group-hover:translate-y-0.5"
-                    />
-                </Button>
-                <Button
-                    variant="ghost"
-                    onClick={() => scrollTo('/#contact')}
-                    className="h-12 w-full px-6 text-[15px] cursor-pointer sm:w-auto transition"
-                >
-                    Get In Touch
-                </Button>
+                <CursorZone variant='button'>
+                    <Button
+                        onClick={() => scrollTo('/#projects')}
+                        className="group h-12 w-full px-6 text-[15px] cursor-pointer sm:w-auto transition"
+                    >
+                        View My Work
+                        <ArrowDown
+                            size={16}
+                            className="transition-transform duration-(--duration-fast) group-hover:translate-y-0.5"
+                        />
+                    </Button>
+                </CursorZone>
+                <Magnetic strength={0.8} elementPull={0.1}>
+                    <CursorZone variant='button'>
+                        <Button
+                            variant="ghost"
+                            onClick={() => scrollTo('/#contact')}
+                            className="h-12 w-full px-6 text-[15px] cursor-pointer sm:w-auto transition"
+                        >
+                            Get In Touch
+                        </Button>
+                    </CursorZone>
+                </Magnetic>
             </div>
         </div>
     )
