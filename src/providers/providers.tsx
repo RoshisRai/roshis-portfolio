@@ -6,7 +6,6 @@ import { ThemeProvider } from "./theme-provider";
 import { GSAPProvider } from "./gsap-provider";
 import { LenisProvider } from "./lenis-provider";
 import { CursorProvider } from "./cursor-provider";
-// import { Cursor } from "@/components/global/cursor/cursor";
 
 const Cursor = dynamic(
   () => import("@/components/global/cursor/cursor").then(mod => mod.Cursor),
