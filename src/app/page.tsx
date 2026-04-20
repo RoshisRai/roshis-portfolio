@@ -1,6 +1,8 @@
 import { ScrollToSection } from "@/components/global/scroll-to-section"
 import { SectionWrapper } from "@/components/layout/section-wrapper"
 import HeroSection from "@/components/sections/hero/hero"
+import UIComponentsTest from "@/components/ui/test-ui-components"
+
 
 export default function Home() {
     return (
@@ -9,6 +11,8 @@ export default function Home() {
 
             {/* Hero — full bleed, no heading, no section padding */}
             <HeroSection />
+
+            <UIComponentsTest />
 
             {/* Projects */}
             <SectionWrapper

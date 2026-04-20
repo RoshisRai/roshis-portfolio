@@ -5,10 +5,12 @@ import { Input, Textarea } from './input'
 import { Button } from './button'
 import { Tag } from './tag'
 import { SectionHeading } from './section-heading'
-import { Card, ProjectCard, ExperienceCard, SkillCard } from './card'
+import { Card, ExperienceCard, SkillCard } from './card'
+import { ProjectCard } from '../sections/projects/project-card'
 import { Tooltip } from './tooltip'
 import { SocialIconButton } from './social-icon-button'
 import { InlineCode, CodeBlock } from './code-block'
+import { CursorZone } from '../global/cursor/cursor-zone'
 
 export default function UIComponentsTest() {
   const [name, setName] = useState('')
@@ -152,7 +154,9 @@ export default function UIComponentsTest() {
             tags={[ 'React', 'Next.js' ]}
         />
 
-        <ProjectCard
+        
+       <CursorZone variant="scene">
+         <ProjectCard
             title="Linked Project"
             description="This project card uses a link variant (href)."
             tags={[ 'UI', 'Design' ]}
@@ -161,6 +165,7 @@ export default function UIComponentsTest() {
             href="/projects/example"
             viewTransitionName="project-example"
         />
+      </CursorZone>
 
         <ExperienceCard
             role="Senior Engineer"

@@ -191,8 +191,7 @@ export default function HeroContent() {
                 ref={subtitleRef}
                 className="max-w-xl text-xl leading-relaxed text-text-secondary"
             >
-                Full-Stack Software Engineer building scalable web apps,
-                APIs & intelligent systems.
+                Full-Stack Software Engineer building scalable APIs, SaaS products & AI-integrated web apps.
             </p>
 
             {/* Rotating role */}
