@@ -1,14 +1,20 @@
 import { ScrollToSection } from "@/components/global/scroll-to-section"
 import { SectionWrapper } from "@/components/layout/section-wrapper"
 import HeroSection from "@/components/sections/hero/hero"
+import UIComponentsTest from "@/components/ui/test-ui-components"
+import { getFeaturedProjects } from "@/lib/projects"
+
 
 export default function Home() {
+    const projects = getFeaturedProjects()
     return (
         <>
             <ScrollToSection />
 
             {/* Hero — full bleed, no heading, no section padding */}
             <HeroSection />
+
+            {/* <UIComponentsTest /> */}
 
             {/* Projects */}
             <SectionWrapper
@@ -17,7 +23,9 @@ export default function Home() {
                 subtitle="A selection of things I've built."
                 className="bg-surface"
             >
-                <p className="text-text-secondary">Project cards go here</p>
+                <pre className="mt-4 p-4 bg-background rounded wrap-break-word w-full overflow-x-auto text-sm">
+                    {JSON.stringify(projects, null, 2)}
+                </pre>
             </SectionWrapper>
 
             {/* Skills */}
