@@ -66,7 +66,7 @@ const projects = defineCollection({
       })
     ).optional(),
     reflection: s.string().optional(),
-    nextSlug: s.string().optional(),
+    nextSlug: s.string().optional().nullable(),
     links: s.array(
       s.object({
         label: s.string(),
