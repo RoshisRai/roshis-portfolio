@@ -4,7 +4,7 @@ import HeroScene from "./hero-scene"
 import { ScrollIndicator } from "./scroll-indicator"
 
 
-export default function HeroSection() {
+export const HeroSection = () => {
     return (
         <SectionWrapper
             id="hero"

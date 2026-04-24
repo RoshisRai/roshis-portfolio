@@ -1,6 +1,4 @@
 import { cn } from "@/lib/utils";
-import Image from "next/image";
-import Link from "next/link";
 import { Tag } from "./tag";
 import React from 'react';
 

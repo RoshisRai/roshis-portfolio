@@ -37,7 +37,7 @@ export function Cursor() {
       dotRef.current.style.opacity = `${rendered.dotOpacity}`;
 
       // Ring: lerped follow (trail)
-      const ringScale = pressed ? 0.85 : 1;
+      const ringScale = pressed ? 0.85 : (rendered.ringScale ?? 1);
       ringRef.current.style.transform = `translate3d(${ring.x}px, ${ring.y}px, 0) translate(-50%, -50%) scale(${ringScale})`;
       ringRef.current.style.width = `${rendered.ringSize}px`;
       ringRef.current.style.height = `${rendered.ringSize}px`;
@@ -110,7 +110,10 @@ export function Cursor() {
         >
         <span
             ref={labelRef}
-            className="opacity-0 transition-opacity duration-200 ease-out"
+            className={cn(
+              "absolute top-[55%]",
+              "opacity-0 transition-opacity duration-200 ease-out"
+            )}
         />
         </div>
 
@@ -128,3 +131,6 @@ export function Cursor() {
 
   return createPortal(node, document.body);
 }
+
+
+

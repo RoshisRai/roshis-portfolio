@@ -1,12 +1,376 @@
 [
   {
+    "slug": "goodmil-construction-copy-2",
+    "title": "GoodMil Amrit Nirman Sewa",
+    "summary": "Designed and developed a full-featured Django website for a leading Nepali construction company, featuring a dynamic CMS, advanced property search, and engaging animations.",
+    "intro": "Built a modern, high-performance digital platform for GoodMil Amrit Nirman Sewa — a prominent construction, architecture, interior design, and real estate firm in Nepal. The website significantly enhanced their online presence and client engagement.",
+    "featured": true,
+    "order": 1,
+    "cardSize": "standard",
+    "accent": "#048e3e",
+    "tags": [
+      "Django",
+      "Python",
+      "JavaScript",
+      "jQuery",
+      "GSAP",
+      "AOS",
+      "PostgreSQL"
+    ],
+    "role": "Full-Stack Web Developer",
+    "timeline": "May 2023 - Aug 2023 (4 months)",
+    "stack": [
+      "Django",
+      "Python",
+      "PostgreSQL",
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "jQuery",
+      "GSAP",
+      "AOS",
+      "Pillow"
+    ],
+    "quote": "Successfully delivered a professional digital platform that showcases 50+ construction projects and streamlines client engagement.",
+    "media": {
+      "cover": "/images/projects/goodmil-construction/goodmil-homepage.png",
+      "video": "/images/projects/goodmil-construction/realstate.png",
+      "poster": "/images/projects/goodmil-construction/realstate.png",
+      "alt": "GoodMil Amrit Nirman Sewa official website showcasing construction projects and real estate listings",
+      "aspect": "16/10"
+    },
+    "architecture": {
+      "description": "The platform follows a classic Django MVT architecture with a robust admin panel and well-organized media handling.",
+      "diagram": "/images/projects/goodmil-construction/architecture-diagram.svg",
+      "layers": [
+        "frontend",
+        "backend",
+        "database",
+        "media"
+      ]
+    },
+    "implementation": [
+      {
+        "title": "Django Backend & CMS",
+        "body": "Architected a comprehensive Django application with 12+ models to manage projects, real estate listings, blog content, and client inquiries. Built a powerful admin dashboard for seamless content management.",
+        "media": {
+          "kind": "image",
+          "src": "/images/projects/goodmil-construction/implementation-cms.jpg",
+          "alt": "Django Admin Dashboard"
+        }
+      },
+      {
+        "title": "Advanced Frontend & Animations",
+        "body": "Created a responsive, visually rich frontend using modern HTML5, CSS3, and jQuery. Integrated GSAP and AOS for smooth scroll animations and interactive elements that enhance storytelling.",
+        "flip": true,
+        "media": {
+          "kind": "image",
+          "src": "/images/projects/goodmil-construction/implementation-frontend.jpg",
+          "alt": "Website animations and interactions"
+        }
+      },
+      {
+        "title": "Property Search & Real Estate Features",
+        "body": "Implemented a robust property search system with multiple filters, dynamic listings, and an efficient backend query structure to help potential clients discover properties easily.",
+        "media": {
+          "kind": "code",
+          "language": "python",
+          "filename": "views.py",
+          "code": "def property_search(request):\\n    queryset = Property.objects.all()\\n    # Advanced filtering logic..."
+        }
+      }
+    ],
+    "reflection": "This project strengthened my expertise in building complete full-stack solutions for real-world businesses, especially in balancing beautiful design with robust backend architecture and performance optimization.",
+    "nextSlug": null,
+    "links": [
+      {
+        "label": "Visit DEMO Website",
+        "href": "https://amritconstruction.pythonanywhere.com/"
+      }
+    ],
+    "body": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(t){const r={h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components};return i(e,{children:[n(r.h2,{id:\"problem\",children:\"Problem\"}),\"\\n\",n(r.p,{children:\"GoodMil Amrit Nirman Sewa needed a strong digital presence to showcase their expertise in architecture, interior design, construction, and real estate. Their previous online presence was minimal and not reflective of their capabilities in Nepal’s competitive construction industry.\"}),\"\\n\",n(r.h2,{id:\"solution\",children:\"Solution\"}),\"\\n\",n(r.p,{children:\"I designed and developed a professional, modern website that effectively communicates the company’s quality and range of services while providing an excellent user experience for potential clients and partners.\"}),\"\\n\",n(r.h2,{id:\"key-achievements\",children:\"Key Achievements\"}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🏗️ Business Website Development\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Architected a Django platform with 12+ models managing projects, real estate listings, blog content, and client inquiries\"}),\"\\n\",n(r.li,{children:\"Implemented a comprehensive CMS for easy dynamic updates\"}),\"\\n\",n(r.li,{children:\"Built advanced property search with multiple filtering options\"}),\"\\n\",n(r.li,{children:\"Created multi-channel contact and inquiry systems\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🎨 Frontend Development & Animation\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Developed a responsive, professional interface with construction industry aesthetics\"}),\"\\n\",n(r.li,{children:\"Integrated GSAP and AOS for smooth scroll animations and engaging interactions\"}),\"\\n\",n(r.li,{children:\"Added preloader animations and optimized media handling\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"⚙️ Technical Implementation\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Implemented robust image processing with Pillow\"}),\"\\n\",n(r.li,{children:\"Built efficient database architecture with proper relationships\"}),\"\\n\",n(r.li,{children:\"Created SEO-optimized structure with sitemaps\"}),\"\\n\",n(r.li,{children:\"Ensured production-ready deployment with error handling and performance optimization\"}),\"\\n\"]}),\"\\n\",n(r.h2,{id:\"impact\",children:\"Impact\"}),\"\\n\",n(r.p,{children:\"The new platform successfully enhanced GoodMil’s digital footprint, showcasing over 50 construction projects and enabling much more efficient client engagement. It strengthened their market credibility and positioned them strongly in Nepal’s construction industry.\"})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};"
+  },
+  {
+    "slug": "goodmil-construction-copy3",
+    "title": "GoodMil Amrit Nirman Sewa",
+    "summary": "Designed and developed a full-featured Django website for a leading Nepali construction company, featuring a dynamic CMS, advanced property search, and engaging animations.",
+    "intro": "Built a modern, high-performance digital platform for GoodMil Amrit Nirman Sewa — a prominent construction, architecture, interior design, and real estate firm in Nepal. The website significantly enhanced their online presence and client engagement.",
+    "featured": true,
+    "order": 1,
+    "cardSize": "standard",
+    "accent": "#048e3e",
+    "tags": [
+      "Django",
+      "Python",
+      "JavaScript",
+      "jQuery",
+      "GSAP",
+      "AOS",
+      "PostgreSQL"
+    ],
+    "role": "Full-Stack Web Developer",
+    "timeline": "May 2023 - Aug 2023 (4 months)",
+    "stack": [
+      "Django",
+      "Python",
+      "PostgreSQL",
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "jQuery",
+      "GSAP",
+      "AOS",
+      "Pillow"
+    ],
+    "quote": "Successfully delivered a professional digital platform that showcases 50+ construction projects and streamlines client engagement.",
+    "media": {
+      "cover": "/images/projects/goodmil-construction/goodmil-homepage.png",
+      "video": "/images/projects/goodmil-construction/realstate.png",
+      "poster": "/images/projects/goodmil-construction/realstate.png",
+      "alt": "GoodMil Amrit Nirman Sewa official website showcasing construction projects and real estate listings",
+      "aspect": "16/10"
+    },
+    "architecture": {
+      "description": "The platform follows a classic Django MVT architecture with a robust admin panel and well-organized media handling.",
+      "diagram": "/images/projects/goodmil-construction/architecture-diagram.svg",
+      "layers": [
+        "frontend",
+        "backend",
+        "database",
+        "media"
+      ]
+    },
+    "implementation": [
+      {
+        "title": "Django Backend & CMS",
+        "body": "Architected a comprehensive Django application with 12+ models to manage projects, real estate listings, blog content, and client inquiries. Built a powerful admin dashboard for seamless content management.",
+        "media": {
+          "kind": "image",
+          "src": "/images/projects/goodmil-construction/implementation-cms.jpg",
+          "alt": "Django Admin Dashboard"
+        }
+      },
+      {
+        "title": "Advanced Frontend & Animations",
+        "body": "Created a responsive, visually rich frontend using modern HTML5, CSS3, and jQuery. Integrated GSAP and AOS for smooth scroll animations and interactive elements that enhance storytelling.",
+        "flip": true,
+        "media": {
+          "kind": "image",
+          "src": "/images/projects/goodmil-construction/implementation-frontend.jpg",
+          "alt": "Website animations and interactions"
+        }
+      },
+      {
+        "title": "Property Search & Real Estate Features",
+        "body": "Implemented a robust property search system with multiple filters, dynamic listings, and an efficient backend query structure to help potential clients discover properties easily.",
+        "media": {
+          "kind": "code",
+          "language": "python",
+          "filename": "views.py",
+          "code": "def property_search(request):\\n    queryset = Property.objects.all()\\n    # Advanced filtering logic..."
+        }
+      }
+    ],
+    "reflection": "This project strengthened my expertise in building complete full-stack solutions for real-world businesses, especially in balancing beautiful design with robust backend architecture and performance optimization.",
+    "nextSlug": null,
+    "links": [
+      {
+        "label": "Visit DEMO Website",
+        "href": "https://amritconstruction.pythonanywhere.com/"
+      }
+    ],
+    "body": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(t){const r={h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components};return i(e,{children:[n(r.h2,{id:\"problem\",children:\"Problem\"}),\"\\n\",n(r.p,{children:\"GoodMil Amrit Nirman Sewa needed a strong digital presence to showcase their expertise in architecture, interior design, construction, and real estate. Their previous online presence was minimal and not reflective of their capabilities in Nepal’s competitive construction industry.\"}),\"\\n\",n(r.h2,{id:\"solution\",children:\"Solution\"}),\"\\n\",n(r.p,{children:\"I designed and developed a professional, modern website that effectively communicates the company’s quality and range of services while providing an excellent user experience for potential clients and partners.\"}),\"\\n\",n(r.h2,{id:\"key-achievements\",children:\"Key Achievements\"}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🏗️ Business Website Development\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Architected a Django platform with 12+ models managing projects, real estate listings, blog content, and client inquiries\"}),\"\\n\",n(r.li,{children:\"Implemented a comprehensive CMS for easy dynamic updates\"}),\"\\n\",n(r.li,{children:\"Built advanced property search with multiple filtering options\"}),\"\\n\",n(r.li,{children:\"Created multi-channel contact and inquiry systems\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🎨 Frontend Development & Animation\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Developed a responsive, professional interface with construction industry aesthetics\"}),\"\\n\",n(r.li,{children:\"Integrated GSAP and AOS for smooth scroll animations and engaging interactions\"}),\"\\n\",n(r.li,{children:\"Added preloader animations and optimized media handling\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"⚙️ Technical Implementation\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Implemented robust image processing with Pillow\"}),\"\\n\",n(r.li,{children:\"Built efficient database architecture with proper relationships\"}),\"\\n\",n(r.li,{children:\"Created SEO-optimized structure with sitemaps\"}),\"\\n\",n(r.li,{children:\"Ensured production-ready deployment with error handling and performance optimization\"}),\"\\n\"]}),\"\\n\",n(r.h2,{id:\"impact\",children:\"Impact\"}),\"\\n\",n(r.p,{children:\"The new platform successfully enhanced GoodMil’s digital footprint, showcasing over 50 construction projects and enabling much more efficient client engagement. It strengthened their market credibility and positioned them strongly in Nepal’s construction industry.\"})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};"
+  },
+  {
+    "slug": "goodmil-construction-copy4",
+    "title": "GoodMil Amrit Nirman Sewa",
+    "summary": "Designed and developed a full-featured Django website for a leading Nepali construction company, featuring a dynamic CMS, advanced property search, and engaging animations.",
+    "intro": "Built a modern, high-performance digital platform for GoodMil Amrit Nirman Sewa — a prominent construction, architecture, interior design, and real estate firm in Nepal. The website significantly enhanced their online presence and client engagement.",
+    "featured": true,
+    "order": 1,
+    "cardSize": "standard",
+    "accent": "#048e3e",
+    "tags": [
+      "Django",
+      "Python",
+      "JavaScript",
+      "jQuery",
+      "GSAP",
+      "AOS",
+      "PostgreSQL"
+    ],
+    "role": "Full-Stack Web Developer",
+    "timeline": "May 2023 - Aug 2023 (4 months)",
+    "stack": [
+      "Django",
+      "Python",
+      "PostgreSQL",
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "jQuery",
+      "GSAP",
+      "AOS",
+      "Pillow"
+    ],
+    "quote": "Successfully delivered a professional digital platform that showcases 50+ construction projects and streamlines client engagement.",
+    "media": {
+      "cover": "/images/projects/goodmil-construction/goodmil-homepage.png",
+      "video": "/images/projects/goodmil-construction/realstate.png",
+      "poster": "/images/projects/goodmil-construction/realstate.png",
+      "alt": "GoodMil Amrit Nirman Sewa official website showcasing construction projects and real estate listings",
+      "aspect": "16/10"
+    },
+    "architecture": {
+      "description": "The platform follows a classic Django MVT architecture with a robust admin panel and well-organized media handling.",
+      "diagram": "/images/projects/goodmil-construction/architecture-diagram.svg",
+      "layers": [
+        "frontend",
+        "backend",
+        "database",
+        "media"
+      ]
+    },
+    "implementation": [
+      {
+        "title": "Django Backend & CMS",
+        "body": "Architected a comprehensive Django application with 12+ models to manage projects, real estate listings, blog content, and client inquiries. Built a powerful admin dashboard for seamless content management.",
+        "media": {
+          "kind": "image",
+          "src": "/images/projects/goodmil-construction/implementation-cms.jpg",
+          "alt": "Django Admin Dashboard"
+        }
+      },
+      {
+        "title": "Advanced Frontend & Animations",
+        "body": "Created a responsive, visually rich frontend using modern HTML5, CSS3, and jQuery. Integrated GSAP and AOS for smooth scroll animations and interactive elements that enhance storytelling.",
+        "flip": true,
+        "media": {
+          "kind": "image",
+          "src": "/images/projects/goodmil-construction/implementation-frontend.jpg",
+          "alt": "Website animations and interactions"
+        }
+      },
+      {
+        "title": "Property Search & Real Estate Features",
+        "body": "Implemented a robust property search system with multiple filters, dynamic listings, and an efficient backend query structure to help potential clients discover properties easily.",
+        "media": {
+          "kind": "code",
+          "language": "python",
+          "filename": "views.py",
+          "code": "def property_search(request):\\n    queryset = Property.objects.all()\\n    # Advanced filtering logic..."
+        }
+      }
+    ],
+    "reflection": "This project strengthened my expertise in building complete full-stack solutions for real-world businesses, especially in balancing beautiful design with robust backend architecture and performance optimization.",
+    "nextSlug": null,
+    "links": [
+      {
+        "label": "Visit DEMO Website",
+        "href": "https://amritconstruction.pythonanywhere.com/"
+      }
+    ],
+    "body": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(t){const r={h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components};return i(e,{children:[n(r.h2,{id:\"problem\",children:\"Problem\"}),\"\\n\",n(r.p,{children:\"GoodMil Amrit Nirman Sewa needed a strong digital presence to showcase their expertise in architecture, interior design, construction, and real estate. Their previous online presence was minimal and not reflective of their capabilities in Nepal’s competitive construction industry.\"}),\"\\n\",n(r.h2,{id:\"solution\",children:\"Solution\"}),\"\\n\",n(r.p,{children:\"I designed and developed a professional, modern website that effectively communicates the company’s quality and range of services while providing an excellent user experience for potential clients and partners.\"}),\"\\n\",n(r.h2,{id:\"key-achievements\",children:\"Key Achievements\"}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🏗️ Business Website Development\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Architected a Django platform with 12+ models managing projects, real estate listings, blog content, and client inquiries\"}),\"\\n\",n(r.li,{children:\"Implemented a comprehensive CMS for easy dynamic updates\"}),\"\\n\",n(r.li,{children:\"Built advanced property search with multiple filtering options\"}),\"\\n\",n(r.li,{children:\"Created multi-channel contact and inquiry systems\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🎨 Frontend Development & Animation\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Developed a responsive, professional interface with construction industry aesthetics\"}),\"\\n\",n(r.li,{children:\"Integrated GSAP and AOS for smooth scroll animations and engaging interactions\"}),\"\\n\",n(r.li,{children:\"Added preloader animations and optimized media handling\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"⚙️ Technical Implementation\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Implemented robust image processing with Pillow\"}),\"\\n\",n(r.li,{children:\"Built efficient database architecture with proper relationships\"}),\"\\n\",n(r.li,{children:\"Created SEO-optimized structure with sitemaps\"}),\"\\n\",n(r.li,{children:\"Ensured production-ready deployment with error handling and performance optimization\"}),\"\\n\"]}),\"\\n\",n(r.h2,{id:\"impact\",children:\"Impact\"}),\"\\n\",n(r.p,{children:\"The new platform successfully enhanced GoodMil’s digital footprint, showcasing over 50 construction projects and enabling much more efficient client engagement. It strengthened their market credibility and positioned them strongly in Nepal’s construction industry.\"})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};"
+  },
+  {
+    "slug": "goodmil-construction-copy",
+    "title": "GoodMil Amrit Nirman Sewa",
+    "summary": "Designed and developed a full-featured Django website for a leading Nepali construction company, featuring a dynamic CMS, advanced property search, and engaging animations.",
+    "intro": "Built a modern, high-performance digital platform for GoodMil Amrit Nirman Sewa — a prominent construction, architecture, interior design, and real estate firm in Nepal. The website significantly enhanced their online presence and client engagement.",
+    "featured": true,
+    "order": 1,
+    "cardSize": "wide",
+    "accent": "#048e3e",
+    "tags": [
+      "Django",
+      "Python",
+      "JavaScript",
+      "jQuery",
+      "GSAP",
+      "AOS",
+      "PostgreSQL"
+    ],
+    "role": "Full-Stack Web Developer",
+    "timeline": "May 2023 - Aug 2023 (4 months)",
+    "stack": [
+      "Django",
+      "Python",
+      "PostgreSQL",
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "jQuery",
+      "GSAP",
+      "AOS",
+      "Pillow"
+    ],
+    "quote": "Successfully delivered a professional digital platform that showcases 50+ construction projects and streamlines client engagement.",
+    "media": {
+      "cover": "/images/projects/goodmil-construction/goodmil-homepage.png",
+      "video": "/images/projects/goodmil-construction/realstate.png",
+      "poster": "/images/projects/goodmil-construction/realstate.png",
+      "alt": "GoodMil Amrit Nirman Sewa official website showcasing construction projects and real estate listings",
+      "aspect": "16/10"
+    },
+    "architecture": {
+      "description": "The platform follows a classic Django MVT architecture with a robust admin panel and well-organized media handling.",
+      "diagram": "/images/projects/goodmil-construction/architecture-diagram.svg",
+      "layers": [
+        "frontend",
+        "backend",
+        "database",
+        "media"
+      ]
+    },
+    "implementation": [
+      {
+        "title": "Django Backend & CMS",
+        "body": "Architected a comprehensive Django application with 12+ models to manage projects, real estate listings, blog content, and client inquiries. Built a powerful admin dashboard for seamless content management.",
+        "media": {
+          "kind": "image",
+          "src": "/images/projects/goodmil-construction/implementation-cms.jpg",
+          "alt": "Django Admin Dashboard"
+        }
+      },
+      {
+        "title": "Advanced Frontend & Animations",
+        "body": "Created a responsive, visually rich frontend using modern HTML5, CSS3, and jQuery. Integrated GSAP and AOS for smooth scroll animations and interactive elements that enhance storytelling.",
+        "flip": true,
+        "media": {
+          "kind": "image",
+          "src": "/images/projects/goodmil-construction/implementation-frontend.jpg",
+          "alt": "Website animations and interactions"
+        }
+      },
+      {
+        "title": "Property Search & Real Estate Features",
+        "body": "Implemented a robust property search system with multiple filters, dynamic listings, and an efficient backend query structure to help potential clients discover properties easily.",
+        "media": {
+          "kind": "code",
+          "language": "python",
+          "filename": "views.py",
+          "code": "def property_search(request):\\n    queryset = Property.objects.all()\\n    # Advanced filtering logic..."
+        }
+      }
+    ],
+    "reflection": "This project strengthened my expertise in building complete full-stack solutions for real-world businesses, especially in balancing beautiful design with robust backend architecture and performance optimization.",
+    "nextSlug": null,
+    "links": [
+      {
+        "label": "Visit DEMO Website",
+        "href": "https://amritconstruction.pythonanywhere.com/"
+      }
+    ],
+    "body": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(t){const r={h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components};return i(e,{children:[n(r.h2,{id:\"problem\",children:\"Problem\"}),\"\\n\",n(r.p,{children:\"GoodMil Amrit Nirman Sewa needed a strong digital presence to showcase their expertise in architecture, interior design, construction, and real estate. Their previous online presence was minimal and not reflective of their capabilities in Nepal’s competitive construction industry.\"}),\"\\n\",n(r.h2,{id:\"solution\",children:\"Solution\"}),\"\\n\",n(r.p,{children:\"I designed and developed a professional, modern website that effectively communicates the company’s quality and range of services while providing an excellent user experience for potential clients and partners.\"}),\"\\n\",n(r.h2,{id:\"key-achievements\",children:\"Key Achievements\"}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🏗️ Business Website Development\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Architected a Django platform with 12+ models managing projects, real estate listings, blog content, and client inquiries\"}),\"\\n\",n(r.li,{children:\"Implemented a comprehensive CMS for easy dynamic updates\"}),\"\\n\",n(r.li,{children:\"Built advanced property search with multiple filtering options\"}),\"\\n\",n(r.li,{children:\"Created multi-channel contact and inquiry systems\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🎨 Frontend Development & Animation\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Developed a responsive, professional interface with construction industry aesthetics\"}),\"\\n\",n(r.li,{children:\"Integrated GSAP and AOS for smooth scroll animations and engaging interactions\"}),\"\\n\",n(r.li,{children:\"Added preloader animations and optimized media handling\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"⚙️ Technical Implementation\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Implemented robust image processing with Pillow\"}),\"\\n\",n(r.li,{children:\"Built efficient database architecture with proper relationships\"}),\"\\n\",n(r.li,{children:\"Created SEO-optimized structure with sitemaps\"}),\"\\n\",n(r.li,{children:\"Ensured production-ready deployment with error handling and performance optimization\"}),\"\\n\"]}),\"\\n\",n(r.h2,{id:\"impact\",children:\"Impact\"}),\"\\n\",n(r.p,{children:\"The new platform successfully enhanced GoodMil’s digital footprint, showcasing over 50 construction projects and enabling much more efficient client engagement. It strengthened their market credibility and positioned them strongly in Nepal’s construction industry.\"})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};"
+  },
+  {
     "slug": "goodmil-construction",
     "title": "GoodMil Amrit Nirman Sewa",
     "summary": "Designed and developed a full-featured Django website for a leading Nepali construction company, featuring a dynamic CMS, advanced property search, and engaging animations.",
     "intro": "Built a modern, high-performance digital platform for GoodMil Amrit Nirman Sewa — a prominent construction, architecture, interior design, and real estate firm in Nepal. The website significantly enhanced their online presence and client engagement.",
     "featured": true,
-    "order": 10,
-    "cardSize": "wide",
+    "order": 1,
+    "cardSize": "hero",
     "accent": "#048e3e",
     "tags": [
       "Django",
@@ -96,7 +460,7 @@
     "summary": "Built a full-featured Django e-commerce platform for cosmetics and beauty products with advanced cart, order tracking, reviews, and promotional systems.",
     "intro": "Developed and deployed a complete, production-ready e-commerce website for Sara Global Store, specializing in cosmetics and beauty products in Nepal. The platform handles real customer transactions, inventory management, and order fulfillment with a focus on scalability and excellent user experience.",
     "featured": true,
-    "order": 9,
+    "order": 2,
     "cardSize": "wide",
     "accent": "#ce4f3e",
     "tags": [
@@ -121,7 +485,7 @@
     ],
     "quote": "Delivered a secure, scalable, and user-friendly e-commerce solution that successfully processes real customer orders in the competitive beauty market.",
     "media": {
-      "cover": "/images/projects/sara-global-store/sara-homepage.mdx",
+      "cover": "/images/projects/sara-global-store/sara-homepage.png",
       "alt": "Sara Global Store e-commerce website showcasing cosmetics and beauty products",
       "aspect": "16/10"
     },

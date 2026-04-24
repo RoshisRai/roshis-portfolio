@@ -8,7 +8,8 @@ export type CursorVariant =
   | "view"        // "View Project" — large ring with label
   | "drag"        // draggable elements (carousels, sliders)
   | "scene"       // over Three.js canvas
-  | "hidden";     // inside inputs, code blocks, etc.
+  | "hidden"      // inside inputs, code blocks, etc.
+  | "project";
 
 export interface CursorVariantConfig {
   /** Inner dot size in px */
@@ -27,6 +28,8 @@ export interface CursorVariantConfig {
   glow: number;
   /** Dot color (CSS var or literal) */
   ringDamping: number;
+  /** Ring Scale */
+  ringScale?: number;
 }
 
 // Damping: 1 = instant, 0.1 = very trailing
@@ -106,5 +109,16 @@ export const CURSOR_VARIANTS: Record<CursorVariant, CursorVariantConfig> = {
     ringBorder: 0,
     glow: 0,
     ringDamping: 0.3,
+  },
+  project: {
+    dotSize: 6,
+    ringSize: 64,
+    ringOpacity: 0.9,
+    dotOpacity: 1,
+    ringBorder: 1.5,
+    label: 'View',
+    glow: 0,
+    ringDamping: 0.2,
+    ringScale: 1.1
   },
 };
