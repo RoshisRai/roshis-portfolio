@@ -1,0 +1,103 @@
+---
+slug: everylingua-ai
+title: EveryLinguaAI — Multilingual Voice Assistant
+summary: Engineered a modular, real-time multilingual voice assistant with wake-word activation, dynamic language switching, and GPT-powered conversational intelligence.
+intro: Designed and developed a production-style AI voice assistant system capable of real-time multilingual interaction, combining speech recognition, language translation, and conversational AI into a cohesive, extensible architecture.
+featured: true
+order: 3
+cardSize: wide
+accent: '#3aede7'
+tags: 
+  - Python
+  - OpenAI
+  - Speech Recognition
+  - Text-to-Speech
+  - NLP
+  - Audio Processing
+  - System Design
+role: AI / Backend Developer
+timeline: 2025 - 2026
+stack: 
+  - Python
+  - OpenAI GPT APIs
+  - SpeechRecognition
+  - PyAudio
+  - Deep Translator
+  - TTS Engines
+  - dotenv
+quote: "Built a modular, real-time AI voice assistant capable of understanding and responding across 50+ languages with natural conversational flow."
+media:
+  cover: /images/projects/everylingua-ai/everylingua-cover.png
+  video: /images/projects/everylingua-ai/everylingua-demo.mp4
+  poster: /images/projects/everylingua-ai/everylingua-preview.png
+  alt: Multilingual AI voice assistant processing speech input and generating spoken responses with real-time interaction
+  aspect: 16/10
+everylingua-ai-metrics:
+  - { value: '50', label: 'Languages Supported', countTo: 50, suffix: '+' }
+  - { value: '9', label: 'Core Modules', countTo: 9 }
+  - { value: '1', label: 'Continuous Voice Loop', countTo: 1 }
+architecture:
+  description: Built as a modular, event-driven voice system with dedicated components for wake-word detection, speech processing, AI interaction, and audio output, enabling scalability and maintainability.
+  diagram: /images/projects/everylingua/architecture-diagram.svg
+  layers: ['input', 'processing', 'ai-engine', 'output']
+implementation:
+  - title: "Wake Word Detection & Voice Activation"
+    body: "Implemented a wake-word system with fuzzy matching to reliably activate the assistant in real-world conditions. Designed configurable thresholds and timeout handling to balance responsiveness and false positives."
+    media: 
+      { kind: 'image', src: '/images/projects/everylingua/implementation-wakeword.jpg', alt: 'Wake word detection and activation flow' }
+  - title: "Modular Audio & Speech Processing System"
+    body: "Developed a structured audio pipeline handling microphone selection, calibration, and speech-to-text conversion. Built reusable modules for capturing, processing, and normalizing audio input across multiple environments."
+    media: 
+      { kind: 'image', src: '/images/projects/everylingua/implementation-audio.jpg', alt: 'Audio capture and speech processing modules' }
+    flip: true
+  - title: "Multilingual AI Conversation Engine"
+    body: "Integrated OpenAI GPT models with dynamic language detection and translation, enabling context-aware conversations across 50+ languages. Designed flexible prompts and token controls to balance response quality and cost efficiency."
+    media: 
+      { kind: 'code', language: 'python', filename: 'openai_client.py', code: 'def generate_response(prompt):\n    return client.chat.completions.create(\n        model=\"gpt\",\n        messages=[{\"role\": \"user\", \"content\": prompt}]\n    )' }
+  - title: "System Orchestration & Configuration Layer"
+    body: "Architected a clean separation of concerns with modules for orchestration, configuration, logging, and conversation flow. Enabled environment-based configuration for microphone tuning, latency control, and debugging."
+    media: 
+      { kind: 'image', src: '/images/projects/everylingua/implementation-architecture.jpg', alt: 'System architecture and modular design' }
+  - title: "Real-Time Interaction Loop & Reliability"
+    body: "Built a continuous interaction loop supporting wake, listen, respond, and reset cycles. Implemented error handling, fallback logic, and microphone auto-switching to ensure stability in real-world usage."
+    media: 
+      { kind: 'image', src: '/images/projects/everylingua/implementation-loop.jpg', alt: 'Real-time conversational loop flow' }
+reflection: This project significantly advanced my ability to design modular, real-time systems that integrate AI with low-level input/output processing. It reinforced principles of separation of concerns, reliability, and performance optimization in interactive applications.
+nextSlug: null
+links:
+  - { label: 'View Source Code', href: 'https://github.com/RoshisRai/EveryLinguaAI' }
+---
+
+## Problem
+
+Most voice assistants are limited in multilingual support and struggle to provide seamless, context-aware interactions across diverse languages. Additionally, many lack flexibility in configuration, making them difficult to adapt to real-world environments and different hardware setups.
+
+## Solution
+
+I built a modular AI voice assistant system that integrates speech recognition, translation, and GPT-based reasoning into a real-time conversational pipeline. The system supports dynamic language switching, configurable audio processing, and reliable wake-word activation for natural user interaction.
+
+## Key Achievements
+
+**🧠 AI & Multilingual Intelligence**
+- Integrated OpenAI GPT models for context-aware conversational responses  
+- Enabled support for 50+ languages using translation and NLP pipelines  
+- Implemented dynamic language switching during live conversations  
+
+**🎙️ Real-Time Voice System**
+- Built wake-word activation with fuzzy matching and timeout controls  
+- Developed continuous voice interaction loop (wake → listen → respond)  
+- Optimized for low-latency and real-world usability  
+
+**⚙️ Modular System Architecture**
+- Structured project into dedicated modules for maintainability and scalability  
+- Implemented configuration-driven behavior using environment variables  
+- Designed clean separation between audio, AI, and orchestration layers  
+
+**🔧 Reliability & Developer Experience**
+- Added logging system for debugging and monitoring  
+- Implemented microphone auto-switching and fallback mechanisms  
+- Controlled API costs with token limits and system prompts  
+
+## Impact
+
+EveryLinguaAI demonstrates a scalable approach to building real-time, AI-powered voice interfaces that are both flexible and inclusive. By supporting underrepresented languages and enabling natural interaction across linguistic boundaries, the system highlights how thoughtful engineering can improve accessibility and usability in modern AI applications.

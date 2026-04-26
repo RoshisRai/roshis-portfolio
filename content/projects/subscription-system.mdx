@@ -1,0 +1,102 @@
+---
+slug: enterprise-subscription-management-system
+title: Enterprise Subscription Management & Reminder System
+summary: Architected a production-grade subscription management platform with serverless automation, multi-tenant support, and enterprise-level security for SaaS lifecycle management.
+intro: Designed and built a scalable subscription management system tailored for enterprise SaaS platforms — combining intelligent automation, secure multi-tenant architecture, and real-time lifecycle tracking to streamline subscription operations.
+featured: true
+order: 1
+cardSize: hero
+accent: '#ae3dff'
+tags: 
+  - Node.js
+  - Express
+  - MongoDB
+  - Mongoose
+  - JWT
+  - Upstash QStash
+  - Arcjet
+  - Serverless
+role: Backend / Full-Stack Developer
+timeline: Feb 2025 - Mar 2025 (2 months)
+stack: 
+  - Node.js
+  - Express
+  - MongoDB
+  - Mongoose
+  - JWT
+  - Upstash QStash
+  - Nodemailer
+  - Arcjet
+  - Day.js
+quote: "Engineered a scalable, automation-driven subscription system capable of handling complex enterprise workflows with high reliability and security."
+media:
+  cover: /images/projects/subscription-system/subscription-cover.png
+  video: /images/projects/subscription-system/subscription-code.mp4
+  poster: /images/projects/subscription-system/subscription-poster.png
+  alt: Enterprise subscription management dashboard showing lifecycle tracking, analytics, and automation workflows
+  aspect: 16/10
+enterprise-subscription-management-system-metrics:
+  - { value: '4', label: 'Reminder Stages', countTo: 4, suffix: 'x' }
+  - { value: '5', label: 'User Roles', countTo: 5 }
+  - { value: '1000', label: 'Subscriptions Managed', countTo: 1000, suffix: '+' }
+architecture:
+  description: Built on a modular Node.js/Express architecture with MongoDB, leveraging serverless workflows for asynchronous task execution and a secure multi-tenant RBAC system.
+  diagram: /images/projects/subscription-system/architecture-diagram.svg
+  layers: ['api', 'automation', 'database', 'security']
+implementation:
+  - title: "Scalable API & Multi-Tenant Architecture"
+    body: "Developed a robust RESTful API using Node.js and Express with MongoDB and Mongoose for schema management. Designed the system to support multi-tenant environments with isolated data handling and scalable query performance."
+    media: 
+      { kind: 'image', src: '/images/projects/subscription-system/implementation-api.jpg', alt: 'API architecture and database schema' }
+  - title: "Serverless Automation & Workflow Orchestration"
+    body: "Integrated Upstash QStash to orchestrate automated reminder workflows with durable execution. Implemented multi-stage notification sequences (7, 5, 2, 1 days) with retry logic and failure handling for reliability."
+    media: 
+      { kind: 'image', src: '/images/projects/subscription-system/implementation-workflows.jpg', alt: 'Workflow automation and reminder system' }
+    flip: true
+  - title: "Subscription Lifecycle Engine & State Management"
+    body: "Engineered a state machine to handle subscription transitions including trial, active, paused, canceled, and expired states. Automated lifecycle updates and ensured consistency across all user interactions and workflows."
+    media: 
+      { kind: 'code', language: 'javascript', filename: 'subscriptionState.js', code: 'function transitionSubscription(state, action) {\n  switch(state) {\n    case \"trial\":\n      if(action === \"activate\") return \"active\";\n      break;\n    // Additional transitions...\n  }\n}' }
+  - title: "Security, Performance & Admin Systems"
+    body: "Implemented JWT authentication with RBAC roles (admin, manager, support, user) alongside Arcjet rate limiting and email verification. Optimized performance using pagination, field selection, and efficient queries. Built admin dashboards for monitoring subscriptions, workflows, and analytics."
+    media: 
+      { kind: 'image', src: '/images/projects/subscription-system/implementation-admin.jpg', alt: 'Admin dashboard and analytics overview' }
+reflection: This project significantly deepened my understanding of enterprise system design, particularly in building scalable APIs, orchestrating serverless workflows, and managing complex business logic with strong security and performance considerations.
+nextSlug: null
+links:
+  - { label: 'View API Documentation', href: 'https://your-api-docs-link.com/' }
+---
+
+## Problem
+
+Modern SaaS businesses require reliable systems to manage subscription lifecycles, automate reminders, and ensure secure multi-tenant operations. Many existing solutions lack flexibility, scalability, or the ability to handle complex workflows with enterprise-grade reliability.
+
+## Solution
+
+I architected a comprehensive subscription management platform that combines a scalable API, intelligent automation workflows, and a secure role-based system. The solution enables businesses to manage subscriptions efficiently while automating critical processes like reminders, lifecycle transitions, and user management.
+
+## Key Achievements
+
+**🏢 Enterprise System Architecture**
+- Built scalable RESTful API with multi-tenant support using Node.js and MongoDB  
+- Designed modular architecture supporting extensibility and high performance  
+- Implemented robust data modeling with Mongoose ODM  
+
+**⚙️ Automation & Workflow Orchestration**
+- Integrated Upstash QStash for serverless, durable workflows  
+- Designed multi-stage reminder system (7, 5, 2, 1 days) with retry logic  
+- Automated subscription lifecycle transitions with minimal manual intervention  
+
+**🔐 Security & Performance Optimization**
+- Implemented JWT authentication with role-based access control (RBAC)  
+- Added Arcjet rate limiting, email verification, and audit logging  
+- Optimized database queries with pagination and field selection for scale  
+
+**📊 Admin Systems & Monitoring**
+- Built admin dashboard for subscription tracking and analytics  
+- Enabled real-time monitoring of workflows and system health  
+- Implemented audit trails for compliance and debugging  
+
+## Impact
+
+The platform delivers a production-ready solution for managing complex subscription workflows at scale. It reduces manual overhead through automation, improves reliability with serverless orchestration, and ensures enterprise-grade security—making it suitable for modern SaaS environments handling large volumes of users and transactions.

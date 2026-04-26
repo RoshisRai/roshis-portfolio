@@ -11,6 +11,7 @@ interface ProjectCardMediaProps {
     media: ProjectMedia
     isHovering: boolean
     sizes?: string
+    priority?: boolean
 }
 
 const aspectClass: Record<NonNullable<ProjectMedia['aspect']>, string> = {
@@ -24,7 +25,8 @@ export const ProjectCardMedia = ({
     slug,
     media,
     isHovering,
-    sizes = '(max-width: 756px) 100vw, (max-width: 1280) 50vw, 45vw'
+    sizes = '(max-width: 756px) 100vw, (max-width: 1280) 50vw, 45vw',
+    priority = false
 }: ProjectCardMediaProps) => {
     const videoRef = useRef<HTMLVideoElement | null>(null)
     const [videoReady, setVideoReady] = useState(false)
@@ -60,12 +62,38 @@ export const ProjectCardMedia = ({
                 alt={media.alt}
                 fill
                 sizes={sizes}
-                priority={false}
+                loading={priority ? 'eager' : 'lazy'}
                 className={cn(
                     'object-cover transition-transform duration-(--duration-normal) --ease-out-expo',
                     'group-hover:scale-1.03',
                     videoReady && isHovering && 'opacity-0'
                 )}
+            />
+
+            { media.video && (
+                <video
+                    ref={videoRef}
+                    src={media.video}
+                    poster={media.poster ?? media.cover}
+                    muted
+                    loop
+                    playsInline
+                    onCanPlay={() => setVideoReady(true)}
+                    className={cn(
+                        'absolute inset-0 w-full h-full object-cover rounded-xl',
+                        'opacity-0 transition-opacity duration-(--duration-fast)',
+                        videoReady && isHovering && 'opacity-100',
+                        //Hide video entirely on touch/coarse pointer devices
+                        '[@media(hover:none)]:hidden',
+                        'motion-reduce:hidden',
+                    )}
+                />
+            )}
+
+            {/* Accent wash that shares its VT name with the case study hero. */}
+            <div 
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-linear-to-t from-[rgba(var(--project-accent-rgb),0.25)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-(--duration-fast)"
             />
         </div>
     )

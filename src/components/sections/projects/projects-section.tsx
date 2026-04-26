@@ -13,10 +13,11 @@ export const ProjectsSection = () => {
         <SectionWrapper
             id="projects"
             aria-labelledby="projects-heading"
+            className="bg-background"
         >
             <SectionHeading
                 id="projects-heading"
-                title="Featured Projects"
+                title="My Selected Projects"
                 subtitle="A selection of systems I've designed and built end-to-end."
                 align="left"
             />
