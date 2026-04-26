@@ -6,7 +6,6 @@ import { Button } from './button'
 import { Tag } from './tag'
 import { SectionHeading } from './section-heading'
 import { Card, ExperienceCard, SkillCard } from './card'
-import { ProjectCard } from '../sections/projects/project-card'
 import { Tooltip } from './tooltip'
 import { SocialIconButton } from './social-icon-button'
 import { InlineCode, CodeBlock } from './code-block'
@@ -147,25 +146,6 @@ export default function UIComponentsTest() {
             <h4 className="font-semibold">Simple Card</h4>
             <p className="text-sm text-text-secondary">This is a basic card wrapper.</p>
         </Card>
-
-        <ProjectCard
-            title="Example Project"
-            description="A short description of the example project. Shows tags below."
-            tags={[ 'React', 'Next.js' ]}
-        />
-
-        
-       <CursorZone variant="scene">
-         <ProjectCard
-            title="Linked Project"
-            description="This project card uses a link variant (href)."
-            tags={[ 'UI', 'Design' ]}
-            image='/images/project-test.png'
-            className="max-w-2xl"
-            href="/projects/example"
-            viewTransitionName="project-example"
-        />
-      </CursorZone>
 
         <ExperienceCard
             role="Senior Engineer"
