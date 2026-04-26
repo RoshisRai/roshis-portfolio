@@ -15,5 +15,5 @@ export function projectAccentVTName(slug: string) {
 }
 
 // Navigation direction tags (Next.js Link transitionTypes).
-export const navForward = ['nav-forward'] as const
-export const navBack = ['nav-back'] as const
+export const navForward: string[] = ['nav-forward']
+export const navBack: string[] = ['nav-back']

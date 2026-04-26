@@ -1,4 +1,11 @@
+'use client'
+
 import { cn } from "@/lib/utils"
+import { useRef } from "react"
+import { useGSAP } from "@gsap/react";
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { SplitText } from "gsap/SplitText";
 
 interface SectionHeadingProps extends React.HTMLAttributes<HTMLDivElement> {
     title: string
@@ -15,8 +22,58 @@ const SectionHeading = ({
     className,
     ...props
 }: SectionHeadingProps) => {
+    const containerRef = useRef<HTMLDivElement>(null)
+    const titleRef = useRef<HTMLHeadingElement>(null)
+    const subtitleRef = useRef<HTMLParagraphElement>(null)
+
+    useGSAP(() => {
+        const container = containerRef.current
+        const titleEl = titleRef.current
+        if (!container || !titleEl) return
+
+        const splitTitle = new SplitText(titleEl, { type: 'lines, words' })
+        const splitSubtitle = subtitleRef.current
+            ? new SplitText(subtitleRef.current, { type: 'lines' })
+            : null
+
+        // Create GSAP timeline
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: container,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+            }
+        })
+
+        // Animation Sequence
+        tl.from(splitTitle.words, {
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.05,
+            ease: "power4.out",
+        })
+        if (splitSubtitle) {
+            tl.from(splitSubtitle.lines, {
+                y: 20,
+                opacity: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: "power3.out",
+            }, "-=0.4")
+        }
+
+        return () => {
+            tl.kill()
+            splitTitle.revert()
+            splitSubtitle?.revert()
+            ScrollTrigger.refresh()
+        }
+    }, { scope: containerRef })
+
     return (
         <div
+            ref={containerRef}
             className={cn(
                 'flex flex-col',
                 // Margin to content (48px). Reduced when subtitle present since
@@ -29,6 +86,7 @@ const SectionHeading = ({
             {...props}
         >
             <Tag
+                ref={titleRef}
                 className={cn(
                     'font-display font-bold text-text-primary leading-[1.1] tracking-tight',
                     // 48px heading
@@ -39,7 +97,10 @@ const SectionHeading = ({
                 {title}
             </Tag>
             {subtitle && (
-                <p className="text-[18px] font-normal text-text-secondary leading-relaxed max-width-prose">
+                <p
+                    ref={subtitleRef}
+                    className="text-[18px] font-normal text-text-secondary leading-relaxed max-width-prose"
+                >
                     {subtitle}
                 </p>
             )}

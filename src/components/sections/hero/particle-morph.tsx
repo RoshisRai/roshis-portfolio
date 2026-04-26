@@ -65,6 +65,34 @@ function generateIcosahedron(count: number, radius: number): Float32Array {
   return positions;
 }
 
+function reorderShapeByCylindrical(points: Float32Array): Float32Array {
+  const count = points.length / 3;
+  const indexed = Array.from({ length: count }, (_, i) => {
+    const x = points[i * 3];
+    const y = points[i * 3 + 1];
+    const z = points[i * 3 + 2];
+    const angle = Math.atan2(z, x);
+    const radius = Math.hypot(x, z);
+    return { i, y, angle, radius };
+  });
+
+  indexed.sort((a, b) => {
+    if (a.y !== b.y) return a.y - b.y;
+    if (a.angle !== b.angle) return a.angle - b.angle;
+    return a.radius - b.radius;
+  });
+
+  const ordered = new Float32Array(points.length);
+  for (let dst = 0; dst < count; dst++) {
+    const src = indexed[dst].i * 3;
+    ordered[dst * 3] = points[src];
+    ordered[dst * 3 + 1] = points[src + 1];
+    ordered[dst * 3 + 2] = points[src + 2];
+  }
+
+  return ordered;
+}
+
 // ─── shader source ─────────────────────────────────────────────────
 const vertexShader = /* glsl */ `
   uniform float uTime;
@@ -72,6 +100,7 @@ const vertexShader = /* glsl */ `
   uniform float uMouseX;
   uniform float uMouseY;
   uniform float uPixelRatio;
+  uniform float uTheme;
 
   attribute vec3 aTarget;
   attribute float aRandom;
@@ -135,14 +164,16 @@ const vertexShader = /* glsl */ `
     vec3 morphed = mix(position, aTarget, uMorph);
 
     // organic noise displacement
-    float noiseVal = snoise(morphed * 0.8 + uTime * 0.15) * 0.35;
+    float noiseVal = snoise(morphed * 0.8 + uTime * 0.15) * 0.24;
     morphed += normal * noiseVal * (1.0 - uMorph * 0.5);
 
     // mouse influence (subtle gravity pull)
-    vec3 mouseInfluence = vec3(uMouseX * 0.4, uMouseY * 0.4, 0.0);
-    float dist = length(morphed - mouseInfluence * 3.0);
-    float mousePull = smoothstep(4.0, 0.0, dist) * 0.6;
-    morphed += normalize(mouseInfluence * 3.0 - morphed) * mousePull;
+    vec3 mouseInfluence = vec3(uMouseX * 0.35, uMouseY * 0.35, 0.0);
+    float dist = length(morphed - mouseInfluence * 2.3);
+    float mousePull = smoothstep(4.0, 0.0, dist) * 0.36;
+    float tailDamp = 1.0 - smoothstep(0.8, 1.0, uMorph) * 0.45;
+    mousePull *= tailDamp;
+    morphed += normalize(mouseInfluence * 2.3 - morphed) * mousePull;
 
     // breathing / pulsation
     float pulse = sin(uTime * 1.2 + aRandom * 6.28) * 0.04;
@@ -153,7 +184,7 @@ const vertexShader = /* glsl */ `
 
     // size attenuation
     float size = aSize * uPixelRatio * (180.0 / -mvPosition.z);
-    gl_PointSize = max(size, 1.0);
+    gl_PointSize = clamp(size, 1.2, 9.0);
 
     // pass to fragment
     float depth = smoothstep(-5.0, 5.0, morphed.z);
@@ -162,9 +193,15 @@ const vertexShader = /* glsl */ `
 
     // dynamic color based on position + time
     float hue = aRandom * 0.15 + morphed.y * 0.05 + uTime * 0.02;
-    vec3 col1 = vec3(0.40, 0.50, 1.00); // blue
-    vec3 col2 = vec3(0.65, 0.30, 1.00); // purple
-    vec3 col3 = vec3(0.20, 0.90, 1.00); // cyan
+    vec3 darkCol1 = vec3(0.40, 0.50, 1.00);
+    vec3 darkCol2 = vec3(0.65, 0.30, 1.00);
+    vec3 darkCol3 = vec3(0.20, 0.90, 1.00);
+    vec3 lightCol1 = vec3(0.10, 0.28, 0.66);
+    vec3 lightCol2 = vec3(0.33, 0.20, 0.60);
+    vec3 lightCol3 = vec3(0.00, 0.48, 0.54);
+    vec3 col1 = mix(darkCol1, lightCol1, uTheme);
+    vec3 col2 = mix(darkCol2, lightCol2, uTheme);
+    vec3 col3 = mix(darkCol3, lightCol3, uTheme);
     float mixer = sin(hue * 6.28) * 0.5 + 0.5;
     float mixer2 = cos(hue * 6.28 + 2.094) * 0.5 + 0.5;
     vColor = mix(mix(col1, col2, mixer), col3, mixer2);
@@ -172,6 +209,7 @@ const vertexShader = /* glsl */ `
 `;
 
 const fragmentShader = /* glsl */ `
+  uniform float uTheme;
   varying float vAlpha;
   varying float vRandom;
   varying vec3 vColor;
@@ -182,13 +220,13 @@ const fragmentShader = /* glsl */ `
     float dist = length(center);
     if (dist > 0.5) discard;
 
-    float alpha = smoothstep(0.5, 0.1, dist) * vAlpha;
+    float halo = smoothstep(0.5, 0.14, dist);
+    float core = smoothstep(0.22, 0.0, dist);
+    float alpha = (halo * 0.55 + core * 0.95) * vAlpha;
 
-    // glow core
-    float core = smoothstep(0.3, 0.0, dist);
-    vec3 finalColor = vColor + core * 0.5;
+    vec3 finalColor = vColor * mix(0.92 + core * 0.38, 0.84 + core * 0.22, uTheme);
 
-    gl_FragColor = vec4(finalColor, alpha * 0.85);
+    gl_FragColor = vec4(finalColor, alpha * mix(0.82, 0.92, uTheme));
   }
 `;
 
@@ -196,26 +234,52 @@ const fragmentShader = /* glsl */ `
 interface ParticleMorphProps {
   mouseXRef: React.RefObject<number>;
   mouseYRef: React.RefObject<number>;
+  themeMode?: "light" | "dark";
 }
 
 const PARTICLE_COUNT = 8000;
+const BASE_SCALE = 0.83;
+const MORPH_SCALE = 0.74;
+const DEPTH_FLOAT = 0.18;
+const MORPH_RATE_FAST = 0.42;
+const MORPH_RATE_SLOW = 0.31;
 
-export default function ParticleMorph({ mouseXRef, mouseYRef }: ParticleMorphProps) {
+function computeAdaptiveMorphRate(source: Float32Array, target: Float32Array): number {
+  const stride = 18;
+  let sum = 0;
+  let count = 0;
+
+  for (let i = 0; i < source.length; i += stride * 3) {
+    const dx = target[i] - source[i];
+    const dy = target[i + 1] - source[i + 1];
+    const dz = target[i + 2] - source[i + 2];
+    sum += Math.sqrt(dx * dx + dy * dy + dz * dz);
+    count += 1;
+  }
+
+  const avgDist = count > 0 ? sum / count : 0;
+  const normalized = THREE.MathUtils.clamp((avgDist - 1.25) / 1.85, 0, 1);
+
+  return THREE.MathUtils.lerp(MORPH_RATE_FAST, MORPH_RATE_SLOW, normalized);
+}
+
+export default function ParticleMorph({ mouseXRef, mouseYRef, themeMode = "dark" }: ParticleMorphProps) {
   const meshRef = useRef<THREE.Points>(null);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
 
   // pre-compute all shapes
   const shapes = useMemo(() => [
-    generateSphere(PARTICLE_COUNT, 2.0),
-    generateTorus(PARTICLE_COUNT, 1.8, 0.7),
-    generateDNA(PARTICLE_COUNT, 5),
-    generateIcosahedron(PARTICLE_COUNT, 2.0),
+    reorderShapeByCylindrical(generateSphere(PARTICLE_COUNT, 2.0)),
+    reorderShapeByCylindrical(generateTorus(PARTICLE_COUNT, 1.8, 0.7)),
+    reorderShapeByCylindrical(generateDNA(PARTICLE_COUNT, 5)),
+    reorderShapeByCylindrical(generateIcosahedron(PARTICLE_COUNT, 2.0)),
   ], []);
 
   const shapeIndex = useRef(0);
-  const nextShapeTime = useRef(0);
+  const nextShapeTime = useRef(2.5);
   const morphProgress = useRef(0);
   const isMorphing = useRef(false);
+  const morphRate = useRef(MORPH_RATE_FAST);
 
   // initial geometry attributes
   const { positions, targets, randoms, sizes, normals } = useMemo(() => {
@@ -249,8 +313,9 @@ export default function ParticleMorph({ mouseXRef, mouseYRef }: ParticleMorphPro
       uMouseX: { value: 0 },
       uMouseY: { value: 0 },
       uPixelRatio: { value: typeof window !== "undefined" ? Math.min(window.devicePixelRatio, 2) : 1 },
+      uTheme: { value: themeMode === "light" ? 1 : 0 },
     }),
-    [],
+    [themeMode],
   );
 
   // smooth morph using custom easing
@@ -266,6 +331,8 @@ export default function ParticleMorph({ mouseXRef, mouseYRef }: ParticleMorphPro
 
     // update uniforms
     mat.uniforms.uTime.value = elapsed;
+    mat.uniforms.uPixelRatio.value = Math.min(state.gl.getPixelRatio(), 2);
+    mat.uniforms.uTheme.value = themeMode === "light" ? 1 : 0;
     mat.uniforms.uMouseX.value += (mouseXRef.current - mat.uniforms.uMouseX.value) * 0.05;
     mat.uniforms.uMouseY.value += (mouseYRef.current - mat.uniforms.uMouseY.value) * 0.05;
 
@@ -277,7 +344,14 @@ export default function ParticleMorph({ mouseXRef, mouseYRef }: ParticleMorphPro
       const nextIndex = (shapeIndex.current + 1) % shapes.length;
       const geo = meshRef.current.geometry;
       const targetAttr = geo.attributes.aTarget;
+      const posAttr = geo.attributes.position;
       const nextShape = shapes[nextIndex];
+
+      morphRate.current = computeAdaptiveMorphRate(
+        posAttr.array as Float32Array,
+        nextShape,
+      );
+
       for (let i = 0; i < nextShape.length; i++) {
         (targetAttr.array as Float32Array)[i] = nextShape[i];
       }
@@ -286,18 +360,20 @@ export default function ParticleMorph({ mouseXRef, mouseYRef }: ParticleMorphPro
     }
 
     if (isMorphing.current) {
-      morphProgress.current += delta * 0.45; // controls morph speed
-      const easedProgress = easeInOutCubic(Math.min(morphProgress.current, 1));
-      mat.uniforms.uMorph.value = easedProgress;
+      morphProgress.current += delta * morphRate.current;
+      const t = Math.min(morphProgress.current, 1);
+      const easedProgress = easeInOutCubic(t);
+      const settleProgress = 1 - Math.pow(1 - t, 2);
+      const tailBlend = THREE.MathUtils.clamp((t - 0.8) / 0.2, 0, 1);
+      mat.uniforms.uMorph.value = THREE.MathUtils.lerp(easedProgress, settleProgress, tailBlend);
 
       if (morphProgress.current >= 1) {
         // morph complete – swap positions to target, reset
         const geo = meshRef.current.geometry;
         const posAttr = geo.attributes.position;
         const targetAttr = geo.attributes.aTarget;
-        for (let i = 0; i < PARTICLE_COUNT * 3; i++) {
-          (posAttr.array as Float32Array)[i] = (targetAttr.array as Float32Array)[i];
-        }
+
+        (posAttr.array as Float32Array).set(targetAttr.array as Float32Array);
         posAttr.needsUpdate = true;
         mat.uniforms.uMorph.value = 0;
         isMorphing.current = false;
@@ -305,9 +381,19 @@ export default function ParticleMorph({ mouseXRef, mouseYRef }: ParticleMorphPro
       }
     }
 
-    // gentle rotation
-    meshRef.current.rotation.y += delta * 0.08;
-    meshRef.current.rotation.x = Math.sin(elapsed * 0.2) * 0.1;
+    const morphT = isMorphing.current ? Math.min(morphProgress.current, 1) : 0;
+    const squash = Math.sin(morphT * Math.PI);
+    const targetScale = THREE.MathUtils.lerp(BASE_SCALE, MORPH_SCALE, squash);
+    const nextScale = THREE.MathUtils.damp(meshRef.current.scale.x, targetScale, 5.5, delta);
+    meshRef.current.scale.setScalar(nextScale);
+
+    const targetDepth = Math.sin(elapsed * 0.55) * DEPTH_FLOAT + mat.uniforms.uMouseX.value * 0.08;
+    meshRef.current.position.z = THREE.MathUtils.damp(meshRef.current.position.z, targetDepth, 2.6, delta);
+
+    // Add multi-axis rotation so the silhouette reads as spatial, not flat.
+    meshRef.current.rotation.y += delta * 0.22;
+    meshRef.current.rotation.x = Math.sin(elapsed * 0.45) * 0.2 + mat.uniforms.uMouseY.value * 0.16;
+    meshRef.current.rotation.z = Math.sin(elapsed * 0.32) * 0.06 + mat.uniforms.uMouseX.value * 0.08;
   });
 
   return (
@@ -343,7 +429,7 @@ export default function ParticleMorph({ mouseXRef, mouseYRef }: ParticleMorphPro
         uniforms={uniforms}
         transparent
         depthWrite={false}
-        blending={THREE.AdditiveBlending}
+        blending={themeMode === "light" ? THREE.NormalBlending : THREE.AdditiveBlending}
       />
     </points>
   );

@@ -9,7 +9,7 @@ interface CursorZoneProps {
   label?: string;
   children: React.ReactNode;
   /** Render as a specific element */
-  as?: keyof React.JSX.IntrinsicElements;
+  as?: React.ElementType;
   className?: string;
 }
 
@@ -19,6 +19,7 @@ export function CursorZone({
   children,
   as: Tag = "div",
   className,
+  ...props
 }: CursorZoneProps) {
   const { setVariant, resetVariant } = useCursor();
   const ref = useRef<HTMLElement>(null);
@@ -37,5 +38,5 @@ export function CursorZone({
   }, [variant, label, setVariant, resetVariant]);
 
   // @ts-expect-error dynamic tag
-  return <Tag ref={ref} className={className}>{children}</Tag>;
+  return <Tag ref={ref} className={className} {...props}>{children}</Tag>;
 }
