@@ -25,7 +25,22 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
 
         gsap.ticker.lagSmoothing(0)
 
+        // Pause Lenis + GSAP ticker during view transitions
+        const handleStart = () => {
+            lenis.stop()
+            gsap.ticker.sleep()
+        }
+        const handleEnd = () => {
+            lenis.start()
+            gsap.ticker.wake()
+        }
+
+        document.addEventListener('viewtransitionstart', handleStart)
+        document.addEventListener('viewtransitionend', handleEnd)
+
         return () => {
+            document.removeEventListener('viewtransitionstart', handleStart)
+            document.removeEventListener('viewtransitionend', handleEnd)
             lenis.destroy()
             ;(window as Window & { __lenis?: Lenis | null }).__lenis = null
         }
