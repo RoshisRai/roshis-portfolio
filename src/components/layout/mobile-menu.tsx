@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { gsap } from 'gsap'
 import { cn } from '@/lib/utils'
@@ -10,6 +10,7 @@ import { useSmoothScroll } from '@/hooks/use-smooth-scroll'
 import { Button } from '../ui/button'
 import { SocialIconButton } from '../ui/social-icon-button'
 import { socialLinks } from '@/lib/constants'
+import Link from 'next/link'
 
 interface NavLink {
     label: string
@@ -22,6 +23,7 @@ interface MobileMenuProps {
 
 export function MobileMenu({ links }: MobileMenuProps) {
     const pathname = usePathname()
+    const router = useRouter()
     const activeSection = useActiveSection()
     const isHome = pathname === '/'
     const scrollTo = useSmoothScroll()
@@ -29,7 +31,7 @@ export function MobileMenu({ links }: MobileMenuProps) {
     const isOpenRef = useRef(false)
     const overlayRef = useRef<HTMLDivElement>(null)
     const backdropRef = useRef<HTMLDivElement>(null)
-    const linkRefs = useRef<(HTMLButtonElement | null)[]>([])
+    const linkRefs = useRef<(HTMLAnchorElement | null)[]>([])
     const ctaRef = useRef<HTMLButtonElement>(null)
     const tlRef = useRef<gsap.core.Timeline | null>(null)
     const socialLinkRefs = useRef<(HTMLAnchorElement | null)[]>([])
@@ -118,10 +120,20 @@ export function MobileMenu({ links }: MobileMenuProps) {
         return () => window.removeEventListener('keydown', handleKeyDown)
     }, [])
 
-    const handleLinkClick = (href: string) => {
+    const handleLinkClick = (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault()
         close()
-        // Small delay so the overlay closes before scrolling
-        setTimeout(() => scrollTo(href), 300)
+
+        if (isHome) {
+            setTimeout(() => scrollTo(href), 300)
+            console.log(`Scrolling to ${href}`)
+        } else {
+            const sectionId = href.replace('/', '')
+            router.push(`/`)
+            setTimeout(() => {
+                scrollTo(`${sectionId}`)
+            }, 350)
+        }
     }
 
     return (
@@ -172,10 +184,11 @@ export function MobileMenu({ links }: MobileMenuProps) {
                         const isActive = isHome && activeSection === sectionId
 
                         return (
-                            <button
+                            <Link
                                 key={link.href}
+                                href={link.href}
                                 ref={(el) => { linkRefs.current[i] = el }}
-                                onClick={() => handleLinkClick(link.href)}
+                                onClick={handleLinkClick(link.href)}
                                 className={cn(
                                     'w-full text-center py-4 rounded-xl',
                                     'text-2xl font-display font-semibold',
@@ -186,7 +199,7 @@ export function MobileMenu({ links }: MobileMenuProps) {
                                 )}
                             >
                                 {link.label}
-                            </button>
+                            </Link>
                         )
                     })}
                 </nav>

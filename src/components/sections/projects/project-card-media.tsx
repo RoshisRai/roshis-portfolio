@@ -26,7 +26,7 @@ export const ProjectCardMedia = ({
     media,
     isHovering,
     sizes = '(max-width: 756px) 100vw, (max-width: 1280) 50vw, 45vw',
-    priority = false
+    priority = false,
 }: ProjectCardMediaProps) => {
     const videoRef = useRef<HTMLVideoElement | null>(null)
     const [videoReady, setVideoReady] = useState(false)
@@ -51,11 +51,10 @@ export const ProjectCardMedia = ({
 
     return (
         <div
-            className={cn(
-                'relative w-full overflow-hidden rounded-xl',
-                aspectClass[media.aspect ?? '16/10'],
-            )}
-            style={{ viewTransitionName: projectMediaVTName(slug) }}
+        className={cn(
+            'relative w-full overflow-hidden rounded-xl',
+            aspectClass[media.aspect ?? '16/10'],
+        )}
         >
             <Image 
                 src={media.cover}
@@ -63,6 +62,8 @@ export const ProjectCardMedia = ({
                 fill
                 sizes={sizes}
                 loading={priority ? 'eager' : 'lazy'}
+                data-vt-media
+                style={{ viewTransitionName: projectMediaVTName(slug) }}
                 className={cn(
                     'object-cover transition-transform duration-(--duration-normal) --ease-out-expo',
                     'group-hover:scale-1.03',

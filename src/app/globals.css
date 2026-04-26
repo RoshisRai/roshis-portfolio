@@ -75,42 +75,6 @@
     0%, 100% { opacity: 0.3; transform: translateY(0); }
     50% { opacity: 0.8; transform: translateY(2px); }
   }
-
-  /* VIEW TRANSITION KEYFRAMES */
-  @keyframes morph-blur {
-    0%, 100% { filter: blur(0px); }
-    50% { filter: blur(2px); }
-  }
-
-  @keyframes slide-from-right {
-    from { transform: translateX(60px); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-  }
-
-  @keyframes slide-from-left {
-    from { transform: translateX(-60px); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-  }
-
-  @keyframes slide-to-right {
-    from { transform: translateX(0); opacity: 1; }
-    to { transform: translateX(60px); opacity: 0; }
-  }
-
-  @keyframes slide-to-left {
-    from { transform: translateX(0); opacity: 1; }
-    to { transform: translateX(-60px); opacity: 0; }
-  }
-
-  @keyframes fade-in-up {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-
-  @keyframes fade-out-down {
-    from { transform: translateY(0); opacity: 1; }
-    to { transform: translateY(20px); opacity: 0; }
-  }
 }
 
 /* BASE STYLES AND RESETS  */
@@ -181,19 +145,8 @@
     cursor: text !important;
   }
 
-  /* REDUCED MOTION */
-  @media (prefers-reduced-motion: reduce) {
-    html.cursor-custom,
-    html.cursor-custom * {
-      cursor: auto !important;
-    }
-
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
+  main {
+    view-transition-name: none;
   }
 
   @property --hero-rot {
@@ -246,33 +199,32 @@
     background: var(--color-text-secondary);
     animation: scroll-dot 1.5s ease-in-out infinite;
   }
+
+  .cs-bg-wash {
+    animation: cs-bg-wash var(--duration-super-slow) var(--ease-out-expo) both;
+    animation-delay: 120ms;
+  }
 }
 
 
-/* View Transition rules for directional navigation */
-::view-transition-group(nav-forward) {
-  animation-duration: var(--duration-normal);
-  animation-timing-function: var(--ease-out-expo);
-}
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  html.cursor-custom,
+  html.cursor-custom * {
+    cursor: auto !important;
+  }
 
-::view-transition-old(nav-forward) {
-  animation-name: slide-to-left;
-}
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 
-::view-transition-new(nav-forward) {
-  animation-name: slide-from-right;
-}
-
-::view-transition-old(nav-back) {
-  animation-name: slide-to-right;
-}
-
-::view-transition-new(nav-back) {
-  animation-name: slide-from-left;
-}
-
-/* Shared element morph transition */
-::view-transition-old(project-morph),
-::view-transition-new(project-morph) {
-  animation: morph-blur var(--duration-normal) var(--ease-out-expo);
+  .cs-bg-wash {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
 }

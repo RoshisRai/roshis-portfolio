@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type MouseEvent } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { ThemeToggle } from '@/components/global/theme-toggle'
 import { MobileMenu } from './mobile-menu'
@@ -12,6 +12,7 @@ import { scrollToTop } from '@/lib/animations'
 import { Button } from '../ui/button'
 import Image from 'next/image'
 import { Magnetic } from '../global/cursor/magnetic'
+import { HEADER_VT_NAME } from '@/lib/project-transition'
 
 const navLinks = [
     { label: 'Projects',   href: '/#projects'   },
@@ -29,10 +30,28 @@ export function Navbar() {
     const isHome = pathname === '/'
     const scrollTo = useSmoothScroll()
 
+    const router = useRouter()
+
     const handleLogoClick = (e: MouseEvent<HTMLAnchorElement>) => {
         if (isHome) {
             e.preventDefault()
             scrollToTop()
+        }
+    }
+
+    const handleNavLinkClick = (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+        if (isHome) {
+            e.preventDefault()
+            scrollTo(href)
+            console.log(`Scrolling to ${href}`)
+        } 
+        else {
+            e.preventDefault()
+            const sectionId = href.replace('/', '')
+            router.push(`/`)
+            setTimeout(() => {
+                scrollTo(`${sectionId}`)
+            }, 350)
         }
     }
 
@@ -44,6 +63,7 @@ export function Navbar() {
 
     return (
         <header
+            style={{ viewTransitionName: HEADER_VT_NAME}}
             className={cn(
                 'fixed top-0 z-50 w-full',
                 'transition-[background-color,border-color] duration-300',
@@ -66,7 +86,7 @@ export function Navbar() {
                     )}
                 >
                     <Image
-                        src="images/logo.svg"
+                        src="/images/logo.svg"
                         alt="Roshis Rai"
                         width={32}
                         height={32}
@@ -82,9 +102,10 @@ export function Navbar() {
                         const isActive = isHome && activeSection === sectionId
 
                         return (
-                            <button
+                            <Link
                                 key={link.href}
-                                onClick={() => scrollTo(link.href)}
+                                href={link.href}
+                                onClick={handleNavLinkClick(link.href)}
                                 className={cn(
                                     'relative text-sm font-medium',
                                     'transition-colors duration-(--duration-fast)',
@@ -106,7 +127,7 @@ export function Navbar() {
                                             : 'opacity-0 scale-x-0',
                                     )}
                                 />
-                            </button>
+                            </Link>
                         )
                     })}
                 </div>

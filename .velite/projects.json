@@ -96,7 +96,7 @@
       }
     ],
     "reflection": "This project significantly advanced my ability to design modular, real-time systems that integrate AI with low-level input/output processing. It reinforced principles of separation of concerns, reliability, and performance optimization in interactive applications.",
-    "nextSlug": null,
+    "nextSlug": "sara-global-store",
     "links": [
       {
         "label": "View Source Code",
@@ -187,7 +187,7 @@
       }
     ],
     "reflection": "This project strengthened my expertise in building complete full-stack solutions for real-world businesses, especially in balancing beautiful design with robust backend architecture and performance optimization.",
-    "nextSlug": null,
+    "nextSlug": "everylingua-ai",
     "links": [
       {
         "label": "Visit DEMO Website",
@@ -295,7 +295,7 @@
       }
     ],
     "reflection": "This project deepened my expertise in building production-grade e-commerce solutions, particularly in handling complex business logic, order workflows, and delivering delightful shopping experiences using Django.",
-    "nextSlug": "goodmil-construction",
+    "nextSlug": "uncharted-pages",
     "links": [
       {
         "label": "Visit Website",
@@ -395,7 +395,7 @@
       }
     ],
     "reflection": "This project significantly deepened my understanding of enterprise system design, particularly in building scalable APIs, orchestrating serverless workflows, and managing complex business logic with strong security and performance considerations.",
-    "nextSlug": null,
+    "nextSlug": "goodmil-construction",
     "links": [
       {
         "label": "View API Documentation",
@@ -486,7 +486,7 @@
       }
     ],
     "reflection": "This project strengthened my ability to merge creative frontend development with practical backend systems, particularly in building production-ready e-commerce solutions with engaging user experiences.",
-    "nextSlug": null,
+    "nextSlug": "enterprise-subscription-management-system",
     "links": [
       {
         "label": "Visit Live Platform",

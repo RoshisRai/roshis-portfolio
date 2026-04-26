@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import "./globals.css"
 import { CursorZone } from "@/components/global/cursor/cursor-zone"
+import { ViewTransition } from "react"
 
 export const metadata: Metadata = {
   title: {
@@ -20,6 +21,20 @@ export const metadata: Metadata = {
     siteName: 'Roshis Rai',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: '/images/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Roshis Rai Portfolio Preview',
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Roshis Rai — Full-Stack Software Engineer',
+    description: 'I design and build end-to-end applications, from frontend UX to backend architecture.',
+    images: ['/images/og-image.png'],
   },
   robots: {
     index: true,
@@ -58,7 +73,9 @@ export default function RootLayout({
             <Navbar />
           </CursorZone>
           <main>
-            {children}
+            <ViewTransition>
+              {children}
+            </ViewTransition>
           </main>
           <Footer />
         </Providers>

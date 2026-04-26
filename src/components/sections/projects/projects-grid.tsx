@@ -8,7 +8,10 @@ interface ProjectsGridProps {
 
 export const ProjectsGrid = ({ projects }: ProjectsGridProps) => {
     return (
-        <div className={projectsGridClass}>
+        <div 
+            data-project-grid
+            className={projectsGridClass}
+        >
             {projects.map((p, i) => (
                 <ProjectCard key={p.slug} project={p} priority={i === 0}  />
             ))}

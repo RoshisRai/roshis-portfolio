@@ -12,13 +12,13 @@ export const ProjectCardMeta = ({
     slug,
     title,
     summary,
-    tags
+    tags,
 }: ProjectCardMetaProps) => {
     return (
         <div className="flex flex-col flex-1 gap-3 p-6">
             <h3
-                className="font-display font-semibold text-[22px] text-text-primary leading-snug"
                 style={{ viewTransitionName: projectTitleVTName(slug) }}
+                className="font-display font-semibold text-[22px] text-text-primary leading-snug"
             >
                 {title}
             </h3>
