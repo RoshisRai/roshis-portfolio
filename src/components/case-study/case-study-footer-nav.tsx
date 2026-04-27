@@ -38,7 +38,7 @@ export const CaseStudyFooterNav = ({ prev, next }: CaseStudyFooterNavProps) => {
                 >
                     <ArrowLeft
                         size={18}
-                        className="text-text-secondary group-hover:-translate-x-1 group-hover:text-[color:var(--project-accent)] transition-transform duration-(--duration-fast)"
+                        className="text-text-secondary group-hover:-translate-x-1 group-hover:text-(--project-accent) transition-transform duration-(--duration-fast)"
                     />
                     <div className="flex flex-col">
                         <span className="text-[12px] font-mono uppercase tracking-wider text-text-secondary">
@@ -66,7 +66,7 @@ export const CaseStudyFooterNav = ({ prev, next }: CaseStudyFooterNavProps) => {
                         </div>
                         <ArrowRight
                             size={18}
-                            className="text-text-secondary group-hover:translate-x-1 group-hover:text-[color:var(--project-accent)] transition-transform duration-(--duration-fast)"
+                            className="text-text-secondary group-hover:translate-x-1 group-hover:text-(--project-accent) transition-transform duration-(--duration-fast)"
                         />
                     </Link>
                 )}
