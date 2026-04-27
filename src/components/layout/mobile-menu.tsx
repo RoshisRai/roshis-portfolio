@@ -132,7 +132,7 @@ export function MobileMenu({ links }: MobileMenuProps) {
             router.push(`/`)
             setTimeout(() => {
                 scrollTo(`${sectionId}`)
-            }, 350)
+            },350)
         }
     }
 

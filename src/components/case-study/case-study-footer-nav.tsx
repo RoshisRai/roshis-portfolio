@@ -3,8 +3,7 @@
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import type { ProjectFrontmatter } from '@/types/project'
-import { navBack, navForward } from '@/lib/project-transition'
-import { useRouter } from 'next/navigation'
+import { disableProjectSharedVTForNextNav, navBack, navForward } from '@/lib/project-transition'
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll'
 
 
@@ -15,15 +14,12 @@ interface CaseStudyFooterNavProps {
 
 export const CaseStudyFooterNav = ({ prev, next }: CaseStudyFooterNavProps) => {
 
-    const router = useRouter()
     const scrollTo = useSmoothScroll()
 
-    const handleBack = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const handleBack = () => {
         if (prev === undefined) {
-            router.push('/')
-            setTimeout(() => {
-                scrollTo('#projects')
-            }, 350)
+            disableProjectSharedVTForNextNav()
+            scrollTo('/#projects')
         }
     }
 
@@ -31,11 +27,12 @@ export const CaseStudyFooterNav = ({ prev, next }: CaseStudyFooterNavProps) => {
         <nav
             aria-label="Project navigation"
             className="border-t border-border py-12"
+            style={{ viewTransitionName: 'case-study-footer-nav'}}
         >
             <div className="mx-auto max-w-(--max-width-content) px-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <Link
                     href={prev ? `/projects/${prev.slug}` : '/'}
-                    transitionTypes={navBack}
+                    transitionTypes={prev ? navBack : undefined}
                     onClick={handleBack}
                     className="group flex items-center gap-3 rounded-2xl border border-border bg-surface p-5 hover:border-[rgba(var(--project-accent-rgb),0.4)] transition-colors duration-(--duration-fast)"
                 >

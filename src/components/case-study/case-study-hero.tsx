@@ -45,11 +45,13 @@ export const CaseStudyHero = ({ project }: CaseStudyHeroProps) => {
                 </div>
 
                 {/* Title — also a morph target */}
-                <div className="project-case-study-content">
+                <div 
+                    className="project-case-study-content"
+                    style={{ viewTransitionName: projectTitleVTName(project.slug) }}
+                    >
                     <h1
-                        id="cs-hero-title"
+                        id="cs-hero-title"  
                         data-cs-stagger="2"
-                        style={{ viewTransitionName: projectTitleVTName(project.slug) }}
                         className="mt-10 font-display font-extrabold tracking-tight text-text-primary leading-[1.05] text-[clamp(40px,7vw,72px)] max-w-4xl"
                     >
                         {project.title}

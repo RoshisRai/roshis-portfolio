@@ -5,7 +5,6 @@ import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import "./globals.css"
 import { CursorZone } from "@/components/global/cursor/cursor-zone"
-import { ViewTransition } from "react"
 
 export const metadata: Metadata = {
   title: {
@@ -72,11 +71,7 @@ export default function RootLayout({
           <CursorZone variant="link">
             <Navbar />
           </CursorZone>
-          <main>
-            <ViewTransition>
-              {children}
-            </ViewTransition>
-          </main>
+          <main>{children}</main>
           <Footer />
         </Providers>
       </body>

@@ -149,6 +149,13 @@
     view-transition-name: none;
   }
 
+  /* Disable project shared-element morphs for targeted navigations (e.g. navbar exit). */
+  html[data-disable-project-vt='true'] [style*='project-media-'],
+  html[data-disable-project-vt='true'] [style*='project-title-'],
+  html[data-disable-project-vt='true'] [style*='project-accent-'] {
+    view-transition-name: none !important;
+  }
+
   @property --hero-rot {
     syntax: '<angle>';
     inherits: false;
@@ -206,6 +213,177 @@
   }
 }
 
+/* View Transitions Base */
+::view-transition {
+  pointer-events: none;
+}
+
+/* Persistent header (No animation) */
+::view-transition-group(site-header) {
+  animation: none !important;
+}
+::view-transition-old(site-header) {
+  display: none;
+  animation: none !important;
+}
+::view-transition-new(site-header) {
+  animation: none !important;
+  z-index: 10000;
+}
+
+/* Homepage -> Case Study Page Transition */
+::view-transition-old(*) {
+  animation: page-exit 420ms cubic-bezier(0.4, 0, 1, 1) both !important;
+  z-index: 1;
+}
+
+::view-transition-new(*) {
+  animation: page-enter 480ms cubic-bezier(0.32, 0.72, 0, 1) both !important;
+  z-index: 1000;
+}
+
+@keyframes page-exit {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  5% {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.98);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.96);
+  }
+}
+
+@keyframes page-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.94);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(10px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Root Page Transition (Case Study Page -> Case Study Page) */
+:root:active-view-transition-type(nav-forward)::view-transition-old(*),
+html:active-view-transition-type(nav-forward)::view-transition-old(*) {
+  animation: slide-out-left var(--duration-fast) var(--ease-in-expo) both !important;
+}
+
+:root:active-view-transition-type(nav-forward)::view-transition-new(*),
+html:active-view-transition-type(nav-forward)::view-transition-new(*) {
+  animation: slide-in-right var(--duration-slow) var(--ease-out-expo) both !important;
+}
+
+:root:active-view-transition-type(nav-back)::view-transition-old(*),
+html:active-view-transition-type(nav-back)::view-transition-old(*) {
+  animation: slide-out-right var(--duration-fast) var(--ease-in-expo) both !important;
+}
+
+:root:active-view-transition-type(nav-back)::view-transition-new(*),
+html:active-view-transition-type(nav-back)::view-transition-new(*) {
+  animation: slide-in-right-back var(--duration-slow) var(--ease-out-expo) both !important;
+}
+
+@keyframes slide-out-left {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  5% {
+    opacity: 0.05;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-56px);
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    opacity: 0.86;
+    transform: translateX(56px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out-right {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  5% {
+    opacity: .05;
+    transform: translateX(40px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(56px);
+  }
+}
+
+@keyframes slide-in-right-back {
+  0% {
+    opacity: 0.86;
+    transform: translateX(-56px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Keep header & footer stable even when global old/new selectors use wildcard targets. */
+::view-transition-group(site-header),
+::view-transition-old(site-header),
+::view-transition-new(site-header) {
+  animation: none !important;
+}
+
+::view-transition-group(site-footer),
+::view-transition-old(site-footer),
+::view-transition-new(site-footer) {
+  animation: none !important;
+}
+
+::view-transition-old(site-header),
+::view-transition-old(site-footer) {
+  display: none !important;
+}
+
+::view-transition-new(site-header),
+::view-transition-new(site-footer) {
+  transform: none !important;
+  opacity: 1 !important;
+  z-index: 10000;
+}
+
+::view-transition-group(case-study-footer-nav),
+::view-transition-old(case-study-footer-nav),
+::view-transition-new(case-study-footer-nav) {
+  animation: none !important;
+}
+
+::view-transition-old(case-study-footer-nav) {
+  display: none !important;
+}
+
+::view-transition-new(case-study-footer-nav) {
+  transform: none !important;
+  opacity: 1 !important;
+}
 
 /* REDUCED MOTION */
 @media (prefers-reduced-motion: reduce) {

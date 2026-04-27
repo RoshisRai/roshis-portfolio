@@ -11,7 +11,18 @@ export const scrollToSection = (id: string, offset = -64) => {
     if (!el) return
 
     if (lenis) {
+        // Route transitions can leave Lenis paused for a frame; ensure it is running.
+        lenis.start()
         lenis.scrollTo(el, { offset, duration: 1.2 })
+
+        // Fallback to native smooth scroll if Lenis did not move yet.
+        window.setTimeout(() => {
+            const rectTop = el.getBoundingClientRect().top
+            if (Math.abs(rectTop) > 8) {
+                const targetTop = window.scrollY + rectTop + offset
+                window.scrollTo({ top: targetTop, behavior: 'smooth' })
+            }
+        }, 220)
     } else {
         el.scrollIntoView({ behavior: 'smooth' })
     }
