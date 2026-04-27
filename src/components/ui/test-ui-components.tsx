@@ -9,7 +9,6 @@ import { Card, ExperienceCard, SkillCard } from './card'
 import { Tooltip } from './tooltip'
 import { SocialIconButton } from './social-icon-button'
 import { InlineCode, CodeBlock } from './code-block'
-import { CursorZone } from '../global/cursor/cursor-zone'
 
 export default function UIComponentsTest() {
   const [name, setName] = useState('')

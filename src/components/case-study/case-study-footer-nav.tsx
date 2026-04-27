@@ -18,7 +18,7 @@ export const CaseStudyFooterNav = ({ prev, next }: CaseStudyFooterNavProps) => {
     const router = useRouter()
     const scrollTo = useSmoothScroll()
 
-    const handleBack = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const handleBack = () => {
         if (prev === undefined) {
             router.push('/')
             setTimeout(() => {
