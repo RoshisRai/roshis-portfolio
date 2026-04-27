@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 import { ProjectCardData } from "@/types/project"
 import Link from "next/link"
 import { ProjectCardMedia } from "./project-card-media"
-import { getNavTypes, projectAccentVTName, projectMediaVTName, projectTitleVTName } from "@/lib/project-transition"
+import { projectAccentVTName } from "@/lib/project-transition"
 import { CursorZone } from "@/components/global/cursor/cursor-zone"
 import { projectAccentStyle } from "@/lib/project-theme"
 import { ProjectCardMeta } from "./project-card-meta"
@@ -32,7 +32,6 @@ export const ProjectCard = ({ project, priority = false }: ProjectCardProps) => 
             <Link
                 href={`/projects/${project.slug}`}
                 prefetch
-                transitionTypes={getNavTypes('forward')}
                 onMouseEnter={onEnter}
                 onMouseLeave={onLeave}
                 onFocus={onEnter}

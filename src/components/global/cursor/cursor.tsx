@@ -83,7 +83,7 @@ export function Cursor() {
         ref={rootRef}
         aria-hidden
         className={cn(
-        "fixed inset-0 pointer-events-none z-9999",
+        "fixed inset-0 pointer-events-none z-99999999",
         "opacity-0 transition-opacity duration-250 ease-out"
         )}
     >
@@ -103,7 +103,7 @@ export function Cursor() {
         className={cn(
             "absolute top-0 left-0 rounded-full",
             "flex items-center justify-center",
-            "text-[11px] font-semibold tracking-[0.05em] uppercase",
+            "text-[11px] font-semibold tracking-wider uppercase",
             "bg-text-primary border border-text-primary/50",
             "will-change-[transform,width,height,opacity,background,border]"
         )}
