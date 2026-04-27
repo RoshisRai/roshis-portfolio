@@ -2,6 +2,7 @@ import type { ProjectFrontmatter } from "@/types/project";
 import { CaseStudyHero } from "./case-study-hero";
 import { ProjectAccentStyle } from "./project-accent-style";
 import { CaseStudyFooterNav } from "./case-study-footer-nav";
+import { CaseStudyProgressNav } from "./case-study-progress-nav";
 
 interface CaseStudyPageProps {
     project: ProjectFrontmatter
@@ -15,14 +16,23 @@ export const CaseStudyPage = ({
     next,
 }: CaseStudyPageProps) => {
     return (
-        <>
+        <div className="flex flex-col items-center">
             <ProjectAccentStyle accent={project.accent} />
 
-            <article data-page="case-study">
-                <CaseStudyHero project={project} />
-            </article>
+            <div
+                className="mx-auto flex w-full items-start lg:gap-8 gap-0 px-6 lg:max-w-(--max-width-content)"
+            >
+                <article
+                    data-page="case-study"
+                    className="min-w-0 flex-1"
+                >
+                    <CaseStudyHero project={project} />
+                </article>
+
+                <CaseStudyProgressNav />
+            </div>
 
             <CaseStudyFooterNav prev={prev} next={next} />
-        </>
+        </div>
     )
 }

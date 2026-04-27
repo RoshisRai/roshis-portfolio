@@ -8,6 +8,7 @@ export function useProjectCardHover() {
   const [hovered, setHovered] = useState(false)
   const [intent, setIntent] = useState(false)
   const timer = useRef<number | null>(null)
+  const canHoverRef = useRef(false)
 
   const clear = useCallback(() => {
     if (timer.current !== null) {
@@ -17,6 +18,8 @@ export function useProjectCardHover() {
   }, [])
 
   const onEnter = useCallback(() => {
+    if (!canHoverRef.current) return
+
     setHovered(true)
     clear()
 
@@ -29,6 +32,26 @@ export function useProjectCardHover() {
     setHovered(false)
     setIntent(false)
     clear()
+  }, [clear])
+
+  useEffect(() => {
+    const media = window.matchMedia('(hover: hover) and (pointer: fine)')
+
+    const updateCanHover = () => {
+      const canHover = media.matches
+      canHoverRef.current = canHover
+
+      if (!canHover) {
+        setHovered(false)
+        setIntent(false)
+        clear()
+      }
+    }
+
+    updateCanHover()
+
+    media.addEventListener('change', updateCanHover)
+    return () => media.removeEventListener('change', updateCanHover)
   }, [clear])
 
   useEffect(() => {

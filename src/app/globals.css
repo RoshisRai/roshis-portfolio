@@ -244,6 +244,7 @@
 /* Persistent header (No animation) */
 ::view-transition-group(site-header) {
   animation: none !important;
+  z-index: 10002;
 }
 ::view-transition-old(site-header) {
   display: none;
@@ -258,11 +259,13 @@
 ::view-transition-old(*) {
   animation: page-exit 420ms cubic-bezier(0.4, 0, 1, 1) both !important;
   z-index: 1;
+  will-change: opacity, transform;
 }
 
 ::view-transition-new(*) {
   animation: page-enter 480ms cubic-bezier(0.32, 0.72, 0, 1) both !important;
   z-index: 1000;
+  will-change: opacity, transform;
 }
 
 @keyframes page-exit {
@@ -422,6 +425,7 @@ html:active-view-transition-type(nav-back)::view-transition-new(*) {
     scroll-behavior: auto !important;
   }
 
+  [data-page='case-study'] [data-cs-stagger],
   .cs-bg-wash {
     animation: none !important;
     opacity: 1 !important;
