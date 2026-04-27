@@ -30,7 +30,8 @@ export const CaseStudyHero = ({ project }: CaseStudyHeroProps) => {
                 }}
             />
 
-            <div className="mx-auto max-w-(--max-width-content) px-6">
+            {/* <div className="mx-auto max-w-(--max-width-content) px-6"> */}
+            <div className="mx-auto px-6">
                 <div
                     data-cs-stagger='1'
                     className='mb-6'

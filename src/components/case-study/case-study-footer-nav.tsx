@@ -26,7 +26,7 @@ export const CaseStudyFooterNav = ({ prev, next }: CaseStudyFooterNavProps) => {
     return (
         <nav
             aria-label="Project navigation"
-            className="border-t border-border py-12"
+            className="border-t border-border py-12 w-full"
             style={{ viewTransitionName: 'case-study-footer-nav'}}
         >
             <div className="mx-auto max-w-(--max-width-content) px-6 grid grid-cols-1 sm:grid-cols-2 gap-6">

@@ -59,10 +59,10 @@ export function Navbar() {
         <ViewTransition name={HEADER_VT_NAME}>
             <header
                 className={cn(
-                    'fixed top-0 z-50 w-full',
-                    'transition-[background-color,border-color] duration-300',
+                    'fixed top-0 z-99999999 w-full border-0',
+                    'transition-[background-color] duration-300',
                     scrolled
-                        ? 'md:border-b md:border-border/50 md:bg-background/80 md:backdrop-blur-xl'
+                        ? 'md:bg-background/80 md:backdrop-blur-xl'
                         : 'bg-transparent',
                 )}
             >
