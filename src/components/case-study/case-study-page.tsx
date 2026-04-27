@@ -18,7 +18,7 @@ export const CaseStudyPage = ({
         <>
             <ProjectAccentStyle accent={project.accent} />
 
-            <article>
+            <article data-page="case-study">
                 <CaseStudyHero project={project} />
             </article>
 

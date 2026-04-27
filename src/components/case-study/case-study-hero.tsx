@@ -5,6 +5,8 @@ import {
     projectMediaVTName,
     projectTitleVTName,
 } from '@/lib/project-transition'
+import { CaseStudyBreadcrumb } from './case-study-breadcrumb'
+import { CaseStudyMetaBar } from './case-study-meta-bar'
 
 interface CaseStudyHeroProps {
     project: ProjectFrontmatter
@@ -28,7 +30,14 @@ export const CaseStudyHero = ({ project }: CaseStudyHeroProps) => {
                 }}
             />
 
-            <div className="mx-auto max-w-(--max-width-content) px-6 grid grid-cols-1 xl:grid-cols-2 gap-4">
+            <div className="mx-auto max-w-(--max-width-content) px-6">
+                <div
+                    data-cs-stagger='1'
+                    className='mb-6'
+                >
+                    <CaseStudyBreadcrumb title={project.title} />
+                </div>
+
                 {/* Morph target — must match VT name from ProjectCardMedia */}
                 <div
                     className="relative w-full aspect-video"
@@ -63,6 +72,14 @@ export const CaseStudyHero = ({ project }: CaseStudyHeroProps) => {
                     >
                         {project.intro}
                     </p>
+                </div>
+
+                <div data-cs-stagger='4'>
+                    <CaseStudyMetaBar
+                        role={project.role}
+                        timeline={project.timeline}
+                        stack={project.stack}
+                    />
                 </div>
             </div>
         </section>
