@@ -5,6 +5,7 @@ import { CaseStudyFooterNav } from "./case-study-footer-nav";
 import { CaseStudyProgressNav } from "./case-study-progress-nav";
 import { CaseStudyProblem } from "./case-study-problem";
 import { CaseStudyArchitecture } from "./case-study-architecture";
+import { CaseStudyScrollReset } from "./case-study-scroll-reset";
 
 interface CaseStudyPageProps {
     project: ProjectFrontmatter
@@ -20,6 +21,7 @@ export const CaseStudyPage = ({
     return (
         <div className="flex flex-col items-center">
             <ProjectAccentStyle accent={project.accent} />
+            <CaseStudyScrollReset />
 
             <div
                 className="mx-auto flex w-full items-start lg:gap-8 gap-0 px-6 lg:max-w-(--max-width-content)"
