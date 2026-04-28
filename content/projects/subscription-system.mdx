@@ -29,20 +29,21 @@ stack:
   - Arcjet
   - Day.js
 quote: "Engineered a scalable, automation-driven subscription system capable of handling complex enterprise workflows with high reliability and security."
+problem: "Modern SaaS businesses require reliable systems to manage subscription lifecycles, automate reminders, and ensure secure multi-tenant operations. Many existing solutions lack flexibility, scalability, or the ability to handle complex workflows with enterprise-grade reliability."
 media:
   cover: /images/projects/subscription-system/subscription-cover.png
   video: /images/projects/subscription-system/subscription-code.mp4
   poster: /images/projects/subscription-system/subscription-poster.png
   alt: Enterprise subscription management dashboard showing lifecycle tracking, analytics, and automation workflows
   aspect: 16/10
-enterprise-subscription-management-system-metrics:
+metrics:
   - { value: '4', label: 'Reminder Stages', countTo: 4, suffix: 'x' }
   - { value: '5', label: 'User Roles', countTo: 5 }
   - { value: '1000', label: 'Subscriptions Managed', countTo: 1000, suffix: '+' }
 architecture:
   description: Built on a modular Node.js/Express architecture with MongoDB, leveraging serverless workflows for asynchronous task execution and a secure multi-tenant RBAC system.
   diagram: /images/projects/subscription-system/architecture-diagram.svg
-  layers: ['api', 'automation', 'database', 'security']
+  layers: ['security', 'api', 'automation', 'database']
 implementation:
   - title: "Scalable API & Multi-Tenant Architecture"
     body: "Developed a robust RESTful API using Node.js and Express with MongoDB and Mongoose for schema management. Designed the system to support multi-tenant environments with isolated data handling and scalable query performance."
@@ -66,10 +67,6 @@ nextSlug: goodmil-construction
 links:
   - { label: 'View API Documentation', href: 'https://your-api-docs-link.com/' }
 ---
-
-## Problem
-
-Modern SaaS businesses require reliable systems to manage subscription lifecycles, automate reminders, and ensure secure multi-tenant operations. Many existing solutions lack flexibility, scalability, or the ability to handle complex workflows with enterprise-grade reliability.
 
 ## Solution
 

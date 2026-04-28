@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 import type { ProjectFrontmatter } from '@/types/project'
 import { disableProjectSharedVTForNextNav, navBack, navForward } from '@/lib/project-transition'
 import { useSmoothScroll } from '@/hooks/use-smooth-scroll'
+import { scrollToTop } from '@/lib/animations'
 
 
 interface CaseStudyFooterNavProps {
@@ -23,6 +24,10 @@ export const CaseStudyFooterNav = ({ prev, next }: CaseStudyFooterNavProps) => {
         }
     }
 
+    const handleProjectNav = () => {
+        scrollToTop()
+    }
+
     return (
         <nav
             aria-label="Project navigation"
@@ -33,7 +38,7 @@ export const CaseStudyFooterNav = ({ prev, next }: CaseStudyFooterNavProps) => {
                 <Link
                     href={prev ? `/projects/${prev.slug}` : '/'}
                     transitionTypes={prev ? navBack : undefined}
-                    onClick={handleBack}
+                    onClick={prev ? handleProjectNav : handleBack}
                     className="group flex items-center gap-3 rounded-2xl border border-border bg-surface p-5 hover:border-[rgba(var(--project-accent-rgb),0.4)] transition-colors duration-(--duration-fast)"
                 >
                     <ArrowLeft
@@ -54,6 +59,7 @@ export const CaseStudyFooterNav = ({ prev, next }: CaseStudyFooterNavProps) => {
                     <Link
                         href={`/projects/${next.slug}`}
                         transitionTypes={navForward}
+                        onClick={handleProjectNav}
                         className="group flex items-center justify-end gap-3 rounded-2xl border border-border bg-surface p-5 hover:border-[rgba(var(--project-accent-rgb),0.4)] transition-colors duration-(--duration-fast) text-right"
                     >
                         <div className="flex flex-col items-end">

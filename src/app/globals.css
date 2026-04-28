@@ -22,6 +22,10 @@
   --spacing-section: 128px;
   --spacing-section-mobile: 64px;
 
+  /* Case-Study Page Section Spacing */
+  --spacing-case-study-section: 64px;
+  --spacing-case-study-section-mobile: 32px;
+
   /* Animation Easing & Durations */
   --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-expo: cubic-bezier(0.55, 0, 1, 0.45);

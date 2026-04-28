@@ -1,0 +1,294 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580" font-family="'JetBrains Mono', 'Fira Code', monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f0f14"/>
+      <stop offset="100%" stop-color="#0a0a0f"/>
+    </linearGradient>
+
+    <linearGradient id="grad-frontend" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="grad-backend" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="grad-database" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="grad-media" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0.04"/>
+    </linearGradient>
+
+    <marker id="arr-fe" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#f59e0b" fill-opacity="0.7"/>
+    </marker>
+    <marker id="arr-be" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#6366f1" fill-opacity="0.7"/>
+    </marker>
+    <marker id="arr-db" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#06b6d4" fill-opacity="0.7"/>
+    </marker>
+    <marker id="arr-med" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#10b981" fill-opacity="0.7"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="580" fill="url(#bg)"/>
+
+  <!-- Grid -->
+  <g stroke="#ffffff" stroke-opacity="0.02" stroke-width="1">
+    <line x1="0" y1="145" x2="960" y2="145"/>
+    <line x1="0" y1="290" x2="960" y2="290"/>
+    <line x1="0" y1="435" x2="960" y2="435"/>
+    <line x1="240" y1="0" x2="240" y2="580"/>
+    <line x1="480" y1="0" x2="480" y2="580"/>
+    <line x1="720" y1="0" x2="720" y2="580"/>
+  </g>
+
+  <!-- Header -->
+  <text x="480" y="34" text-anchor="middle" font-size="10" fill="#8888a0" letter-spacing="3">MVT ARCHITECTURE</text>
+  <text x="480" y="56" text-anchor="middle" font-size="19" fill="#e8e8ed" font-weight="700" letter-spacing="0.3">Goodmil Construction Platform</text>
+  <text x="480" y="74" text-anchor="middle" font-size="10" fill="#8888a0">Django 4.1 · SQLite/PostgreSQL · Pillow · GSAP · jQuery</text>
+
+  <!-- ═══════════════ FLOW LINES ═══════════════ -->
+
+  <!-- Browser → Templates -->
+  <line x1="120" y1="152" x2="120" y2="192" stroke="#f59e0b" stroke-opacity="0.5" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-fe)"/>
+
+  <!-- Templates → URL Dispatcher -->
+  <line x1="240" y1="252" x2="300" y2="252" stroke="#6366f1" stroke-opacity="0.5" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-be)"/>
+
+  <!-- URL Dispatcher → Views -->
+  <line x1="420" y1="252" x2="480" y2="252" stroke="#6366f1" stroke-opacity="0.45" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-be)"/>
+
+  <!-- Views → Models -->
+  <line x1="580" y1="290" x2="580" y2="350" stroke="#06b6d4" stroke-opacity="0.5" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-db)"/>
+
+  <!-- Views → Templates (response) -->
+  <line x1="490" y1="232" x2="230" y2="210" stroke="#f59e0b" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arr-fe)"/>
+
+  <!-- Models → SQLite -->
+  <line x1="580" y1="430" x2="580" y2="462" stroke="#06b6d4" stroke-opacity="0.5" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-db)"/>
+
+  <!-- Views → Media -->
+  <line x1="660" y1="270" x2="740" y2="270" stroke="#10b981" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-med)"/>
+
+  <!-- Admin → Models -->
+  <line x1="580" y1="152" x2="580" y2="192" stroke="#6366f1" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arr-be)"/>
+
+  <!-- Context Processors → Templates -->
+  <line x1="300" y1="340" x2="180" y2="270" stroke="#f59e0b" stroke-opacity="0.25" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arr-fe)"/>
+
+  <!-- ═══════════════════════ -->
+  <!-- LAYER: frontend         -->
+  <!-- ═══════════════════════ -->
+  <g data-layer="frontend">
+
+    <!-- Browser / Client -->
+    <rect x="30" y="98" width="180" height="54" rx="10" fill="url(#grad-frontend)" stroke="#f59e0b" stroke-opacity="0.45" stroke-width="1.5"/>
+    <text x="120" y="118" text-anchor="middle" font-size="8.5" fill="#f59e0b" letter-spacing="2">CLIENT</text>
+    <text x="120" y="136" text-anchor="middle" font-size="12.5" fill="#e8e8ed" font-weight="600">Browser</text>
+    <text x="120" y="150" text-anchor="middle" font-size="8" fill="#8888a0">HTTP Request / Response</text>
+
+    <!-- Templates layer -->
+    <rect x="30" y="192" width="210" height="110" rx="10" fill="url(#grad-frontend)" stroke="#f59e0b" stroke-opacity="0.5" stroke-width="1.5"/>
+    <text x="135" y="213" text-anchor="middle" font-size="8.5" fill="#f59e0b" letter-spacing="2">TEMPLATES</text>
+    <text x="135" y="231" text-anchor="middle" font-size="12.5" fill="#e8e8ed" font-weight="600">Django Template Engine</text>
+
+    <rect x="44" y="239" width="60" height="17" rx="4" fill="#f59e0b" fill-opacity="0.12" stroke="#f59e0b" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="74" y="251" text-anchor="middle" font-size="8" fill="#fcd34d">base.html</text>
+    <rect x="112" y="239" width="60" height="17" rx="4" fill="#f59e0b" fill-opacity="0.12" stroke="#f59e0b" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="142" y="251" text-anchor="middle" font-size="8" fill="#fcd34d">home/</text>
+    <rect x="180" y="239" width="50" height="17" rx="4" fill="#f59e0b" fill-opacity="0.12" stroke="#f59e0b" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="205" y="251" text-anchor="middle" font-size="8" fill="#fcd34d">components/</text>
+
+    <text x="135" y="275" text-anchor="middle" font-size="8.5" fill="#e8e8ed" font-weight="500">Static Assets</text>
+    <rect x="44" y="280" width="46" height="17" rx="4" fill="#f59e0b" fill-opacity="0.1" stroke="#f59e0b" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="67" y="292" text-anchor="middle" font-size="8" fill="#fcd34d">CSS</text>
+    <rect x="96" y="280" width="46" height="17" rx="4" fill="#f59e0b" fill-opacity="0.1" stroke="#f59e0b" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="119" y="292" text-anchor="middle" font-size="8" fill="#fcd34d">JS / jQuery</text>
+    <rect x="148" y="280" width="46" height="17" rx="4" fill="#f59e0b" fill-opacity="0.1" stroke="#f59e0b" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="171" y="292" text-anchor="middle" font-size="8" fill="#fcd34d">GSAP</text>
+
+    <!-- Animation libs note -->
+    <rect x="30" y="315" width="210" height="50" rx="8" fill="#f59e0b" fill-opacity="0.06" stroke="#f59e0b" stroke-opacity="0.18" stroke-width="1"/>
+    <text x="135" y="333" text-anchor="middle" font-size="8" fill="#f59e0b" letter-spacing="1">ANIMATION LIBRARIES</text>
+    <text x="135" y="349" text-anchor="middle" font-size="8" fill="#8888a0">GSAP 3.11.4 · AOS · Swiper · Slick Carousel</text>
+    <text x="135" y="360" text-anchor="middle" font-size="8" fill="#8888a0">Font Awesome · Responsive Navigation</text>
+
+  </g>
+
+  <!-- ═══════════════════════ -->
+  <!-- LAYER: backend          -->
+  <!-- ═══════════════════════ -->
+  <g data-layer="backend">
+
+    <!-- Django Admin -->
+    <rect x="490" y="98" width="180" height="54" rx="10" fill="url(#grad-backend)" stroke="#6366f1" stroke-opacity="0.4" stroke-width="1"/>
+    <text x="580" y="118" text-anchor="middle" font-size="8.5" fill="#6366f1" letter-spacing="2">ADMIN PANEL</text>
+    <text x="580" y="136" text-anchor="middle" font-size="12" fill="#e8e8ed" font-weight="600">Django Admin</text>
+    <text x="580" y="150" text-anchor="middle" font-size="8" fill="#8888a0">Content · Portfolio · Users</text>
+
+    <!-- URL Dispatcher -->
+    <rect x="300" y="222" width="120" height="60" rx="10" fill="url(#grad-backend)" stroke="#6366f1" stroke-opacity="0.5" stroke-width="1.5"/>
+    <text x="360" y="243" text-anchor="middle" font-size="8.5" fill="#6366f1" letter-spacing="2">ROUTER</text>
+    <text x="360" y="261" text-anchor="middle" font-size="11.5" fill="#e8e8ed" font-weight="600">URL Dispatcher</text>
+    <text x="360" y="276" text-anchor="middle" font-size="8" fill="#8888a0">goodmil/urls.py</text>
+
+    <!-- Views + Business Logic -->
+    <rect x="480" y="192" width="200" height="100" rx="10" fill="url(#grad-backend)" stroke="#6366f1" stroke-opacity="0.55" stroke-width="1.5"/>
+    <text x="580" y="213" text-anchor="middle" font-size="8.5" fill="#6366f1" letter-spacing="2">VIEWS · BUSINESS LOGIC</text>
+    <text x="580" y="231" text-anchor="middle" font-size="12.5" fill="#e8e8ed" font-weight="600">home/views.py</text>
+    <rect x="494" y="239" width="78" height="17" rx="4" fill="#6366f1" fill-opacity="0.12" stroke="#6366f1" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="533" y="251" text-anchor="middle" font-size="8" fill="#a5b4fc">Property Search</text>
+    <rect x="580" y="239" width="86" height="17" rx="4" fill="#6366f1" fill-opacity="0.12" stroke="#6366f1" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="623" y="251" text-anchor="middle" font-size="8" fill="#a5b4fc">Blog · Newsletter</text>
+    <rect x="494" y="262" width="78" height="17" rx="4" fill="#6366f1" fill-opacity="0.12" stroke="#6366f1" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="533" y="274" text-anchor="middle" font-size="8" fill="#a5b4fc">Contact Forms</text>
+    <rect x="580" y="262" width="86" height="17" rx="4" fill="#6366f1" fill-opacity="0.12" stroke="#6366f1" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="623" y="274" text-anchor="middle" font-size="8" fill="#a5b4fc">Apply Now</text>
+
+    <!-- Context Processors -->
+    <rect x="300" y="305" width="160" height="60" rx="10" fill="url(#grad-backend)" stroke="#6366f1" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="380" y="325" text-anchor="middle" font-size="8.5" fill="#6366f1" letter-spacing="2">CONTEXT</text>
+    <text x="380" y="343" text-anchor="middle" font-size="11" fill="#e8e8ed" font-weight="600">context_processors.py</text>
+    <text x="380" y="358" text-anchor="middle" font-size="8" fill="#8888a0">Global template vars · SEO</text>
+
+    <!-- Models -->
+    <rect x="480" y="350" width="200" height="80" rx="10" fill="url(#grad-backend)" stroke="#6366f1" stroke-opacity="0.45" stroke-width="1.5"/>
+    <text x="580" y="371" text-anchor="middle" font-size="8.5" fill="#6366f1" letter-spacing="2">MODELS · ORM</text>
+    <text x="580" y="389" text-anchor="middle" font-size="12.5" fill="#e8e8ed" font-weight="600">home/models.py</text>
+    <rect x="494" y="397" width="72" height="17" rx="4" fill="#6366f1" fill-opacity="0.12" stroke="#6366f1" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="530" y="409" text-anchor="middle" font-size="8" fill="#a5b4fc">Projects</text>
+    <rect x="574" y="397" width="72" height="17" rx="4" fill="#6366f1" fill-opacity="0.12" stroke="#6366f1" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="610" y="409" text-anchor="middle" font-size="8" fill="#a5b4fc">Properties</text>
+    <rect x="494" y="420" width="48" height="14" rx="3" fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-opacity="0.18" stroke-width="1"/>
+    <text x="518" y="430" text-anchor="middle" font-size="7.5" fill="#a5b4fc">Blog</text>
+    <rect x="548" y="420" width="48" height="14" rx="3" fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-opacity="0.18" stroke-width="1"/>
+    <text x="572" y="430" text-anchor="middle" font-size="7.5" fill="#a5b4fc">Gallery</text>
+    <rect x="602" y="420" width="64" height="14" rx="3" fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-opacity="0.18" stroke-width="1"/>
+    <text x="634" y="430" text-anchor="middle" font-size="7.5" fill="#a5b4fc">Subscribers</text>
+
+    <!-- Sitemaps chip -->
+    <rect x="300" y="380" width="160" height="40" rx="8" fill="#6366f1" fill-opacity="0.06" stroke="#6366f1" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="380" y="397" text-anchor="middle" font-size="8" fill="#6366f1" letter-spacing="1">SEO · SITEMAPS</text>
+    <text x="380" y="412" text-anchor="middle" font-size="8" fill="#8888a0">sitemaps.py · SEO-friendly URLs</text>
+
+    <!-- Pages reference -->
+    <rect x="30" y="388" width="230" height="90" rx="10" fill="url(#grad-backend)" stroke="#6366f1" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="145" y="407" text-anchor="middle" font-size="8.5" fill="#6366f1" letter-spacing="2">PAGE ROUTES</text>
+    <rect x="42" y="413" width="66" height="16" rx="4" fill="#6366f1" fill-opacity="0.1" stroke="#6366f1" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="75" y="425" text-anchor="middle" font-size="7.5" fill="#a5b4fc">/ Home</text>
+    <rect x="114" y="413" width="66" height="16" rx="4" fill="#6366f1" fill-opacity="0.1" stroke="#6366f1" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="147" y="425" text-anchor="middle" font-size="7.5" fill="#a5b4fc">/about</text>
+    <rect x="186" y="413" width="62" height="16" rx="4" fill="#6366f1" fill-opacity="0.1" stroke="#6366f1" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="217" y="425" text-anchor="middle" font-size="7.5" fill="#a5b4fc">/services</text>
+    <rect x="42" y="435" width="66" height="16" rx="4" fill="#6366f1" fill-opacity="0.1" stroke="#6366f1" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="75" y="447" text-anchor="middle" font-size="7.5" fill="#a5b4fc">/projects</text>
+    <rect x="114" y="435" width="66" height="16" rx="4" fill="#6366f1" fill-opacity="0.1" stroke="#6366f1" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="147" y="447" text-anchor="middle" font-size="7.5" fill="#a5b4fc">/real-estate</text>
+    <rect x="186" y="435" width="62" height="16" rx="4" fill="#6366f1" fill-opacity="0.1" stroke="#6366f1" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="217" y="447" text-anchor="middle" font-size="7.5" fill="#a5b4fc">/blog</text>
+    <rect x="42" y="457" width="66" height="16" rx="4" fill="#6366f1" fill-opacity="0.1" stroke="#6366f1" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="75" y="469" text-anchor="middle" font-size="7.5" fill="#a5b4fc">/gallery</text>
+    <rect x="114" y="457" width="66" height="16" rx="4" fill="#6366f1" fill-opacity="0.1" stroke="#6366f1" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="147" y="469" text-anchor="middle" font-size="7.5" fill="#a5b4fc">/apply-now</text>
+    <rect x="186" y="457" width="62" height="16" rx="4" fill="#6366f1" fill-opacity="0.1" stroke="#6366f1" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="217" y="469" text-anchor="middle" font-size="7.5" fill="#a5b4fc">/contact</text>
+
+  </g>
+
+  <!-- ═══════════════════════ -->
+  <!-- LAYER: database         -->
+  <!-- ═══════════════════════ -->
+  <g data-layer="database">
+
+    <!-- SQLite / PostgreSQL -->
+    <rect x="480" y="462" width="200" height="90" rx="10" fill="url(#grad-database)" stroke="#06b6d4" stroke-opacity="0.55" stroke-width="1.5"/>
+    <text x="580" y="483" text-anchor="middle" font-size="8.5" fill="#06b6d4" letter-spacing="2">DATABASE</text>
+    <text x="580" y="501" text-anchor="middle" font-size="13" fill="#e8e8ed" font-weight="600">SQLite · PostgreSQL</text>
+    <rect x="494" y="509" width="78" height="17" rx="4" fill="#06b6d4" fill-opacity="0.12" stroke="#06b6d4" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="533" y="521" text-anchor="middle" font-size="8" fill="#67e8f9">Dev: SQLite</text>
+    <rect x="580" y="509" width="86" height="17" rx="4" fill="#06b6d4" fill-opacity="0.12" stroke="#06b6d4" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="623" y="521" text-anchor="middle" font-size="8" fill="#67e8f9">Prod: PostgreSQL</text>
+    <text x="580" y="543" text-anchor="middle" font-size="8" fill="#8888a0">Migrations · Django ORM · manage.py</text>
+
+  </g>
+
+  <!-- ═══════════════════════ -->
+  <!-- LAYER: media            -->
+  <!-- ═══════════════════════ -->
+  <g data-layer="media">
+
+    <!-- Media root -->
+    <rect x="740" y="192" width="192" height="260" rx="10" fill="url(#grad-media)" stroke="#10b981" stroke-opacity="0.5" stroke-width="1.5"/>
+    <text x="836" y="213" text-anchor="middle" font-size="8.5" fill="#10b981" letter-spacing="2">MEDIA HANDLING</text>
+    <text x="836" y="231" text-anchor="middle" font-size="12.5" fill="#e8e8ed" font-weight="600">Pillow · Django Media</text>
+    <text x="836" y="247" text-anchor="middle" font-size="8" fill="#8888a0">Image processing · Upload pipeline</text>
+
+    <!-- Media folders -->
+    <rect x="754" y="256" width="164" height="22" rx="5" fill="#10b981" fill-opacity="0.1" stroke="#10b981" stroke-opacity="0.22" stroke-width="1"/>
+    <text x="757" y="270" font-size="8" fill="#6ee7b7">📁</text>
+    <text x="774" y="270" font-size="8" fill="#6ee7b7">Gallery/</text>
+    <text x="906" y="270" text-anchor="end" font-size="8" fill="#8888a0">portfolio shots</text>
+
+    <rect x="754" y="284" width="164" height="22" rx="5" fill="#10b981" fill-opacity="0.1" stroke="#10b981" stroke-opacity="0.22" stroke-width="1"/>
+    <text x="757" y="298" font-size="8" fill="#6ee7b7">📁</text>
+    <text x="774" y="298" font-size="8" fill="#6ee7b7">Projects/</text>
+    <text x="906" y="298" text-anchor="end" font-size="8" fill="#8888a0">project images</text>
+
+    <rect x="754" y="312" width="164" height="22" rx="5" fill="#10b981" fill-opacity="0.1" stroke="#10b981" stroke-opacity="0.22" stroke-width="1"/>
+    <text x="757" y="326" font-size="8" fill="#6ee7b7">📁</text>
+    <text x="774" y="326" font-size="8" fill="#6ee7b7">Properties/</text>
+    <text x="906" y="326" text-anchor="end" font-size="8" fill="#8888a0">real estate</text>
+
+    <rect x="754" y="340" width="164" height="22" rx="5" fill="#10b981" fill-opacity="0.1" stroke="#10b981" stroke-opacity="0.22" stroke-width="1"/>
+    <text x="757" y="354" font-size="8" fill="#6ee7b7">📁</text>
+    <text x="774" y="354" font-size="8" fill="#6ee7b7">NewsAndArticles/</text>
+    <text x="906" y="354" text-anchor="end" font-size="8" fill="#8888a0">blog images</text>
+
+    <rect x="754" y="368" width="164" height="22" rx="5" fill="#10b981" fill-opacity="0.1" stroke="#10b981" stroke-opacity="0.22" stroke-width="1"/>
+    <text x="757" y="382" font-size="8" fill="#6ee7b7">📁</text>
+    <text x="774" y="382" font-size="8" fill="#6ee7b7">Resume/</text>
+    <text x="906" y="382" text-anchor="end" font-size="8" fill="#8888a0">job applications</text>
+
+    <rect x="754" y="396" width="164" height="22" rx="5" fill="#10b981" fill-opacity="0.1" stroke="#10b981" stroke-opacity="0.22" stroke-width="1"/>
+    <text x="757" y="410" font-size="8" fill="#6ee7b7">📁</text>
+    <text x="774" y="410" font-size="8" fill="#6ee7b7">CoverLetter/</text>
+    <text x="906" y="410" text-anchor="end" font-size="8" fill="#8888a0">apply now</text>
+
+    <text x="836" y="443" text-anchor="middle" font-size="8" fill="#8888a0">Served via MEDIA_URL · collectstatic</text>
+
+    <!-- Email / Social chip -->
+    <rect x="740" y="462" width="192" height="70" rx="10" fill="url(#grad-media)" stroke="#10b981" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="836" y="481" text-anchor="middle" font-size="8.5" fill="#10b981" letter-spacing="2">INTEGRATIONS</text>
+    <rect x="754" y="488" width="76" height="17" rx="4" fill="#10b981" fill-opacity="0.1" stroke="#10b981" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="792" y="500" text-anchor="middle" font-size="8" fill="#6ee7b7">Newsletter SMTP</text>
+    <rect x="838" y="488" width="80" height="17" rx="4" fill="#10b981" fill-opacity="0.1" stroke="#10b981" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="878" y="500" text-anchor="middle" font-size="8" fill="#6ee7b7">Social Media</text>
+    <text x="836" y="522" text-anchor="middle" font-size="8" fill="#8888a0">FB · IG · WhatsApp · YT · TikTok · Twitter</text>
+
+  </g>
+
+  <!-- MVT label connecting the three core boxes -->
+  <text x="360" y="185" text-anchor="middle" font-size="8" fill="#2a2a35" letter-spacing="1">M</text>
+  <text x="360" y="246" text-anchor="middle" font-size="8" fill="#2a2a35" letter-spacing="1">↕</text>
+  <text x="580" y="185" text-anchor="middle" font-size="8" fill="#2a2a35" letter-spacing="1">V → T</text>
+
+  <!-- Legend -->
+  <g font-size="8.5" letter-spacing="0.5">
+    <circle cx="28" cy="566" r="4" fill="#f59e0b" fill-opacity="0.8"/>
+    <text x="38" y="570" fill="#8888a0">FRONTEND</text>
+    <circle cx="112" cy="566" r="4" fill="#6366f1" fill-opacity="0.8"/>
+    <text x="122" y="570" fill="#8888a0">BACKEND</text>
+    <circle cx="196" cy="566" r="4" fill="#06b6d4" fill-opacity="0.8"/>
+    <text x="206" y="570" fill="#8888a0">DATABASE</text>
+    <circle cx="282" cy="566" r="4" fill="#10b981" fill-opacity="0.8"/>
+    <text x="292" y="570" fill="#8888a0">MEDIA</text>
+    <text x="940" y="570" text-anchor="end" fill="#2a2a35" font-size="8">goodmil-construction · v1.0</text>
+  </g>
+</svg>

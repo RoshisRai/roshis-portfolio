@@ -19,6 +19,7 @@ const projects = defineCollection({
     timeline: s.string(),
     stack: s.array(s.string()).default([]),
     quote: s.string().optional(),
+    problem: s.string().optional(),
     media: s.object({
       cover: s.string(),
       video: s.string().optional(),

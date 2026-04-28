@@ -35,6 +35,10 @@ export function Navbar() {
             e.preventDefault()
             scrollToTop()
         }
+        else {
+            disableProjectSharedVTForNextNav()
+            scrollToTop()
+        }
     }
 
     const handleNavLinkClick = (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {

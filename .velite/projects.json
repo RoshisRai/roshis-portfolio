@@ -29,6 +29,7 @@
       "dotenv"
     ],
     "quote": "Built a modular, real-time AI voice assistant capable of understanding and responding across 50+ languages with natural conversational flow.",
+    "problem": "Most voice assistants are limited in multilingual support and struggle to provide seamless, context-aware interactions across diverse languages. Additionally, many lack flexibility in configuration, making them difficult to adapt to real-world environments and different hardware setups.",
     "media": {
       "cover": "/images/projects/everylingua-ai/everylingua-cover.png",
       "video": "/images/projects/everylingua-ai/everylingua-demo.mp4",
@@ -36,9 +37,27 @@
       "alt": "Multilingual AI voice assistant processing speech input and generating spoken responses with real-time interaction",
       "aspect": "16/10"
     },
+    "metrics": [
+      {
+        "value": "50",
+        "label": "Languages Supported",
+        "countTo": 50,
+        "suffix": "+"
+      },
+      {
+        "value": "9",
+        "label": "Core Modules",
+        "countTo": 9
+      },
+      {
+        "value": "1",
+        "label": "Continuous Voice Loop",
+        "countTo": 1
+      }
+    ],
     "architecture": {
       "description": "Built as a modular, event-driven voice system with dedicated components for wake-word detection, speech processing, AI interaction, and audio output, enabling scalability and maintainability.",
-      "diagram": "/images/projects/everylingua/architecture-diagram.svg",
+      "diagram": "/images/projects/everylingua-ai/architecture-diagram.svg",
       "layers": [
         "input",
         "processing",
@@ -52,7 +71,7 @@
         "body": "Implemented a wake-word system with fuzzy matching to reliably activate the assistant in real-world conditions. Designed configurable thresholds and timeout handling to balance responsiveness and false positives.",
         "media": {
           "kind": "image",
-          "src": "/images/projects/everylingua/implementation-wakeword.jpg",
+          "src": "/images/projects/everylingua-ai/implementation-wakeword.jpg",
           "alt": "Wake word detection and activation flow"
         }
       },
@@ -62,7 +81,7 @@
         "flip": true,
         "media": {
           "kind": "image",
-          "src": "/images/projects/everylingua/implementation-audio.jpg",
+          "src": "/images/projects/everylingua-ai/implementation-audio.jpg",
           "alt": "Audio capture and speech processing modules"
         }
       },
@@ -81,7 +100,7 @@
         "body": "Architected a clean separation of concerns with modules for orchestration, configuration, logging, and conversation flow. Enabled environment-based configuration for microphone tuning, latency control, and debugging.",
         "media": {
           "kind": "image",
-          "src": "/images/projects/everylingua/implementation-architecture.jpg",
+          "src": "/images/projects/everylingua-ai/implementation-architecture.jpg",
           "alt": "System architecture and modular design"
         }
       },
@@ -90,7 +109,7 @@
         "body": "Built a continuous interaction loop supporting wake, listen, respond, and reset cycles. Implemented error handling, fallback logic, and microphone auto-switching to ensure stability in real-world usage.",
         "media": {
           "kind": "image",
-          "src": "/images/projects/everylingua/implementation-loop.jpg",
+          "src": "/images/projects/everylingua-ai/implementation-loop.jpg",
           "alt": "Real-time conversational loop flow"
         }
       }
@@ -103,7 +122,7 @@
         "href": "https://github.com/RoshisRai/EveryLinguaAI"
       }
     ],
-    "body": "const{Fragment:n,jsx:e,jsxs:i}=arguments[0];function _createMdxContent(t){const l={h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components};return i(n,{children:[e(l.h2,{id:\"problem\",children:\"Problem\"}),\"\\n\",e(l.p,{children:\"Most voice assistants are limited in multilingual support and struggle to provide seamless, context-aware interactions across diverse languages. Additionally, many lack flexibility in configuration, making them difficult to adapt to real-world environments and different hardware setups.\"}),\"\\n\",e(l.h2,{id:\"solution\",children:\"Solution\"}),\"\\n\",e(l.p,{children:\"I built a modular AI voice assistant system that integrates speech recognition, translation, and GPT-based reasoning into a real-time conversational pipeline. The system supports dynamic language switching, configurable audio processing, and reliable wake-word activation for natural user interaction.\"}),\"\\n\",e(l.h2,{id:\"key-achievements\",children:\"Key Achievements\"}),\"\\n\",e(l.p,{children:e(l.strong,{children:\"🧠 AI & Multilingual Intelligence\"})}),\"\\n\",i(l.ul,{children:[\"\\n\",e(l.li,{children:\"Integrated OpenAI GPT models for context-aware conversational responses\"}),\"\\n\",e(l.li,{children:\"Enabled support for 50+ languages using translation and NLP pipelines\"}),\"\\n\",e(l.li,{children:\"Implemented dynamic language switching during live conversations\"}),\"\\n\"]}),\"\\n\",e(l.p,{children:e(l.strong,{children:\"🎙️ Real-Time Voice System\"})}),\"\\n\",i(l.ul,{children:[\"\\n\",e(l.li,{children:\"Built wake-word activation with fuzzy matching and timeout controls\"}),\"\\n\",e(l.li,{children:\"Developed continuous voice interaction loop (wake → listen → respond)\"}),\"\\n\",e(l.li,{children:\"Optimized for low-latency and real-world usability\"}),\"\\n\"]}),\"\\n\",e(l.p,{children:e(l.strong,{children:\"⚙️ Modular System Architecture\"})}),\"\\n\",i(l.ul,{children:[\"\\n\",e(l.li,{children:\"Structured project into dedicated modules for maintainability and scalability\"}),\"\\n\",e(l.li,{children:\"Implemented configuration-driven behavior using environment variables\"}),\"\\n\",e(l.li,{children:\"Designed clean separation between audio, AI, and orchestration layers\"}),\"\\n\"]}),\"\\n\",e(l.p,{children:e(l.strong,{children:\"🔧 Reliability & Developer Experience\"})}),\"\\n\",i(l.ul,{children:[\"\\n\",e(l.li,{children:\"Added logging system for debugging and monitoring\"}),\"\\n\",e(l.li,{children:\"Implemented microphone auto-switching and fallback mechanisms\"}),\"\\n\",e(l.li,{children:\"Controlled API costs with token limits and system prompts\"}),\"\\n\"]}),\"\\n\",e(l.h2,{id:\"impact\",children:\"Impact\"}),\"\\n\",e(l.p,{children:\"EveryLinguaAI demonstrates a scalable approach to building real-time, AI-powered voice interfaces that are both flexible and inclusive. By supporting underrepresented languages and enabling natural interaction across linguistic boundaries, the system highlights how thoughtful engineering can improve accessibility and usability in modern AI applications.\"})]})}return{default:function(n={}){const{wrapper:i}=n.components||{};return i?e(i,{...n,children:e(_createMdxContent,{...n})}):_createMdxContent(n)}};"
+    "body": "const{Fragment:n,jsx:e,jsxs:i}=arguments[0];function _createMdxContent(t){const l={h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components};return i(n,{children:[e(l.h2,{id:\"solution\",children:\"Solution\"}),\"\\n\",e(l.p,{children:\"I built a modular AI voice assistant system that integrates speech recognition, translation, and GPT-based reasoning into a real-time conversational pipeline. The system supports dynamic language switching, configurable audio processing, and reliable wake-word activation for natural user interaction.\"}),\"\\n\",e(l.h2,{id:\"key-achievements\",children:\"Key Achievements\"}),\"\\n\",e(l.p,{children:e(l.strong,{children:\"🧠 AI & Multilingual Intelligence\"})}),\"\\n\",i(l.ul,{children:[\"\\n\",e(l.li,{children:\"Integrated OpenAI GPT models for context-aware conversational responses\"}),\"\\n\",e(l.li,{children:\"Enabled support for 50+ languages using translation and NLP pipelines\"}),\"\\n\",e(l.li,{children:\"Implemented dynamic language switching during live conversations\"}),\"\\n\"]}),\"\\n\",e(l.p,{children:e(l.strong,{children:\"🎙️ Real-Time Voice System\"})}),\"\\n\",i(l.ul,{children:[\"\\n\",e(l.li,{children:\"Built wake-word activation with fuzzy matching and timeout controls\"}),\"\\n\",e(l.li,{children:\"Developed continuous voice interaction loop (wake → listen → respond)\"}),\"\\n\",e(l.li,{children:\"Optimized for low-latency and real-world usability\"}),\"\\n\"]}),\"\\n\",e(l.p,{children:e(l.strong,{children:\"⚙️ Modular System Architecture\"})}),\"\\n\",i(l.ul,{children:[\"\\n\",e(l.li,{children:\"Structured project into dedicated modules for maintainability and scalability\"}),\"\\n\",e(l.li,{children:\"Implemented configuration-driven behavior using environment variables\"}),\"\\n\",e(l.li,{children:\"Designed clean separation between audio, AI, and orchestration layers\"}),\"\\n\"]}),\"\\n\",e(l.p,{children:e(l.strong,{children:\"🔧 Reliability & Developer Experience\"})}),\"\\n\",i(l.ul,{children:[\"\\n\",e(l.li,{children:\"Added logging system for debugging and monitoring\"}),\"\\n\",e(l.li,{children:\"Implemented microphone auto-switching and fallback mechanisms\"}),\"\\n\",e(l.li,{children:\"Controlled API costs with token limits and system prompts\"}),\"\\n\"]}),\"\\n\",e(l.h2,{id:\"impact\",children:\"Impact\"}),\"\\n\",e(l.p,{children:\"EveryLinguaAI demonstrates a scalable approach to building real-time, AI-powered voice interfaces that are both flexible and inclusive. By supporting underrepresented languages and enabling natural interaction across linguistic boundaries, the system highlights how thoughtful engineering can improve accessibility and usability in modern AI applications.\"})]})}return{default:function(n={}){const{wrapper:i}=n.components||{};return i?e(i,{...n,children:e(_createMdxContent,{...n})}):_createMdxContent(n)}};"
   },
   {
     "slug": "goodmil-construction",
@@ -138,6 +157,7 @@
       "Pillow"
     ],
     "quote": "Successfully delivered a professional digital platform that showcases 50+ construction projects and streamlines client engagement.",
+    "problem": "GoodMil Amrit Nirman Sewa needed a strong digital presence to showcase their expertise in architecture, interior design, construction, and real estate. Their previous online presence was minimal and not reflective of their capabilities in Nepal’s competitive construction industry.",
     "media": {
       "cover": "/images/projects/goodmil-construction/goodmil-homepage.png",
       "video": "/images/projects/goodmil-construction/goodmil-demo.mp4",
@@ -145,6 +165,25 @@
       "alt": "GoodMil Amrit Nirman Sewa official website showcasing construction projects and real estate listings",
       "aspect": "16/10"
     },
+    "metrics": [
+      {
+        "value": "50",
+        "label": "Projects Showcased",
+        "countTo": 50,
+        "suffix": "+"
+      },
+      {
+        "value": "12",
+        "label": "Database Models",
+        "countTo": 12
+      },
+      {
+        "value": "3",
+        "label": "Core Systems Built",
+        "countTo": 3,
+        "suffix": "x"
+      }
+    ],
     "architecture": {
       "description": "The platform follows a classic Django MVT architecture with a robust admin panel and well-organized media handling.",
       "diagram": "/images/projects/goodmil-construction/architecture-diagram.svg",
@@ -194,10 +233,10 @@
         "href": "https://amritconstruction.pythonanywhere.com/"
       }
     ],
-    "body": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(t){const r={h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components};return i(e,{children:[n(r.h2,{id:\"problem\",children:\"Problem\"}),\"\\n\",n(r.p,{children:\"GoodMil Amrit Nirman Sewa needed a strong digital presence to showcase their expertise in architecture, interior design, construction, and real estate. Their previous online presence was minimal and not reflective of their capabilities in Nepal’s competitive construction industry.\"}),\"\\n\",n(r.h2,{id:\"solution\",children:\"Solution\"}),\"\\n\",n(r.p,{children:\"I designed and developed a professional, modern website that effectively communicates the company’s quality and range of services while providing an excellent user experience for potential clients and partners.\"}),\"\\n\",n(r.h2,{id:\"key-achievements\",children:\"Key Achievements\"}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🏗️ Business Website Development\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Architected a Django platform with 12+ models managing projects, real estate listings, blog content, and client inquiries\"}),\"\\n\",n(r.li,{children:\"Implemented a comprehensive CMS for easy dynamic updates\"}),\"\\n\",n(r.li,{children:\"Built advanced property search with multiple filtering options\"}),\"\\n\",n(r.li,{children:\"Created multi-channel contact and inquiry systems\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🎨 Frontend Development & Animation\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Developed a responsive, professional interface with construction industry aesthetics\"}),\"\\n\",n(r.li,{children:\"Integrated GSAP and AOS for smooth scroll animations and engaging interactions\"}),\"\\n\",n(r.li,{children:\"Added preloader animations and optimized media handling\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"⚙️ Technical Implementation\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Implemented robust image processing with Pillow\"}),\"\\n\",n(r.li,{children:\"Built efficient database architecture with proper relationships\"}),\"\\n\",n(r.li,{children:\"Created SEO-optimized structure with sitemaps\"}),\"\\n\",n(r.li,{children:\"Ensured production-ready deployment with error handling and performance optimization\"}),\"\\n\"]}),\"\\n\",n(r.h2,{id:\"impact\",children:\"Impact\"}),\"\\n\",n(r.p,{children:\"The new platform successfully enhanced GoodMil’s digital footprint, showcasing over 50 construction projects and enabling much more efficient client engagement. It strengthened their market credibility and positioned them strongly in Nepal’s construction industry.\"})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};"
+    "body": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(t){const r={h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components};return i(e,{children:[n(r.h2,{id:\"solution\",children:\"Solution\"}),\"\\n\",n(r.p,{children:\"I designed and developed a professional, modern website that effectively communicates the company’s quality and range of services while providing an excellent user experience for potential clients and partners.\"}),\"\\n\",n(r.h2,{id:\"key-achievements\",children:\"Key Achievements\"}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🏗️ Business Website Development\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Architected a Django platform with 12+ models managing projects, real estate listings, blog content, and client inquiries\"}),\"\\n\",n(r.li,{children:\"Implemented a comprehensive CMS for easy dynamic updates\"}),\"\\n\",n(r.li,{children:\"Built advanced property search with multiple filtering options\"}),\"\\n\",n(r.li,{children:\"Created multi-channel contact and inquiry systems\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🎨 Frontend Development & Animation\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Developed a responsive, professional interface with construction industry aesthetics\"}),\"\\n\",n(r.li,{children:\"Integrated GSAP and AOS for smooth scroll animations and engaging interactions\"}),\"\\n\",n(r.li,{children:\"Added preloader animations and optimized media handling\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"⚙️ Technical Implementation\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Implemented robust image processing with Pillow\"}),\"\\n\",n(r.li,{children:\"Built efficient database architecture with proper relationships\"}),\"\\n\",n(r.li,{children:\"Created SEO-optimized structure with sitemaps\"}),\"\\n\",n(r.li,{children:\"Ensured production-ready deployment with error handling and performance optimization\"}),\"\\n\"]}),\"\\n\",n(r.h2,{id:\"impact\",children:\"Impact\"}),\"\\n\",n(r.p,{children:\"The new platform successfully enhanced GoodMil’s digital footprint, showcasing over 50 construction projects and enabling much more efficient client engagement. It strengthened their market credibility and positioned them strongly in Nepal’s construction industry.\"})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};"
   },
   {
-    "slug": "sara-global-store",
+    "slug": "saraglobal-store",
     "title": "Sara Global Store E-Commerce Suite",
     "summary": "Built a full-featured Django e-commerce platform for cosmetics and beauty products with advanced cart, order tracking, reviews, and promotional systems.",
     "intro": "Developed and deployed a complete, production-ready e-commerce website for Sara Global Store, specializing in cosmetics and beauty products in Nepal. The platform handles real customer transactions, inventory management, and order fulfillment with a focus on scalability and excellent user experience.",
@@ -226,6 +265,7 @@
       "Pillow"
     ],
     "quote": "Delivered a secure, scalable, and user-friendly e-commerce solution that successfully processes real customer orders in the competitive beauty market.",
+    "problem": "Sara Global Store needed a modern, reliable, and scalable online platform to sell cosmetics and beauty products in Nepal. They required a solution that could handle real customer transactions, manage inventory effectively, and provide an excellent shopping experience while being easy to maintain and update.",
     "media": {
       "cover": "/images/projects/saraglobal-store/saraglobal-homepage.png",
       "video": "/images/projects/saraglobal-store/saraglobal-demo.mp4",
@@ -254,7 +294,7 @@
     ],
     "architecture": {
       "description": "The platform uses a modular Django multi-app architecture with separate apps for products, cart, orders, users, and reviews for better maintainability and scalability.",
-      "diagram": "/images/projects/sara-global-store/architecture-diagram.svg",
+      "diagram": "/images/projects/saraglobal-store/architecture-diagram.svg",
       "layers": [
         "frontend",
         "backend",
@@ -269,7 +309,7 @@
         "body": "Architected a full-stack Django application with a multi-app structure covering product catalog, authentication, shopping cart, order management, and customer reviews. Implemented a complete 5-stage order workflow with real-time tracking.",
         "media": {
           "kind": "image",
-          "src": "/images/projects/sara-global-store/implementation-backend.jpg",
+          "src": "/images/projects/saraglobal-store/implementation-backend.jpg",
           "alt": "Django e-commerce architecture"
         }
       },
@@ -279,7 +319,7 @@
         "flip": true,
         "media": {
           "kind": "image",
-          "src": "/images/projects/sara-global-store/implementation-frontend.jpg",
+          "src": "/images/projects/saraglobal-store/implementation-frontend.jpg",
           "alt": "Sara Global Store shopping experience"
         }
       },
@@ -302,7 +342,7 @@
         "href": "https://sarastore.pythonanywhere.com/m"
       }
     ],
-    "body": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(r){const t={h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...r.components};return i(e,{children:[n(t.h2,{id:\"problem\",children:\"Problem\"}),\"\\n\",n(t.p,{children:\"Sara Global Store needed a modern, reliable, and scalable online platform to sell cosmetics and beauty products in Nepal. They required a solution that could handle real customer transactions, manage inventory effectively, and provide an excellent shopping experience while being easy to maintain and update.\"}),\"\\n\",n(t.h2,{id:\"solution\",children:\"Solution\"}),\"\\n\",n(t.p,{children:\"I designed and developed a complete Django-based e-commerce platform from scratch, focusing on clean architecture, performance, security, and user experience. The platform includes robust product management, shopping features, order processing, and an intuitive admin interface.\"}),\"\\n\",n(t.h2,{id:\"key-achievements\",children:\"Key Achievements\"}),\"\\n\",n(t.p,{children:n(t.strong,{children:\"🛒 E-Commerce Platform Development\"})}),\"\\n\",i(t.ul,{children:[\"\\n\",n(t.li,{children:\"Built a full-featured Django application with modular multi-app structure\"}),\"\\n\",n(t.li,{children:\"Implemented a complete 5-stage order workflow with real-time tracking and automated emails\"}),\"\\n\",n(t.li,{children:\"Added advanced shopping features: wishlist, AJAX cart, multiple addresses, and smooth checkout\"}),\"\\n\",n(t.li,{children:\"Created a verified product review and rating system\"}),\"\\n\"]}),\"\\n\",n(t.p,{children:n(t.strong,{children:\"💻 Frontend Development & UX\"})}),\"\\n\",i(t.ul,{children:[\"\\n\",n(t.li,{children:\"Engineered a responsive, mobile-first design using modern HTML, CSS, and jQuery\"}),\"\\n\",n(t.li,{children:\"Implemented intelligent search, category filters, and product recommendations\"}),\"\\n\",n(t.li,{children:\"Added conversion-focused features like exit-intent popups\"}),\"\\n\"]}),\"\\n\",n(t.p,{children:n(t.strong,{children:\"🔧 Technical Excellence\"})}),\"\\n\",i(t.ul,{children:[\"\\n\",n(t.li,{children:\"Integrated Pillow for image optimization and processing\"}),\"\\n\",n(t.li,{children:\"Built SEO-friendly URLs, sitemaps, and strong security measures (CSRF protection)\"}),\"\\n\",n(t.li,{children:\"Developed a promotional code and discount management engine\"}),\"\\n\",n(t.li,{children:\"Optimized database queries and media handling for performance\"}),\"\\n\"]}),\"\\n\",n(t.h2,{id:\"impact\",children:\"Impact\"}),\"\\n\",n(t.p,{children:\"Successfully delivered a production-ready e-commerce platform that is currently serving real customers in Nepal. The solution provides a solid foundation for business growth with excellent scalability and maintainability.\"})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};"
+    "body": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(r){const t={h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...r.components};return i(e,{children:[n(t.h2,{id:\"solution\",children:\"Solution\"}),\"\\n\",n(t.p,{children:\"I designed and developed a complete Django-based e-commerce platform from scratch, focusing on clean architecture, performance, security, and user experience. The platform includes robust product management, shopping features, order processing, and an intuitive admin interface.\"}),\"\\n\",n(t.h2,{id:\"key-achievements\",children:\"Key Achievements\"}),\"\\n\",n(t.p,{children:n(t.strong,{children:\"🛒 E-Commerce Platform Development\"})}),\"\\n\",i(t.ul,{children:[\"\\n\",n(t.li,{children:\"Built a full-featured Django application with modular multi-app structure\"}),\"\\n\",n(t.li,{children:\"Implemented a complete 5-stage order workflow with real-time tracking and automated emails\"}),\"\\n\",n(t.li,{children:\"Added advanced shopping features: wishlist, AJAX cart, multiple addresses, and smooth checkout\"}),\"\\n\",n(t.li,{children:\"Created a verified product review and rating system\"}),\"\\n\"]}),\"\\n\",n(t.p,{children:n(t.strong,{children:\"💻 Frontend Development & UX\"})}),\"\\n\",i(t.ul,{children:[\"\\n\",n(t.li,{children:\"Engineered a responsive, mobile-first design using modern HTML, CSS, and jQuery\"}),\"\\n\",n(t.li,{children:\"Implemented intelligent search, category filters, and product recommendations\"}),\"\\n\",n(t.li,{children:\"Added conversion-focused features like exit-intent popups\"}),\"\\n\"]}),\"\\n\",n(t.p,{children:n(t.strong,{children:\"🔧 Technical Excellence\"})}),\"\\n\",i(t.ul,{children:[\"\\n\",n(t.li,{children:\"Integrated Pillow for image optimization and processing\"}),\"\\n\",n(t.li,{children:\"Built SEO-friendly URLs, sitemaps, and strong security measures (CSRF protection)\"}),\"\\n\",n(t.li,{children:\"Developed a promotional code and discount management engine\"}),\"\\n\",n(t.li,{children:\"Optimized database queries and media handling for performance\"}),\"\\n\"]}),\"\\n\",n(t.h2,{id:\"impact\",children:\"Impact\"}),\"\\n\",n(t.p,{children:\"Successfully delivered a production-ready e-commerce platform that is currently serving real customers in Nepal. The solution provides a solid foundation for business growth with excellent scalability and maintainability.\"})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};"
   },
   {
     "slug": "enterprise-subscription-management-system",
@@ -337,6 +377,7 @@
       "Day.js"
     ],
     "quote": "Engineered a scalable, automation-driven subscription system capable of handling complex enterprise workflows with high reliability and security.",
+    "problem": "Modern SaaS businesses require reliable systems to manage subscription lifecycles, automate reminders, and ensure secure multi-tenant operations. Many existing solutions lack flexibility, scalability, or the ability to handle complex workflows with enterprise-grade reliability.",
     "media": {
       "cover": "/images/projects/subscription-system/subscription-cover.png",
       "video": "/images/projects/subscription-system/subscription-code.mp4",
@@ -344,14 +385,33 @@
       "alt": "Enterprise subscription management dashboard showing lifecycle tracking, analytics, and automation workflows",
       "aspect": "16/10"
     },
+    "metrics": [
+      {
+        "value": "4",
+        "label": "Reminder Stages",
+        "countTo": 4,
+        "suffix": "x"
+      },
+      {
+        "value": "5",
+        "label": "User Roles",
+        "countTo": 5
+      },
+      {
+        "value": "1000",
+        "label": "Subscriptions Managed",
+        "countTo": 1000,
+        "suffix": "+"
+      }
+    ],
     "architecture": {
       "description": "Built on a modular Node.js/Express architecture with MongoDB, leveraging serverless workflows for asynchronous task execution and a secure multi-tenant RBAC system.",
       "diagram": "/images/projects/subscription-system/architecture-diagram.svg",
       "layers": [
+        "security",
         "api",
         "automation",
-        "database",
-        "security"
+        "database"
       ]
     },
     "implementation": [
@@ -402,7 +462,7 @@
         "href": "https://your-api-docs-link.com/"
       }
     ],
-    "body": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(t){const r={h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components};return i(e,{children:[n(r.h2,{id:\"problem\",children:\"Problem\"}),\"\\n\",n(r.p,{children:\"Modern SaaS businesses require reliable systems to manage subscription lifecycles, automate reminders, and ensure secure multi-tenant operations. Many existing solutions lack flexibility, scalability, or the ability to handle complex workflows with enterprise-grade reliability.\"}),\"\\n\",n(r.h2,{id:\"solution\",children:\"Solution\"}),\"\\n\",n(r.p,{children:\"I architected a comprehensive subscription management platform that combines a scalable API, intelligent automation workflows, and a secure role-based system. The solution enables businesses to manage subscriptions efficiently while automating critical processes like reminders, lifecycle transitions, and user management.\"}),\"\\n\",n(r.h2,{id:\"key-achievements\",children:\"Key Achievements\"}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🏢 Enterprise System Architecture\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Built scalable RESTful API with multi-tenant support using Node.js and MongoDB\"}),\"\\n\",n(r.li,{children:\"Designed modular architecture supporting extensibility and high performance\"}),\"\\n\",n(r.li,{children:\"Implemented robust data modeling with Mongoose ODM\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"⚙️ Automation & Workflow Orchestration\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Integrated Upstash QStash for serverless, durable workflows\"}),\"\\n\",n(r.li,{children:\"Designed multi-stage reminder system (7, 5, 2, 1 days) with retry logic\"}),\"\\n\",n(r.li,{children:\"Automated subscription lifecycle transitions with minimal manual intervention\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🔐 Security & Performance Optimization\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Implemented JWT authentication with role-based access control (RBAC)\"}),\"\\n\",n(r.li,{children:\"Added Arcjet rate limiting, email verification, and audit logging\"}),\"\\n\",n(r.li,{children:\"Optimized database queries with pagination and field selection for scale\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"📊 Admin Systems & Monitoring\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Built admin dashboard for subscription tracking and analytics\"}),\"\\n\",n(r.li,{children:\"Enabled real-time monitoring of workflows and system health\"}),\"\\n\",n(r.li,{children:\"Implemented audit trails for compliance and debugging\"}),\"\\n\"]}),\"\\n\",n(r.h2,{id:\"impact\",children:\"Impact\"}),\"\\n\",n(r.p,{children:\"The platform delivers a production-ready solution for managing complex subscription workflows at scale. It reduces manual overhead through automation, improves reliability with serverless orchestration, and ensures enterprise-grade security—making it suitable for modern SaaS environments handling large volumes of users and transactions.\"})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};"
+    "body": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(t){const r={h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components};return i(e,{children:[n(r.h2,{id:\"solution\",children:\"Solution\"}),\"\\n\",n(r.p,{children:\"I architected a comprehensive subscription management platform that combines a scalable API, intelligent automation workflows, and a secure role-based system. The solution enables businesses to manage subscriptions efficiently while automating critical processes like reminders, lifecycle transitions, and user management.\"}),\"\\n\",n(r.h2,{id:\"key-achievements\",children:\"Key Achievements\"}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🏢 Enterprise System Architecture\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Built scalable RESTful API with multi-tenant support using Node.js and MongoDB\"}),\"\\n\",n(r.li,{children:\"Designed modular architecture supporting extensibility and high performance\"}),\"\\n\",n(r.li,{children:\"Implemented robust data modeling with Mongoose ODM\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"⚙️ Automation & Workflow Orchestration\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Integrated Upstash QStash for serverless, durable workflows\"}),\"\\n\",n(r.li,{children:\"Designed multi-stage reminder system (7, 5, 2, 1 days) with retry logic\"}),\"\\n\",n(r.li,{children:\"Automated subscription lifecycle transitions with minimal manual intervention\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🔐 Security & Performance Optimization\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Implemented JWT authentication with role-based access control (RBAC)\"}),\"\\n\",n(r.li,{children:\"Added Arcjet rate limiting, email verification, and audit logging\"}),\"\\n\",n(r.li,{children:\"Optimized database queries with pagination and field selection for scale\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"📊 Admin Systems & Monitoring\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Built admin dashboard for subscription tracking and analytics\"}),\"\\n\",n(r.li,{children:\"Enabled real-time monitoring of workflows and system health\"}),\"\\n\",n(r.li,{children:\"Implemented audit trails for compliance and debugging\"}),\"\\n\"]}),\"\\n\",n(r.h2,{id:\"impact\",children:\"Impact\"}),\"\\n\",n(r.p,{children:\"The platform delivers a production-ready solution for managing complex subscription workflows at scale. It reduces manual overhead through automation, improves reliability with serverless orchestration, and ensures enterprise-grade security—making it suitable for modern SaaS environments handling large volumes of users and transactions.\"})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};"
   },
   {
     "slug": "uncharted-pages",
@@ -437,6 +497,7 @@
       "PythonAnywhere"
     ],
     "quote": "Successfully launched a production-ready publishing platform combining immersive storytelling with real-world e-commerce functionality.",
+    "problem": "Uncharted Pages required a digital platform that could not only showcase short story collections but also provide an immersive reading experience while enabling direct book sales. Traditional publishing sites lacked the visual engagement needed to captivate modern audiences.",
     "media": {
       "cover": "/images/projects/uncharted-pages/uncharted-homepage.png",
       "video": "/images/projects/uncharted-pages/uncharted-demo.mp4",
@@ -444,6 +505,25 @@
       "alt": "Uncharted Pages platform showcasing immersive storytelling interface with animations and book purchasing features",
       "aspect": "16/10"
     },
+    "metrics": [
+      {
+        "value": "6",
+        "label": "Core Pages Built",
+        "countTo": 6
+      },
+      {
+        "value": "3",
+        "label": "Core Systems",
+        "countTo": 3,
+        "suffix": "x"
+      },
+      {
+        "value": "100",
+        "label": "Orders Processed",
+        "countTo": 100,
+        "suffix": "+"
+      }
+    ],
     "architecture": {
       "description": "Built using Django’s MVT architecture with integrated e-commerce logic, content management system, and interactive frontend layers powered by JavaScript and particle effects.",
       "diagram": "/images/projects/uncharted-pages/architecture-diagram.svg",
@@ -493,6 +573,6 @@
         "href": "https://your-live-link.com/"
       }
     ],
-    "body": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(t){const r={h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components};return i(e,{children:[n(r.h2,{id:\"problem\",children:\"Problem\"}),\"\\n\",n(r.p,{children:\"Uncharted Pages required a digital platform that could not only showcase short story collections but also provide an immersive reading experience while enabling direct book sales. Traditional publishing sites lacked the visual engagement needed to captivate modern audiences.\"}),\"\\n\",n(r.h2,{id:\"solution\",children:\"Solution\"}),\"\\n\",n(r.p,{children:\"I designed and developed a visually compelling publishing platform that blends storytelling with interactive design. The platform integrates immersive animations, a full-featured blog system, and a seamless e-commerce workflow to enhance both user engagement and business functionality.\"}),\"\\n\",n(r.h2,{id:\"key-achievements\",children:\"Key Achievements\"}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"📚 Publishing Platform Development\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Built a Django-powered CMS for managing blog content, books, and user inquiries\"}),\"\\n\",n(r.li,{children:\"Implemented search, categorization, and newsletter subscription features\"}),\"\\n\",n(r.li,{children:\"Designed scalable content structures for future expansion\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🎨 Frontend Innovation & UX\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Engineered interactive 3D-like animations and particle effects using Particles.js\"}),\"\\n\",n(r.li,{children:\"Developed smooth transitions and dynamic UI interactions with JavaScript and jQuery\"}),\"\\n\",n(r.li,{children:\"Created fully responsive multi-page layout with optimized mobile experience\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"💼 E-commerce & Business Logic\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Developed complete order management system with payment proof uploads\"}),\"\\n\",n(r.li,{children:\"Built customer tracking and admin validation workflows\"}),\"\\n\",n(r.li,{children:\"Integrated contact and inquiry handling system with automated responses\"}),\"\\n\"]}),\"\\n\",n(r.h2,{id:\"impact\",children:\"Impact\"}),\"\\n\",n(r.p,{children:\"The platform successfully launched in production, enabling real users to explore content and purchase books through a seamless and engaging interface. It elevated the brand’s digital presence while demonstrating a strong blend of creative frontend engineering and practical backend architecture.\"})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};"
+    "body": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(t){const r={h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components};return i(e,{children:[n(r.h2,{id:\"solution\",children:\"Solution\"}),\"\\n\",n(r.p,{children:\"I designed and developed a visually compelling publishing platform that blends storytelling with interactive design. The platform integrates immersive animations, a full-featured blog system, and a seamless e-commerce workflow to enhance both user engagement and business functionality.\"}),\"\\n\",n(r.h2,{id:\"key-achievements\",children:\"Key Achievements\"}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"📚 Publishing Platform Development\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Built a Django-powered CMS for managing blog content, books, and user inquiries\"}),\"\\n\",n(r.li,{children:\"Implemented search, categorization, and newsletter subscription features\"}),\"\\n\",n(r.li,{children:\"Designed scalable content structures for future expansion\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🎨 Frontend Innovation & UX\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Engineered interactive 3D-like animations and particle effects using Particles.js\"}),\"\\n\",n(r.li,{children:\"Developed smooth transitions and dynamic UI interactions with JavaScript and jQuery\"}),\"\\n\",n(r.li,{children:\"Created fully responsive multi-page layout with optimized mobile experience\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"💼 E-commerce & Business Logic\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Developed complete order management system with payment proof uploads\"}),\"\\n\",n(r.li,{children:\"Built customer tracking and admin validation workflows\"}),\"\\n\",n(r.li,{children:\"Integrated contact and inquiry handling system with automated responses\"}),\"\\n\"]}),\"\\n\",n(r.h2,{id:\"impact\",children:\"Impact\"}),\"\\n\",n(r.p,{children:\"The platform successfully launched in production, enabling real users to explore content and purchase books through a seamless and engaging interface. It elevated the brand’s digital presence while demonstrating a strong blend of creative frontend engineering and practical backend architecture.\"})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};"
   }
 ]
