@@ -31,6 +31,7 @@ export const CaseStudyProgressNav = () => {
                     'hidden md:flex md:sticky md:top-24 md:self-start',
                     'flex-row items-start gap-5',
                     'w-max shrink-0 p-4',
+                    'order-2'
                 )}
             >
                 <div className="flex h-full flex-col items-center pt-1">

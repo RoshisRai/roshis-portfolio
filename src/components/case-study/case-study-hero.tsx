@@ -17,7 +17,7 @@ export const CaseStudyHero = ({ project }: CaseStudyHeroProps) => {
         <section
             id="cs-hero"
             aria-labelledby="cs-hero-title"
-            className="relative pt-24 pb-20"
+            className="relative pt-24"
         >
             {/* Page-level accent wash. Shares VT name with the card's wash. */}
             <span
@@ -30,7 +30,6 @@ export const CaseStudyHero = ({ project }: CaseStudyHeroProps) => {
                 }}
             />
 
-            {/* <div className="mx-auto max-w-(--max-width-content) px-6"> */}
             <div className="mx-auto px-6">
                 <div
                     data-cs-stagger='1'
