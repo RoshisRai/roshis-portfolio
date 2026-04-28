@@ -4,6 +4,7 @@ import { ProjectAccentStyle } from "./project-accent-style";
 import { CaseStudyFooterNav } from "./case-study-footer-nav";
 import { CaseStudyProgressNav } from "./case-study-progress-nav";
 import { CaseStudyProblem } from "./case-study-problem";
+import { CaseStudyArchitecture } from "./case-study-architecture";
 
 interface CaseStudyPageProps {
     project: ProjectFrontmatter
@@ -30,6 +31,7 @@ export const CaseStudyPage = ({
                 >
                     <CaseStudyHero project={project} />
                     <CaseStudyProblem quote={project.quote} body={project.problem} />
+                    <CaseStudyArchitecture architecture={project.architecture} />
                 </article>
 
             </div>

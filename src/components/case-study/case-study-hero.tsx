@@ -30,7 +30,7 @@ export const CaseStudyHero = ({ project }: CaseStudyHeroProps) => {
                 }}
             />
 
-            <div className="mx-auto px-6">
+            <div className="mx-auto">
                 <div
                     data-cs-stagger='1'
                     className='mb-6'

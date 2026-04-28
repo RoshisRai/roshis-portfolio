@@ -39,17 +39,17 @@ metrics:
   - { value: '1', label: 'Continuous Voice Loop', countTo: 1 }
 architecture:
   description: Built as a modular, event-driven voice system with dedicated components for wake-word detection, speech processing, AI interaction, and audio output, enabling scalability and maintainability.
-  diagram: /images/projects/everylingua/architecture-diagram.svg
+  diagram: /images/projects/everylingua-ai/architecture-diagram.svg
   layers: ['input', 'processing', 'ai-engine', 'output']
 implementation:
   - title: "Wake Word Detection & Voice Activation"
     body: "Implemented a wake-word system with fuzzy matching to reliably activate the assistant in real-world conditions. Designed configurable thresholds and timeout handling to balance responsiveness and false positives."
     media: 
-      { kind: 'image', src: '/images/projects/everylingua/implementation-wakeword.jpg', alt: 'Wake word detection and activation flow' }
+      { kind: 'image', src: '/images/projects/everylingua-ai/implementation-wakeword.jpg', alt: 'Wake word detection and activation flow' }
   - title: "Modular Audio & Speech Processing System"
     body: "Developed a structured audio pipeline handling microphone selection, calibration, and speech-to-text conversion. Built reusable modules for capturing, processing, and normalizing audio input across multiple environments."
     media: 
-      { kind: 'image', src: '/images/projects/everylingua/implementation-audio.jpg', alt: 'Audio capture and speech processing modules' }
+      { kind: 'image', src: '/images/projects/everylingua-ai/implementation-audio.jpg', alt: 'Audio capture and speech processing modules' }
     flip: true
   - title: "Multilingual AI Conversation Engine"
     body: "Integrated OpenAI GPT models with dynamic language detection and translation, enabling context-aware conversations across 50+ languages. Designed flexible prompts and token controls to balance response quality and cost efficiency."
@@ -58,11 +58,11 @@ implementation:
   - title: "System Orchestration & Configuration Layer"
     body: "Architected a clean separation of concerns with modules for orchestration, configuration, logging, and conversation flow. Enabled environment-based configuration for microphone tuning, latency control, and debugging."
     media: 
-      { kind: 'image', src: '/images/projects/everylingua/implementation-architecture.jpg', alt: 'System architecture and modular design' }
+      { kind: 'image', src: '/images/projects/everylingua-ai/implementation-architecture.jpg', alt: 'System architecture and modular design' }
   - title: "Real-Time Interaction Loop & Reliability"
     body: "Built a continuous interaction loop supporting wake, listen, respond, and reset cycles. Implemented error handling, fallback logic, and microphone auto-switching to ensure stability in real-world usage."
     media: 
-      { kind: 'image', src: '/images/projects/everylingua/implementation-loop.jpg', alt: 'Real-time conversational loop flow' }
+      { kind: 'image', src: '/images/projects/everylingua-ai/implementation-loop.jpg', alt: 'Real-time conversational loop flow' }
 reflection: This project significantly advanced my ability to design modular, real-time systems that integrate AI with low-level input/output processing. It reinforced principles of separation of concerns, reliability, and performance optimization in interactive applications.
 nextSlug: sara-global-store
 links:

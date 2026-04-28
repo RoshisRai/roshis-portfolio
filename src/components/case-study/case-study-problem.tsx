@@ -13,7 +13,7 @@ export const CaseStudyProblem = ({
             aria-labelledby="cs-problem-heading"
             className="py-(--spacing-case-study-section-mobile) md:py-(--spacing-case-study-section)"
         >
-            <div className="mx-auto max-w-(--max-width-content) px-6">
+            <div className="mx-auto max-w-(--max-width-content)">
                 <h2 id="cs-problem-heading" className="sr-only">
                     The Problem
                 </h2>

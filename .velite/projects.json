@@ -57,7 +57,7 @@
     ],
     "architecture": {
       "description": "Built as a modular, event-driven voice system with dedicated components for wake-word detection, speech processing, AI interaction, and audio output, enabling scalability and maintainability.",
-      "diagram": "/images/projects/everylingua/architecture-diagram.svg",
+      "diagram": "/images/projects/everylingua-ai/architecture-diagram.svg",
       "layers": [
         "input",
         "processing",
@@ -71,7 +71,7 @@
         "body": "Implemented a wake-word system with fuzzy matching to reliably activate the assistant in real-world conditions. Designed configurable thresholds and timeout handling to balance responsiveness and false positives.",
         "media": {
           "kind": "image",
-          "src": "/images/projects/everylingua/implementation-wakeword.jpg",
+          "src": "/images/projects/everylingua-ai/implementation-wakeword.jpg",
           "alt": "Wake word detection and activation flow"
         }
       },
@@ -81,7 +81,7 @@
         "flip": true,
         "media": {
           "kind": "image",
-          "src": "/images/projects/everylingua/implementation-audio.jpg",
+          "src": "/images/projects/everylingua-ai/implementation-audio.jpg",
           "alt": "Audio capture and speech processing modules"
         }
       },
@@ -100,7 +100,7 @@
         "body": "Architected a clean separation of concerns with modules for orchestration, configuration, logging, and conversation flow. Enabled environment-based configuration for microphone tuning, latency control, and debugging.",
         "media": {
           "kind": "image",
-          "src": "/images/projects/everylingua/implementation-architecture.jpg",
+          "src": "/images/projects/everylingua-ai/implementation-architecture.jpg",
           "alt": "System architecture and modular design"
         }
       },
@@ -109,7 +109,7 @@
         "body": "Built a continuous interaction loop supporting wake, listen, respond, and reset cycles. Implemented error handling, fallback logic, and microphone auto-switching to ensure stability in real-world usage.",
         "media": {
           "kind": "image",
-          "src": "/images/projects/everylingua/implementation-loop.jpg",
+          "src": "/images/projects/everylingua-ai/implementation-loop.jpg",
           "alt": "Real-time conversational loop flow"
         }
       }
@@ -236,7 +236,7 @@
     "body": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(t){const r={h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components};return i(e,{children:[n(r.h2,{id:\"solution\",children:\"Solution\"}),\"\\n\",n(r.p,{children:\"I designed and developed a professional, modern website that effectively communicates the company’s quality and range of services while providing an excellent user experience for potential clients and partners.\"}),\"\\n\",n(r.h2,{id:\"key-achievements\",children:\"Key Achievements\"}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🏗️ Business Website Development\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Architected a Django platform with 12+ models managing projects, real estate listings, blog content, and client inquiries\"}),\"\\n\",n(r.li,{children:\"Implemented a comprehensive CMS for easy dynamic updates\"}),\"\\n\",n(r.li,{children:\"Built advanced property search with multiple filtering options\"}),\"\\n\",n(r.li,{children:\"Created multi-channel contact and inquiry systems\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"🎨 Frontend Development & Animation\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Developed a responsive, professional interface with construction industry aesthetics\"}),\"\\n\",n(r.li,{children:\"Integrated GSAP and AOS for smooth scroll animations and engaging interactions\"}),\"\\n\",n(r.li,{children:\"Added preloader animations and optimized media handling\"}),\"\\n\"]}),\"\\n\",n(r.p,{children:n(r.strong,{children:\"⚙️ Technical Implementation\"})}),\"\\n\",i(r.ul,{children:[\"\\n\",n(r.li,{children:\"Implemented robust image processing with Pillow\"}),\"\\n\",n(r.li,{children:\"Built efficient database architecture with proper relationships\"}),\"\\n\",n(r.li,{children:\"Created SEO-optimized structure with sitemaps\"}),\"\\n\",n(r.li,{children:\"Ensured production-ready deployment with error handling and performance optimization\"}),\"\\n\"]}),\"\\n\",n(r.h2,{id:\"impact\",children:\"Impact\"}),\"\\n\",n(r.p,{children:\"The new platform successfully enhanced GoodMil’s digital footprint, showcasing over 50 construction projects and enabling much more efficient client engagement. It strengthened their market credibility and positioned them strongly in Nepal’s construction industry.\"})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};"
   },
   {
-    "slug": "sara-global-store",
+    "slug": "saraglobal-store",
     "title": "Sara Global Store E-Commerce Suite",
     "summary": "Built a full-featured Django e-commerce platform for cosmetics and beauty products with advanced cart, order tracking, reviews, and promotional systems.",
     "intro": "Developed and deployed a complete, production-ready e-commerce website for Sara Global Store, specializing in cosmetics and beauty products in Nepal. The platform handles real customer transactions, inventory management, and order fulfillment with a focus on scalability and excellent user experience.",
@@ -294,7 +294,7 @@
     ],
     "architecture": {
       "description": "The platform uses a modular Django multi-app architecture with separate apps for products, cart, orders, users, and reviews for better maintainability and scalability.",
-      "diagram": "/images/projects/sara-global-store/architecture-diagram.svg",
+      "diagram": "/images/projects/saraglobal-store/architecture-diagram.svg",
       "layers": [
         "frontend",
         "backend",
@@ -309,7 +309,7 @@
         "body": "Architected a full-stack Django application with a multi-app structure covering product catalog, authentication, shopping cart, order management, and customer reviews. Implemented a complete 5-stage order workflow with real-time tracking.",
         "media": {
           "kind": "image",
-          "src": "/images/projects/sara-global-store/implementation-backend.jpg",
+          "src": "/images/projects/saraglobal-store/implementation-backend.jpg",
           "alt": "Django e-commerce architecture"
         }
       },
@@ -319,7 +319,7 @@
         "flip": true,
         "media": {
           "kind": "image",
-          "src": "/images/projects/sara-global-store/implementation-frontend.jpg",
+          "src": "/images/projects/saraglobal-store/implementation-frontend.jpg",
           "alt": "Sara Global Store shopping experience"
         }
       },
@@ -408,10 +408,10 @@
       "description": "Built on a modular Node.js/Express architecture with MongoDB, leveraging serverless workflows for asynchronous task execution and a secure multi-tenant RBAC system.",
       "diagram": "/images/projects/subscription-system/architecture-diagram.svg",
       "layers": [
+        "security",
         "api",
         "automation",
-        "database",
-        "security"
+        "database"
       ]
     },
     "implementation": [
