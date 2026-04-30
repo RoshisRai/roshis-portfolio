@@ -1,6 +1,7 @@
 import type { ImplementationBlock as Block } from "@/types/project";
 import { CodeBlock } from "../ui/code-block";
 import { cn } from "@/lib/utils";
+import { renderCodeToHtml } from "@/lib/shiki";
 import Image from "next/image";
 
 interface ImplementationBlockProps {
@@ -10,10 +11,14 @@ interface ImplementationBlockProps {
 
 //CHANGE THE PROJECT IMPLEMENTATION BLOCK'S KEY FROM HTML TO CODE
 
-export const ImplementationBlock = ({
+export const ImplementationBlock = async ({
     block,
     flip
 }: ImplementationBlockProps) => {
+    const codeHtml = block.media.kind === 'code'
+        ? await renderCodeToHtml(block.media.code, block.media.language)
+        : null;
+
     const media = (
         <div className={cn(
             'lg:col-span-6',
@@ -23,7 +28,7 @@ export const ImplementationBlock = ({
                 <CodeBlock
                     language={block.media.language}
                     filename={block.media.filename}
-                    code={block.media.code}
+                    code={codeHtml ?? undefined}
                 />
             ) : (
                 <div className="relative w-full aspect-16/10 rounded-xl overflow-hidden border border-border">

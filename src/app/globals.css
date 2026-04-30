@@ -165,6 +165,29 @@
     inherits: false;
     initial-value: 0deg;
   }
+
+  .shiki {
+    background-color: var(--shiki-dark-bg) !important;
+    color: var(--shiki-dark) !important;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-text-secondary) transparent;
+  }
+
+  .shiki span {
+    color: var(--shiki-dark) !important;
+  }
+
+  :root[data-theme="light"] .shiki {
+    background-color: var(--shiki-light-bg) !important;
+    color: var(--shiki-light) !important;
+  }
+
+  :root[data-theme="light"] .shiki span {
+    color: var(--shiki-light) !important;
+  }
 }
 
 @layer utilities {
