@@ -2,7 +2,6 @@ import { ScrollToSection } from "@/components/global/scroll-to-section"
 import { SectionWrapper } from "@/components/layout/section-wrapper"
 import { HeroSection } from "@/components/sections/hero/hero"
 import { ProjectsSection } from "@/components/sections/projects/projects-section"
-import UIComponentsTest from "@/components/ui/test-ui-components"
 
 export default function Home() {
     return (
@@ -10,8 +9,6 @@ export default function Home() {
             <ScrollToSection />
 
             <HeroSection />
-
-            <UIComponentsTest />
 
             {/* Projects */}
             <ProjectsSection />

@@ -420,7 +420,7 @@
         "body": "Developed a robust RESTful API using Node.js and Express with MongoDB and Mongoose for schema management. Designed the system to support multi-tenant environments with isolated data handling and scalable query performance.",
         "media": {
           "kind": "image",
-          "src": "/images/projects/subscription-system/implementation-api.jpg",
+          "src": "/images/projects/subscription-system/implementation-api.png",
           "alt": "API architecture and database schema"
         }
       },
@@ -430,18 +430,18 @@
         "flip": true,
         "media": {
           "kind": "image",
-          "src": "/images/projects/subscription-system/implementation-workflows.jpg",
+          "src": "/images/projects/subscription-system/implementation-workflows.png",
           "alt": "Workflow automation and reminder system"
         }
       },
       {
         "title": "Subscription Lifecycle Engine & State Management",
-        "body": "Engineered a state machine to handle subscription transitions including trial, active, paused, canceled, and expired states. Automated lifecycle updates and ensured consistency across all user interactions and workflows.",
+        "body": "Engineered a robust state machine to manage subscription lifecycle transitions across key states including trial, active, paused, canceled, and expired. Designed deterministic transition rules to ensure only valid state changes occur, preventing inconsistent or invalid subscription behavior. Automated lifecycle events such as trial-to-active conversion, renewal handling, expiration checks, and pause/resume flows to reduce manual intervention. Integrated the state engine with background workflows and reminder systems to keep subscription status synchronized across asynchronous processes. Ensured data consistency and reliability across all user interactions, API operations, and scheduled jobs by centralizing state logic and maintaining a single source of truth for subscription status.",
         "media": {
           "kind": "code",
           "language": "javascript",
           "filename": "subscriptionState.js",
-          "code": "function transitionSubscription(state, action) {\\n  switch(state) {\\n    case \\\"trial\\\":\\n      if(action === \\\"activate\\\") return \\\"active\\\";\\n      break;\\n    // Additional transitions...\\n  }\\n}"
+          "code": "import dayjs from \"dayjs\";\\n// Handle subscription state transitions\\nfunction transitionSubscription(subscription, action) {\\n  const { status, renewalDate } = subscription;\\n  // Ensure only active subscriptions proceed\\n  if (status !== \"active\") return status;\\n  const today = dayjs();\\n  const renewal = dayjs(renewalDate);\\n  // Auto-expire if past renewal date\\n  if (renewal.isBefore(today, \"day\")) {\\n    return \"expired\";\\n  }\\n  switch (action) {\\n    case \"pause\":\\n      return \"paused\";\\n    case \"resume\":\\n      return \"active\";\\n    case \"cancel\":\\n      return \"canceled\";\\n    case \"renew\":\\n      return \"active\"; // resets lifecycle\\n    default:\\n      return status; // no change\\n  }\\n}"
         }
       },
       {
@@ -449,7 +449,7 @@
         "body": "Implemented JWT authentication with RBAC roles (admin, manager, support, user) alongside Arcjet rate limiting and email verification. Optimized performance using pagination, field selection, and efficient queries. Built admin dashboards for monitoring subscriptions, workflows, and analytics.",
         "media": {
           "kind": "image",
-          "src": "/images/projects/subscription-system/implementation-admin.jpg",
+          "src": "/images/projects/subscription-system/implementation-admin.png",
           "alt": "Admin dashboard and analytics overview"
         }
       }

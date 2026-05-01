@@ -3,6 +3,7 @@ import { CodeBlock } from "../ui/code-block";
 import { cn } from "@/lib/utils";
 import { renderCodeToHtml } from "@/lib/shiki";
 import Image from "next/image";
+import { CursorZone } from "../global/cursor/cursor-zone";
 
 interface ImplementationBlockProps {
     block: Block
@@ -31,15 +32,17 @@ export const ImplementationBlock = async ({
                     code={codeHtml ?? undefined}
                 />
             ) : (
-                <div className="relative w-full aspect-16/10 rounded-xl overflow-hidden border border-border">
-                    <Image 
-                        src={block.media.src}
-                        alt={block.media.alt}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                </div>
+                <CursorZone variant="button">
+                    <div className="relative w-full aspect-16/10 rounded-xl overflow-hidden border border-border">
+                        <Image 
+                            src={block.media.src}
+                            alt={block.media.alt}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                        />
+                    </div>
+                </CursorZone>
             )}
         </div>
     )
