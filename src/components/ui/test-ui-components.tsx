@@ -234,14 +234,14 @@ export default function UIComponentsTest() {
               <CodeBlock
                 language="javascript"
                 filename="example.js"
-                html={`<pre><code class="language-js">const message = 'Hello from Shiki!';\nconsole.log(message);</code></pre>`}
+                code={`<pre><code class="language-js">const message = 'Hello from Shiki!';\nconsole.log(message);</code></pre>`}
                 className="max-w-2xl"
               />
             </div>
 
             <div>
               <div className="mb-2 text-sm font-semibold">Plain code children (pre/code)</div>
-              <CodeBlock language="bash" filename="run.sh"></CodeBlock>
+              <CodeBlock language="bash" filename="run.sh">Simple Code</CodeBlock>
             </div>
           </div>
         </div>

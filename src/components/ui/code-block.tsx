@@ -33,13 +33,13 @@ const InlineCode = ({
 interface CodeBlockProps extends React.HTMLAttributes<HTMLDivElement> {
     language?: string // Language label shown in the header
     filename?: string // Optional filename shown in the header
-    html?: string // Pre-rendered Shiki HTML string
+    code?: string // Pre-rendered Shiki HTML string
 }
 
 const CodeBlock = ({
     language,
     filename,
-    html,
+    code,
     className,
     children,
     ...props
@@ -83,7 +83,7 @@ const CodeBlock = ({
             )}
 
             {/* Code content */}
-            { html ? (
+            { code ? (
                 <div
                     className={cn(
                         'overflow-x-auto p-5',
@@ -91,7 +91,7 @@ const CodeBlock = ({
                         '[&_code]:font-mono [&_code]:text-[14px] [&_code]:leading-7',
                         'text-text-primary',
                     )}
-                    dangerouslySetInnerHTML={{ __html: html }}
+                    dangerouslySetInnerHTML={{ __html: code }}
                 />
             ): (
                 <pre
