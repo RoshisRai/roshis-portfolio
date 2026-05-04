@@ -45,24 +45,24 @@ implementation:
   - title: "Wake Word Detection & Voice Activation"
     body: "Implemented a wake-word system with fuzzy matching to reliably activate the assistant in real-world conditions. Designed configurable thresholds and timeout handling to balance responsiveness and false positives."
     media: 
-      { kind: 'image', src: '/images/projects/everylingua-ai/implementation-wakeword.jpg', alt: 'Wake word detection and activation flow' }
+      { kind: 'image', src: '/images/projects/everylingua-ai/implementation-wakeword.png', alt: 'Wake word detection and activation flow' }
   - title: "Modular Audio & Speech Processing System"
     body: "Developed a structured audio pipeline handling microphone selection, calibration, and speech-to-text conversion. Built reusable modules for capturing, processing, and normalizing audio input across multiple environments."
     media: 
-      { kind: 'image', src: '/images/projects/everylingua-ai/implementation-audio.jpg', alt: 'Audio capture and speech processing modules' }
+      { kind: 'image', src: '/images/projects/everylingua-ai/implementation-audio.png', alt: 'Audio capture and speech processing modules' }
     flip: true
   - title: "Multilingual AI Conversation Engine"
-    body: "Integrated OpenAI GPT models with dynamic language detection and translation, enabling context-aware conversations across 50+ languages. Designed flexible prompts and token controls to balance response quality and cost efficiency."
+    body: "Integrated OpenAI GPT models with dynamic language detection and translation to enable context-aware conversations across 50+ languages. Built a processing pipeline that translates user input into a common language (English) for consistent AI reasoning, then converts responses back into the user’s preferred language. Implemented flexible prompt structures and token limits to balance response quality and cost efficiency, while maintaining low latency for real-time interaction. Designed the system to be easily extendable for additional languages, translation providers, and conversational behaviors."
     media: 
-      { kind: 'code', language: 'python', filename: 'openai_client.py', code: 'def generate_response(prompt):\n    return client.chat.completions.create(\n        model=\"gpt\",\n        messages=[{\"role\": \"user\", \"content\": prompt}]\n    )' }
+      { kind: 'code', language: 'python', filename: 'openai_client.py', code: 'from deep_translator import GoogleTranslator\nfrom openai import OpenAI\n\nclient = OpenAI()\n\ndef generate_response(user_input, source_lang="auto", target_lang="en"):\n    translated_input = GoogleTranslator(source=source_lang, target="en").translate(user_input)\n    response = client.chat.completions.create(\n        model="gpt-4o-mini",\n        messages=[{"role": "user", "content": translated_input}],\n        max_tokens=120\n    )\n    output_text = response.choices[0].message.content\n    return GoogleTranslator(source="en", target=target_lang).translate(output_text)'}
   - title: "System Orchestration & Configuration Layer"
     body: "Architected a clean separation of concerns with modules for orchestration, configuration, logging, and conversation flow. Enabled environment-based configuration for microphone tuning, latency control, and debugging."
     media: 
-      { kind: 'image', src: '/images/projects/everylingua-ai/implementation-architecture.jpg', alt: 'System architecture and modular design' }
+      { kind: 'image', src: '/images/projects/everylingua-ai/implementation-architecture.png', alt: 'System architecture and modular design' }
   - title: "Real-Time Interaction Loop & Reliability"
     body: "Built a continuous interaction loop supporting wake, listen, respond, and reset cycles. Implemented error handling, fallback logic, and microphone auto-switching to ensure stability in real-world usage."
     media: 
-      { kind: 'image', src: '/images/projects/everylingua-ai/implementation-loop.jpg', alt: 'Real-time conversational loop flow' }
+      { kind: 'image', src: '/images/projects/everylingua-ai/implementation-loop.png', alt: 'Real-time conversational loop flow' }
 reflection: This project significantly advanced my ability to design modular, real-time systems that integrate AI with low-level input/output processing. It reinforced principles of separation of concerns, reliability, and performance optimization in interactive applications.
 nextSlug: sara-global-store
 links:

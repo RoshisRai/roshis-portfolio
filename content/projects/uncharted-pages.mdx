@@ -41,23 +41,25 @@ metrics:
   - { value: '3', label: 'Core Systems', countTo: 3, suffix: 'x' }
   - { value: '100', label: 'Orders Processed', countTo: 100, suffix: '+' }
 architecture:
-  description: Built using Django’s MVT architecture with integrated e-commerce logic, content management system, and interactive frontend layers powered by JavaScript and particle effects.
+  description: Built using Django 4.2's MVT architecture with a single home app handling blog publishing, book orders, contact inquiries, and newsletter subscriptions. Features an immersive frontend with Particles.js animations, custom JavaScript interactions, and an intuitive Django admin interface for content management.
   diagram: /images/projects/uncharted-pages/architecture-diagram.svg
   layers: ['frontend', 'backend', 'database', 'animations']
 implementation:
-  - title: "Django Backend & Publishing CMS"
-    body: "Developed a robust Django application to manage blog posts, book listings, customer orders, and inquiries. Built an intuitive admin interface allowing seamless content publishing and order management."
+  - title: "Django Backend & Admin Core"
+    body: "Developed a robust Django 4.2 application with the home app managing Blog posts (with categories), BookOrder orders with payment receipt uploads via Pillow, ContactUs inquiries, and NewsletterSubscriber subscriptions. Built an intuitive Django admin interface allowing seamless content publishing, blog post management with slug-based URLs, order tracking, and subscriber management."
     media: 
-      { kind: 'image', src: '/images/projects/uncharted-pages/implementation-cms.jpg', alt: 'Publishing CMS and admin dashboard' }
-  - title: "Immersive Frontend & 3D Experience"
-    body: "Engineered visually engaging UI using HTML5, CSS3, and JavaScript. Integrated Particles.js and custom animations to create a dynamic storytelling experience with smooth transitions and interactive visual effects."
+      { kind: 'image', src: '/images/projects/uncharted-pages/implementation-backend.png', alt: 'Django admin dashboard for blog and order management' }
+  
+  - title: "Immersive Frontend & Particle Effects"
+    body: "Engineered a visually engaging UI using HTML5, CSS3, and JavaScript with responsive templates across 8+ pages (home, about, blogs, blog details, FAQ, contact, buy book, blog search). Integrated Particles.js for dynamic background animations, jQuery for DOM manipulation, and custom CSS styling for each page including blog search functionality and newsletter integration."
     media: 
-      { kind: 'image', src: '/images/projects/uncharted-pages/implementation-frontend.jpg', alt: '3D animations and particle effects interface' }
+      { kind: 'image', src: '/images/projects/uncharted-pages/implementation-frontend.png', alt: 'Homepage with Particles.js animations and responsive design' }
     flip: true
+  
   - title: "E-commerce & Order Management System"
-    body: "Implemented a full-featured book ordering workflow including payment proof uploads, order tracking, and backend validation. Designed systems for managing customers, purchases, and communication efficiently."
+    body: "Engineered a secure, end-to-end book-ordering pipeline featuring robust server-side validation for contact data and automated media processing for payment receipts using Pillow. Beyond the purchase flow, I developed a centralized backend architecture to manage the full lifecycle of customer orders, integrated with a customized Django admin suite for real-time tracking. The system also automates user engagement through a multi-channel communication layer, handling everything from asynchronous contact form inquiries to newsletter subscriber management and targeted email notification workflows."
     media: 
-      { kind: 'code', language: 'python', filename: 'views.py', code: 'def create_order(request):\n    # Handle book order creation\n    # Validate payment proof\n    # Save order and notify admin...' }
+      { kind: 'code', language: 'python', filename: 'home/models.py', code: 'class BookOrder(models.Model):\n    name = models.CharField(max_length=255)\n    email = models.EmailField()\n    payment_receipt = models.ImageField(upload_to="receipts/")\n    status = models.CharField(max_length=20, default="Pending")\n\ndef buy_book(request):\n    if request.method == "POST":\n        email = request.POST.get("email")\n        phone = request.POST.get("phone")\n        if validate_email_address(email) and len(phone) == 10:\n            order = BookOrder.objects.create(\n                name=request.POST.get("name"),\n                payment_receipt=request.FILES.get("payment_receipt")\n            )\n            messages.success(request, "Order placed successfully!")' }
 reflection: This project strengthened my ability to merge creative frontend development with practical backend systems, particularly in building production-ready e-commerce solutions with engaging user experiences.
 nextSlug: enterprise-subscription-management-system
 links:

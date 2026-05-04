@@ -66,7 +66,7 @@ export function Navbar() {
                     'fixed top-0 z-99999999 w-full border-0',
                     'transition-[background-color] duration-300',
                     scrolled
-                        ? 'md:bg-background/80 md:backdrop-blur-xl'
+                        ? 'bg-background/80 backdrop-blur-xl'
                         : 'bg-transparent',
                 )}
             >

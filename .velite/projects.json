@@ -71,7 +71,7 @@
         "body": "Implemented a wake-word system with fuzzy matching to reliably activate the assistant in real-world conditions. Designed configurable thresholds and timeout handling to balance responsiveness and false positives.",
         "media": {
           "kind": "image",
-          "src": "/images/projects/everylingua-ai/implementation-wakeword.jpg",
+          "src": "/images/projects/everylingua-ai/implementation-wakeword.png",
           "alt": "Wake word detection and activation flow"
         }
       },
@@ -81,18 +81,18 @@
         "flip": true,
         "media": {
           "kind": "image",
-          "src": "/images/projects/everylingua-ai/implementation-audio.jpg",
+          "src": "/images/projects/everylingua-ai/implementation-audio.png",
           "alt": "Audio capture and speech processing modules"
         }
       },
       {
         "title": "Multilingual AI Conversation Engine",
-        "body": "Integrated OpenAI GPT models with dynamic language detection and translation, enabling context-aware conversations across 50+ languages. Designed flexible prompts and token controls to balance response quality and cost efficiency.",
+        "body": "Integrated OpenAI GPT models with dynamic language detection and translation to enable context-aware conversations across 50+ languages. Built a processing pipeline that translates user input into a common language (English) for consistent AI reasoning, then converts responses back into the user’s preferred language. Implemented flexible prompt structures and token limits to balance response quality and cost efficiency, while maintaining low latency for real-time interaction. Designed the system to be easily extendable for additional languages, translation providers, and conversational behaviors.",
         "media": {
           "kind": "code",
           "language": "python",
           "filename": "openai_client.py",
-          "code": "def generate_response(prompt):\\n    return client.chat.completions.create(\\n        model=\\\"gpt\\\",\\n        messages=[{\\\"role\\\": \\\"user\\\", \\\"content\\\": prompt}]\\n    )"
+          "code": "from deep_translator import GoogleTranslator\\nfrom openai import OpenAI\\n\\nclient = OpenAI()\\n\\ndef generate_response(user_input, source_lang=\"auto\", target_lang=\"en\"):\\n    translated_input = GoogleTranslator(source=source_lang, target=\"en\").translate(user_input)\\n    response = client.chat.completions.create(\\n        model=\"gpt-4o-mini\",\\n        messages=[{\"role\": \"user\", \"content\": translated_input}],\\n        max_tokens=120\\n    )\\n    output_text = response.choices[0].message.content\\n    return GoogleTranslator(source=\"en\", target=target_lang).translate(output_text)"
         }
       },
       {
@@ -100,7 +100,7 @@
         "body": "Architected a clean separation of concerns with modules for orchestration, configuration, logging, and conversation flow. Enabled environment-based configuration for microphone tuning, latency control, and debugging.",
         "media": {
           "kind": "image",
-          "src": "/images/projects/everylingua-ai/implementation-architecture.jpg",
+          "src": "/images/projects/everylingua-ai/implementation-architecture.png",
           "alt": "System architecture and modular design"
         }
       },
@@ -109,7 +109,7 @@
         "body": "Built a continuous interaction loop supporting wake, listen, respond, and reset cycles. Implemented error handling, fallback logic, and microphone auto-switching to ensure stability in real-world usage.",
         "media": {
           "kind": "image",
-          "src": "/images/projects/everylingua-ai/implementation-loop.jpg",
+          "src": "/images/projects/everylingua-ai/implementation-loop.png",
           "alt": "Real-time conversational loop flow"
         }
       }
@@ -200,7 +200,7 @@
         "body": "Architected a comprehensive Django application with 12+ models to manage projects, real estate listings, blog content, and client inquiries. Built a powerful admin dashboard for seamless content management.",
         "media": {
           "kind": "image",
-          "src": "/images/projects/goodmil-construction/implementation-cms.jpg",
+          "src": "/images/projects/goodmil-construction/implementation-cms.png",
           "alt": "Django Admin Dashboard"
         }
       },
@@ -210,18 +210,18 @@
         "flip": true,
         "media": {
           "kind": "image",
-          "src": "/images/projects/goodmil-construction/implementation-frontend.jpg",
+          "src": "/images/projects/goodmil-construction/implementation-frontend.png",
           "alt": "Website animations and interactions"
         }
       },
       {
         "title": "Property Search & Real Estate Features",
-        "body": "Implemented a robust property search system with multiple filters, dynamic listings, and an efficient backend query structure to help potential clients discover properties easily.",
+        "body": "Implemented a flexible and efficient property search system that allows users to filter listings based on location, property type, and listing category (sale or rent). Designed dynamic query handling using Django’s ORM to conditionally build optimized database queries based on user input, ensuring both performance and scalability. Structured the filtering logic to handle partial or combined filters gracefully, delivering accurate results without unnecessary database overhead. Integrated sorted and limited querysets to improve load times and user experience, especially for large datasets. The system seamlessly connects with the frontend to render updated listings in real time, enabling users to quickly discover relevant properties through an intuitive and responsive search experience.",
         "media": {
           "kind": "code",
           "language": "python",
           "filename": "views.py",
-          "code": "def property_search(request):\\n    queryset = Property.objects.all()\\n    # Advanced filtering logic..."
+          "code": "from django.db.models import Q\\n\\ndef property_search(request):\\n    queryset = Property.objects.all()\\n\\n    location = request.GET.get(\"location\")\\n    property_type = request.GET.get(\"type\")\\n    listing_type = request.GET.get(\"listing\")\\n\\n    if location:\\n        queryset = queryset.filter(location__name__iexact=location)\\n    if property_type:\\n        queryset = queryset.filter(property_type__iexact=property_type)\\n    if listing_type:\\n        queryset = queryset.filter(sale_or_rent__iexact=listing_type)\\n\\n    queryset = queryset.order_by(\"-id\")[:12]\\n    return render(request, \"realestate/search.html\", { \"properties\": queryset })"
         }
       }
     ],
@@ -293,7 +293,7 @@
       }
     ],
     "architecture": {
-      "description": "The platform uses a modular Django multi-app architecture with separate apps for products, cart, orders, users, and reviews for better maintainability and scalability.",
+      "description": "The platform uses a modular Django architecture with separate apps for home (products, cart, orders), registration (users, authentication), and blog functionality. This separation ensures clean separation of concerns with dedicated models, views, and URL patterns for product catalog management, shopping cart operations, order processing with 5-stage workflow, customer authentication, and review management for better maintainability and scalability.",
       "diagram": "/images/projects/saraglobal-store/architecture-diagram.svg",
       "layers": [
         "frontend",
@@ -305,32 +305,32 @@
     },
     "implementation": [
       {
-        "title": "Django E-Commerce Core",
-        "body": "Architected a full-stack Django application with a multi-app structure covering product catalog, authentication, shopping cart, order management, and customer reviews. Implemented a complete 5-stage order workflow with real-time tracking.",
+        "title": "Django E-Commerce Core & Order Workflow",
+        "body": "Architected a full-stack Django 3.2.5 application with the home app as the core module handling products (Product model), shopping cart (Cart model), and order management (Order model with 5-stage workflow). The registration app manages Customer profiles and authentication, while the blog app handles content. Implemented a complete 5-stage order workflow (Pending → Received → Packed → On the Way → Delivered) with real-time status tracking, automated email notifications at each stage, and comprehensive Django admin controls for inventory and order management.",
         "media": {
           "kind": "image",
-          "src": "/images/projects/saraglobal-store/implementation-backend.jpg",
-          "alt": "Django e-commerce architecture"
+          "src": "/images/projects/saraglobal-store/implementation-backend.png",
+          "alt": "Django e-commerce architecture with home app as core module"
         }
       },
       {
         "title": "Frontend & Shopping Experience",
-        "body": "Built a responsive, mobile-first interface with smooth AJAX-powered cart, wishlist, advanced search with filters, and an intuitive checkout process. Added engaging features like exit-intent popups to improve conversion.",
+        "body": "Built a responsive, mobile-first interface using HTML5, CSS3, JavaScript, and jQuery with AJAX-powered cart operations for seamless add/remove functionality. Features include advanced product search with category filtering, wishlist management, streamlined checkout with multiple address support, real-time order tracking dashboard, product review system for purchased items, and conversion-optimizing features like exit-intent popups and homepage slideshow banners stored in media/slides/.",
         "flip": true,
         "media": {
           "kind": "image",
-          "src": "/images/projects/saraglobal-store/implementation-frontend.jpg",
-          "alt": "Sara Global Store shopping experience"
+          "src": "/images/projects/saraglobal-store/implementation-frontend.png",
+          "alt": "Sara Global Store responsive shopping experience with AJAX cart"
         }
       },
       {
-        "title": "Admin Dashboard & Promotions",
-        "body": "Developed a comprehensive admin panel for managing products, inventory, orders, and promotional campaigns. Built a custom discount and promo code engine with automated email notifications.",
+        "title": "Admin Dashboard & Promotions Engine",
+        "body": "Developed a comprehensive Django admin panel for managing products with image uploads (stored in media/products/) via Pillow 10.2.0, inventory tracking, order status updates across all 5 stages, customer management with order history views, homepage content management (slideshows from media/slides/, banners from media/banners/), and a custom promo code engine with discount code creation and automated email notifications for order confirmations and status changes.",
         "media": {
           "kind": "code",
           "language": "python",
-          "filename": "models.py",
-          "code": "class Order(models.Model):\\n    status = models.CharField(choices=ORDER_STATUS)\\n    tracking_id = models.CharField(max_length=50)\\n    # 5-stage workflow logic..."
+          "filename": "home/models.py",
+          "code": "class Product(models.Model):\\n    name = models.CharField(max_length=200)\\n    selling_price = models.FloatField()\\n    available_quantity = models.PositiveIntegerField(default=0)\\n    photo = models.ImageField(upload_to=\"slides/\")\\n\\n    @property\\n    def discount_percent(self):\\n        discount = (self.marked_price - self.selling_price) / self.marked_price\\n        return str(floor(discount * 100))\\n\\nclass OrderPlaced(models.Model):\\n    STATUS = [(\"pending\", \"pending\"), (\"delivered\", \"delivered\"), (\"cancel\", \"cancel\")]\\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\\n    order_status = models.CharField(max_length=20, choices=STATUS, default=\"pending\")\\n    promo_discount = models.PositiveIntegerField(default=0)"
         }
       }
     ],
@@ -525,7 +525,7 @@
       }
     ],
     "architecture": {
-      "description": "Built using Django’s MVT architecture with integrated e-commerce logic, content management system, and interactive frontend layers powered by JavaScript and particle effects.",
+      "description": "Built using Django 4.2's MVT architecture with a single home app handling blog publishing, book orders, contact inquiries, and newsletter subscriptions. Features an immersive frontend with Particles.js animations, custom JavaScript interactions, and an intuitive Django admin interface for content management.",
       "diagram": "/images/projects/uncharted-pages/architecture-diagram.svg",
       "layers": [
         "frontend",
@@ -536,32 +536,32 @@
     },
     "implementation": [
       {
-        "title": "Django Backend & Publishing CMS",
-        "body": "Developed a robust Django application to manage blog posts, book listings, customer orders, and inquiries. Built an intuitive admin interface allowing seamless content publishing and order management.",
+        "title": "Django Backend & Admin Core",
+        "body": "Developed a robust Django 4.2 application with the home app managing Blog posts (with categories), BookOrder orders with payment receipt uploads via Pillow, ContactUs inquiries, and NewsletterSubscriber subscriptions. Built an intuitive Django admin interface allowing seamless content publishing, blog post management with slug-based URLs, order tracking, and subscriber management.",
         "media": {
           "kind": "image",
-          "src": "/images/projects/uncharted-pages/implementation-cms.jpg",
-          "alt": "Publishing CMS and admin dashboard"
+          "src": "/images/projects/uncharted-pages/implementation-backend.png",
+          "alt": "Django admin dashboard for blog and order management"
         }
       },
       {
-        "title": "Immersive Frontend & 3D Experience",
-        "body": "Engineered visually engaging UI using HTML5, CSS3, and JavaScript. Integrated Particles.js and custom animations to create a dynamic storytelling experience with smooth transitions and interactive visual effects.",
+        "title": "Immersive Frontend & Particle Effects",
+        "body": "Engineered a visually engaging UI using HTML5, CSS3, and JavaScript with responsive templates across 8+ pages (home, about, blogs, blog details, FAQ, contact, buy book, blog search). Integrated Particles.js for dynamic background animations, jQuery for DOM manipulation, and custom CSS styling for each page including blog search functionality and newsletter integration.",
         "flip": true,
         "media": {
           "kind": "image",
-          "src": "/images/projects/uncharted-pages/implementation-frontend.jpg",
-          "alt": "3D animations and particle effects interface"
+          "src": "/images/projects/uncharted-pages/implementation-frontend.png",
+          "alt": "Homepage with Particles.js animations and responsive design"
         }
       },
       {
         "title": "E-commerce & Order Management System",
-        "body": "Implemented a full-featured book ordering workflow including payment proof uploads, order tracking, and backend validation. Designed systems for managing customers, purchases, and communication efficiently.",
+        "body": "Engineered a secure, end-to-end book-ordering pipeline featuring robust server-side validation for contact data and automated media processing for payment receipts using Pillow. Beyond the purchase flow, I developed a centralized backend architecture to manage the full lifecycle of customer orders, integrated with a customized Django admin suite for real-time tracking. The system also automates user engagement through a multi-channel communication layer, handling everything from asynchronous contact form inquiries to newsletter subscriber management and targeted email notification workflows.",
         "media": {
           "kind": "code",
           "language": "python",
-          "filename": "views.py",
-          "code": "def create_order(request):\\n    # Handle book order creation\\n    # Validate payment proof\\n    # Save order and notify admin..."
+          "filename": "home/models.py",
+          "code": "class BookOrder(models.Model):\\n    name = models.CharField(max_length=255)\\n    email = models.EmailField()\\n    payment_receipt = models.ImageField(upload_to=\"receipts/\")\\n    status = models.CharField(max_length=20, default=\"Pending\")\\n\\ndef buy_book(request):\\n    if request.method == \"POST\":\\n        email = request.POST.get(\"email\")\\n        phone = request.POST.get(\"phone\")\\n        if validate_email_address(email) and len(phone) == 10:\\n            order = BookOrder.objects.create(\\n                name=request.POST.get(\"name\"),\\n                payment_receipt=request.FILES.get(\"payment_receipt\")\\n            )\\n            messages.success(request, \"Order placed successfully!\")"
         }
       }
     ],

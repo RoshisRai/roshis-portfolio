@@ -48,16 +48,16 @@ implementation:
   - title: "Django Backend & CMS"
     body: "Architected a comprehensive Django application with 12+ models to manage projects, real estate listings, blog content, and client inquiries. Built a powerful admin dashboard for seamless content management."
     media: 
-      { kind: 'image', src: '/images/projects/goodmil-construction/implementation-cms.jpg', alt: 'Django Admin Dashboard' }
+      { kind: 'image', src: '/images/projects/goodmil-construction/implementation-cms.png', alt: 'Django Admin Dashboard' }
   - title: "Advanced Frontend & Animations"
     body: "Created a responsive, visually rich frontend using modern HTML5, CSS3, and jQuery. Integrated GSAP and AOS for smooth scroll animations and interactive elements that enhance storytelling."
     media: 
-      { kind: 'image', src: '/images/projects/goodmil-construction/implementation-frontend.jpg', alt: 'Website animations and interactions' }
+      { kind: 'image', src: '/images/projects/goodmil-construction/implementation-frontend.png', alt: 'Website animations and interactions' }
     flip: true
   - title: "Property Search & Real Estate Features"
-    body: "Implemented a robust property search system with multiple filters, dynamic listings, and an efficient backend query structure to help potential clients discover properties easily."
+    body: "Implemented a flexible and efficient property search system that allows users to filter listings based on location, property type, and listing category (sale or rent). Designed dynamic query handling using Django’s ORM to conditionally build optimized database queries based on user input, ensuring both performance and scalability. Structured the filtering logic to handle partial or combined filters gracefully, delivering accurate results without unnecessary database overhead. Integrated sorted and limited querysets to improve load times and user experience, especially for large datasets. The system seamlessly connects with the frontend to render updated listings in real time, enabling users to quickly discover relevant properties through an intuitive and responsive search experience."
     media: 
-      { kind: 'code', language: 'python', filename: 'views.py', code: 'def property_search(request):\n    queryset = Property.objects.all()\n    # Advanced filtering logic...' }
+      { kind: 'code', language: 'python', filename: 'views.py', code: 'from django.db.models import Q\n\ndef property_search(request):\n    queryset = Property.objects.all()\n\n    location = request.GET.get("location")\n    property_type = request.GET.get("type")\n    listing_type = request.GET.get("listing")\n\n    if location:\n        queryset = queryset.filter(location__name__iexact=location)\n    if property_type:\n        queryset = queryset.filter(property_type__iexact=property_type)\n    if listing_type:\n        queryset = queryset.filter(sale_or_rent__iexact=listing_type)\n\n    queryset = queryset.order_by("-id")[:12]\n    return render(request, "realestate/search.html", { "properties": queryset })' }
 reflection: This project strengthened my expertise in building complete full-stack solutions for real-world businesses, especially in balancing beautiful design with robust backend architecture and performance optimization.
 nextSlug: everylingua-ai
 links:
