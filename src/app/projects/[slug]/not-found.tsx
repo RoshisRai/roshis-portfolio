@@ -35,7 +35,7 @@ export default function NotFound() {
                 <Link
                     href="/#projects"
                     onClick={handleClick}
-                    className="text-[color:var(--color-accent)] hover:text-[color:var(--color-accent-hover)] transition-colors"
+                    className="text-accent hover:text-accent-hover transition-colors"
                 >
                     ← Back to projects
                 </Link>

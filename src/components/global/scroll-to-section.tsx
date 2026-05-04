@@ -34,13 +34,8 @@ export function ScrollToSection() {
 
         const kickOffScroll = () => scrollWhenReady(0)
         const onTransitionDone = () => {
-            document.removeEventListener('viewtransitionend', onTransitionDone)
-            document.removeEventListener('viewtransitioncancel', onTransitionDone)
             kickOffScroll()
         }
-
-        document.addEventListener('viewtransitionend', onTransitionDone, { once: true })
-        document.addEventListener('viewtransitioncancel', onTransitionDone, { once: true })
 
         const fallbackTimer = window.setTimeout(() => {
             onTransitionDone()
@@ -50,8 +45,6 @@ export function ScrollToSection() {
             cancelled = true
             window.clearTimeout(fallbackTimer)
             if (rafId !== null) window.cancelAnimationFrame(rafId)
-            document.removeEventListener('viewtransitionend', onTransitionDone)
-            document.removeEventListener('viewtransitioncancel', onTransitionDone)
         }
     }, [])
 

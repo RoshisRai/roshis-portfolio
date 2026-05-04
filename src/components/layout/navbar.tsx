@@ -63,7 +63,7 @@ export function Navbar() {
         <ViewTransition name={HEADER_VT_NAME}>
             <header
                 className={cn(
-                    'fixed top-0 z-99999999 w-full border-0',
+                    'fixed top-0 z-999999 w-full border-0',
                     'transition-[background-color] duration-300',
                     scrolled
                         ? 'bg-background/80 backdrop-blur-xl'
@@ -141,7 +141,7 @@ export function Navbar() {
                     </div>
 
                     {/* Mobile */}
-                    <div className="flex items-center gap-3 md:hidden">
+                    <div className="z-10000000000 flex items-center gap-3 md:hidden bg-background">
                         <ThemeToggle />
                         <MobileMenu links={navLinks} />
                     </div>

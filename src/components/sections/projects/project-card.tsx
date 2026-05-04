@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils"
 import { ProjectCardData } from "@/types/project"
 import Link from "next/link"
 import { ProjectCardMedia } from "./project-card-media"
-import { projectAccentVTName } from "@/lib/project-transition"
 import { CursorZone } from "@/components/global/cursor/cursor-zone"
 import { projectAccentStyle } from "@/lib/project-theme"
 import { ProjectCardMeta } from "./project-card-meta"
@@ -55,7 +54,6 @@ export const ProjectCard = ({ project, priority = false }: ProjectCardProps) => 
                 <span
                     aria-hidden
                     data-vt-accent
-                    style={{ viewTransitionName: projectAccentVTName(project.slug) }}
                     className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(120%_80%_at_50%_0%,var(--project-accent-soft),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-(--duration-fast)"
                 />
                 <div className="relative p-6 pb-0">

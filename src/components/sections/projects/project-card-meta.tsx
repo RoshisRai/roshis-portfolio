@@ -1,5 +1,4 @@
 import { Tag } from "@/components/ui/tag"
-import { projectTitleVTName } from "@/lib/project-transition"
 
 interface ProjectCardMetaProps {
     slug: string
@@ -9,7 +8,6 @@ interface ProjectCardMetaProps {
 }
 
 export const ProjectCardMeta = ({
-    slug,
     title,
     summary,
     tags,
@@ -17,7 +15,6 @@ export const ProjectCardMeta = ({
     return (
         <div 
         className="flex flex-col flex-1 gap-3 p-6"
-        style={{ viewTransitionName: projectTitleVTName(slug) }}
         >
             <h3
                 className="font-display font-semibold text-[22px] text-text-primary leading-snug"
