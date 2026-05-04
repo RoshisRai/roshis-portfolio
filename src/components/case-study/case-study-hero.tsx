@@ -1,9 +1,7 @@
 import Image from 'next/image'
 import type { ProjectFrontmatter } from '@/types/project'
 import {
-    projectAccentVTName,
     projectMediaVTName,
-    projectTitleVTName,
 } from '@/lib/project-transition'
 import { CaseStudyBreadcrumb } from './case-study-breadcrumb'
 import { CaseStudyMetaBar } from './case-study-meta-bar'
@@ -24,7 +22,6 @@ export const CaseStudyHero = ({ project }: CaseStudyHeroProps) => {
                 aria-hidden
                 className="cs-bg-wash pointer-events-none absolute inset-x-0 top-0 -z-10 h-[80vh]"
                 style={{
-                    viewTransitionName: projectAccentVTName(project.slug),
                     background:
                         'radial-gradient(80% 50% at 50% 0%, var(--project-accent-soft), transparent 70%)',
                 }}
@@ -56,7 +53,6 @@ export const CaseStudyHero = ({ project }: CaseStudyHeroProps) => {
                 {/* Title — also a morph target */}
                 <div 
                     className="project-case-study-content"
-                    style={{ viewTransitionName: projectTitleVTName(project.slug) }}
                     >
                     <h1
                         id="cs-hero-title"  

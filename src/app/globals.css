@@ -154,10 +154,9 @@
   }
 
   /* Disable project shared-element morphs for targeted navigations (e.g. navbar exit). */
-  html[data-disable-project-vt='true'] [style*='project-media-'],
-  html[data-disable-project-vt='true'] [style*='project-title-'],
-  html[data-disable-project-vt='true'] [style*='project-accent-'] {
+  html[data-disable-project-vt='true'] [style*='project-media-'] {
     view-transition-name: none !important;
+    animation-duration: 0s !important;
   }
 
   @property --hero-rot {

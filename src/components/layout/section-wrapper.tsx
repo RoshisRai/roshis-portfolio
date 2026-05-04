@@ -45,6 +45,7 @@ const SectionWrapper = ({
                     className={cn(
                         'mx-auto w-full',
                         'max-w-(--max-width-content)',
+                        'px-6 md:px-12',
                         innerClassName,
                     )}
                 >
