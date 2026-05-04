@@ -141,7 +141,7 @@ export function Navbar() {
                     </div>
 
                     {/* Mobile */}
-                    <div className="z-10000000000 flex items-center gap-3 md:hidden bg-background">
+                    <div className="z-10000000000 flex items-center gap-3 md:hidden">
                         <ThemeToggle />
                         <MobileMenu links={navLinks} />
                     </div>
