@@ -7,6 +7,8 @@ import { CaseStudyProblem } from "./case-study-problem";
 import { CaseStudyArchitecture } from "./case-study-architecture";
 import { CaseStudyScrollReset } from "./case-study-scroll-reset";
 import { CaseStudyImplementation } from "./case-study-implementation";
+import { CaseStudyResults } from "./case-study-results";
+import { CaseStudyReflection } from "./case-study-reflection";
 
 interface CaseStudyPageProps {
     project: ProjectFrontmatter
@@ -36,6 +38,8 @@ export const CaseStudyPage = ({
                     <CaseStudyProblem quote={project.quote} body={project.problem} />
                     <CaseStudyArchitecture architecture={project.architecture} />
                     <CaseStudyImplementation blocks={project.implementation}/>
+                    <CaseStudyResults metrics={project.metrics} />
+                    <CaseStudyReflection body={project.reflection} />
                 </article>
 
             </div>

@@ -60,7 +60,7 @@ export const ArchitectureDiagram = ({ src, layers, alt }: ArchitectureDiagramPro
             ref={containerRef}
             className="relative w-full overflow-x-auto touch-pan-x rounded-2xl border border-border bg-surface lg:p-6 md:p-4 p-2"
         >
-            <div className="w-full h-auto bg-surface overflow-x-auto overflow-y-hidden rounded-2xl">
+            <div className="w-full h-auto bg-surface overflow-hidden rounded-2xl">
                 <object
                     ref={objectRef}
                     data={src}
