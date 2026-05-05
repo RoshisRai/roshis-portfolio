@@ -39,9 +39,9 @@
     },
     "metrics": [
       {
-        "value": "50",
+        "value": "80",
         "label": "Languages Supported",
-        "countTo": 50,
+        "countTo": 80,
         "suffix": "+"
       },
       {
@@ -114,7 +114,7 @@
         }
       }
     ],
-    "reflection": "This project significantly advanced my ability to design modular, real-time systems that integrate AI with low-level input/output processing. It reinforced principles of separation of concerns, reliability, and performance optimization in interactive applications.",
+    "reflection": "This project helped me grow from building standard backend systems to designing real-time, AI-driven applications that interact directly with users. I gained hands-on experience working with audio processing, speech recognition, and multilingual pipelines, while learning how to structure a system that balances low latency with reliable performance. Building a continuous interaction loop pushed me to think carefully about error handling, state management, and user experience in real-world conditions. It also strengthened my understanding of modular architecture, where separating audio, AI, and orchestration layers made the system easier to scale and extend. Overall, it deepened my ability to design intelligent, interactive systems that combine AI with real-time input/output processing in a practical and production-focused way.",
     "nextSlug": "sara-global-store",
     "links": [
       {
@@ -225,7 +225,7 @@
         }
       }
     ],
-    "reflection": "This project strengthened my expertise in building complete full-stack solutions for real-world businesses, especially in balancing beautiful design with robust backend architecture and performance optimization.",
+    "reflection": "This project strengthened my ability to deliver complete full-stack solutions for real-world businesses, where both presentation and functionality matter equally. I gained practical experience working with Django’s MVT architecture, designing clean data models, and building features like dynamic property search with efficient query handling. It also improved my frontend skills, especially in creating responsive, visually engaging interfaces using animations that enhance user experience without compromising performance. Balancing design, usability, and backend efficiency helped me better understand how to build products that are not just technically sound, but also impactful for end users and aligned with business goals.",
     "nextSlug": "everylingua-ai",
     "links": [
       {
@@ -334,8 +334,7 @@
         }
       }
     ],
-    "reflection": "This project deepened my expertise in building production-grade e-commerce solutions, particularly in handling complex business logic, order workflows, and delivering delightful shopping experiences using Django.",
-    "nextSlug": "uncharted-pages",
+    "reflection": "I gained hands'on experience on building production-ready e-commerce systems where reliability, user experience, and business logic all need to work seamlessly together. I gained deeper experience designing structured Django applications with clear separation of concerns, while handling complex workflows like multi-stage order processing and real-time status updates. It also improved my understanding of building intuitive shopping experiences, from AJAX-powered interactions to conversion-focused UI features. Working on inventory management, promotions, and transactional flows helped me think more from a business perspective, ensuring the system is not just technically sound but also practical, scalable, and ready for real customers.",
     "links": [
       {
         "label": "Visit Website",
@@ -454,7 +453,7 @@
         }
       }
     ],
-    "reflection": "This project significantly deepened my understanding of enterprise system design, particularly in building scalable APIs, orchestrating serverless workflows, and managing complex business logic with strong security and performance considerations.",
+    "reflection": "This project pushed me to move beyond building features and focus on designing systems that can scale reliably in real-world SaaS environments. I gained hands-on experience with multi-tenant architecture, serverless workflow orchestration, and managing complex business logic through a centralized state machine. It also strengthened my understanding of security (RBAC, rate limiting) and performance optimization at scale, where decisions like query efficiency and pagination matter. Overall, it helped me transition from writing backend code to thinking more like a systems engineer—designing for reliability, scalability, and long-term maintainability.",
     "nextSlug": "goodmil-construction",
     "links": [
       {
@@ -565,7 +564,7 @@
         }
       }
     ],
-    "reflection": "This project strengthened my ability to merge creative frontend development with practical backend systems, particularly in building production-ready e-commerce solutions with engaging user experiences.",
+    "reflection": "This project challenged me to combine creative frontend development with practical backend systems to deliver a complete, production-ready product. I gained experience building immersive user interfaces with animations while ensuring they remained performant and responsive across devices. At the same time, I worked on structuring a Django backend to handle real-world features like content management, order processing, and user interactions. It helped me better understand how to balance visual storytelling with functional requirements, and reinforced the importance of designing systems that are both engaging for users and maintainable from a development perspective.",
     "nextSlug": "enterprise-subscription-management-system",
     "links": [
       {
