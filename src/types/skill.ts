@@ -9,7 +9,7 @@ export interface Skill {
     name: string
     icon: string
     category: SkillCategory
-    usedIn: {
+    usedIn?: {
         projectName: string
         slug: string
         context: string
