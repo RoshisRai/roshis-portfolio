@@ -12,7 +12,7 @@ interface SkillCategoryProps {
     index: number
 }
 
-export const SkillCategory = ({ category, skills, index }: SkillCategoryProps) => {
+export const SkillCategory = ({ category, skills}: SkillCategoryProps) => {
 
     const containerRef = useRef<HTMLDivElement>(null)
     const labelRef = useRef<HTMLHeadingElement>(null)
