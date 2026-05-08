@@ -24,9 +24,15 @@ export const SkillTooltip = ({ usedIn, isVisible, cardRef, onMouseEnter, onMouse
     // fixed position in viewport
     const [pos, setPos] = useState({ top: 0, left: 0 })
     const [arrowLeft, setArrowLeft] = useState<number | null>(null)
+    const rafRef = useRef<number | null>(null)
 
     useLayoutEffect(() => {
         if (!tooltipRef.current || !cardRef.current || !isVisible) return
+
+        if (rafRef.current) {
+            cancelAnimationFrame(rafRef.current)
+            rafRef.current = null
+        }
 
         const GAP = 16
         const HORIZONTAL_PADDING = 16
@@ -48,22 +54,23 @@ export const SkillTooltip = ({ usedIn, isVisible, cardRef, onMouseEnter, onMouse
         const fitsBelow = topBelow + tRect.height <= window.innerHeight - VERTICAL_PADDING
 
         let top = topAbove
+        let newPlacement: 'above' | 'below' = 'above'
         if (fitsAbove) {
             top = topAbove
-            setPlacement('above')
+            newPlacement = 'above'
         } else if (fitsBelow) {
             top = topBelow
-            setPlacement('below')
+            newPlacement = 'below'
         } else {
             // choose side with more space
             const spaceAbove = card.top - VERTICAL_PADDING
             const spaceBelow = window.innerHeight - card.bottom - VERTICAL_PADDING
             if (spaceBelow >= spaceAbove) {
                 top = Math.min(topBelow, window.innerHeight - tRect.height - VERTICAL_PADDING)
-                setPlacement('below')
+                newPlacement = 'below'
             } else {
                 top = Math.max(VERTICAL_PADDING, card.top - tRect.height - GAP)
-                setPlacement('above')
+                newPlacement = 'above'
             }
         }
 
@@ -71,9 +78,19 @@ export const SkillTooltip = ({ usedIn, isVisible, cardRef, onMouseEnter, onMouse
         const cardCenter = card.left + card.width / 2
         const arrow = Math.min(Math.max(cardCenter - left, 12), tRect.width - 12)
 
-        setPos({ top, left })
-        setArrowLeft(arrow)
+        rafRef.current = requestAnimationFrame(() => {
+            setPos({ top, left })
+            setArrowLeft(arrow)
+            setPlacement(newPlacement)
+            rafRef.current = null
+        })
 
+        return () => {
+            if (rafRef.current) {
+                cancelAnimationFrame(rafRef.current)
+                rafRef.current = null
+            }
+        }
     }, [isVisible, cardRef])
 
     // only render portal after client mount (guard against SSR)
