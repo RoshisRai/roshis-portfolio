@@ -1,5 +1,6 @@
 import { ScrollToSection } from "@/components/global/scroll-to-section"
 import { SectionWrapper } from "@/components/layout/section-wrapper"
+import { ExperienceSection } from "@/components/sections/experience/experience-section"
 import { HeroSection } from "@/components/sections/hero/hero"
 import { ProjectsSection } from "@/components/sections/projects/projects-section"
 import { SkillsSection } from "@/components/sections/skills/skills-section"
@@ -18,14 +19,7 @@ export default function Home() {
             <SkillsSection />
 
             {/* Experience */}
-            <SectionWrapper
-                id="experience"
-                title="Experience"
-                subtitle="Where I've worked and what I've done."
-                className="bg-surface"
-            >
-                <p className="text-text-secondary">Experience cards go here</p>
-            </SectionWrapper>
+            <ExperienceSection />
 
             {/* About */}
             <SectionWrapper

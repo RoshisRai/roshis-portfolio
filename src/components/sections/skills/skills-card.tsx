@@ -4,7 +4,7 @@ import { CursorZone } from "@/components/global/cursor/cursor-zone"
 import { cn } from "@/lib/utils"
 import type { Skill } from "@/types/skill"
 import Image from "next/image"
-import { useCallback, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { SkillTooltip } from "./skills-tooltip"
 
 interface SkillCardProps {
@@ -13,7 +13,9 @@ interface SkillCardProps {
 
 export const SkillCard = ({ skill }: SkillCardProps) => {
     const cardRef = useRef<HTMLDivElement | null>(null)
+
     const [isHovered, setIsHovered] = useState(false)
+    
     const showTimeout = useRef<NodeJS.Timeout | null>(null)
     const hideTimeout = useRef<NodeJS.Timeout | null>(null)
     const rafRef = useRef<number | null>(null)
@@ -44,6 +46,36 @@ export const SkillCard = ({ skill }: SkillCardProps) => {
         if (rafRef.current) cancelAnimationFrame(rafRef.current)
         scheduleHide()
     }, [scheduleHide])
+
+    useEffect(() => {
+        const closeTooltip = () => {
+        if (showTimeout.current) {
+            clearTimeout(showTimeout.current)
+            showTimeout.current = null
+        }
+
+        if (hideTimeout.current) {
+            clearTimeout(hideTimeout.current)
+            hideTimeout.current = null
+        }
+
+        if (rafRef.current) {
+            cancelAnimationFrame(rafRef.current)
+            rafRef.current = null
+        }
+
+        setIsHovered(false)
+    }
+        window.addEventListener('scroll', closeTooltip, { passive: true })
+        window.addEventListener('wheel', closeTooltip, { passive: true })
+        window.addEventListener('touchmove', closeTooltip, { passive: true })
+
+        return () => {
+            window.removeEventListener('scroll', closeTooltip)
+            window.removeEventListener('wheel', closeTooltip)
+            window.removeEventListener('touchmove', closeTooltip)
+        }
+    }, [])
 
     return (
         <CursorZone variant="button">
