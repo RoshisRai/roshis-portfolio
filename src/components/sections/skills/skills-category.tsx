@@ -60,7 +60,7 @@ export const SkillCategory = ({ category, skills}: SkillCategoryProps) => {
             >
                 {category}
             </h3>
-            <div className="flex flex-wrap gap-3 md:gap-4">
+            <div className="skills-scroll-row flex md:flex-wrap gap-3 md:gap-4">
                 {skills.map(skill => (
                     <div key={skill.name} data-skill-card>
                         <SkillCard skill={skill} />

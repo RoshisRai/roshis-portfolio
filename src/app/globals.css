@@ -262,6 +262,26 @@
   [data-page='case-study'] [data-cs-stagger='5'] { animation-delay: 560ms; }
 }
 
+@utility skills-scroll-row {
+  @media (max-width: 767px) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+    gap: 12px;
+
+    & > * {
+      flex-shrink: 0;
+      scroll-snap-align: start;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
 /* View Transitions Base */
 ::view-transition {
   pointer-events: none;

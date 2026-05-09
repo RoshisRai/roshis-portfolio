@@ -27,8 +27,13 @@ export const ProjectCard = ({ project, priority = false }: ProjectCardProps) => 
     }
 
     return (
-        <CursorZone variant='project' className={cn(cardSizeClasses[project.cardSize])}>
-            <Link
+        <CursorZone
+            variant='project'
+            className={cn(cardSizeClasses[project.cardSize])}
+            data-project-card={project.slug}
+        >
+            <div data-project-card-inner className="relative h-full">
+                <Link
                 href={`/projects/${project.slug}`}
                 prefetch
                 onMouseEnter={onEnter}
@@ -37,7 +42,6 @@ export const ProjectCard = ({ project, priority = false }: ProjectCardProps) => 
                 onBlur={onLeave}
                 onClick={handleClick}
                 style={projectAccentStyle(project.accent)}
-                data-project-card={project.slug}
                 id={project.slug}
                 className={cn(
                     'group relative flex flex-col h-full overflow-hidden rounded-2xl',
@@ -72,6 +76,7 @@ export const ProjectCard = ({ project, priority = false }: ProjectCardProps) => 
                     tags={project.tags}
                 />
             </Link>
+            </div>
         </CursorZone>
     )
 }

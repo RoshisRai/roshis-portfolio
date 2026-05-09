@@ -1,4 +1,5 @@
 import type { Skill } from "@/types/skill";
+import type { Experience } from "@/types/experience";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 export const socialLinks = [
@@ -231,4 +232,53 @@ export const skills: Skill[] = [
         icon: '/images/skills/cpp.svg',
         category: 'Tools & Workflow',
     },
+]
+
+
+export const experiences: Experience[] = [
+  {
+    id: 'exp-1',
+    dateRange: 'May 2024 – Jul 2024',
+    role: 'Full-Stack Developer',
+    company: 'Sara Global Store',
+    location: 'Remote · Kathmandu District, Nepal',
+    achievements: [
+      'Architected and deployed a production-ready Django e-commerce platform handling real customer transactions, inventory, and order fulfillment',
+      'Implemented advanced shopping workflows including AJAX-powered cart, wishlist management, multi-address checkout, and 5-stage order tracking',
+      'Built responsive mobile-first UI with advanced search, category filters, intelligent recommendations, and optimized customer navigation',
+      'Integrated SEO optimization, image processing, promotional code engine, automated email workflows, and secure production deployment',
+    ],
+    techStack: ['Django', 'Python', 'JavaScript', 'jQuery', 'HTML5', 'CSS3', 'SQLite', 'Pillow'],
+    techDistribution: { frontend: 35, backend: 50, infrastructure: 15 },
+  },
+  {
+    id: 'exp-2',
+    dateRange: 'May 2023 – Aug 2023',
+    role: 'Full-Stack Web Developer',
+    company: 'GoodMil Amrit Nirman Sewa',
+    location: 'Hybrid · Kathmandu District, Nepal',
+    achievements: [
+      'Designed and developed a scalable Django platform managing construction portfolios, real estate listings, blogs, and client inquiries',
+      'Built dynamic CMS and advanced property search system with filtering capabilities for real estate discovery',
+      'Engineered responsive frontend with GSAP animations, AOS scroll effects, Swiper sliders, and optimized media handling',
+      'Delivered production-ready admin dashboard with SEO optimization, image processing, and scalable database architecture',
+    ],
+    techStack: ['Django', 'Python', 'JavaScript', 'jQuery', 'GSAP', 'AOS', 'Swiper', 'HTML5', 'CSS3'],
+    techDistribution: { frontend: 45, backend: 40, infrastructure: 15 },
+  },
+  {
+    id: 'exp-3',
+    dateRange: 'Jun 2023 – Sep 2023',
+    role: 'Frontend Developer',
+    company: 'Upwork',
+    location: 'Remote',
+    achievements: [
+      'Developed and deployed 40+ JavaScript-based text processing utilities for content creators, developers, and marketers',
+      'Implemented advanced text analysis algorithms including regex-based extractors, frequency counters, and string processors',
+      'Built responsive Bootstrap 5 interfaces with real-time text statistics, accessibility support, and cross-browser compatibility',
+      'Optimized performance for large text processing workflows with reusable modular architecture and efficient DOM manipulation',
+    ],
+    techStack: ['JavaScript', 'Bootstrap 5', 'HTML5', 'CSS3', 'Regex', 'DOM APIs'],
+    techDistribution: { frontend: 75, backend: 15, infrastructure: 10 },
+  },
 ]
