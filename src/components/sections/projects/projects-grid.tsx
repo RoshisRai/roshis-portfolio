@@ -25,10 +25,9 @@ export const ProjectsGrid = ({ projects }: ProjectsGridProps) => {
                     autoAlpha: 1,
                     duration: 0.6,
                     ease: 'power3.out',
-                    delay: i * 0.2,
                     scrollTrigger: {
                         trigger: card,
-                        start: 'top 80%',
+                        start: 'top 85%',
                         toggleActions: 'play none none reverse',
                     },
                 }
