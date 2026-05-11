@@ -47,7 +47,7 @@ export const ProjectCard = ({ project, priority = false }: ProjectCardProps) => 
                     'group relative flex flex-col h-full overflow-hidden rounded-2xl',
                     'bg-surface border border-border',
                     'scroll-mt-20',
-                    'transition-[transform,box-shadow,border-color] duration-(--duration-slow) ease-out-expo',
+                    'transition-all duration-(--duration-slow) ease-out-expo',
                     'hover:-translate-y-1 hover:border-[rgba(var(--project-accent-rgb),0.4)]',
                     'hover:shadow-[0_16px_48px_rgba(var(--project-accent-rgb),0.18)]',
                     'transform-3d perspective-distant',
