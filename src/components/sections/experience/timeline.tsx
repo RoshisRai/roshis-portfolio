@@ -55,10 +55,24 @@ export const Timeline = () => {
                 autoAlpha: 0,
                 duration: 0.7,
                 ease: 'power3.out',
+                onComplete: () => card.classList.remove('no-touch'),
+                onReverseComplete: () => card.classList.remove('no-touch'),
                 scrollTrigger: {
                     trigger: card,
                     start: 'top 80%',
                     toggleActions: 'play none none reverse',
+                    onEnter: () => {
+                        card.classList.add('no-touch')
+                    },
+                    onEnterBack: () => {
+                        card.classList.add('no-touch')
+                    },
+                    onLeave: () => {
+                        card.classList.remove('no-touch')
+                    },
+                    onLeaveBack: () => {
+                        card.classList.remove('no-touch')
+                    }
                 },
             })
         })
@@ -68,7 +82,7 @@ export const Timeline = () => {
     return (
         <div
             ref={containerRef}
-            className="relative"
+            className="relative overflow-hidden"
         >
             {/* Visible only on md+ devices */}
             <div
