@@ -233,6 +233,12 @@
     animation: scroll-dot 1.5s ease-in-out infinite;
   }
 
+  .no-touch {
+    touch-action: none !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+  }
+
   .cs-bg-wash {
     animation: cs-bg-wash var(--duration-super-slow) var(--ease-out-expo) both;
     animation-delay: 120ms;
