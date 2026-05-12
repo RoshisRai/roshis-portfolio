@@ -4,11 +4,67 @@ import { experiences } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import { useRef } from "react"
 
+import { useGSAP } from "@gsap/react"
+import gsap from "gsap"
+import { ExperienceCard } from "./experience-card"
+
 export const Timeline = () => {
     const containerRef = useRef<HTMLDivElement>(null)
     const lineTrackRef = useRef<HTMLDivElement>(null)
     const lineRef = useRef<HTMLDivElement>(null)
 
+    useGSAP(() => {
+        if (!containerRef.current || !lineTrackRef.current || !lineRef.current) return
+        //Timeline Fill
+        gsap.fromTo(
+            lineRef.current,
+            { scaleY: 0 },
+            {
+                scaleY: 1,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: lineTrackRef.current,
+                    start: 'top 60%',
+                    end: 'bottom 40%',
+                    scrub: 0.3,
+                }
+            }
+        )
+
+        // Timeline Nodes
+        const nodes = containerRef.current.querySelectorAll('[data-timeline-node]')
+        nodes.forEach(node => {
+            gsap.from(node, {
+                scale: 0,
+                duration: 0.4,
+                ease: 'back.out(2)',
+                scrollTrigger: {
+                    trigger: node,
+                    start: 'top 70%',
+                    toggleActions: 'play none none reverse',
+                }
+            })
+        })
+
+        //Card Entrance
+        const cards = containerRef.current.querySelectorAll('[data-timeline-card]')
+        cards.forEach((card) => {
+            const isLeft = card.getAttribute('data-side') === 'left'
+            gsap.from(card, {
+                x: isLeft ? -50 : 50,
+                autoAlpha: 0,
+                duration: 0.7,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse',
+                },
+            })
+        })
+    },
+    { scope: containerRef }
+)
     return (
         <div
             ref={containerRef}
@@ -45,8 +101,8 @@ export const Timeline = () => {
                                 {/* Left Node */}
                                 <div className="flex w-1/2 justify-end pr-10">
                                     {isLeft && (
-                                        <div data-timeline-card className="w-full max-w-md">
-                                            <p>{exp.role} - {exp.company}</p>
+                                        <div data-timeline-card data-side="left" className="w-full max-w-md">
+                                            <ExperienceCard experience={exp} />
                                         </div>
                                     )}
                                 </div>
@@ -69,8 +125,8 @@ export const Timeline = () => {
                                 {/* Right Node */}
                                 <div className="flex w-1/2 pl-10">
                                     {!isLeft && (
-                                        <div data-timeline-card className="w-full max-w-md">
-                                            <p>{exp.role} - {exp.company}</p>
+                                        <div data-timeline-card data-side="right" className="w-full max-w-md">
+                                            <ExperienceCard experience={exp} />
                                         </div>
                                     )}
                                 </div>
@@ -94,7 +150,7 @@ export const Timeline = () => {
 
                                 {/* Card */}
                                 <div data-timeline-card className="flex-1">
-                                        <p>{exp.role} - {exp.company}</p>
+                                    <ExperienceCard experience={exp} />
                                 </div>
                             </div>
                         </div>

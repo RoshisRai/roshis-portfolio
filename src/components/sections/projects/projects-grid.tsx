@@ -18,7 +18,7 @@ export const ProjectsGrid = ({ projects }: ProjectsGridProps) => {
     useGSAP(() => {
         const cards = gsap.utils.toArray<HTMLElement>('[data-project-card-inner]')
 
-        cards.forEach((card, i) => {
+        cards.forEach((card) => {
             gsap.to(
                 card,
                 {
