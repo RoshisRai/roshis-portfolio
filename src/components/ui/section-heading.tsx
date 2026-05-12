@@ -31,7 +31,10 @@ const SectionHeading = ({
         const titleEl = titleRef.current
         if (!container || !titleEl) return
 
-        const splitTitle = new SplitText(titleEl, { type: 'lines, words' })
+        const splitTitle = new SplitText(titleEl, { 
+            type: 'lines, words',
+            wordsClass: 'bg-linear-to-r from-text-primary to-text-secondary bg-clip-text text-transparent inline-block'
+        })
         const splitSubtitle = subtitleRef.current
             ? new SplitText(subtitleRef.current, { type: 'lines' })
             : null

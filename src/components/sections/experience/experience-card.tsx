@@ -3,21 +3,33 @@ import type { Experience } from "@/types/experience";
 import { TechStackBar } from "./tech-stack-bar";
 import { Tag } from "@/components/ui/tag";
 import { CursorZone } from "@/components/global/cursor/cursor-zone";
+import { useTheme } from "@/providers/theme-provider";
 
 interface ExperienceCardProps {
     experience: Experience;
 }
 
 export const ExperienceCard = ({ experience }: ExperienceCardProps) => {
+    const { theme } = useTheme()
+    const isLight = theme === 'light'
+
     return (
         <CursorZone variant="scene">
             <div
                 className={cn(
+                    'group relative',
                     'w-full rounded-2xl border border-border bg-surface p-5 md:p-6',
                     'transition-all duration-300',
                     'hover:border-border/80 hover:shadow-[0_4px_24px_rgba(0,0,0,0.15)]',
+                    isLight && 'hover:shadow-[0_4px_24px_rgba(0,0,0,0.05)]'
                 )}
             >
+                <div className={cn(
+                    'absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 pointer-events-none',
+                    'bg-linear-to-br from-accent/5 to-transparent',
+                    'group-hover:opacity-100',
+                )} />
+
                 {/* Date */}
                 <p className="mb-1 text-xs font-semibold uppercase tracking-[0.08em] text-accent">
                     {experience.dateRange}
