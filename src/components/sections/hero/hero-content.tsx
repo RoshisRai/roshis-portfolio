@@ -160,7 +160,7 @@ export default function HeroContent() {
                     statusColor="#4ade80"
                     className="bg-accent/10 border border-[#4ade80]/20 hero-status"
                 >
-                    <span className="text-[12px] uppercase tracking-[0.05em] text-text-secondary">
+                    <span className="text-[12px] uppercase tracking-wider text-text-secondary">
                         Available for work
                     </span>
                 </Tag>

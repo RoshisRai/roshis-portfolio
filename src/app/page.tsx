@@ -1,5 +1,6 @@
 import { ScrollToSection } from "@/components/global/scroll-to-section"
 import { SectionWrapper } from "@/components/layout/section-wrapper"
+import { AboutSection } from "@/components/sections/about/about-section"
 import { ExperienceSection } from "@/components/sections/experience/experience-section"
 import { HeroSection } from "@/components/sections/hero/hero"
 import { ProjectsSection } from "@/components/sections/projects/projects-section"
@@ -22,13 +23,7 @@ export default function Home() {
             <ExperienceSection />
 
             {/* About */}
-            <SectionWrapper
-                id="about"
-                title="About"
-                className="bg-background"
-            >
-                <p className="text-text-secondary">About content goes here</p>
-            </SectionWrapper>
+            <AboutSection />
 
             {/* Contact */}
             <SectionWrapper
