@@ -18,7 +18,7 @@ export const ProjectsSection = () => {
                 id="projects-heading"
                 title="My Selected Projects"
                 subtitle="A selection of systems I've designed and built end-to-end."
-                align="left"
+                align="center"
             />
             <ProjectsGrid projects={projects} />
         </SectionWrapper>
