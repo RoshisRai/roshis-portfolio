@@ -1,11 +1,10 @@
 'use client'
 
-import { cardSizeClasses } from "@/lib/project-layout"
+import Link from "next/link"
+
 import { cn } from "@/lib/utils"
 import { ProjectCardData } from "@/types/project"
-import Link from "next/link"
 import { ProjectCardMedia } from "./project-card-media"
-import { CursorZone } from "@/components/global/cursor/cursor-zone"
 import { projectAccentStyle } from "@/lib/project-theme"
 import { ProjectCardMeta } from "./project-card-meta"
 import { ProjectCardOverlay } from "./project-card-overlay"
@@ -27,56 +26,48 @@ export const ProjectCard = ({ project, priority = false }: ProjectCardProps) => 
     }
 
     return (
-        <CursorZone
-            variant='project'
-            className={cn(cardSizeClasses[project.cardSize])}
-            data-project-card={project.slug}
+        <Link
+            href={`/projects/${project.slug}`}
+            prefetch
+            onMouseEnter={onEnter}
+            onMouseLeave={onLeave}
+            onFocus={onEnter}
+            onBlur={onLeave}
+            onClick={handleClick}
+            style={projectAccentStyle(project.accent)}
+            id={project.slug}
+            className={cn(
+                'group relative flex flex-col h-full overflow-hidden rounded-2xl',
+                'bg-surface border border-border',
+                'scroll-mt-20',
+                'transition-all duration-(--duration-slow) ease-out-expo',
+                'hover:-translate-y-1 hover:border-[rgba(var(--project-accent-rgb),0.4)]',
+                'hover:shadow-[0_16px_48px_rgba(var(--project-accent-rgb),0.18)]',
+                'transform-3d perspective-distant',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--project-accent)',
+                'motion-reduce:hover:translate-y-0',
+            )}
         >
-            <div data-project-card-inner className="relative h-full">
-                <Link
-                href={`/projects/${project.slug}`}
-                prefetch
-                onMouseEnter={onEnter}
-                onMouseLeave={onLeave}
-                onFocus={onEnter}
-                onBlur={onLeave}
-                onClick={handleClick}
-                style={projectAccentStyle(project.accent)}
-                id={project.slug}
-                className={cn(
-                    'group relative flex flex-col h-full overflow-hidden rounded-2xl',
-                    'bg-surface border border-border',
-                    'scroll-mt-20',
-                    'transition-all duration-(--duration-slow) ease-out-expo',
-                    'hover:-translate-y-1 hover:border-[rgba(var(--project-accent-rgb),0.4)]',
-                    'hover:shadow-[0_16px_48px_rgba(var(--project-accent-rgb),0.18)]',
-                    'transform-3d perspective-distant',
-                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--project-accent)',
-                    'motion-reduce:hover:translate-y-0',
-                )}
-            >
-                <span
-                    aria-hidden
-                    data-vt-accent
-                    className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(120%_80%_at_50%_0%,var(--project-accent-soft),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-(--duration-fast)"
-                />
-                <div className="relative p-6 pb-0">
-                    <ProjectCardMedia
-                        slug={project.slug}
-                        media={project.media}
-                        isHovering={hovered}
-                        priority={priority}
-                    />
-                    <ProjectCardOverlay visible={intent} />
-                </div>
-                <ProjectCardMeta
+            <span
+                aria-hidden
+                data-vt-accent
+                className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(120%_80%_at_50%_0%,var(--project-accent-soft),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-(--duration-fast)"
+            />
+            <div className="relative p-6 pb-0">
+                <ProjectCardMedia
                     slug={project.slug}
-                    title={project.title}
-                    summary={project.summary}
-                    tags={project.tags}
+                    media={project.media}
+                    isHovering={hovered}
+                    priority={priority}
                 />
-            </Link>
+                <ProjectCardOverlay visible={intent} />
             </div>
-        </CursorZone>
+            <ProjectCardMeta
+                slug={project.slug}
+                title={project.title}
+                summary={project.summary}
+                tags={project.tags}
+            />
+        </Link>
     )
 }
