@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { useRef } from "react"
 import { CopyEmailButton } from "./copy-email-button"
+import { SocialLinks } from "./social-links"
 
 export const ContactSection = () => {
     const containerRef = useRef<HTMLDivElement>(null)
@@ -41,6 +42,7 @@ export const ContactSection = () => {
             from you."
             id="contact"
             headingAlign="center"
+            className="bg-linear-to-b from-surface to-transparent"
         >
             <div 
                 ref={containerRef}
@@ -77,7 +79,7 @@ export const ContactSection = () => {
 
                 {/* Social Links  */}
                 <div className="contact-animate">
-                    <span className="inline-block mt-8 w-full text-center">Social Links</span>
+                    <SocialLinks />
                 </div>
 
             </div>
