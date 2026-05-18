@@ -4,6 +4,7 @@ import { SectionWrapper } from "@/components/layout/section-wrapper"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { useRef } from "react"
+import { CopyEmailButton } from "./copy-email-button"
 
 export const ContactSection = () => {
     const containerRef = useRef<HTMLDivElement>(null)
@@ -47,7 +48,7 @@ export const ContactSection = () => {
             >
                 {/* Email  */}
                 <div className="contact-animate mb-10">
-                    <span>roshis.awai@gmail.com</span>
+                    <CopyEmailButton />
                 </div>
 
                 {/* Divider  */}
