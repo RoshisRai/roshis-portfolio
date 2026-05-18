@@ -40,7 +40,7 @@ export const CopyEmailButton = () => {
                     onClick={handleCopy}
                     className={cn(
                         "inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium",
-                        "border transition-all duration-200",
+                        "border transition-colors duration-200",
                         copied
                             ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-400"
                             : copyError
@@ -49,18 +49,18 @@ export const CopyEmailButton = () => {
                     )}
                     aria-label={copied ? "Email copied to clipboard" : copyError ? "Copy failed" : "Copy email address"}
                 >
-                    <span className="relative w-4 h-4">
+                    <span className="relative w-4 h-4 block overflow-hidden">
                         <Copy
                             size={16}
                             className={cn(
-                                "absolute inset-0 transition-all duration-200",
+                                "absolute inset-0 transition-all duration-200 ease-out",
                                 copied ? "scale-0 opacity-0" : "scale-100 opacity-100"
                             )}
                         />
                         <Check
                             size={16}
                             className={cn(
-                                "absolute inset-0 transition-all duration-200",
+                                "absolute inset-0 transition-all duration-200 ease-out",
                                 copied ? "scale-100 opacity-100" : "scale-0 opacity-0"
                             )}
                         />
