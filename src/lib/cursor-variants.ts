@@ -9,7 +9,8 @@ export type CursorVariant =
   | "drag"        // draggable elements (carousels, sliders)
   | "scene"       // over Three.js canvas
   | "hidden"      // inside inputs, code blocks, etc.
-  | "project";
+  | "project"
+  | "copy_email";
 
 export interface CursorVariantConfig {
   /** Inner dot size in px */
@@ -24,6 +25,8 @@ export interface CursorVariantConfig {
   ringBorder: number;
   /** Optional text label (e.g., "View") */
   label?: string;
+  /** Label placement relative to ring */
+  labelPlacement?: "center" | "below";
   /** Glow radius (0 = no glow) */
   glow: number;
   /** Dot color (CSS var or literal) */
@@ -121,4 +124,15 @@ export const CURSOR_VARIANTS: Record<CursorVariant, CursorVariantConfig> = {
     ringDamping: 0.2,
     ringScale: 1.1
   },
+  copy_email: {
+    dotSize: 0,
+    ringSize: 40,
+    ringOpacity: 1,
+    dotOpacity: 0,
+    ringBorder: 1.5,
+    label: 'Copy',
+    labelPlacement: "center",
+    glow: 120,
+    ringDamping: 0.2
+  }
 };

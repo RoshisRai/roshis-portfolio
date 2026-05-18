@@ -82,12 +82,19 @@ export function CursorProvider({ children }: { children: React.ReactNode }) {
     const setVariant = useCallback((variant: CursorVariant, label?: string) => {
         const cfg = CURSOR_VARIANTS[variant];
         refs.current.variant = variant;
-        refs.current.target = { ...cfg, label: label ?? cfg.label };
+        refs.current.target = {
+            ...cfg,
+            label: label ?? cfg.label,
+            labelPlacement: cfg.labelPlacement ?? "below",
+        };
     }, []);
 
     const resetVariant = useCallback(() => {
         refs.current.variant = "default";
-        refs.current.target = { ...CURSOR_VARIANTS.default };
+        refs.current.target = {
+            ...CURSOR_VARIANTS.default,
+            labelPlacement: CURSOR_VARIANTS.default.labelPlacement ?? "below",
+        };
     }, []);
 
     const setMagnet = useCallback(
@@ -167,6 +174,7 @@ export function CursorProvider({ children }: { children: React.ReactNode }) {
 
             // Non-numeric props
             rd.label = tg.label;
+            rd.labelPlacement = tg.labelPlacement ?? "below";
 
             // Notify subscribers (Cursor component, R3F, etc.)
             subscribersRef.current.forEach((fn) => fn(rc));

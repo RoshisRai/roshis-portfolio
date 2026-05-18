@@ -58,18 +58,16 @@ export const ArchitectureDiagram = ({ src, layers, alt }: ArchitectureDiagramPro
     return (
         <div
             ref={containerRef}
-            className="relative w-full overflow-x-auto touch-pan-x rounded-2xl border border-border bg-surface lg:p-6 md:p-4 p-2"
+            className="relative w-full overflow-x-auto overflow-y-hidden touch-pan-x rounded-2xl border border-border bg-surface lg:p-6 md:p-4 p-2 scrollbar-thin scrollbar-track-slate-100 scrollbar-thumb-slate-300 hover:scrollbar-thumb-slate-400"
         >
-            <div className="w-full h-auto bg-surface overflow-hidden rounded-2xl">
-                <object
-                    ref={objectRef}
-                    data={src}
-                    type="image/svg+xml"
-                    aria-label={alt || "Architecture diagram"}
-                    className="block w-full min-w-180 md:min-w-0 scale-[1.001] pointer-events-none select-none"
-                    onLoad={() => setIsLoaded(true)}
-                />
-            </div>
+            <object
+                ref={objectRef}
+                data={src}
+                type="image/svg+xml"
+                aria-label={alt || "Architecture diagram"}
+                className="block min-w-180 md:min-w-full w-full h-auto scale-[1.001] pointer-events-none select-none"
+                onLoad={() => setIsLoaded(true)}
+            />
         </div>
     )
 }

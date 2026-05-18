@@ -66,6 +66,22 @@ export function Cursor() {
       if (labelRef.current) {
         labelRef.current.textContent = rendered.label ?? "";
         labelRef.current.style.opacity = rendered.label ? "1" : "0";
+
+        const placement = rendered.labelPlacement ?? "below";
+        if (placement === "center") {
+          console.log('center')
+          labelRef.current.style.top = "50%";
+          labelRef.current.style.left = "50%";
+          labelRef.current.style.transform = "translate(-50%, -50%)";
+          labelRef.current.style.fontSize = "20px";
+        } else {
+          console.log('below')
+          labelRef.current.style.top = "55%";
+          labelRef.current.style.left = "50%";
+          labelRef.current.style.transform = "translate(-50%, 0)";
+          labelRef.current.style.fontSize = "12px";
+          
+        }
       }
     });
 
@@ -103,7 +119,7 @@ export function Cursor() {
         className={cn(
             "absolute top-0 left-0 rounded-full",
             "flex items-center justify-center",
-            "text-[11px] font-semibold tracking-wider uppercase",
+            "text-[11px] font-semibold tracking-wider uppercase whitespace-nowrap",
             "bg-text-primary border border-text-primary/50",
             "will-change-[transform,width,height,opacity,background,border]"
         )}
@@ -111,7 +127,7 @@ export function Cursor() {
         <span
             ref={labelRef}
             className={cn(
-              "absolute top-[55%]",
+              "absolute",
               "opacity-0 transition-opacity duration-200 ease-out"
             )}
         />
