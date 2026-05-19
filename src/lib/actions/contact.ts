@@ -65,7 +65,7 @@ export const sendContactEmail = async (
             }
         }
         return { success: true }
-    } catch (err) {
+    } catch {
         return {
             success: false,
             errors: {

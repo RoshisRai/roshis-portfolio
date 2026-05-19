@@ -7,7 +7,7 @@ import { useRef } from "react"
 import { CopyEmailButton } from "./copy-email-button"
 import { SocialLinks } from "./social-links"
 import { ContactForm } from "./contact-form"
-import { ContactImage } from "./contact-image"
+import { Globe } from "./globe"
 
 export const ContactSection = () => {
     const containerRef = useRef<HTMLDivElement>(null)
@@ -64,9 +64,9 @@ export const ContactSection = () => {
                 </div>
 
                 {/* Contact Form + Image  */}
-                <div className="contact-animate flex flex-col lg:flex-row">
+                <div className="contact-animate flex flex-col lg:flex-row gap-4">
                     <ContactForm />
-                    <ContactImage />
+                    <Globe />
                 </div>
 
                 {/* Social Links  */}
