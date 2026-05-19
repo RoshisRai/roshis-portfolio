@@ -5,6 +5,9 @@ import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { useRef } from "react"
 import { CopyEmailButton } from "./copy-email-button"
+import { SocialLinks } from "./social-links"
+import { ContactForm } from "./contact-form"
+import { ContactImage } from "./contact-image"
 
 export const ContactSection = () => {
     const containerRef = useRef<HTMLDivElement>(null)
@@ -33,7 +36,6 @@ export const ContactSection = () => {
         },
         { scope: containerRef }
     )
-
     return (
         <SectionWrapper
             title="Let&rsquo;s build something together."
@@ -41,6 +43,7 @@ export const ContactSection = () => {
             from you."
             id="contact"
             headingAlign="center"
+            className="bg-linear-to-b from-surface to-transparent overflow-hidden"
         >
             <div 
                 ref={containerRef}
@@ -60,24 +63,15 @@ export const ContactSection = () => {
                     <div className="flex-1 h-px bg-white/6" />
                 </div>
 
-                {/* Contact Form  */}
-                <div className="contact-animate">
-                    <form>
-                        <h3>Contact Form</h3>
-                        <div className="input-field">
-                            <label htmlFor="name">Name:</label>
-                            <input type="text" id="name"/>
-                        </div>
-                        <div className="input-field">
-                            <label htmlFor="email">Email:</label>
-                            <input type="email" id="email"/>
-                        </div>
-                    </form>
+                {/* Contact Form + Image  */}
+                <div className="contact-animate flex flex-col lg:flex-row">
+                    <ContactForm />
+                    <ContactImage />
                 </div>
 
                 {/* Social Links  */}
-                <div className="contact-animate">
-                    <span className="inline-block mt-8 w-full text-center">Social Links</span>
+                <div className="contact-animate mt-14">
+                    <SocialLinks />
                 </div>
 
             </div>

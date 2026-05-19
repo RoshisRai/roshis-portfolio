@@ -69,13 +69,11 @@ export function Cursor() {
 
         const placement = rendered.labelPlacement ?? "below";
         if (placement === "center") {
-          console.log('center')
           labelRef.current.style.top = "50%";
           labelRef.current.style.left = "50%";
           labelRef.current.style.transform = "translate(-50%, -50%)";
           labelRef.current.style.fontSize = "20px";
         } else {
-          console.log('below')
           labelRef.current.style.top = "55%";
           labelRef.current.style.left = "50%";
           labelRef.current.style.transform = "translate(-50%, 0)";
