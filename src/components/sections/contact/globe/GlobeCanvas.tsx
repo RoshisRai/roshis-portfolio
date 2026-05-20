@@ -18,7 +18,7 @@ export const GlobeCanvas = () => {
   const pointerInteracting = useRef(false);
   const pointerStart = useRef({ x: 0, y: 0 });
   const rotationRef = useRef(0);
-  const tiltRef = useRef(0.3);
+  const tiltRef = useRef(0.6);
   const dragStart = useRef({ phi: 0, theta: 0 });
   const sizeRef = useRef(0);
   const globeRef = useRef<Globe | null>(null);
