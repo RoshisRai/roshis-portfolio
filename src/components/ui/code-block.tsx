@@ -63,9 +63,9 @@ const CodeBlock = ({
                         {filename && (
                             <>
                                 <div className="flex items-center gap-1.5">
-                                    <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-                                    <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-                                    <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+                                    <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57] shadow-[0_0_8px_2px_#ff5f57]" />
+                                    <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e] shadow-[0_0_8px_2px_#febc2e]" />
+                                    <span className="w-2.5 h-2.5 rounded-full bg-[#28c840] shadow-[0_0_8px_2px_#28c840]" />
                                 </div>
                                 <span className="text-[12px] text-text-secondary font-mono">
                                     {filename}

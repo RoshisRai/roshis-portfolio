@@ -1,6 +1,6 @@
 export const GlobePlaceholder = () => {
   return (
-    <div className="relative flex h-48 w-48 items-center justify-center rounded-full border border-border p-8 shadow-inner bg-surface/95">
+    <div className="relative flex h-48 w-48 items-center justify-center rounded-full border border-border p-8 bg-surface/95 shadow-2xl shadow-indigo-500/10">
         
         <span className="absolute top-6 right-6 flex h-2.5 w-2.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-hover opacity-75"></span>
