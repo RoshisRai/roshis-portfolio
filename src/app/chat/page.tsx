@@ -2,8 +2,8 @@ import ChatInterface from "@/components/chat/chat-interface";
 
 export default function ChatPage() {
     return (
-        <main className="min-h-screen bg-background">
+        <div className="min-h-[calc(100dvh-64px)]">
             <ChatInterface />
-        </main>
+        </div>
     )
 }
