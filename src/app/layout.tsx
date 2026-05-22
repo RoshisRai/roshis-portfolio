@@ -1,10 +1,8 @@
 import type { Metadata } from "next"
 import { fontSans, fontDisplay, fontMono } from "@/lib/fonts"
 import { Providers } from "@/providers/providers"
-import { Navbar } from "@/components/layout/navbar"
-import { Footer } from "@/components/layout/footer"
 import "./globals.css"
-import { CursorZone } from "@/components/global/cursor/cursor-zone"
+import { LayoutShell } from "@/components/layout/layout-shell"
 
 export const metadata: Metadata = {
   title: {
@@ -68,11 +66,7 @@ export default function RootLayout({
       </head>
       <body>
         <Providers>
-          <CursorZone variant="link">
-            <Navbar />
-          </CursorZone>
-          <main>{children}</main>
-          <Footer />
+          <LayoutShell>{children}</LayoutShell>
         </Providers>
       </body>
     </html>
