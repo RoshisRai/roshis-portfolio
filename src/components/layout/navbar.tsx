@@ -134,9 +134,13 @@ export function Navbar() {
                     <div className="hidden items-center gap-3 md:flex">
                         <ThemeToggle />
                         <Magnetic strength={0.6} elementPull={0.2}>
-                            <Button size="sm" onClick={() => scrollTo('/#contact')} className='cursor-pointer'>
-                                Let&apos;s Talk
-                            </Button>
+                            <Link
+                                href='/chat'
+                            >
+                                <Button size="sm" onClick={() => scrollTo('/#contact')} className='cursor-pointer'>
+                                    Let&apos;s Talk
+                                </Button>
+                            </Link>
                         </Magnetic>
                     </div>
 
