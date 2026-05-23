@@ -13,6 +13,7 @@ import { Button } from '../ui/button'
 import Image from 'next/image'
 import { Magnetic } from '../global/cursor/magnetic'
 import { disableProjectSharedVTForNextNav, HEADER_VT_NAME } from '@/lib/project-transition'
+import { Bot } from 'lucide-react'
 
 const navLinks = [
     { label: 'Projects',   href: '/#projects'   },
@@ -137,8 +138,8 @@ export function Navbar() {
                             <Link
                                 href='/chat'
                             >
-                                <Button size="sm" onClick={() => scrollTo('/#contact')} className='cursor-pointer'>
-                                    Let&apos;s Talk
+                                <Button size="sm" className='cursor-pointer'>
+                                    Ask AI <Bot size={20} />
                                 </Button>
                             </Link>
                         </Magnetic>

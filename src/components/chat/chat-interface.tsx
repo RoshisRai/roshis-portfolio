@@ -14,7 +14,7 @@ export default function ChatInterface() {
     return (
         <div className="flex flex-col min-h-[calc(100dvh-64px)] mt-16 max-w-180 mx-auto">
             {/* Content scrolls with the page */}
-            <div className="flex-1 min-h-0 pb-32">
+            <div className="flex-1 min-h-0 flex flex-col">
                 {!hasMessages && (
                     <div className="flex flex-col mt-25">
                         <div className="flex flex-col items-center gap-4 text-center">
@@ -34,11 +34,13 @@ export default function ChatInterface() {
                     </div>
                 )}
 
-                {hasMessages && <ChatMessages />}
+                {hasMessages && 
+                    <ChatMessages />
+                }
             </div>
 
             {/* Sticky input */}
-            <div className="sticky bottom-0 shrink-0 flex flex-col items-center justify-center rounded-md px-10 py-2 bg-background border border-accent/40 text-slate-50 font-mono">
+            <div className="sticky bottom-0 shrink-0 flex flex-col items-center justify-center rounded-md px-10 py-2 bg-background border border-accent/40 text-text-primary font-mono">
                 <h1 className="text-xl font-bold">Chat Input</h1>
                 <p>Chat Input implementation coming soon...</p>
                 <Button 

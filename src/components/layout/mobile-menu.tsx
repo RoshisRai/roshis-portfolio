@@ -3,7 +3,7 @@
 import { useEffect, useRef, useSyncExternalStore } from 'react'
 import { createPortal } from 'react-dom'
 import { usePathname, useRouter } from 'next/navigation'
-import { Menu, X } from 'lucide-react'
+import { Bot, Menu, X } from 'lucide-react'
 import { gsap } from 'gsap'
 import { cn } from '@/lib/utils'
 import { useActiveSection } from '@/hooks/use-active-section'
@@ -216,12 +216,11 @@ export function MobileMenu({ links }: MobileMenuProps) {
 
                         <Link
                             ref={ctaRef}
-                            href={'/#contact'}
-                            onClick={handleLinkClick('/#contact')}
+                            href='/chat'
                             className={cn('mt-8 text-lg')}
                         >
-                            <Button>
-                                Let&apos;s Talk
+                            <Button className='cursor-pointer'>
+                                Ask AI <Bot size={20} />
                             </Button>
                         </Link>
 
