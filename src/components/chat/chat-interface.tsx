@@ -5,17 +5,29 @@ import { SuggestedPrompts } from "./suggested-prompts";
 import ChatMessages from "./chat-messages";
 import { useState } from "react";
 import { Button } from "../ui/button";
+import { ChatInput } from "./chat-input";
+import { CursorZone } from "../global/cursor/cursor-zone";
 
 export default function ChatInterface() {
     const [hasMessages, setHasMessages] = useState<boolean>(false);
+
+    const [input, setInput] = useState<string>("");
+    const [rateLimited, setRateLimited] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const handleSubmit = (e:React.SubmitEvent) => {
+        e.preventDefault()
+        setHasMessages(!hasMessages)
+    }
+
+
     const handlePromptSelect = () => {
         console.log("Select Prompt")
     }
     return (
-        <div className="flex flex-col min-h-[calc(100dvh-64px)] mt-16 max-w-180 mx-auto">
+        <div className="flex flex-col min-h-[calc(100dvh-64px)] mt-16 max-w-180 mx-auto px-2 md:px-0">
             {/* Content scrolls with the page */}
-            <div className="flex-1 min-h-0 pb-32">
-                {!hasMessages && (
+            {!hasMessages && (
+                <div className="flex-1 min-h-0 flex flex-col">
                     <div className="flex flex-col mt-25">
                         <div className="flex flex-col items-center gap-4 text-center">
                             <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20">
@@ -32,22 +44,37 @@ export default function ChatInterface() {
                         </div>
                         <SuggestedPrompts onSelect={handlePromptSelect} />
                     </div>
-                )}
+                </div>
+            )}
 
-                {hasMessages && <ChatMessages />}
-            </div>
+            {hasMessages && 
+                <ChatMessages />
+            }
 
-            {/* Sticky input */}
-            <div className="sticky bottom-0 shrink-0 flex flex-col items-center justify-center rounded-md px-10 py-2 bg-background border border-accent/40 text-slate-50 font-mono">
-                <h1 className="text-xl font-bold">Chat Input</h1>
-                <p>Chat Input implementation coming soon...</p>
-                <Button 
-                    variant="primary"
-                    onClick={() => setHasMessages(!hasMessages)}
-                >
-                    {hasMessages ? "Hide Messages": "Show Messages"}
-                </Button>
-            </div>
+            {rateLimited && (
+                <CursorZone variant="copy_email" className="contents" label="✉️">
+                    <div className="mx-4 mb-2 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-center">
+                        <p className="text-xs text-amber-300">
+                            I&rsquo;ve had a lot of conversations today — email Roshis directly
+                            at{" "}
+                        </p>
+                        <a
+                            href="mailto:contact@roshis.dev"
+                            className="underline underline-offset-2"
+                        >
+                            contact@roshis.dev
+                        </a>
+                    </div>
+                </CursorZone>
+            )}
+
+            <ChatInput
+                input={input}
+                setInput={setInput}
+                onSubmit={handleSubmit}
+                isLoading={isLoading}
+                disabled={rateLimited}
+            />
         </div>
     )
 }

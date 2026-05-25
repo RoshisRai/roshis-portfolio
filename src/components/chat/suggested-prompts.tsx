@@ -1,5 +1,7 @@
 'use client'
 
+import { CursorZone } from "../global/cursor/cursor-zone"
+
 const PROMPTS = [
     "What's his approach to system design?",
     "Tell me about his backend experience",
@@ -13,18 +15,28 @@ interface SuggestedPromptsProps {
 
 export const SuggestedPrompts = ({ onSelect }: SuggestedPromptsProps) => {
     return (
-        <div className="flex flex-wrap gap-2 justify-center mt-4">
+        <div className="grid grid-cols-1 sm:flex sm:flex-wrap gap-2 justify-center mt-4 max-w-2xl mx-auto px-4">
             {PROMPTS.map((prompt) => (
-                <button
+                <CursorZone 
+                    variant="button"
                     key={prompt}
-                    onClick={() => onSelect(prompt)}
-                    className="px-4 py-2.5 text-sm text-text-primary/80 rounded-xl
-                        border border-border bg-text-primary/2
-                        hover:bg-text-primary/5 hover:border-accent/30 hover:text-text-primary
-                        transition-all duration-200 cursor-pointer"
+                    className="contents"
                 >
-                    {prompt}
-                </button>
+                    <button
+                        type="button"
+                        onClick={() => onSelect(prompt)}
+                        aria-label={`Ask prompt: ${prompt}`}
+                        className="px-4 py-2.5 text-sm text-text-primary/80 rounded-xl
+                            border border-border bg-text-primary/2
+                            outline-none focus-visible:ring-2 focus-visible:ring-accent/30 focus-visible:text-text-primary
+                            hover:bg-text-primary/5 hover:border-accent/30 hover:text-text-primary
+                            active:bg-text-primary/10 active:border-accent/40 active:scale-[0.97]
+                            sm:py-2.5 
+                            transition-all duration-200 cursor-pointer select-none"
+                    >
+                        {prompt}
+                    </button>
+                </CursorZone>
             ))}
         </div>
     )
