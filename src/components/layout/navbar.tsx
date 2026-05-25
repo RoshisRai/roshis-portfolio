@@ -135,13 +135,18 @@ export function Navbar() {
                     <div className="hidden items-center gap-3 md:flex">
                         <ThemeToggle />
                         <Magnetic strength={0.6} elementPull={0.2}>
-                            <Link
-                                href='/chat'
-                            >
-                                <Button size="sm" className='cursor-pointer'>
-                                    Ask AI <Bot size={20} />
-                                </Button>
+                        {pathname === "/chat" 
+                            ? <Link href='/' onClick={handleNavLinkClick('/#contact')}>
+                                    <Button size="sm" className='cursor-pointer'>
+                                        Let&apos;s Talk 👋
+                                    </Button>
+                            </Link> 
+                            : <Link href='/chat'>
+                                    <Button size="sm" className='cursor-pointer'>
+                                        Ask AI <Bot size={20} />
+                                    </Button>
                             </Link>
+                        }
                         </Magnetic>
                     </div>
 
