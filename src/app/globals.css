@@ -199,6 +199,10 @@
   :root[data-theme="light"] .shiki span {
     color: var(--shiki-light) !important;
   }
+
+  :root[data-theme="light"] .prose pre {
+    background-color: var(--color-background) !important;
+  }
 }
 
 @layer utilities {

@@ -8,30 +8,35 @@ import { ChatInput } from "./chat-input";
 import { CursorZone } from "../global/cursor/cursor-zone";
 
 export default function ChatInterface() {
-    const [count, setCount] = useState<number>(0);
-    const [hasMessages, setHasMessages] = useState<boolean>(true);
-
-    const [input, setInput] = useState<string>("");
+    const [hasMessages, setHasMessages] = useState<boolean>(false);
     const [rateLimited, setRateLimited] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const handleSubmit = (e:React.SubmitEvent) => {
-        e.preventDefault()
-        setCount((count) => ++count)
-        if(count < 5) {
-            setHasMessages(!hasMessages)
-        } else {
-            setHasMessages(true)
-            setRateLimited(true)
-        }
-    }
 
+    const [count, setCount] = useState<number>(0);
+    const [input, setInput] = useState<string>("");
+
+    const handleSubmit = (e:React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        if(!input.trim()) return
+
+        const nextCount = count + 1
+        setCount(nextCount)
+        setHasMessages(true)
+        setInput("")
+
+        setIsLoading(true)
+        
+        setTimeout(() => {
+            setIsLoading(false)
+            if(nextCount >= 4) setRateLimited(true)  
+        }, Math.floor(Math.random() * 4001) + 2000)
+    }
 
     const handlePromptSelect = () => {
         console.log("Select Prompt")
     }
     return (
         <div className="flex flex-col min-h-[calc(100dvh-64px)] mt-16 max-w-180 mx-auto px-4 md:px-0">
-            {/* Content scrolls with the page */}
             {!hasMessages && (
                 <div className="flex-1 flex flex-col">
                     <div className="flex flex-col mt-25">

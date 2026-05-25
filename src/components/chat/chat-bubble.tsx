@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { renderCodeToHtml } from "@/lib/shiki";
 import { SourcePills } from "./source-pills";
+import { useTheme } from "@/providers/theme-provider";
 
 interface Source {
     section: string
@@ -27,6 +28,7 @@ export function ChatBubble({
     isStreaming,
 }: ChatBubbleProps) {
     const isUser = role === 'user'
+    const { theme } = useTheme()
     return (
         <div className={cn("flex w-full", isUser ? "justify-end" : "justify-start")}>
             <div className={cn(
@@ -38,7 +40,12 @@ export function ChatBubble({
                 {isUser ? (
                     <p>{content}</p>
                 ): (
-                    <div className="prose prose-invert max-w-none">
+                    <div 
+                        className={cn(
+                            "prose max-w-none",
+                            theme === "dark" && "prose-invert",
+                        )}
+                    >
                         <ReactMarkdown
                             remarkPlugins={[remarkGfm]}
                             components={{
