@@ -4,10 +4,11 @@ import { usePathname } from "next/navigation"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { CursorZone } from "@/components/global/cursor/cursor-zone"
+import { ChatFab } from "../chat/chat-fab"
 
 export function LayoutShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  const hideFooter = pathname.startsWith("/chat")
+  const isChatPage = pathname.startsWith("/chat")
 
   return (
     <>
@@ -15,7 +16,12 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
         <Navbar />
       </CursorZone>
       <main>{children}</main>
-      {!hideFooter && <Footer />}
+      {!isChatPage && (
+        <>
+          <ChatFab />
+          <Footer />
+        </>
+      )}
     </>
   )
 }
