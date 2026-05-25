@@ -13,7 +13,7 @@ const PLACEHOLDER_MESSAGES = [
 
 export default function ChatMessages() {
     return (
-        <div className="flex flex-col gap-4 px-4 py-6">
+        <div className="flex flex-col gap-4 py-6">
             {PLACEHOLDER_MESSAGES.map((message) => (
                 <div
                     key={message.id}

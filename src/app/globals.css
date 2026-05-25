@@ -26,6 +26,9 @@
   --spacing-case-study-section: 64px;
   --spacing-case-study-section-mobile: 32px;
 
+  /* AI Chat Page */
+  --color-input-bg-focus: #18181a;
+
   /* Animation Easing & Durations */
   --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-expo: cubic-bezier(0.55, 0, 1, 0.45);
@@ -107,6 +110,7 @@
     --color-accent: #4f46e5;
     --color-accent-hover: #6366f1;
     --color-accent-glow: oklch(0.455 0.233 277.117 / 0.15);
+    --color-input-bg-focus: #eaeaea;
   }
 
   html {

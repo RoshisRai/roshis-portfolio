@@ -45,7 +45,9 @@ export function Cursor() {
       // Filled vs outlined based on border width
       if (rendered.ringBorder < 0.5) {
         ringRef.current.style.border = "0";
+        ringRef.current.style.background = "var(--color-text-primary)";
       } else {
+        ringRef.current.style.border = `${rendered.ringBorder}px solid var(--color-text-primary)`;
         ringRef.current.style.background = "transparent";
       }
 
