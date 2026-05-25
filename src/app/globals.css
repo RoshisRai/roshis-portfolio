@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@plugin "@tailwindcss/typography";
+
 /* ====================== THEME ====================== */
 @theme {
   /* Colors */
@@ -181,6 +183,12 @@
 
   .shiki span {
     color: var(--shiki-dark) !important;
+  }
+
+  .shiki-wrapper pre {
+    background-color: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
   :root[data-theme="light"] .shiki {
