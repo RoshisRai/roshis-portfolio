@@ -8,7 +8,7 @@ import { CursorZone } from "../global/cursor/cursor-zone";
 interface ChatInputProps {
     input: string;
     setInput: (value: string) => void;
-    onSubmit: (e: React.SubmitEvent) => void;
+    onSubmit: (e: React.SubmitEvent<HTMLFormElement>) => void;
     isLoading: boolean;
     disabled?: boolean;
 }

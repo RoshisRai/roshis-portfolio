@@ -1,6 +1,8 @@
 'use client'
 
+import { useEffect, useRef } from "react";
 import { ChatBubble } from "./chat-bubble"
+import { TypingIndicator } from "./typing-indicator";
 
 interface Source {
     section: string
@@ -14,7 +16,7 @@ interface Message {
     sources?: Source[]
 }
 
-const PLACEHOLDER_MESSAGES: Message[] = [
+const messages: Message[] = [
     { 
         id: 1, 
         role: 'user', 
@@ -72,9 +74,14 @@ interface ChatMessagesProps {
 export default function ChatMessages({
     isLoading,
 }: ChatMessagesProps) {
+    const bottomRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        bottomRef.current?.scrollIntoView({ behavior: "smooth" })
+    }, [isLoading])
     return (
         <div className="flex-1 overflow-y-auto py-6 space-y-4">
-            {PLACEHOLDER_MESSAGES.map((message) => (
+            {messages.map((message) => (
                 <ChatBubble
                     key={message.id}
                     role={message.role}
@@ -83,6 +90,18 @@ export default function ChatMessages({
                     isStreaming={false}
                 />
             ))}
+
+            {isLoading &&
+                messages[messages.length - 1]?.role === "assistant" && (
+                    <div className="flex justify-start">
+                        <div className="bg-text-primary/4 border border-text-primary/6 rounded-[16px_16px_16px_4px]">
+                            <TypingIndicator />
+                        </div>
+                    </div>
+                )
+            }
+
+            <div ref={bottomRef} />
         </div>
     )
 }
