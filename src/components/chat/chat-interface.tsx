@@ -4,19 +4,25 @@ import { Bot } from "lucide-react";
 import { SuggestedPrompts } from "./suggested-prompts";
 import ChatMessages from "./chat-messages";
 import { useState } from "react";
-import { Button } from "../ui/button";
 import { ChatInput } from "./chat-input";
 import { CursorZone } from "../global/cursor/cursor-zone";
 
 export default function ChatInterface() {
-    const [hasMessages, setHasMessages] = useState<boolean>(false);
+    const [count, setCount] = useState<number>(0);
+    const [hasMessages, setHasMessages] = useState<boolean>(true);
 
     const [input, setInput] = useState<string>("");
     const [rateLimited, setRateLimited] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const handleSubmit = (e:React.SubmitEvent) => {
         e.preventDefault()
-        setHasMessages(!hasMessages)
+        setCount((count) => ++count)
+        if(count < 5) {
+            setHasMessages(!hasMessages)
+        } else {
+            setHasMessages(true)
+            setRateLimited(true)
+        }
     }
 
 
@@ -24,10 +30,10 @@ export default function ChatInterface() {
         console.log("Select Prompt")
     }
     return (
-        <div className="flex flex-col min-h-[calc(100dvh-64px)] mt-16 max-w-180 mx-auto px-2 md:px-0">
+        <div className="flex flex-col min-h-[calc(100dvh-64px)] mt-16 max-w-180 mx-auto px-4 md:px-0">
             {/* Content scrolls with the page */}
             {!hasMessages && (
-                <div className="flex-1 min-h-0 flex flex-col">
+                <div className="flex-1 flex flex-col">
                     <div className="flex flex-col mt-25">
                         <div className="flex flex-col items-center gap-4 text-center">
                             <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20">
@@ -48,7 +54,9 @@ export default function ChatInterface() {
             )}
 
             {hasMessages && 
-                <ChatMessages />
+                <ChatMessages 
+                    isLoading={isLoading}
+                />
             }
 
             {rateLimited && (
