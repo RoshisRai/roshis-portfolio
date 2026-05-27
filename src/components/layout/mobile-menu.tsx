@@ -13,6 +13,8 @@ import { SocialIconButton } from '../ui/social-icon-button'
 import { socialLinks } from '@/lib/constants'
 import Link from 'next/link'
 import { disableProjectSharedVTForNextNav } from '@/lib/project-transition'
+import { CursorZone } from '../global/cursor/cursor-zone'
+import { Magnetic } from '../global/cursor/magnetic'
 
 interface NavLink {
     label: string
@@ -194,45 +196,59 @@ export function MobileMenu({ links }: MobileMenuProps) {
                                 const isActive = isHome && activeSection === sectionId
 
                                 return (
-                                    <Link
+                                    <CursorZone 
                                         key={link.href}
-                                        href={link.href}
-                                        ref={(el) => { linkRefs.current[i] = el }}
-                                        onClick={handleLinkClick(link.href)}
-                                        className={cn(
-                                            'w-full text-center py-4 rounded-xl',
-                                            'text-2xl font-display font-semibold',
-                                            'transition-colors duration-(--duration-fast)',
-                                            isActive
-                                                ? 'text-accent'
-                                                : 'text-text-primary hover:text-accent',
-                                        )}
+                                        variant="button" 
+                                        className="contents"
                                     >
-                                        {link.label}
-                                    </Link>
+                                        <Link
+                                            href={link.href}
+                                            ref={(el) => { linkRefs.current[i] = el }}
+                                            onClick={handleLinkClick(link.href)}
+                                            className={cn(
+                                                'w-full text-center py-4 rounded-xl',
+                                                'text-2xl font-display font-semibold',
+                                                'transition-colors duration-(--duration-fast)',
+                                                isActive
+                                                    ? 'text-accent'
+                                                    : 'text-text-primary hover:text-accent',
+                                            )}
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    </CursorZone>
                                 )
                             })}
                         </nav>
 
-                        <Link
-                            ref={ctaRef}
-                            href='/chat'
-                            className={cn('mt-8 text-lg')}
-                        >
-                            <Button className='cursor-pointer'>
-                                Ask AI <Bot size={20} />
-                            </Button>
-                        </Link>
+                        <Magnetic strength={0.6} elementPull={0.2} className="mt-8 text-lg">
+                            {pathname === "/chat" 
+                                ? <Link ref={ctaRef} href='/' onClick={handleLinkClick('/#contact')}>
+                                        <Button className='cursor-pointer'>
+                                            Let&apos;s Talk 👋
+                                        </Button>
+                                </Link> 
+                                : <Link ref={ctaRef} href='/chat'>
+                                        <Button className='cursor-pointer'>
+                                            Ask AI <Bot size={20} />
+                                        </Button>
+                                </Link>
+                            }
+                        </Magnetic>
 
                         <div className='flex items-center justify-center gap-5 absolute bottom-12'>
                             {socialLinks.map((link, i) => (
-                                <SocialIconButton
+                                <CursorZone 
+                                    variant="button"
                                     key={link.href}
-                                    ref={(el) => { socialLinkRefs.current[i] = el }}
-                                    href={link.href}
-                                    label={link.label}
-                                    icon={<link.icon size={16} />}
-                                />
+                                >
+                                    <SocialIconButton
+                                        ref={(el) => { socialLinkRefs.current[i] = el }}
+                                        href={link.href}
+                                        label={link.label}
+                                        icon={<link.icon size={16} />}
+                                    />
+                                </CursorZone>
                             ))}
                         </div>
                     </div>

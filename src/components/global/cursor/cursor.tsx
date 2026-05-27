@@ -99,7 +99,7 @@ export function Cursor() {
         ref={rootRef}
         aria-hidden
         className={cn(
-        "fixed inset-0 pointer-events-none z-99999999",
+        "fixed inset-0 pointer-events-none z-99999999999999",
         "opacity-0 transition-opacity duration-250 ease-out"
         )}
     >
