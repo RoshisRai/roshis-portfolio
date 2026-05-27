@@ -10,18 +10,25 @@ CREATE EXTENSION IF NOT EXISTS pg_trgm SCHEMA extensions;
 -- TABLE
 -- ==========================================
 CREATE TABLE IF NOT EXISTS knowledge_chunks (
-    id          BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    section     TEXT NOT NULL,
-    title       TEXT NOT NULL,
-    content     TEXT NOT NULL,
-    fts         TSVECTOR GENERATED ALWAYS AS (
-                    to_tsvector(
-                        'english', 
-                        COALESCE(title, '') || ' ' || COALESCE(content, '')
-                    )
-                ) STORED,
-    embedding   VECTOR(1536) NOT NULL,
-    created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    id              BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+
+    section         TEXT NOT NULL,
+    title           TEXT NOT NULL,
+    content         TEXT NOT NULL,
+
+    -- Stable deterministic hash for idempotent upserts
+    content_hash    TEXT NOT NULL,
+
+    fts             TSVECTOR GENERATED ALWAYS AS (
+                        to_tsvector(
+                            'english',
+                            COALESCE(title, '') || ' ' || COALESCE(content, '')
+                        )
+                    ) STORED,
+
+    embedding       VECTOR(1536) NOT NULL,
+
+    created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 -- ==========================================
@@ -37,20 +44,40 @@ USING (true);
 -- ==========================================
 -- INDEXES
 -- ==========================================
+
+-- Unique hash index for idempotent ingestion
+CREATE UNIQUE INDEX IF NOT EXISTS knowledge_chunks_content_hash_idx
+    ON knowledge_chunks (content_hash);
+
 -- Full-text Search
 CREATE INDEX IF NOT EXISTS knowledge_chunks_fts_idx
-    ON knowledge_chunks 
+    ON knowledge_chunks
     USING GIN(fts);
 
 -- Semantic vector search
 CREATE INDEX IF NOT EXISTS knowledge_chunks_embedding_idx
-    ON knowledge_chunks 
+    ON knowledge_chunks
     USING HNSW(embedding vector_cosine_ops);
 
 -- Fuzzy keyword matching
 CREATE INDEX IF NOT EXISTS knowledge_chunks_content_trgm_idx
-    ON knowledge_chunks 
+    ON knowledge_chunks
     USING GIN(content gin_trgm_ops);
+
+-- ==========================================
+-- CLEANUP FUNCTION
+-- ==========================================
+CREATE OR REPLACE FUNCTION delete_stale_chunks(
+    active_hashes TEXT[]
+)
+RETURNS VOID
+LANGUAGE SQL
+SECURITY DEFINER
+SET search_path = public
+AS $$
+    DELETE FROM knowledge_chunks
+    WHERE content_hash != ALL(active_hashes);
+$$;
 
 -- ==========================================
 -- HYBRID SEARCH FUNCTION
@@ -70,12 +97,13 @@ RETURNS TABLE (
     content     TEXT,
     similarity  FLOAT
 )
-LANGUAGE SQL 
+LANGUAGE SQL
 STABLE
 SECURITY INVOKER
 SET search_path = public, extensions
 AS $$
-WITH 
+WITH
+
 -- ==========================================
 -- Parse tsquery once
 -- ==========================================
@@ -146,7 +174,7 @@ SELECT
     kc.content,
     fused.similarity
 FROM fused
-JOIN knowledge_chunks kc 
+JOIN knowledge_chunks kc
     ON fused.id = kc.id
 ORDER BY fused.similarity DESC
 LIMIT LEAST(match_count, 30)
