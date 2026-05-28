@@ -116,7 +116,7 @@ Developed a construction and real estate platform supporting project showcases, 
 - Modeled relational database systems for listings and content
 
 ### Technologies
-Django, Python, PostgreSQL, JavaScript, jQuery, GSAP, AOS, Swiper, HTML, CSS, Pillow
+Django, Python, JavaScript, jQuery, GSAP, AOS, Swiper, HTML, CSS, Pillow
 
 ### Links
 Live Demo: https://amritconstruction.pythonanywhere.com/

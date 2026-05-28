@@ -37,6 +37,9 @@ Node.js, Express, MongoDB, Mongoose, JWT, Upstash QStash, Arcjet, Nodemailer, Da
 - 5 RBAC permission levels
 - 1000+ managed subscription records
 
+### Links
+GitHub: https://github.com/RoshisRai/Subscription-API
+
 ---
 
 ## EveryLinguaAI
@@ -201,6 +204,9 @@ Django, Python, JavaScript, jQuery, Particles.js, HTML, CSS, SQLite, Pillow
 - Multiple publishing and ordering subsystems
 - Responsive multi-page frontend architecture
 
+### Links
+Live Demo: https://unchartedpages.pythonanywhere.com/
+
 ---
 
 ## Fitness Club
@@ -234,3 +240,6 @@ A full-stack membership and scheduling platform built to explore MVC architectur
 
 ### Technologies
 Node.js, Express, MongoDB, EJS, Jest, JavaScript, HTML, CSS
+
+### Links
+GitHub: https://github.com/RoshisRai/FitnessClub
