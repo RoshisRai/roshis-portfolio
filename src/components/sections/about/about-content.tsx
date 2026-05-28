@@ -9,28 +9,31 @@ export const AboutContent = () => {
             </h2>
             <div className="space-y-5 text-[17px] leading-[1.7] text-text-secondary font-normal">
                 <p className="about-animate">
-                    I&rsquo;m Roshis — a full-stack engineer who finds genuine satisfaction
-                    in turning ambiguous product problems into systems that feel inevitable
-                    in hindsight. Over the past few years I&rsquo;ve shipped everything from
-                    real-time collaboration tools to ML-powered search pipelines, and the
-                    thread connecting all of it is a stubborn belief that great engineering
-                    should be invisible to the people it serves.
+                    I&apos;m Roshis — a full-stack software engineer based in Canada,
+                    focused on building production-grade web applications, AI-powered systems,
+                    and scalable backend architectures. I enjoy working across the stack,
+                    from designing APIs and databases to building fast, responsive user interfaces.
                 </p>
 
                 <p className="about-animate">
-                    When I&rsquo;m not deep in a codebase, you&rsquo;ll probably find me
-                    rebuilding vintage mechanical keyboards — there&rsquo;s something
-                    meditative about hand-lubing switches and tuning stabilizers until a
-                    board sounds exactly right. It&rsquo;s the same obsession with craft
-                    that drives how I write software: every detail either earns its place or
-                    gets removed.
+                    My recent work has centered around AI integration and retrieval systems,
+                    including building RAG pipelines, semantic search infrastructure,
+                    and embedding-driven knowledge systems using tools like Supabase,
+                    pgvector, and OpenAI APIs. I care a lot about system design, reliability,
+                    and keeping codebases maintainable as they scale.
                 </p>
 
                 <p className="about-animate">
-                    I&rsquo;m currently open to senior or staff-level roles where I can pair
-                    deep technical work with product thinking. If you&rsquo;re building
-                    something ambitious and want an engineer who cares as much about
-                    developer experience as end-user experience, let&rsquo;s talk.
+                    Outside of engineering, I like learning new technical concepts,
+                    experimenting with side projects, and refining how I build software systems end-to-end.
+                    I also enjoy staying hands-on with everything from backend architecture
+                    to frontend interaction design.
+                </p>
+
+                <p className="about-animate">
+                    I&apos;m currently open to opportunities where I can contribute to
+                    AI-driven products, SaaS platforms, or systems that require strong engineering depth
+                    and ownership. If you&apos;re building something challenging, I&apos;d be happy to connect.
                 </p>
             </div>
         </div>

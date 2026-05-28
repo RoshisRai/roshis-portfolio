@@ -12,6 +12,7 @@ interface ProjectCardMediaProps {
     isHovering: boolean
     sizes?: string
     priority?: boolean
+    intersectionThreshold?: number
 }
 
 const aspectClass: Record<NonNullable<ProjectMedia['aspect']>, string> = {
@@ -21,36 +22,73 @@ const aspectClass: Record<NonNullable<ProjectMedia['aspect']>, string> = {
     '1/1': 'aspect-square'
 }
 
+function isTouchDevice() {
+    return typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches
+}
+
 export const ProjectCardMedia = ({
     slug,
     media,
     isHovering,
     sizes = '(max-width: 756px) 100vw, (max-width: 1280) 50vw, 45vw',
     priority = false,
+    intersectionThreshold = 0.5,
 }: ProjectCardMediaProps) => {
+    const containerRef = useRef<HTMLDivElement | null>(null)
     const videoRef = useRef<HTMLVideoElement | null>(null)
+    const [isIntersecting, setIsIntersecting] = useState(false)
     const [videoReady, setVideoReady] = useState(false)
+
+    useEffect(() => {
+        if (!media.video || !isTouchDevice()) return
+
+        const currentTarget = containerRef.current
+        if (!media.video || !currentTarget || !isTouchDevice()) return
+
+        const observerOptions: IntersectionObserverInit = {
+            root: null,
+            threshold: [0, intersectionThreshold]
+        }
+
+        const observer = new IntersectionObserver(([entry]) => {
+            setIsIntersecting(entry.isIntersecting)
+        }, observerOptions)
+
+        observer.observe(currentTarget)
+        
+        return () => {
+            observer.unobserve(currentTarget)
+            observer.disconnect()
+        }
+    }, [media.video, intersectionThreshold])
 
     useEffect(() => {
         const video = videoRef.current
         if (!video || !media.video) return
 
-        if (isHovering) {
+        const shouldPlay = (isTouchDevice() ? isIntersecting : isHovering) && videoReady
+
+        if (shouldPlay) {
             void video.play().catch(() => {
                 // Auto-play can be blocked; poster image remains visible.
             })
+            console.log("start playing")
         } else {
             video.pause()
+            console.log("stop playing")
             video.currentTime = 0
         }
 
         return () => {
             if (!video.paused) video.pause()
         }
-    }, [isHovering, media.video])
+    }, [isHovering, isIntersecting, videoReady, media.video])
+
+    const videoVisible = videoReady && (isTouchDevice() ? isIntersecting : isHovering)
 
     return (
         <div
+        ref={containerRef}
         className={cn(
             'relative w-full overflow-hidden rounded-xl',
             aspectClass[media.aspect ?? '16/10'],
@@ -67,7 +105,7 @@ export const ProjectCardMedia = ({
                 className={cn(
                     'object-cover transition-transform duration-(--duration-normal) --ease-out-expo',
                     'group-hover:scale-1.03',
-                    videoReady && isHovering && 'opacity-0'
+                    videoVisible && 'opacity-0'
                 )}
             />
 
@@ -80,12 +118,12 @@ export const ProjectCardMedia = ({
                     loop
                     playsInline
                     onCanPlay={() => setVideoReady(true)}
+                    preload="metadata"
                     className={cn(
                         'absolute inset-0 w-full h-full object-cover rounded-xl',
                         'opacity-0 transition-opacity duration-(--duration-fast)',
-                        videoReady && isHovering && 'opacity-100',
+                        videoVisible && 'opacity-100',
                         //Hide video entirely on touch/coarse pointer devices
-                        '[@media(hover:none)]:hidden',
                         'motion-reduce:hidden',
                     )}
                 />
