@@ -318,3 +318,63 @@ Roshis follows structured workflows involving:
 
 ### C++
 Roshis has foundational experience with C++ from academic and systems programming coursework, including object-oriented programming concepts and lower-level memory-oriented programming fundamentals.
+
+---
+
+## Testing and Quality Engineering
+
+Roshis has experience with testing strategies focused on ensuring reliability, maintainability, and correctness in production applications.
+
+He works with:
+
+### Unit and Integration Testing
+
+* component-level testing for React applications
+* API endpoint testing in backend systems
+* validation of business logic and utility functions
+* regression prevention in evolving codebases
+
+### End-to-End Testing
+
+* full user flow testing across web applications
+* authentication and protected route testing
+* UI interaction and behavior validation
+* cross-system workflow verification
+
+### Testing Tools and Approaches
+
+* Vitest
+* Jest
+* Playwright
+* React Testing Library
+* schema validation (Zod)
+* API contract validation
+
+### Quality Practices
+
+* writing testable, modular architecture
+* separating business logic from UI concerns
+* designing predictable API contracts
+* reducing regression risk in production systems
+* improving maintainability through structured code patterns
+
+Roshis emphasizes testing as part of the development lifecycle rather than an afterthought, especially in production-grade full-stack and AI-integrated applications.
+
+
+---
+
+## Agile Workflows and Collaboration
+Roshis has experience working within Agile-inspired development workflows involving:
+- sprint planning
+- iterative feature delivery
+- issue tracking
+- backlog management
+- collaborative development cycles
+
+He has used tools such as:
+- Jira
+- GitHub Projects
+- Notion
+- Trello
+
+to coordinate development tasks, project workflows, and deployment processes across individual and collaborative environments.
