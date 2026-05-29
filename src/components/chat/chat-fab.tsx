@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 import { Sparkles } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
-import { CursorZone } from "../global/cursor/cursor-zone"
+import { CursorZone } from "@/components/global/cursor/cursor-zone"
 
 export function ChatFab() {
     const [hovered, setHovered] = useState<boolean>(false)
