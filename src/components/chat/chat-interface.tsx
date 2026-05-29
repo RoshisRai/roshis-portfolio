@@ -1,40 +1,131 @@
 'use client'
 
-import { Bot } from "lucide-react";
-import { SuggestedPrompts } from "./suggested-prompts";
-import ChatMessages from "./chat-messages";
-import { useState } from "react";
-import { ChatInput } from "./chat-input";
-import { CursorZone } from "../global/cursor/cursor-zone";
+import { useState, useCallback, useMemo } from "react"
+import { useChat } from "@ai-sdk/react"
+import { Bot } from "lucide-react"
+import { DefaultChatTransport } from "ai"
+
+import ChatMessages from "./chat-messages"
+import { ChatInput } from "./chat-input"
+import { SuggestedPrompts } from "./suggested-prompts"
+import { CursorZone } from "../global/cursor/cursor-zone"
+
+interface Source {
+    section: string
+    title: string
+}
+
+const PENDING_SOURCES_KEY = "__pending__"
+
+function createTransport(
+    onRateLimited: (limited: boolean) => void,
+    onSourcesParsed: (sources: Source[]) => void
+) {
+    return new DefaultChatTransport({
+        api: "/api/chat",
+        fetch: async (url, options) => {
+            const response = await fetch(url, options as RequestInit)
+
+            if (response.status === 429) {
+                onRateLimited(true)
+                return response
+            }
+
+            onRateLimited(false)
+
+            const sourcesHeader = response.headers.get("X-Sources")
+
+            if (sourcesHeader) {
+                try {
+                    const sources: Source[] = JSON.parse(sourcesHeader)
+                    onSourcesParsed(sources)
+                } catch (err) {
+                    console.error("Failed to parse source metadata: ", err)
+                }
+            }
+
+            return response
+        }
+    })
+}
 
 export default function ChatInterface() {
-    const [hasMessages, setHasMessages] = useState<boolean>(false);
-    const [rateLimited, setRateLimited] = useState<boolean>(false);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [input, setInput] = useState("")
+    const [rateLimited, setRateLimited] = useState<boolean>(false)
+    const [sourcesMap, setSourcesMap] = useState<Map<string, Source[]>>(
+        new Map()
+    )
 
-    const [count, setCount] = useState<number>(0);
-    const [input, setInput] = useState<string>("");
+    const handleRateLimited = useCallback((limited: boolean) => {
+        setRateLimited(limited)
+    }, [])
 
-    const handleSubmit = (e:React.SubmitEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        if(!input.trim()) return
+    const handleSourcesParsed = useCallback((sources: Source[]) => {
+        setSourcesMap(prev => {
+            const next = new Map(prev)
+            next.set(PENDING_SOURCES_KEY, sources)
+            return next
+        })
+    }, [])
 
-        const nextCount = count + 1
-        setCount(nextCount)
-        setHasMessages(true)
-        setInput("")
+    const transport = useMemo(
+        () => createTransport(handleRateLimited, handleSourcesParsed),
+        [handleRateLimited, handleSourcesParsed]
+    )
 
-        setIsLoading(true)
+    const {
+        messages,
+        sendMessage,
+        status,
+        error,
+    } = useChat({
+        transport,
+        onFinish({ message }) {
+            setSourcesMap(prev => {
+                const next = new Map(prev)
+                const pending = next.get(PENDING_SOURCES_KEY)
+
+                if (pending) {
+                    next.set(message.id, pending)
+                    next.delete(PENDING_SOURCES_KEY)
+                }
+
+                return next
+            })
+        },
+        onError(err) {
+            console.error("Chat error: ", err)
+
+            setSourcesMap(prev => {
+                const next = new Map(prev)
+                next.delete(PENDING_SOURCES_KEY)
+                return next
+            })
+        }
+    })
+
+    const isLoading = 
+        status === "submitted" || status === "streaming"
+
+    const hasMessages = messages.length > 0
+
+    const handleSubmit = useCallback(() => {
+        const trimmed = input.trim()
         
-        setTimeout(() => {
-            setIsLoading(false)
-            if(nextCount >= 4) setRateLimited(true)  
-        }, Math.floor(Math.random() * 4001) + 2000)
-    }
+        if(!trimmed || isLoading || rateLimited) return
 
-    const handlePromptSelect = () => {
-        console.log("Select Prompt")
-    }
+        setInput("")
+        sendMessage({ text: trimmed })
+    }, [input, isLoading, rateLimited, sendMessage])
+    
+    const handlePromptSelect = useCallback(
+        (prompt: string) => {
+            if (isLoading || rateLimited) return
+            sendMessage({ text: prompt })
+        },
+        [sendMessage, isLoading, rateLimited]
+    )
+
     return (
         <div className="flex flex-col min-h-[calc(100dvh-64px)] mt-16 max-w-180 mx-auto px-4 md:px-0">
             {!hasMessages && (
@@ -60,13 +151,19 @@ export default function ChatInterface() {
 
             {hasMessages && 
                 <ChatMessages 
+                    messages={messages}
                     isLoading={isLoading}
+                    sources={sourcesMap}
                 />
             }
 
             {rateLimited && (
                 <CursorZone variant="copy_email" className="contents" label="✉️">
-                    <div className="mx-4 mb-2 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-center">
+                    <div 
+                        role="status"
+                        aria-live="polite"
+                        className="mx-4 mb-2 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-center"
+                    >
                         <p className="text-xs text-amber-300">
                             I&rsquo;ve had a lot of conversations today — email Roshis directly
                             at{" "}
@@ -77,6 +174,20 @@ export default function ChatInterface() {
                         >
                             contact@roshis.dev
                         </a>
+                    </div>
+                </CursorZone>
+            )}
+
+            {error && (
+                <CursorZone variant="copy_email" className="contents" label="🛑">
+                    <div 
+                        role="alert"
+                        aria-live="polite"
+                        className="mx-4 mb-2 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-center"
+                    >
+                        <p className="text-sm text-red-300">
+                            Something went wrong. Please try again.
+                        </p>
                     </div>
                 </CursorZone>
             )}
