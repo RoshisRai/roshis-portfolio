@@ -1,14 +1,14 @@
 'use client'
 
-import { useState, useEffect } from "react";
-import { Check, Copy } from "lucide-react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import { useState, useEffect, useRef, memo } from "react"
+import { Check, Copy } from "lucide-react"
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 
 import { cn } from "@/lib/utils"
-import { renderCodeToHtml } from "@/lib/shiki";
-import { SourcePills } from "./source-pills";
-import { useTheme } from "@/providers/theme-provider";
+import { renderCodeToHtml } from "@/lib/shiki"
+import { SourcePills } from "./source-pills"
+import { useTheme } from "@/providers/theme-provider"
 
 interface Source {
     section: string
@@ -131,29 +131,63 @@ interface CodeBlockProps {
     children?: React.ReactNode
 }
 
-function CodeBlock ({
+const CodeBlock = memo(function CodeBlock ({
     className,
     children
 }: CodeBlockProps) {
-    const [copied, setCopied] = useState(false);
-    const [highlightedHtml, setHighlightedHtml] = useState<string>("");
+    const [copied, setCopied] = useState(false)
+    const [highlightedHtml, setHighlightedHtml] = useState("")
+
+    const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
     
-    const code = String(children).replace(/\n$/, "");
-    const language = className?.replace("language-", "") || "text";
+    const code = String(children ?? "").replace(/\n$/, "")
+    const language = 
+        className?.replace("language-", "") || "text"
 
     // Asynchronously compile the dual-theme token string on component mount
     useEffect(() => {
-        let isMounted = true;
-        renderCodeToHtml(code, language).then((html) => {
-            if (isMounted) setHighlightedHtml(html);
-        });
-        return () => { isMounted = false; };
-    }, [code, language]);
+        let isMounted = true
+
+        renderCodeToHtml(code, language)
+            .then((html) => {
+                if (isMounted) setHighlightedHtml(html)
+            })
+            .catch(error => {
+                console.error(
+                    "Failed to highlight code: ",
+                    error
+                )
+            })
+
+        return () => { isMounted = false }
+    }, [code, language])
+
+    useEffect(() => {
+        return () => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current)
+            }
+        }
+    }, [])
 
     const handleCopy = async () => {
-        await navigator.clipboard.writeText(code)
-        setCopied(true)
-        setTimeout(() => setCopied(false), 2000)
+        try {
+            await navigator.clipboard.writeText(code)
+            setCopied(true)
+
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current)
+            }
+
+            timeoutRef.current = setTimeout(() => {
+                setCopied(false)
+            }, 2000)
+        } catch (error) {
+            console.error(
+                "Failed to copy code:",
+                error
+            )
+        }
     }
 
     return (
@@ -171,11 +205,21 @@ function CodeBlock ({
             <button
                 type="button"
                 onClick={handleCopy}
+                aria-label={
+                    copied
+                        ? "Code copied"
+                        : "Copy code"
+                }
                 className="absolute top-0 -right-1 p-1.5 rounded-md text-text-primary bg-text-primary/5 opacity-100 sm:opacity-50 group-hover:opacity-100 cursor-pointer z-10 transition-opacity"
-                aria-label="Copy code"
             >
-                {copied ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
+                {copied ? (
+                    <Check size={14} className="text-emerald-400" />
+                ) : (
+                    <Copy size={14} />
+                )}
             </button>
         </div>
     )
-}
+})
+
+CodeBlock.displayName = "CodeBlock"
