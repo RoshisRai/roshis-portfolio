@@ -1,10 +1,11 @@
 'use client'
 
-import { cn } from "@/lib/utils"
-import { Check, Copy } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Check, Copy } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+
+import { cn } from "@/lib/utils"
 import { renderCodeToHtml } from "@/lib/shiki";
 import { SourcePills } from "./source-pills";
 import { useTheme } from "@/providers/theme-provider";
@@ -15,7 +16,7 @@ interface Source {
 }
 
 interface ChatBubbleProps {
-    role: 'user' | 'assistant'
+    role: "user" | "assistant"
     content: string
     sources?: Source[]
     isStreaming?: boolean
@@ -25,12 +26,16 @@ export function ChatBubble({
     role,
     content,
     sources,
-    isStreaming,
+    isStreaming = false,
 }: ChatBubbleProps) {
     const isUser = role === 'user'
     const { theme } = useTheme()
+
     return (
-        <div className={cn("flex w-full", isUser ? "justify-end" : "justify-start")}>
+        <div className={cn(
+            "flex w-full", 
+            isUser ? "justify-end" : "justify-start"
+        )}>
             <div className={cn(
                 "sm:max-w-[80%] max-w-full px-4 py-3 text-[15px] leading-relaxed",
                 isUser
@@ -38,67 +43,98 @@ export function ChatBubble({
                     : "bg-text-primary/4 border border-text-primary/6 text-text-primary rounded-[16px_16px_16px_4px]"
             )}>
                 {isUser ? (
-                    <p>{content}</p>
+                    <p className="whitespace-pre-wrap wrap-break-word">
+                        {content}
+                    </p>
                 ): (
                     <div 
                         className={cn(
-                            "prose max-w-none",
+                            "prose max-w-none overflow-hidden",
                             theme === "dark" && "prose-invert",
                         )}
                     >
                         <ReactMarkdown
                             remarkPlugins={[remarkGfm]}
-                            components={{
-                                code({ className, children, ...props }) {
-                                    const isInline = !className;
-                                    if (isInline) {
-                                        return (
-                                            <code
-                                                className="px-1.5 py-0.5 rounded bg-text-primary/6 text-[13px] font-mono"
-                                                {...props}
-                                            >
-                                                {children}
-                                            </code>
-                                        )
-                                    }
-                                    return <CodeBlock className={className}>{children}</CodeBlock>
-                                },
-                                a({ href, children }) {
-                                    return (
-                                        <a
-                                            href={href}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-accent underline underline-offset-2 hover:text-accent-hover"
-                                        >
-                                            {children}
-                                        </a>
-                                    )
-                                }
-                            }}
+                            components={markdownComponents}
                         >
                             {content}
                         </ReactMarkdown>
                     </div>
                 )}
 
-                {!isUser && sources && sources.length > 0 && !isStreaming && (
-                    <div className="mt-3 pt-2 border-t border-text-primary/6 flex flex-wrap gap-2">
-                        <SourcePills sources={sources} />
-                    </div>
+                {!isUser && 
+                    sources && 
+                    sources.length > 0 && 
+                    !isStreaming && (
+                        <div className="mt-3 pt-2 border-t border-text-primary/6 flex flex-wrap gap-2">
+                            <SourcePills sources={sources} />
+                        </div>
                 )}
             </div>
         </div>
     )
 }
 
+const markdownComponents = {
+    code({ 
+        className, 
+        children, 
+        ...props 
+    }: {
+        className?: string
+        children?: React.ReactNode
+    }) {
+        const codeText = String(children ?? "")
+        
+        const isInline = 
+            !className &&
+            !codeText.includes("\n")
+
+        if (isInline) {
+            return (
+                <code
+                    className="px-1.5 py-0.5 rounded bg-text-primary/6 text-[13px] font-mono"
+                    {...props}
+                >
+                    {children}
+                </code>
+            )
+        }
+        return (
+            <CodeBlock className={className}>
+                {children}
+            </CodeBlock>
+        )
+    },
+    a({ 
+        href, 
+        children 
+    }: {
+        href?: string
+        children?: React.ReactNode
+    }) {
+        return (
+            <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent underline underline-offset-2 hover:text-accent-hover transition-colors"
+            >
+                {children}
+            </a>
+        )
+    }
+}
+
+interface CodeBlockProps {
+    className?: string
+    children?: React.ReactNode
+}
+
 function CodeBlock ({
     className,
     children
-}: {
-    className?: string;
-    children: React.ReactNode;
-}) {
+}: CodeBlockProps) {
     const [copied, setCopied] = useState(false);
     const [highlightedHtml, setHighlightedHtml] = useState<string>("");
     
