@@ -1,13 +1,14 @@
 'use client'
 
+import { useState, useEffect, useRef, memo } from "react"
+import { Check, Copy } from "lucide-react"
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
+
 import { cn } from "@/lib/utils"
-import { Check, Copy } from "lucide-react";
-import { useState, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import { renderCodeToHtml } from "@/lib/shiki";
-import { SourcePills } from "./source-pills";
-import { useTheme } from "@/providers/theme-provider";
+import { renderCodeToHtml } from "@/lib/shiki"
+import { SourcePills } from "./source-pills"
+import { useTheme } from "@/providers/theme-provider"
 
 interface Source {
     section: string
@@ -15,7 +16,7 @@ interface Source {
 }
 
 interface ChatBubbleProps {
-    role: 'user' | 'assistant'
+    role: "user" | "assistant"
     content: string
     sources?: Source[]
     isStreaming?: boolean
@@ -25,12 +26,16 @@ export function ChatBubble({
     role,
     content,
     sources,
-    isStreaming,
+    isStreaming = false,
 }: ChatBubbleProps) {
     const isUser = role === 'user'
     const { theme } = useTheme()
+
     return (
-        <div className={cn("flex w-full", isUser ? "justify-end" : "justify-start")}>
+        <div className={cn(
+            "flex w-full", 
+            isUser ? "justify-end" : "justify-start"
+        )}>
             <div className={cn(
                 "sm:max-w-[80%] max-w-full px-4 py-3 text-[15px] leading-relaxed",
                 isUser
@@ -38,86 +43,151 @@ export function ChatBubble({
                     : "bg-text-primary/4 border border-text-primary/6 text-text-primary rounded-[16px_16px_16px_4px]"
             )}>
                 {isUser ? (
-                    <p>{content}</p>
+                    <p className="whitespace-pre-wrap wrap-break-word">
+                        {content}
+                    </p>
                 ): (
                     <div 
                         className={cn(
-                            "prose max-w-none",
+                            "prose max-w-none overflow-hidden",
                             theme === "dark" && "prose-invert",
                         )}
                     >
                         <ReactMarkdown
                             remarkPlugins={[remarkGfm]}
-                            components={{
-                                code({ className, children, ...props }) {
-                                    const isInline = !className;
-                                    if (isInline) {
-                                        return (
-                                            <code
-                                                className="px-1.5 py-0.5 rounded bg-text-primary/6 text-[13px] font-mono"
-                                                {...props}
-                                            >
-                                                {children}
-                                            </code>
-                                        )
-                                    }
-                                    return <CodeBlock className={className}>{children}</CodeBlock>
-                                },
-                                a({ href, children }) {
-                                    return (
-                                        <a
-                                            href={href}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-accent underline underline-offset-2 hover:text-accent-hover"
-                                        >
-                                            {children}
-                                        </a>
-                                    )
-                                }
-                            }}
+                            components={markdownComponents}
                         >
                             {content}
                         </ReactMarkdown>
                     </div>
                 )}
 
-                {!isUser && sources && sources.length > 0 && !isStreaming && (
-                    <div className="mt-3 pt-2 border-t border-text-primary/6 flex flex-wrap gap-2">
-                        <SourcePills sources={sources} />
-                    </div>
+                {!isUser && 
+                    sources && 
+                    sources.length > 0 && 
+                    !isStreaming && (
+                        <div className="mt-3 pt-2 border-t border-text-primary/6 flex flex-wrap gap-2">
+                            <SourcePills sources={sources} />
+                        </div>
                 )}
             </div>
         </div>
     )
 }
 
-function CodeBlock ({
+const markdownComponents = {
+    code({ 
+        className, 
+        children, 
+        ...props 
+    }: {
+        className?: string
+        children?: React.ReactNode
+    }) {
+        const codeText = String(children ?? "")
+        
+        const isInline = 
+            !className &&
+            !codeText.includes("\n")
+
+        if (isInline) {
+            return (
+                <code
+                    className="px-1.5 py-0.5 rounded bg-text-primary/6 text-[13px] font-mono"
+                    {...props}
+                >
+                    {children}
+                </code>
+            )
+        }
+        return (
+            <CodeBlock className={className}>
+                {children}
+            </CodeBlock>
+        )
+    },
+    a({ 
+        href, 
+        children 
+    }: {
+        href?: string
+        children?: React.ReactNode
+    }) {
+        return (
+            <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent underline underline-offset-2 hover:text-accent-hover transition-colors"
+            >
+                {children}
+            </a>
+        )
+    }
+}
+
+interface CodeBlockProps {
+    className?: string
+    children?: React.ReactNode
+}
+
+const CodeBlock = memo(function CodeBlock ({
     className,
     children
-}: {
-    className?: string;
-    children: React.ReactNode;
-}) {
-    const [copied, setCopied] = useState(false);
-    const [highlightedHtml, setHighlightedHtml] = useState<string>("");
+}: CodeBlockProps) {
+    const [copied, setCopied] = useState(false)
+    const [highlightedHtml, setHighlightedHtml] = useState("")
+
+    const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
     
-    const code = String(children).replace(/\n$/, "");
-    const language = className?.replace("language-", "") || "text";
+    const code = String(children ?? "").replace(/\n$/, "")
+    const language = 
+        className?.replace("language-", "") || "text"
 
     // Asynchronously compile the dual-theme token string on component mount
     useEffect(() => {
-        let isMounted = true;
-        renderCodeToHtml(code, language).then((html) => {
-            if (isMounted) setHighlightedHtml(html);
-        });
-        return () => { isMounted = false; };
-    }, [code, language]);
+        let isMounted = true
+
+        renderCodeToHtml(code, language)
+            .then((html) => {
+                if (isMounted) setHighlightedHtml(html)
+            })
+            .catch(error => {
+                console.error(
+                    "Failed to highlight code: ",
+                    error
+                )
+            })
+
+        return () => { isMounted = false }
+    }, [code, language])
+
+    useEffect(() => {
+        return () => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current)
+            }
+        }
+    }, [])
 
     const handleCopy = async () => {
-        await navigator.clipboard.writeText(code)
-        setCopied(true)
-        setTimeout(() => setCopied(false), 2000)
+        try {
+            await navigator.clipboard.writeText(code)
+            setCopied(true)
+
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current)
+            }
+
+            timeoutRef.current = setTimeout(() => {
+                setCopied(false)
+            }, 2000)
+        } catch (error) {
+            console.error(
+                "Failed to copy code:",
+                error
+            )
+        }
     }
 
     return (
@@ -135,11 +205,21 @@ function CodeBlock ({
             <button
                 type="button"
                 onClick={handleCopy}
+                aria-label={
+                    copied
+                        ? "Code copied"
+                        : "Copy code"
+                }
                 className="absolute top-0 -right-1 p-1.5 rounded-md text-text-primary bg-text-primary/5 opacity-100 sm:opacity-50 group-hover:opacity-100 cursor-pointer z-10 transition-opacity"
-                aria-label="Copy code"
             >
-                {copied ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
+                {copied ? (
+                    <Check size={14} className="text-emerald-400" />
+                ) : (
+                    <Copy size={14} />
+                )}
             </button>
         </div>
     )
-}
+})
+
+CodeBlock.displayName = "CodeBlock"

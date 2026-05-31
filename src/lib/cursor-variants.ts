@@ -10,7 +10,8 @@ export type CursorVariant =
   | "scene"       // over Three.js canvas
   | "hidden"      // inside inputs, code blocks, etc.
   | "project"
-  | "copy_email";
+  | "copy_email"
+  | "tooltip";
 
 export interface CursorVariantConfig {
   /** Inner dot size in px */
@@ -134,5 +135,16 @@ export const CURSOR_VARIANTS: Record<CursorVariant, CursorVariantConfig> = {
     labelPlacement: "center",
     glow: 120,
     ringDamping: 0.2
+  },
+  tooltip: {
+    dotSize: 6,
+    ringSize: 180,
+    ringOpacity: 0.9,
+    dotOpacity: 1,
+    ringBorder: 1.5,
+    label: 'View',
+    glow: 120,
+    ringDamping: 0.2,
+    ringScale: 1.1
   }
 };

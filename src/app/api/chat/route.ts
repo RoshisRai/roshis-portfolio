@@ -4,25 +4,9 @@ import { headers } from "next/headers"
 
 import { retrieveRelevantChunks } from "@/lib/rag/retrieval"
 import { chatRatelimit } from "@/lib/ratelimit"
+import { SYSTEM_PROMPT } from "@/lib/rag/system-prompt"
 
 export const maxDuration = 30
-
-const SYSTEM_PROMPT = `You are Roshis Rai's AI portfolio assistant. Your role is to answer questions about Roshis's professional experience, projects, skills, and background.
-
-RULES:
-1. ONLY answer using the provided context below. Never invent or hallucinate information.
-2. If the context does not contain enough information to answer, say: "I don't have specific information about that. You can reach out to Roshis directly for more details."
-3. Be concise, professional, and helpful. Use markdown formatting (bold, lists, code) when appropriate.
-4. When referencing information, naturally mention which section it comes from (e.g., "Based on his experience at..." or "In his project...").
-5. Keep responses under 300 words unless the question explicitly asks for detail.
-6. Be warm and personable — you represent Roshis.
-7. For questions about availability or opportunities, guide users to the contact section or email. Keep the response neutral and do not assume role level.
-
-CONTEXT:
-{context}
-
-SOURCES:
-{sources}`
 
 export async function POST(req: Request) {
     try {
