@@ -3,10 +3,10 @@
 import { CursorZone } from "../global/cursor/cursor-zone"
 
 const PROMPTS = [
-    "What's his approach to system design?",
-    "Tell me about his backend experience",
-    "What projects has Roshis built?",
-    "Is he open to new opportunities?",
+  "What makes Roshis a strong software engineer?",
+  "What technologies does he specialize in?",
+  "Tell me about his most impressive project",
+  "Is he open to new opportunities?"
 ]
 
 interface SuggestedPromptsProps {
@@ -15,7 +15,7 @@ interface SuggestedPromptsProps {
 
 export const SuggestedPrompts = ({ onSelect }: SuggestedPromptsProps) => {
     return (
-        <div className="grid grid-cols-1 sm:flex sm:flex-wrap gap-2 justify-center mt-4 max-w-2xl mx-auto px-4">
+        <div className="grid grid-cols-1 sm:flex sm:flex-wrap gap-2 justify-center mt-4 max-w-3xl mx-auto px-4">
             {PROMPTS.map((prompt) => (
                 <CursorZone 
                     variant="button"

@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "velite && tsc --noEmit",
-    "content": "velite --clean"
+    "content": "velite --clean",
+    "ingest": "tsx src/scripts/ingest-knowledge-base.ts"
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.66",
@@ -24,7 +25,6 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "cobe": "^2.0.1",
-    "dotenv": "^17.4.2",
     "gsap": "^3.14.2",
     "jsx-email": "^3.2.0",
     "lenis": "^1.3.21",
@@ -47,6 +47,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@next/env": "^16.2.6",
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^20",
@@ -60,6 +61,7 @@
     "prettier": "^3.8.2",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4",
+    "tsx": "^4.22.3",
     "typescript": "^5"
   }
 }

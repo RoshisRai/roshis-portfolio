@@ -1,14 +1,14 @@
 /**
  * Run with:
- * pnpm dlx tsx scripts/ingest-knowledge-base.ts
+ * pnpm tsx scripts/ingest-knowledge-base.ts
  *
  * Reads all markdown files in content/knowledge-base/,
  * chunks them, generates embeddings,
  * upserts into Supabase,
  * and removes stale chunks.
  */
-
-import "dotenv/config"
+import { loadEnvConfig } from "@next/env";
+loadEnvConfig(process.cwd())
 
 import { createServerSupabaseClient } from "@/lib/supabase/server"
 import { ingestFile, loadMarkdownFiles } from "@/lib/rag/ingest"
