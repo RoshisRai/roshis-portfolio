@@ -72,10 +72,8 @@ export const ProjectCardMedia = ({
             void video.play().catch(() => {
                 // Auto-play can be blocked; poster image remains visible.
             })
-            console.log("start playing")
         } else {
             video.pause()
-            console.log("stop playing")
             video.currentTime = 0
         }
 

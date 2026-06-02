@@ -22,19 +22,20 @@ export const metadata: Metadata = {
 
   keywords: [
     "Roshis Rai",
+    "Roshis Rai Portfolio",
     "Full Stack Engineer",
     "Software Developer Portfolio",
     "Next.js Developer",
-    "System Design",
-    "React",
-    "Node.js",
-    "TypeScript",
-    "AI Engineer",
-    "RAG systems",
+    "React Node.js Developer",
+    "TypeScript Engineer",
+    "Django Full Stack Developer",
+    "AI Engineer Portfolio",
+    "RAG Systems Developer",
+    "LLM Integration Engineer",
+    "Remote Software Engineer"
   ],
 
   authors: [{ name: "Roshis Rai" }],
-
   creator: "Roshis Rai",
   publisher: "Roshis Rai",
 
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: `${SITE_URL}/images/og-image.png`,
+        url: `/images/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Roshis Rai Portfolio",
@@ -65,7 +66,7 @@ export const metadata: Metadata = {
     title: "Roshis Rai — Full-Stack Software Engineer",
     description:
       "Full-stack engineer building scalable systems and AI-powered applications.",
-    images: [`${SITE_URL}/images/og-image.png`],
+    images: [`/images/og-image.png`],
   },
 
   robots: {
