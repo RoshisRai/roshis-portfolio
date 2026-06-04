@@ -162,14 +162,16 @@ export default function ChatMessages({
                     isLoading && "animate-pulse-soft",
                 )}>
                     <CursorZone variant="tooltip" label="Roshis AI Assistant" className="contents">
-                        <Image
-                            src="/images/logo.svg"
-                            alt="Roshis Rai"
-                            width={32}
-                            height={32}
-                            style={{ width: 32, height: 32 }}
-                            priority
-                        />
+                        <div className="flex items-center transition-opacity duration-(--duration-fast) hover:opacity-90 rounded-md overflow-hidden">
+                            <Image
+                                src="/images/logo.svg"
+                                alt="Roshis Rai"
+                                width={32}
+                                height={32}
+                                style={{ width: 32, height: 32 }}
+                                priority 
+                            />
+                        </div>
                     </CursorZone>
                 </div>
             </div>
