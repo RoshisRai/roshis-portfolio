@@ -1,5 +1,9 @@
 import ChatInterface from "@/components/chat/chat-interface";
 import type { Metadata } from "next";
+import { siteConfig } from "@/seo/config/site";
+
+const url = `${siteConfig.url}/chat`;
+const ogImage = `${siteConfig.url}/images/og-chat-preview.png`;
 
 export const metadata: Metadata = {
   title: "Chat with AI Assistant",
@@ -7,19 +11,19 @@ export const metadata: Metadata = {
     "Ask questions about Roshis Rai's experience, projects, system design approach, and technical skills using an AI-powered portfolio assistant.",
 
   alternates: {
-    canonical: `/chat`,
+    canonical: url,
   },
 
   openGraph: {
     title: "Chat with Roshis Rai's AI Assistant",
     description:
-      "Interact with an AI portfolio assistant trained on Roshis Rai’s engineering experience and projects.",
-    url: "/chat",
-    siteName: "Roshis Rai Portfolio",
+      "Interact with an AI portfolio assistant trained on Roshis Rai's engineering experience and projects.",
+    url,
+    siteName: siteConfig.name,
     type: "website",
     images: [
       {
-        url: `/images/og-chat-preview.png`,
+        url: ogImage,
         width: 1200,
         height: 630,
         alt: "AI Portfolio Chat Interface",
@@ -32,7 +36,7 @@ export const metadata: Metadata = {
     title: "Chat with Roshis Rai's AI Assistant",
     description:
       "Explore engineering experience, projects, and system design through an AI assistant.",
-    images: [`/images/og-chat-preview.png`],
+    images: [ogImage],
   },
 
   robots: {
@@ -42,9 +46,9 @@ export const metadata: Metadata = {
 }
 
 export default function ChatPage() {
-    return (
-        <div className="min-h-[calc(100dvh-64px)]">
-            <ChatInterface />
-        </div>
-    )
+  return (
+    <div className="min-h-[calc(100dvh-64px)]">
+      <ChatInterface />
+    </div>
+  )
 }

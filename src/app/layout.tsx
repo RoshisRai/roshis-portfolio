@@ -1,27 +1,27 @@
 import type { Metadata } from "next"
 import Script from "next/script"
-import { fontSans, fontDisplay, fontMono } from "@/lib/fonts"
-import { Providers } from "@/providers/providers"
-import "./globals.css"
-import { LayoutShell } from "@/components/layout/layout-shell"
 
-const SITE_URL = "https://roshis.dev"
+import { fontSans, fontDisplay, fontMono } from "@/lib/fonts"
+import "./globals.css"
+import { Providers } from "@/providers/providers"
+import { LayoutShell } from "@/components/layout/layout-shell"
+import { siteConfig } from "@/seo/config/site";
+
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(siteConfig.url),
 
   title: {
-    default: "Roshis Rai — Full-Stack Software Engineer",
-    template: "%s | Roshis Rai",
+    default: siteConfig.title,
+    template: `%s | ${siteConfig.name}`,
   },
 
-  description:
-    "Full-Stack Software Engineer specializing in scalable web applications, system design, APIs, and AI-powered systems.",
+  description: siteConfig.description,
 
-  applicationName: "Roshis Rai Portfolio",
+  applicationName: `${siteConfig.name} Portfolio`,
 
   keywords: [
-    "Roshis Rai",
+    `${siteConfig.name}`,
     "Roshis Rai Portfolio",
     "Full Stack Engineer",
     "Software Developer Portfolio",
@@ -35,38 +35,36 @@ export const metadata: Metadata = {
     "Remote Software Engineer"
   ],
 
-  authors: [{ name: "Roshis Rai" }],
-  creator: "Roshis Rai",
-  publisher: "Roshis Rai",
+  authors: [{ name: siteConfig.author }],
+  creator: siteConfig.author,
+  publisher: siteConfig.author,
 
   alternates: {
-    canonical: SITE_URL,
+    canonical: siteConfig.author,
   },
 
   openGraph: {
-    title: "Roshis Rai — Full-Stack Software Engineer",
-    description:
-      "Portfolio showcasing full-stack engineering projects, scalable systems, and AI-powered applications.",
-    url: SITE_URL,
-    siteName: "Roshis Rai Portfolio",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: `${siteConfig.name} Portfolio`,
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: `/images/og-image.png`,
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: "Roshis Rai Portfolio",
+        alt: `${siteConfig.name} Portfolio`,
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Roshis Rai — Full-Stack Software Engineer",
-    description:
-      "Full-stack engineer building scalable systems and AI-powered applications.",
-    images: [`/images/og-image.png`],
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
   },
 
   robots: {
