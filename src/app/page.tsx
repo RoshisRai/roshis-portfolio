@@ -7,6 +7,7 @@ import { ExperienceSection } from "@/components/sections/experience/experience-s
 import { HeroSection } from "@/components/sections/hero/hero"
 import { ProjectsSection } from "@/components/sections/projects/projects-section"
 import { SkillsSection } from "@/components/sections/skills/skills-section"
+
 import { siteConfig } from "@/seo/config/site";
 
 export const metadata: Metadata = {

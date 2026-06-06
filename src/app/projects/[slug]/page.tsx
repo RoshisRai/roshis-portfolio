@@ -7,7 +7,13 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { CursorZone } from "@/components/global/cursor/cursor-zone";
 import { CaseStudyPage } from "@/components/case-study/case-study-page";
+
 import { siteConfig } from "@/seo/config/site";
+import { JsonLd } from "@/components/seo/json-ld";
+import {
+    getProjectJsonLd,
+    getBreadcrumbJsonLd
+ } from "@/seo/jsonld"
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -94,12 +100,17 @@ export default async function ProjectCaseStudyRoute({
   const { prev, next } = getAdjacentProjects(slug);
 
   return (
-    <CursorZone variant="default">
-      <CaseStudyPage
-        project={project}
-        prev={prev ? { slug: prev.slug, title: prev.title } : undefined}
-        next={next ? { slug: next.slug, title: next.title } : undefined}
-      />
-    </CursorZone>
+    <>
+      <JsonLd data={getProjectJsonLd(project)} />
+      <JsonLd data={getBreadcrumbJsonLd(project)} />
+
+      <CursorZone variant="default">
+        <CaseStudyPage
+          project={project}
+          prev={prev ? { slug: prev.slug, title: prev.title } : undefined}
+          next={next ? { slug: next.slug, title: next.title } : undefined}
+        />
+      </CursorZone>
+    </>
   );
 }

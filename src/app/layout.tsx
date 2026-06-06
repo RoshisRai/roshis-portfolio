@@ -5,7 +5,13 @@ import { fontSans, fontDisplay, fontMono } from "@/lib/fonts"
 import "./globals.css"
 import { Providers } from "@/providers/providers"
 import { LayoutShell } from "@/components/layout/layout-shell"
+
 import { siteConfig } from "@/seo/config/site";
+import { JsonLd } from "@/components/seo/json-ld";
+import {
+    getWebsiteJsonLd,
+    getPersonJsonLd
+ } from "@/seo/jsonld"
 
 
 export const metadata: Metadata = {
@@ -111,6 +117,9 @@ export default function RootLayout({
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: themeScript }}
         />
+
+        <JsonLd data={getWebsiteJsonLd()} />
+        <JsonLd data={getPersonJsonLd()} />
 
         <Providers>
           <LayoutShell>{children}</LayoutShell>
