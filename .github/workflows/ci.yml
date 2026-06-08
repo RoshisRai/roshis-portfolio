@@ -69,7 +69,6 @@ jobs:
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          NEXT_PUBLIC_ANALYTICS_ID: "TEST" #Stubbed for build purposes.
 
       # ── 4. Deploy preview (PRs only) ─────────────────────────────────────────
       # Uploads the prebuilt artifact to Vercel as a preview deployment.
