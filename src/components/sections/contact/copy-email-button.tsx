@@ -34,7 +34,7 @@ export const CopyEmailButton = () => {
                 >{EMAIL}</Link>
             </CursorZone>
 
-            <CursorZone variant="copy_email" label="😊">
+            <CursorZone variant="icon" label="😊">
                 <button
                     type="button"
                     onClick={handleCopy}
