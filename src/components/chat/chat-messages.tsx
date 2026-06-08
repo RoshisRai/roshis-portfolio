@@ -139,7 +139,7 @@ export default function ChatMessages({
                 }
 
                 {rateLimited && (
-                    <CursorZone variant="copy_email" label="✉️" className="contents">
+                    <CursorZone variant="icon" label="✉️" className="contents">
                         <a 
                             href="mailto:contact@roshis.dev"
                             className="inline-block w-full p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-center"

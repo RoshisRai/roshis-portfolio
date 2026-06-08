@@ -10,7 +10,7 @@ export type CursorVariant =
   | "scene"       // over Three.js canvas
   | "hidden"      // inside inputs, code blocks, etc.
   | "project"
-  | "copy_email"
+  | "icon"
   | "tooltip";
 
 export interface CursorVariantConfig {
@@ -125,13 +125,13 @@ export const CURSOR_VARIANTS: Record<CursorVariant, CursorVariantConfig> = {
     ringDamping: 0.2,
     ringScale: 1.1
   },
-  copy_email: {
+  icon: {
     dotSize: 0,
     ringSize: 40,
     ringOpacity: 1,
     dotOpacity: 0,
     ringBorder: 1.5,
-    label: 'Copy',
+    label: 'I',
     labelPlacement: "center",
     glow: 120,
     ringDamping: 0.2

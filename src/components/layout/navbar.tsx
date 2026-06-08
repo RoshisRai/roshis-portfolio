@@ -14,12 +14,13 @@ import Image from 'next/image'
 import { Magnetic } from '../global/cursor/magnetic'
 import { disableProjectSharedVTForNextNav, HEADER_VT_NAME } from '@/lib/project-transition'
 import { Bot } from 'lucide-react'
+import { CursorZone } from '../global/cursor/cursor-zone'
 
 const navLinks = [
-    { label: 'Projects',   href: '/#projects'   },
-    { label: 'Skills',     href: '/#skills'     },
-    { label: 'Experience', href: '/#experience' },
-    { label: 'About',      href: '/#about'      },
+    { label: 'Projects',   href: '/#projects',   hoverIcon: '💻' },
+    { label: 'Skills',     href: '/#skills',     hoverIcon: '⚡' },
+    { label: 'Experience', href: '/#experience', hoverIcon: '💼' },
+    { label: 'About',      href: '/#about',      hoverIcon: '🧑‍💻' },
 ]
 
 export { navLinks }
@@ -74,25 +75,31 @@ export function Navbar() {
                 <nav className="mx-auto flex h-16 max-w-(--max-width-content) items-center justify-between px-6">
 
                     {/* Logo */}
-                    <Link
-                        href="/"
-                        onClick={handleLogoClick}
-                        className={cn(
-                            'flex items-center',
-                            'transition-opacity duration-(--duration-fast)',
-                            'hover:opacity-90',
-                            'rounded-md overflow-hidden'
-                        )}
+                    <CursorZone
+                        variant="icon"
+                        label="🏠"
+                        className='contents'
                     >
-                        <Image
-                            src="/images/logo.svg"
-                            alt="Roshis Rai"
-                            width={32}
-                            height={32}
-                            style={{ width: 32, height: 32 }}
-                            priority
-                        />
-                    </Link>
+                        <Link
+                            href="/"
+                            onClick={handleLogoClick}
+                            className={cn(
+                                'flex items-center',
+                                'transition-opacity duration-(--duration-fast)',
+                                'hover:opacity-90',
+                                'rounded-md overflow-hidden'
+                            )}
+                        >
+                            <Image
+                                src="/images/logo.svg"
+                                alt="Roshis Rai"
+                                width={32}
+                                height={32}
+                                style={{ width: 32, height: 32 }}
+                                priority
+                            />
+                        </Link>
+                    </CursorZone>
 
                     {/* Desktop nav links */}
                     <div className="hidden items-center gap-8 md:flex">
@@ -101,32 +108,38 @@ export function Navbar() {
                             const isActive = isHome && activeSection === sectionId
 
                             return (
-                                <Link
+                                <CursorZone
+                                    variant='icon'
+                                    label={link.hoverIcon}
                                     key={link.href}
-                                    href={link.href}
-                                    onClick={handleNavLinkClick(link.href)}
-                                    className={cn(
-                                        'relative text-sm font-medium',
-                                        'transition-colors duration-(--duration-fast)',
-                                        'cursor-pointer',
-                                        isActive
-                                            ? 'text-text-primary'
-                                            : 'text-text-secondary hover:text-text-primary',
-                                    )}
+                                    className='contents'
                                 >
-                                    {link.label}
-                                    <span
+                                    <Link
+                                        href={link.href}
+                                        onClick={handleNavLinkClick(link.href)}
                                         className={cn(
-                                            'absolute -bottom-1 left-0',
-                                            'h-0.5 w-full rounded-full bg-accent',
-                                            'transition-all duration-(--duration-fast)',
-                                            'origin-left',
+                                            'relative text-sm font-medium',
+                                            'transition-colors duration-(--duration-fast)',
+                                            'cursor-pointer',
                                             isActive
-                                                ? 'opacity-100 scale-x-100'
-                                                : 'opacity-0 scale-x-0',
+                                                ? 'text-text-primary'
+                                                : 'text-text-secondary hover:text-text-primary',
                                         )}
-                                    />
-                                </Link>
+                                    >
+                                        {link.label}
+                                        <span
+                                            className={cn(
+                                                'absolute -bottom-1 left-0',
+                                                'h-0.5 w-full rounded-full bg-accent',
+                                                'transition-all duration-(--duration-fast)',
+                                                'origin-left',
+                                                isActive
+                                                    ? 'opacity-100 scale-x-100'
+                                                    : 'opacity-0 scale-x-0',
+                                            )}
+                                        />
+                                    </Link>
+                                </CursorZone>
                             )
                         })}
                     </div>
@@ -134,19 +147,25 @@ export function Navbar() {
                     {/* Right side — theme toggle + CTA */}
                     <div className="hidden items-center gap-3 md:flex">
                         <ThemeToggle />
-                        <Magnetic strength={0.6} elementPull={0.2}>
-                        {pathname === "/chat" 
-                            ? <Link href='/' onClick={handleNavLinkClick('/#contact')}>
-                                    <Button size="sm" className='cursor-pointer'>
-                                        Let&apos;s Talk 👋
-                                    </Button>
-                            </Link> 
-                            : <Link href='/chat'>
-                                    <Button size="sm" className='cursor-pointer'>
-                                        Ask AI <Bot size={20} />
-                                    </Button>
-                            </Link>
-                        }
+                        <Magnetic strength={0.2} elementPull={0.1}>
+                            <CursorZone
+                                variant="icon"
+                                label="✨"
+                                className='contents'
+                            >
+                                {pathname === "/chat" 
+                                    ? <Link href='/' onClick={handleNavLinkClick('/#contact')}>
+                                            <Button size="sm" className='cursor-pointer'>
+                                                Let&apos;s Talk 👋
+                                            </Button>
+                                    </Link> 
+                                    : <Link href='/chat'>
+                                            <Button size="sm" className='cursor-pointer'>
+                                                Ask AI <Bot size={20} />
+                                            </Button>
+                                    </Link>
+                                }
+                            </CursorZone>
                         </Magnetic>
                     </div>
 

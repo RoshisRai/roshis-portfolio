@@ -182,7 +182,7 @@ export default function ChatInterface() {
             )}
 
             {error && httpStatus !== 429 && (
-                <CursorZone variant="copy_email" className="contents" label="🛑">
+                <CursorZone variant="icon" className="contents" label="🛑">
                     <div
                         role="alert"
                         aria-live="polite"
