@@ -250,7 +250,7 @@ Follow these steps to deploy the architecture locally.
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/roshis-portfolio.git
+git clone https://github.com/RoshisRai/roshis-portfolio.git
 cd roshis-portfolio
 ```
 
@@ -261,9 +261,28 @@ pnpm install
 ```
 
 ### 3. Environment Configuration
-Copy the example variables and populate them with your Supabase credentials and email provider keys.
-```bash
-cp .env.example .env.local
+Create a `.env.local` file in the root of the project and populate it with the required API keys and credentials:
+
+```env
+# SEND EMAIL
+RESEND_API_KEY=
+MAIL_FROM="Portfolio Contact <contact@your-company.com>"
+PERSONAL_EMAIL="example@gmail.com"
+
+# SUPABASE
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+
+# OPENAI
+OPENAI_API_KEY=
+
+# UPSTASH REDIS (FOR RATE LIMITING)
+UPSTASH_REDIS_REST_URL=
+UPSTASH_REDIS_REST_TOKEN=
+
+# ANALYTICS
+NEXT_PUBLIC_GA_ID="G-XXXXXXXXXX"
 ```
 
 ### 4. Initialize Local Development
