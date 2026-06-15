@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   publisher: siteConfig.author,
 
   alternates: {
-    canonical: siteConfig.author,
+    canonical: siteConfig.url,
   },
 
   openGraph: {
