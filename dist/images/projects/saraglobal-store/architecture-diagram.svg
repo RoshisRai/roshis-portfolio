@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 590" font-family="'JetBrains Mono', 'Fira Code', monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f0f14"/>
+      <stop offset="100%" stop-color="#0a0a0f"/>
+    </linearGradient>
+
+    <linearGradient id="grad-frontend" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f472b6" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#f472b6" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="grad-backend" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#60a5fa" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="grad-database" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="grad-media" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="grad-email" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#facc15" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#facc15" stop-opacity="0.05"/>
+    </linearGradient>
+
+    <marker id="arr-fe" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#f472b6" fill-opacity="0.7"/>
+    </marker>
+    <marker id="arr-be" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#60a5fa" fill-opacity="0.7"/>
+    </marker>
+    <marker id="arr-db" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#22d3ee" fill-opacity="0.7"/>
+    </marker>
+    <marker id="arr-med" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#34d399" fill-opacity="0.7"/>
+    </marker>
+    <marker id="arr-email" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#facc15" fill-opacity="0.7"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="590" fill="url(#bg)"/>
+
+  <g stroke="#ffffff" stroke-opacity="0.02" stroke-width="1">
+    <line x1="0" y1="145" x2="960" y2="145"/>
+    <line x1="0" y1="290" x2="960" y2="290"/>
+    <line x1="0" y1="435" x2="960" y2="435"/>
+    <line x1="240" y1="0" x2="240" y2="590"/>
+    <line x1="480" y1="0" x2="480" y2="590"/>
+    <line x1="720" y1="0" x2="720" y2="590"/>
+  </g>
+
+  <text x="480" y="34" text-anchor="middle" font-size="10" fill="#8888a0" letter-spacing="3">DJANGO MULTI-APP ARCHITECTURE</text>
+  <text x="480" y="56" text-anchor="middle" font-size="19" fill="#e8e8ed" font-weight="700">Sara Global Store E-commerce Suite</text>
+  <text x="480" y="74" text-anchor="middle" font-size="10" fill="#8888a0">Django 3.2.5 · HTML/CSS/JS · SQLite/Postgres · Pillow · Email</text>
+
+  <line x1="120" y1="150" x2="120" y2="200" stroke="#f472b6" stroke-opacity="0.5" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-fe)"/>
+  <line x1="240" y1="255" x2="300" y2="255" stroke="#60a5fa" stroke-opacity="0.5" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-be)"/>
+  <line x1="420" y1="255" x2="480" y2="255" stroke="#60a5fa" stroke-opacity="0.45" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-be)"/>
+  <line x1="580" y1="300" x2="580" y2="360" stroke="#22d3ee" stroke-opacity="0.5" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-db)"/>
+  <line x1="640" y1="270" x2="740" y2="270" stroke="#34d399" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-med)"/>
+  <line x1="660" y1="310" x2="820" y2="310" stroke="#facc15" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-email)"/>
+
+  <g data-layer="frontend">
+    <rect x="30" y="100" width="180" height="54" rx="10" fill="url(#grad-frontend)" stroke="#f472b6" stroke-opacity="0.45" stroke-width="1.5"/>
+    <text x="120" y="120" text-anchor="middle" font-size="8.5" fill="#f472b6" letter-spacing="2">CLIENT</text>
+    <text x="120" y="138" text-anchor="middle" font-size="12.5" fill="#e8e8ed" font-weight="600">Customer Browser</text>
+    <text x="120" y="152" text-anchor="middle" font-size="8" fill="#8888a0">Browse · Cart · Checkout</text>
+
+    <rect x="30" y="200" width="210" height="120" rx="10" fill="url(#grad-frontend)" stroke="#f472b6" stroke-opacity="0.5" stroke-width="1.5"/>
+    <text x="135" y="221" text-anchor="middle" font-size="8.5" fill="#f472b6" letter-spacing="2">TEMPLATES</text>
+    <text x="135" y="239" text-anchor="middle" font-size="12.5" fill="#e8e8ed" font-weight="600">Django Templates</text>
+
+    <rect x="44" y="250" width="62" height="18" rx="4" fill="#f472b6" fill-opacity="0.12" stroke="#f472b6" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="75" y="262" text-anchor="middle" font-size="8" fill="#fbcfe8">base.html</text>
+    <rect x="112" y="250" width="62" height="18" rx="4" fill="#f472b6" fill-opacity="0.12" stroke="#f472b6" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="143" y="262" text-anchor="middle" font-size="8" fill="#fbcfe8">home/</text>
+    <rect x="180" y="250" width="50" height="18" rx="4" fill="#f472b6" fill-opacity="0.12" stroke="#f472b6" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="205" y="262" text-anchor="middle" font-size="8" fill="#fbcfe8">components</text>
+
+    <text x="135" y="286" text-anchor="middle" font-size="8.5" fill="#e8e8ed" font-weight="500">Static Assets</text>
+    <rect x="44" y="292" width="48" height="17" rx="4" fill="#f472b6" fill-opacity="0.1" stroke="#f472b6" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="68" y="304" text-anchor="middle" font-size="8" fill="#fbcfe8">CSS</text>
+    <rect x="100" y="292" width="48" height="17" rx="4" fill="#f472b6" fill-opacity="0.1" stroke="#f472b6" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="124" y="304" text-anchor="middle" font-size="8" fill="#fbcfe8">JS/jQuery</text>
+    <rect x="156" y="292" width="48" height="17" rx="4" fill="#f472b6" fill-opacity="0.1" stroke="#f472b6" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="180" y="304" text-anchor="middle" font-size="8" fill="#fbcfe8">UI</text>
+  </g>
+
+  <g data-layer="backend">
+    <rect x="300" y="222" width="120" height="64" rx="10" fill="url(#grad-backend)" stroke="#60a5fa" stroke-opacity="0.5" stroke-width="1.5"/>
+    <text x="360" y="244" text-anchor="middle" font-size="8.5" fill="#60a5fa" letter-spacing="2">ROUTER</text>
+    <text x="360" y="262" text-anchor="middle" font-size="11.5" fill="#e8e8ed" font-weight="600">URL Dispatcher</text>
+    <text x="360" y="276" text-anchor="middle" font-size="8" fill="#8888a0">saraglobalstore/urls.py</text>
+
+    <rect x="460" y="190" width="210" height="115" rx="10" fill="url(#grad-backend)" stroke="#60a5fa" stroke-opacity="0.55" stroke-width="1.5"/>
+    <text x="565" y="212" text-anchor="middle" font-size="8.5" fill="#60a5fa" letter-spacing="2">APPS · BUSINESS LOGIC</text>
+    <text x="565" y="230" text-anchor="middle" font-size="12.5" fill="#e8e8ed" font-weight="600">Django Apps</text>
+    <rect x="474" y="238" width="86" height="18" rx="4" fill="#60a5fa" fill-opacity="0.12" stroke="#60a5fa" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="517" y="250" text-anchor="middle" font-size="8" fill="#bfdbfe">products</text>
+    <rect x="566" y="238" width="86" height="18" rx="4" fill="#60a5fa" fill-opacity="0.12" stroke="#60a5fa" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="609" y="250" text-anchor="middle" font-size="8" fill="#bfdbfe">cart</text>
+    <rect x="474" y="260" width="86" height="18" rx="4" fill="#60a5fa" fill-opacity="0.12" stroke="#60a5fa" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="517" y="272" text-anchor="middle" font-size="8" fill="#bfdbfe">orders</text>
+    <rect x="566" y="260" width="86" height="18" rx="4" fill="#60a5fa" fill-opacity="0.12" stroke="#60a5fa" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="609" y="272" text-anchor="middle" font-size="8" fill="#bfdbfe">users</text>
+    <rect x="474" y="282" width="86" height="18" rx="4" fill="#60a5fa" fill-opacity="0.12" stroke="#60a5fa" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="517" y="294" text-anchor="middle" font-size="8" fill="#bfdbfe">reviews</text>
+    <rect x="566" y="282" width="86" height="18" rx="4" fill="#60a5fa" fill-opacity="0.12" stroke="#60a5fa" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="609" y="294" text-anchor="middle" font-size="8" fill="#bfdbfe">home</text>
+
+    <rect x="460" y="310" width="210" height="58" rx="10" fill="#60a5fa" fill-opacity="0.08" stroke="#60a5fa" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="565" y="330" text-anchor="middle" font-size="8" fill="#60a5fa" letter-spacing="1">ADMIN &amp; CONTROL</text>
+    <text x="565" y="346" text-anchor="middle" font-size="8" fill="#8888a0">Django Admin · Inventory · Promos</text>
+  </g>
+
+  <g data-layer="database">
+    <rect x="460" y="380" width="210" height="90" rx="10" fill="url(#grad-database)" stroke="#22d3ee" stroke-opacity="0.55" stroke-width="1.5"/>
+    <text x="565" y="401" text-anchor="middle" font-size="8.5" fill="#22d3ee" letter-spacing="2">DATABASE</text>
+    <text x="565" y="419" text-anchor="middle" font-size="12.5" fill="#e8e8ed" font-weight="600">SQLite / PostgreSQL</text>
+    <text x="565" y="437" text-anchor="middle" font-size="8" fill="#8888a0">Orders · Products · Users · Reviews</text>
+    <rect x="480" y="444" width="80" height="18" rx="4" fill="#22d3ee" fill-opacity="0.12" stroke="#22d3ee" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="520" y="456" text-anchor="middle" font-size="8" fill="#a5f3fc">Dev: SQLite</text>
+    <rect x="570" y="444" width="80" height="18" rx="4" fill="#22d3ee" fill-opacity="0.12" stroke="#22d3ee" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="610" y="456" text-anchor="middle" font-size="8" fill="#a5f3fc">Prod: Postgres</text>
+  </g>
+
+  <g data-layer="media">
+    <rect x="710" y="190" width="220" height="210" rx="10" fill="url(#grad-media)" stroke="#34d399" stroke-opacity="0.55" stroke-width="1.5"/>
+    <text x="820" y="211" text-anchor="middle" font-size="8.5" fill="#34d399" letter-spacing="2">MEDIA</text>
+    <text x="820" y="229" text-anchor="middle" font-size="12.5" fill="#e8e8ed" font-weight="600">Pillow · Uploads</text>
+    <text x="820" y="245" text-anchor="middle" font-size="8" fill="#8888a0">Products · Banners · Slides</text>
+
+    <rect x="726" y="256" width="188" height="22" rx="5" fill="#34d399" fill-opacity="0.1" stroke="#34d399" stroke-opacity="0.22" stroke-width="1"/>
+    <text x="734" y="270" font-size="8" fill="#6ee7b7">products/</text>
+    <text x="902" y="270" text-anchor="end" font-size="8" fill="#8888a0">images</text>
+    <rect x="726" y="284" width="188" height="22" rx="5" fill="#34d399" fill-opacity="0.1" stroke="#34d399" stroke-opacity="0.22" stroke-width="1"/>
+    <text x="734" y="298" font-size="8" fill="#6ee7b7">banners/</text>
+    <text x="902" y="298" text-anchor="end" font-size="8" fill="#8888a0">promos</text>
+    <rect x="726" y="312" width="188" height="22" rx="5" fill="#34d399" fill-opacity="0.1" stroke="#34d399" stroke-opacity="0.22" stroke-width="1"/>
+    <text x="734" y="326" font-size="8" fill="#6ee7b7">slides/</text>
+    <text x="902" y="326" text-anchor="end" font-size="8" fill="#8888a0">hero content</text>
+    <rect x="726" y="340" width="188" height="22" rx="5" fill="#34d399" fill-opacity="0.1" stroke="#34d399" stroke-opacity="0.22" stroke-width="1"/>
+    <text x="734" y="354" font-size="8" fill="#6ee7b7">static/</text>
+    <text x="902" y="354" text-anchor="end" font-size="8" fill="#8888a0">assets</text>
+  </g>
+
+  <g data-layer="emails">
+    <rect x="60" y="370" width="230" height="130" rx="12" fill="url(#grad-email)" stroke="#facc15" stroke-opacity="0.45" stroke-width="1.5"/>
+    <text x="175" y="392" text-anchor="middle" font-size="8.5" fill="#facc15" letter-spacing="2">EMAILS</text>
+    <text x="175" y="412" text-anchor="middle" font-size="12.5" fill="#e8e8ed" font-weight="600">Notifications</text>
+    <text x="175" y="430" text-anchor="middle" font-size="8" fill="#8888a0">Order confirmations · Status updates</text>
+
+    <rect x="78" y="442" width="194" height="20" rx="6" fill="#facc15" fill-opacity="0.1" stroke="#facc15" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="175" y="456" text-anchor="middle" font-size="8" fill="#fef08a">Template rendering</text>
+    <rect x="78" y="468" width="194" height="20" rx="6" fill="#facc15" fill-opacity="0.1" stroke="#facc15" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="175" y="482" text-anchor="middle" font-size="8" fill="#fef08a">SMTP delivery</text>
+  </g>
+</svg>

@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580" font-family="'JetBrains Mono', 'Fira Code', monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f0f14"/>
+      <stop offset="100%" stop-color="#0a0a0f"/>
+    </linearGradient>
+
+    <linearGradient id="grad-frontend" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6b4eff" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#6b4eff" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="grad-backend" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#60a5fa" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="grad-database" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="grad-animations" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f472b6" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#f472b6" stop-opacity="0.05"/>
+    </linearGradient>
+
+    <marker id="arr-fe" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#6b4eff" fill-opacity="0.7"/>
+    </marker>
+    <marker id="arr-be" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#60a5fa" fill-opacity="0.7"/>
+    </marker>
+    <marker id="arr-db" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#22d3ee" fill-opacity="0.7"/>
+    </marker>
+    <marker id="arr-anim" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#f472b6" fill-opacity="0.7"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="580" fill="url(#bg)"/>
+
+  <g stroke="#ffffff" stroke-opacity="0.02" stroke-width="1">
+    <line x1="0" y1="145" x2="960" y2="145"/>
+    <line x1="0" y1="290" x2="960" y2="290"/>
+    <line x1="0" y1="435" x2="960" y2="435"/>
+    <line x1="240" y1="0" x2="240" y2="580"/>
+    <line x1="480" y1="0" x2="480" y2="580"/>
+    <line x1="720" y1="0" x2="720" y2="580"/>
+  </g>
+
+  <text x="480" y="34" text-anchor="middle" font-size="10" fill="#8888a0" letter-spacing="3">MVT + CONTENT PLATFORM</text>
+  <text x="480" y="56" text-anchor="middle" font-size="19" fill="#e8e8ed" font-weight="700">Uncharted Pages Publishing Suite</text>
+  <text x="480" y="74" text-anchor="middle" font-size="10" fill="#8888a0">Django · HTML/CSS/JS · Particles.js · SQLite · PythonAnywhere</text>
+
+  <line x1="120" y1="150" x2="120" y2="200" stroke="#6b4eff" stroke-opacity="0.5" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-fe)"/>
+  <line x1="240" y1="255" x2="300" y2="255" stroke="#60a5fa" stroke-opacity="0.5" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-be)"/>
+  <line x1="420" y1="255" x2="480" y2="255" stroke="#60a5fa" stroke-opacity="0.45" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-be)"/>
+  <line x1="580" y1="300" x2="580" y2="360" stroke="#22d3ee" stroke-opacity="0.5" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-db)"/>
+  <line x1="660" y1="260" x2="760" y2="260" stroke="#f472b6" stroke-opacity="0.45" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-anim)"/>
+
+  <g data-layer="frontend">
+    <rect x="30" y="98" width="180" height="54" rx="10" fill="url(#grad-frontend)" stroke="#6b4eff" stroke-opacity="0.45" stroke-width="1.5"/>
+    <text x="120" y="118" text-anchor="middle" font-size="8.5" fill="#6b4eff" letter-spacing="2">CLIENT</text>
+    <text x="120" y="136" text-anchor="middle" font-size="12.5" fill="#e8e8ed" font-weight="600">Reader Browser</text>
+    <text x="120" y="150" text-anchor="middle" font-size="8" fill="#8888a0">Browse · Read · Order</text>
+
+    <rect x="30" y="200" width="210" height="120" rx="10" fill="url(#grad-frontend)" stroke="#6b4eff" stroke-opacity="0.5" stroke-width="1.5"/>
+    <text x="135" y="221" text-anchor="middle" font-size="8.5" fill="#6b4eff" letter-spacing="2">TEMPLATES</text>
+    <text x="135" y="239" text-anchor="middle" font-size="12.5" fill="#e8e8ed" font-weight="600">Django Templates</text>
+
+    <rect x="44" y="250" width="62" height="18" rx="4" fill="#6b4eff" fill-opacity="0.12" stroke="#6b4eff" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="75" y="262" text-anchor="middle" font-size="8" fill="#c4b5fd">base.html</text>
+    <rect x="112" y="250" width="62" height="18" rx="4" fill="#6b4eff" fill-opacity="0.12" stroke="#6b4eff" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="143" y="262" text-anchor="middle" font-size="8" fill="#c4b5fd">home/</text>
+    <rect x="180" y="250" width="50" height="18" rx="4" fill="#6b4eff" fill-opacity="0.12" stroke="#6b4eff" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="205" y="262" text-anchor="middle" font-size="8" fill="#c4b5fd">pages</text>
+
+    <text x="135" y="286" text-anchor="middle" font-size="8.5" fill="#e8e8ed" font-weight="500">Static Assets</text>
+    <rect x="44" y="292" width="48" height="17" rx="4" fill="#6b4eff" fill-opacity="0.1" stroke="#6b4eff" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="68" y="304" text-anchor="middle" font-size="8" fill="#c4b5fd">CSS</text>
+    <rect x="100" y="292" width="48" height="17" rx="4" fill="#6b4eff" fill-opacity="0.1" stroke="#6b4eff" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="124" y="304" text-anchor="middle" font-size="8" fill="#c4b5fd">JS</text>
+    <rect x="156" y="292" width="48" height="17" rx="4" fill="#6b4eff" fill-opacity="0.1" stroke="#6b4eff" stroke-opacity="0.2" stroke-width="1"/>
+    <text x="180" y="304" text-anchor="middle" font-size="8" fill="#c4b5fd">UI</text>
+  </g>
+
+  <g data-layer="backend">
+    <rect x="300" y="222" width="120" height="64" rx="10" fill="url(#grad-backend)" stroke="#60a5fa" stroke-opacity="0.5" stroke-width="1.5"/>
+    <text x="360" y="244" text-anchor="middle" font-size="8.5" fill="#60a5fa" letter-spacing="2">ROUTER</text>
+    <text x="360" y="262" text-anchor="middle" font-size="11.5" fill="#e8e8ed" font-weight="600">URL Dispatcher</text>
+    <text x="360" y="276" text-anchor="middle" font-size="8" fill="#8888a0">uncharted/urls.py</text>
+
+    <rect x="460" y="190" width="210" height="115" rx="10" fill="url(#grad-backend)" stroke="#60a5fa" stroke-opacity="0.55" stroke-width="1.5"/>
+    <text x="565" y="212" text-anchor="middle" font-size="8.5" fill="#60a5fa" letter-spacing="2">APPS · BUSINESS LOGIC</text>
+    <text x="565" y="230" text-anchor="middle" font-size="12.5" fill="#e8e8ed" font-weight="600">Django Apps</text>
+    <rect x="474" y="238" width="86" height="18" rx="4" fill="#60a5fa" fill-opacity="0.12" stroke="#60a5fa" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="517" y="250" text-anchor="middle" font-size="8" fill="#bfdbfe">books</text>
+    <rect x="566" y="238" width="86" height="18" rx="4" fill="#60a5fa" fill-opacity="0.12" stroke="#60a5fa" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="609" y="250" text-anchor="middle" font-size="8" fill="#bfdbfe">orders</text>
+    <rect x="474" y="260" width="86" height="18" rx="4" fill="#60a5fa" fill-opacity="0.12" stroke="#60a5fa" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="517" y="272" text-anchor="middle" font-size="8" fill="#bfdbfe">customers</text>
+    <rect x="566" y="260" width="86" height="18" rx="4" fill="#60a5fa" fill-opacity="0.12" stroke="#60a5fa" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="609" y="272" text-anchor="middle" font-size="8" fill="#bfdbfe">cms</text>
+    <rect x="474" y="282" width="86" height="18" rx="4" fill="#60a5fa" fill-opacity="0.12" stroke="#60a5fa" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="517" y="294" text-anchor="middle" font-size="8" fill="#bfdbfe">blog</text>
+    <rect x="566" y="282" width="86" height="18" rx="4" fill="#60a5fa" fill-opacity="0.12" stroke="#60a5fa" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="609" y="294" text-anchor="middle" font-size="8" fill="#bfdbfe">reviews</text>
+
+    <rect x="460" y="310" width="210" height="58" rx="10" fill="#60a5fa" fill-opacity="0.08" stroke="#60a5fa" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="565" y="330" text-anchor="middle" font-size="8" fill="#60a5fa" letter-spacing="1">ADMIN &amp; CMS</text>
+    <text x="565" y="346" text-anchor="middle" font-size="8" fill="#8888a0">Django Admin · Content Workflows</text>
+  </g>
+
+  <g data-layer="database">
+    <rect x="460" y="380" width="210" height="90" rx="10" fill="url(#grad-database)" stroke="#22d3ee" stroke-opacity="0.55" stroke-width="1.5"/>
+    <text x="565" y="401" text-anchor="middle" font-size="8.5" fill="#22d3ee" letter-spacing="2">DATABASE</text>
+    <text x="565" y="419" text-anchor="middle" font-size="12.5" fill="#e8e8ed" font-weight="600">SQLite</text>
+    <text x="565" y="437" text-anchor="middle" font-size="8" fill="#8888a0">Books · Orders · Users · Reviews</text>
+    <rect x="480" y="444" width="80" height="18" rx="4" fill="#22d3ee" fill-opacity="0.12" stroke="#22d3ee" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="520" y="456" text-anchor="middle" font-size="8" fill="#a5f3fc">Primary DB</text>
+  </g>
+
+  <g data-layer="animations">
+    <rect x="720" y="190" width="210" height="180" rx="10" fill="url(#grad-animations)" stroke="#f472b6" stroke-opacity="0.55" stroke-width="1.5"/>
+    <text x="825" y="211" text-anchor="middle" font-size="8.5" fill="#f472b6" letter-spacing="2">ANIMATIONS</text>
+    <text x="825" y="229" text-anchor="middle" font-size="12.5" fill="#e8e8ed" font-weight="600">Particles + JS FX</text>
+    <text x="825" y="245" text-anchor="middle" font-size="8" fill="#8888a0">3D-like layers · UI motion</text>
+
+    <rect x="736" y="256" width="178" height="22" rx="5" fill="#f472b6" fill-opacity="0.1" stroke="#f472b6" stroke-opacity="0.22" stroke-width="1"/>
+    <text x="744" y="270" font-size="8" fill="#fbcfe8">Particles.js</text>
+    <text x="905" y="270" text-anchor="end" font-size="8" fill="#8888a0">ambient effects</text>
+    <rect x="736" y="284" width="178" height="22" rx="5" fill="#f472b6" fill-opacity="0.1" stroke="#f472b6" stroke-opacity="0.22" stroke-width="1"/>
+    <text x="744" y="298" font-size="8" fill="#fbcfe8">Scene transitions</text>
+    <text x="905" y="298" text-anchor="end" font-size="8" fill="#8888a0">page flows</text>
+    <rect x="736" y="312" width="178" height="22" rx="5" fill="#f472b6" fill-opacity="0.1" stroke="#f472b6" stroke-opacity="0.22" stroke-width="1"/>
+    <text x="744" y="326" font-size="8" fill="#fbcfe8">Interactive UI</text>
+    <text x="905" y="326" text-anchor="end" font-size="8" fill="#8888a0">hover states</text>
+  </g>
+</svg>
