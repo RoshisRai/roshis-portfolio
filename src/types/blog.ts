@@ -133,3 +133,12 @@ export interface TableOfContentsItem {
   text: string;
   level: 2 | 3 | 4;
 }
+
+export interface BlogSearchIndex {
+    _id: string
+    title: string
+    slug: string
+    excerpt: string
+    category: string
+    tags: string[]
+}
