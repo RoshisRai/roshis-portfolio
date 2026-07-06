@@ -24,6 +24,8 @@ export interface SanityImageSource {
 export type CodeLanguage =
   | "typescript"
   | "javascript"
+  | "tsx"
+  | "jsx"
   | "python"
   | "bash"
   | "sql"
@@ -32,8 +34,10 @@ export type CodeLanguage =
   | "go"
   | "rust"
   | "css"
+  | "scss"
   | "html"
-  | "diff";
+  | "diff"
+  | "text";
 
 export interface SanityCodeBlock {
   _key: string;
