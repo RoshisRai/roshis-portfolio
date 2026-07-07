@@ -6,4 +6,5 @@ export const siteConfig = {
     author: "Roshis Rai",
     title: "Roshis Rai — Full-Stack Software Engineer",
     ogImage: "/images/og-image.png",
+    email: "contact@roshis.dev",
 };
