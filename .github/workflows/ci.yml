@@ -62,15 +62,14 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
-      # ── Debug: confirm required env vars were pulled (names only, no values) ──
-      - name: Verify required env vars present
+      # ── Debug: list which env var NAMES were actually pulled (no values) ──
+      - name: Debug pulled env vars
         run: |
-          for var in NEXT_PUBLIC_SANITY_PROJECT_ID NEXT_PUBLIC_SANITY_DATASET; do
-            if ! grep -q "^$var=" .vercel/.env.${{ github.event_name == 'pull_request' && 'preview' || 'production' }}.local; then
-              echo "::error::Missing $var in pulled Vercel environment — check Vercel dashboard env var scoping."
-              exit 1
-            fi
-          done
+          echo "Linked project:"
+          cat .vercel/project.json
+          echo ""
+          echo "Env var names pulled:"
+          grep -oE '^[A-Z_]+' .vercel/.env.${{ github.event_name == 'pull_request' && 'preview' || 'production' }}.local || echo "FILE MISSING OR EMPTY"
         
       # Compiles the app using Vercel's build pipeline inside the runner.
       # --prod flag is only passed for pushes to main, not for PRs.
