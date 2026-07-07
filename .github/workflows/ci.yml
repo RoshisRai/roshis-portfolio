@@ -62,14 +62,14 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
-      # ── Debug: list which env var NAMES were actually pulled (no values) ──
-      - name: Debug pulled env vars
+      # ── Debug: list which env var NAMES were actually pulled with length of their values
+      - name: Debug pulled env var VALUES (masked)
         run: |
-          echo "Linked project:"
-          cat .vercel/project.json
-          echo ""
-          echo "Env var names pulled:"
-          grep -oE '^[A-Z_]+' .vercel/.env.${{ github.event_name == 'pull_request' && 'preview' || 'production' }}.local || echo "FILE MISSING OR EMPTY"
+          node -e "
+            require('dotenv').config({ path: '.vercel/.env.${{ github.event_name == 'pull_request' && 'preview' || 'production' }}.local' });
+            const vars = ['NEXT_PUBLIC_SANITY_PROJECT_ID', 'NEXT_PUBLIC_SANITY_DATASET', 'SANITY_STUDIO_PROJECT_ID'];
+            vars.forEach(v => console.log(v, '-> length:', (process.env[v] || '').length));
+          "
         
       # Compiles the app using Vercel's build pipeline inside the runner.
       # --prod flag is only passed for pushes to main, not for PRs.

@@ -1,24 +1,21 @@
 import { createClient } from '@sanity/client'
 import type { QueryParams } from '@sanity/client'
-
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? process.env.SANITY_STUDIO_PROJECT_ID
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production'
-const apiVersion = '2026-06-16'
+import { sanityConfig } from '@/sanity/env' // adjust path to wherever env.ts actually lives
 
 export const sanityClient = createClient({
-    projectId,
-    dataset,
-    apiVersion,
+    projectId: sanityConfig.projectId,
+    dataset: sanityConfig.dataset,
+    apiVersion: sanityConfig.apiVersion,
     useCdn: true,
     perspective: 'published',
 })
 
 export const sanityPreviewClient = createClient({
-    projectId,
-    dataset,
-    apiVersion,
+    projectId: sanityConfig.projectId,
+    dataset: sanityConfig.dataset,
+    apiVersion: sanityConfig.apiVersion,
     useCdn: false,
-    token: process.env.SANITY_API_READ_TOKEN,
+    token: sanityConfig.token,
     perspective: 'previewDrafts',
 })
 
@@ -32,6 +29,5 @@ export async function sanityFetch<T>(
     options: FetchOptions = {},
 ): Promise<T> {
     const client = options.preview ? sanityPreviewClient : sanityClient
-
     return client.fetch<T>(query, params)
 }
