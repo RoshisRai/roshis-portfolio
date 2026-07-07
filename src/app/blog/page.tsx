@@ -61,15 +61,16 @@ export const metadata: Metadata = {
 const PAGE_SIZE = 10;
 
 interface BlogPageProps {
-  searchParams?: {
+  searchParams?: Promise<{
     category?: string;
     page?: string;
-  };
+  }>;
 }
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
-  const category = searchParams?.category;
-  const page = Math.max(1, Number(searchParams?.page ?? 1));
+  const resolvedSearchParams = await searchParams;
+  const category = resolvedSearchParams?.category;
+  const page = Math.max(1, Number(resolvedSearchParams?.page ?? 1));
 
   const isCategoryFiltered = Boolean(category);
 

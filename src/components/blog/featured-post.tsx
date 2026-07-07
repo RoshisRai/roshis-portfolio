@@ -60,7 +60,7 @@ export function FeaturedPost({
                     />
                 </div>
 
-                <div className="flex flex-col justify-center p-6 lg:px-0 lg:py-8 lg:pr-8">
+                <div className="flex flex-col justify-center p-6 lg:px-5 lg:py-8 lg:pr-8">
                     <div className="mb-3 flex items-center gap-2">
                         <span
                             className={cn(
