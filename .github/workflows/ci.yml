@@ -65,10 +65,11 @@ jobs:
       # ── Debug: list which env var NAMES were actually pulled with length of their values
       - name: Debug pulled env var VALUES (masked)
         run: |
-          node -e "
-            require('dotenv').config({ path: '.vercel/.env.${{ github.event_name == 'pull_request' && 'preview' || 'production' }}.local' });
-            const vars = ['NEXT_PUBLIC_SANITY_PROJECT_ID', 'NEXT_PUBLIC_SANITY_DATASET', 'SANITY_STUDIO_PROJECT_ID'];
-            vars.forEach(v => console.log(v, '-> length:', (process.env[v] || '').length));
+          FILE=".vercel/.env.${{ github.event_name == 'pull_request' && 'preview' || 'production' }}.local"
+          for var in NEXT_PUBLIC_SANITY_PROJECT_ID NEXT_PUBLIC_SANITY_DATASET SANITY_STUDIO_PROJECT_ID; do
+            value=$(grep "^$var=" "$FILE" | cut -d '=' -f2-)
+            echo "$var -> length: ${#value}"
+          done.forEach(v => console.log(v, '-> length:', (process.env[v] || '').length));
           "
         
       # Compiles the app using Vercel's build pipeline inside the runner.
