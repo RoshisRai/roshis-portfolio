@@ -1,4 +1,4 @@
-import { sanityFetch } from "./client";
+import { isSanityConfigured, sanityFetch } from "./client";
 import {
     POST_CARD_PROJECTION,
     POST_FULL_PROJECTION,
@@ -48,6 +48,14 @@ export async function getBlogListing({
     pageSize = 10,
     preview = false,
 }: ListingOptions): Promise<BlogListingResponse> {
+    if (!isSanityConfigured) {
+        return {
+            posts: [],
+            total: 0,
+            categories: [],
+        };
+    }
+
     const start = (page - 1) * pageSize;
     const end = start + pageSize;
 
@@ -110,6 +118,10 @@ export async function getPostBySlug(
     slug: string,
     preview = false,
 ): Promise<BlogPost | null> {
+    if (!isSanityConfigured) {
+        return null;
+    }
+
     return sanityFetch(
         `*[
         ${PUBLISHED_POST_FILTER}
@@ -127,6 +139,10 @@ export async function getRelatedPosts(
     limit = 3,
     preview = false,
 ): Promise<BlogPostCard[]> {
+    if (!isSanityConfigured) {
+        return [];
+    }
+
     return sanityFetch(
         `*[
             ${PUBLISHED_POST_FILTER}
@@ -148,6 +164,10 @@ export async function getRelatedPosts(
 export async function getFeaturedPost(
     preview = false,
 ): Promise<BlogPostCard | null> {
+    if (!isSanityConfigured) {
+        return null;
+    }
+
     return sanityFetch(
         `*[
             ${PUBLISHED_POST_FILTER}
@@ -165,6 +185,10 @@ export async function getRecentPosts(
     limit = 3,
     preview = false,
 ): Promise<BlogPostCard[]> {
+    if (!isSanityConfigured) {
+        return [];
+    }
+
     return sanityFetch(
         `*[
             ${PUBLISHED_POST_FILTER}
@@ -180,6 +204,10 @@ export async function getRecentPosts(
 export async function getAllPostSlugs(
     preview = false,
 ): Promise<PostSlug[]> {
+    if (!isSanityConfigured) {
+        return [];
+    }
+
     return sanityFetch(
         `*[
             ${PUBLISHED_POST_FILTER}
@@ -198,6 +226,10 @@ export async function getAllPostSlugs(
 export async function getAllPostsForSearch(
     preview = false,
 ): Promise<SearchPost[]> {
+    if (!isSanityConfigured) {
+        return [];
+    }
+
     return sanityFetch(
         `*[
             ${PUBLISHED_POST_FILTER}
@@ -220,6 +252,10 @@ export async function getPostsForRss(
     limit = 20,
     preview = false,
 ): Promise<RssPost[]> {
+    if (!isSanityConfigured) {
+        return [];
+    }
+
     return sanityFetch(
         `*[
             ${PUBLISHED_POST_FILTER}

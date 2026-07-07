@@ -1,12 +1,20 @@
 import { createClient } from '@sanity/client'
 import type { QueryParams } from '@sanity/client'
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? process.env.SANITY_STUDIO_PROJECT_ID
+function readEnv(value: string | undefined): string | undefined {
+    const trimmed = value?.trim()
+    return trimmed ? trimmed : undefined
+}
+
+const projectId = readEnv(process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) ?? readEnv(process.env.SANITY_STUDIO_PROJECT_ID)
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production'
 const apiVersion = '2026-06-16'
+const fallbackProjectId = 'placeholder-project-id'
+
+export const isSanityConfigured = Boolean(projectId)
 
 export const sanityClient = createClient({
-    projectId,
+    projectId: projectId ?? fallbackProjectId,
     dataset,
     apiVersion,
     useCdn: true,
@@ -14,7 +22,7 @@ export const sanityClient = createClient({
 })
 
 export const sanityPreviewClient = createClient({
-    projectId,
+    projectId: projectId ?? fallbackProjectId,
     dataset,
     apiVersion,
     useCdn: false,
