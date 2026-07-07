@@ -69,8 +69,7 @@ jobs:
           for var in NEXT_PUBLIC_SANITY_PROJECT_ID NEXT_PUBLIC_SANITY_DATASET SANITY_STUDIO_PROJECT_ID; do
             value=$(grep "^$var=" "$FILE" | cut -d '=' -f2-)
             echo "$var -> length: ${#value}"
-          done.forEach(v => console.log(v, '-> length:', (process.env[v] || '').length));
-          "
+          done
         
       # Compiles the app using Vercel's build pipeline inside the runner.
       # --prod flag is only passed for pushes to main, not for PRs.
