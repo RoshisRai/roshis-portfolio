@@ -1,18 +1,140 @@
+import { Suspense } from "react";
+import {
+  getBlogListing,
+  getFeaturedPost,
+  getAllPostsForSearch,
+} from "@/lib/sanity/queries";
+
+import { CategoryFilter } from "@/components/blog/category-filter";
+import { BlogListingClient } from "@/components/blog/blog-listing-client";
+import { Pagination } from "@/components/blog/pagination";
+
 import type { Metadata } from "next";
+import { siteConfig } from "@/seo/config/site";
+
+const url = `${siteConfig.url}/blog`;
+const ogImage = siteConfig.ogImage;
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Engineering articles and technical writing by Roshis Rai.",
+  description:
+    "Thoughts on system design, full-stack engineering, and building software that scales.",
+
+  alternates: {
+    canonical: url,
+    types: {
+      "application/rss+xml": `${siteConfig.url}/blog/feed.xml`,
+    },
+  },
+
+  openGraph: {
+    title: "Blog | " + siteConfig.name,
+    description:
+      "Thoughts on system design, full-stack engineering, and building software that scales.",
+    url,
+    siteName: siteConfig.name,
+    type: "website",
+    images: [
+      {
+        url: ogImage,
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} Blog`,
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | " + siteConfig.name,
+    description:
+      "Thoughts on system design, full-stack engineering, and building software that scales.",
+    images: [ogImage],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
-export default function BlogPage() {
+const PAGE_SIZE = 10;
+
+interface BlogPageProps {
+  searchParams?: {
+    category?: string;
+    page?: string;
+  };
+}
+
+export default async function BlogPage({ searchParams }: BlogPageProps) {
+  const category = searchParams?.category;
+  const page = Math.max(1, Number(searchParams?.page ?? 1));
+
+  const isCategoryFiltered = Boolean(category);
+
+  /**
+   * Fetch core blog data in parallel
+   */
+  const [listing, featuredPost, searchIndex] = await Promise.all([
+    getBlogListing({
+      category,
+      page,
+      pageSize: PAGE_SIZE,
+    }),
+
+    // Only show featured post on unfiltered view
+    isCategoryFiltered
+      ? Promise.resolve(null)
+      : getFeaturedPost(),
+
+    // Search index always needed for client search
+    getAllPostsForSearch(),
+  ]);
+
+  const { posts, total, categories } = listing;
+  const totalPages = Math.ceil(total / PAGE_SIZE);
+
   return (
-    <main className="container py-24">
-      <h1 className="text-4xl font-bold">Blog</h1>
-      <p className="mt-4 text-muted-foreground">
-        Coming soon. I&apos;ll be sharing articles on software engineering, AI,
-        system design, and lessons learned from building production applications.
-      </p>
+    <main className="min-h-screen py-20 md:py-28">
+      <div className="mx-auto max-w-275 px-4 md:px-8">
+        {/* Hero */}
+        <div className="text-center mb-10">
+          <h1 className="text-[36px] md:text-[40px] font-bold tracking-tight text-foreground mb-3">
+            Writing
+          </h1>
+          <p className="text-[17px] text-foreground/50 max-w-130 mx-auto">
+            Thoughts on system design, full-stack engineering, and building
+            software that scales.
+          </p>
+        </div>
+
+        {/* Category Filter */}
+        <div className="mb-8">
+          <Suspense fallback={null}>
+            <CategoryFilter categories={categories} />
+          </Suspense>
+        </div>
+
+        {/* Posts + Search */}
+        <BlogListingClient
+          posts={posts}
+          searchIndex={searchIndex}
+          featuredPost={featuredPost}
+        />
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="mt-12">
+            <Pagination
+              currentPage={page}
+              totalPages={totalPages}
+              basePath="/blog"
+              category={category}
+            />
+          </div>
+        )}
+      </div>
     </main>
   );
 }

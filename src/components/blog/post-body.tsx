@@ -8,6 +8,8 @@ import type {
     PortableTextSpan,
 } from "@portabletext/types"
 
+import type { CustomBlockContent } from "@/types/blog"
+
 import { CodeBlock } from "./portable-text/code-block"
 import { Callout } from "./portable-text/callout"
 import { ImageBlock } from "./portable-text/image-block"
@@ -16,7 +18,7 @@ import { slugify } from "@/lib/blog-utils"
 import { cn } from "@/lib/utils"
 
 interface PostBodyProps {
-    body: PortableTextBlock[]
+    body: CustomBlockContent
     className?: string
 }
 
@@ -33,7 +35,8 @@ function extractText(
             (
                 child,
             ): child is PortableTextSpan =>
-                child._type === "span",
+                child._type === "span" &&
+                "text" in child,
         )
         .map((child) => child.text)
         .join("")
