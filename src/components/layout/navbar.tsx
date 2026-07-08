@@ -21,7 +21,7 @@ const navLinks = [
     { label: 'Skills',     href: '/#skills',     hoverIcon: '⚡' },
     { label: 'Experience', href: '/#experience', hoverIcon: '💼' },
     { label: 'About',      href: '/#about',      hoverIcon: '🧑‍💻' },
-    { label: 'Writing',    href: '/#writing',    hoverIcon: '✒️' },
+    { label: 'Writing',    href: '/blog',    hoverIcon: '✒️' },
 ]
 
 export { navLinks }

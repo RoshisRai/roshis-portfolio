@@ -46,7 +46,7 @@ export function PostCard({
         >
             <Link
                 href={`/blog/${post.slug}`}
-                className="block overflow-hidden rounded-xl border border-white/6 bg-white/2 transition-[background-color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-white/12 hover:bg-white/4"
+                className="block overflow-hidden rounded-xl border border-text-secondary/2 bg-post-bg transition-all duration-200 hover:-translate-y-0.5 hover:border-text-secondary/12 hover:bg-post-bg/4"
             >
                 {showImage && (
                     <div className="relative aspect-video overflow-hidden">
