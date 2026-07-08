@@ -112,7 +112,7 @@ export default function RootLayout({
       className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable}`}
       suppressHydrationWarning
     >
-      <body>
+      <body suppressHydrationWarning>
         <Script
           id="theme-init"
           strategy="beforeInteractive"

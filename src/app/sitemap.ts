@@ -1,31 +1,49 @@
 import type { MetadataRoute } from "next"
+
 import { getAllProjects } from "@/lib/projects"
+import { getAllPostSlugs } from "@/lib/sanity/queries"
+import { siteConfig } from "@/seo/config/site"
 
-const SITE_URL = "https://roshis.dev"
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+    const now = new Date()
 
-export default function sitemap(): MetadataRoute.Sitemap {
     const projects = getAllProjects()
+    const posts = await getAllPostSlugs()
     
-    const projectPages = projects.map((project) => ({
-        url: `${SITE_URL}/projects/${project.slug}`,
-        lastModified: new Date(),
+    const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
+        url: `${siteConfig.url}/projects/${project.slug}`,
+        lastModified: now,
         changeFrequency: "monthly" as const,
         priority: 0.9,
     }))
 
+    const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
+        url: `${siteConfig.url}/blog/${post.slug}`,
+        lastModified: new Date(post.updatedAt ?? post.publishedAt),
+        changeFrequency: "monthly",
+        priority: 0.7,
+    }))
+
     return [
         {
-            url: SITE_URL,
+            url: siteConfig.url,
             lastModified: new Date(),
             changeFrequency: "weekly",
             priority: 1,
         },
         {
-            url: `${SITE_URL}/chat`,
+            url: `${siteConfig.url}/chat`,
             lastModified: new Date(),
             changeFrequency: "monthly",
             priority: 0.8,
         },
+        {
+            url: `${siteConfig.url}/blog`,
+            lastModified: now,
+            changeFrequency: "weekly",
+            priority: 0.9,
+        },
         ...projectPages,
+        ...blogPages
     ]
-    }
+}

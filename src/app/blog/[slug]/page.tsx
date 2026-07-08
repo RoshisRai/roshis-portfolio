@@ -16,9 +16,8 @@ import { TableOfContents } from "@/components/blog/table-of-contents";
 import { RelatedPosts } from "@/components/blog/related-posts";
 import { PostFooterCta } from "@/components/blog/post-footer-cta";
 import { JsonLd } from "@/components/blog/json-ld";
-
 interface PostPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 /**
@@ -37,7 +36,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     return { title: "Post Not Found" };
@@ -82,20 +82,21 @@ export async function generateMetadata({
     },
 
     alternates: {
-      canonical: `https://roshis.dev/blog/${params.slug}`,
+      canonical: `https://roshis.dev/blog/${slug}`,
     },
   };
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
   const [relatedPosts, tocItems] = await Promise.all([
-    getRelatedPosts(params.slug, post.category?._id ?? "", 3),
+    getRelatedPosts(slug, post.category?._id ?? "", 3),
     Promise.resolve(extractTableOfContents(post.body ?? [])),
   ]);
 

@@ -9,6 +9,7 @@ import { ProjectsSection } from "@/components/sections/projects/projects-section
 import { SkillsSection } from "@/components/sections/skills/skills-section"
 
 import { siteConfig } from "@/seo/config/site";
+import { LatestPostsSection } from "@/components/sections/blog/latest-posts-section";
 
 export const metadata: Metadata = {
     title: siteConfig.title,
@@ -56,6 +57,9 @@ export default function Home() {
 
             {/* About */}
             <AboutSection />
+
+            {/* Blog / Articles */}
+            <LatestPostsSection />
 
             {/* Contact */}
             <ContactSection />

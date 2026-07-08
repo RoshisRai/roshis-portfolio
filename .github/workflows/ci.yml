@@ -61,15 +61,6 @@ jobs:
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
-      # ── Debug: list which env var NAMES were actually pulled with length of their values
-      - name: Debug pulled env var VALUES (masked)
-        run: |
-          FILE=".vercel/.env.${{ github.event_name == 'pull_request' && 'preview' || 'production' }}.local"
-          for var in NEXT_PUBLIC_SANITY_PROJECT_ID NEXT_PUBLIC_SANITY_DATASET SANITY_STUDIO_PROJECT_ID; do
-            value=$(grep "^$var=" "$FILE" | cut -d '=' -f2-)
-            echo "$var -> length: ${#value}"
-          done
         
       # Compiles the app using Vercel's build pipeline inside the runner.
       # --prod flag is only passed for pushes to main, not for PRs.

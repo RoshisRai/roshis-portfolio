@@ -9,6 +9,8 @@ export const sanityConfig = {
     apiVersion: "2026-06-16",
     useCdn: process.env.NODE_ENV === "production",
     token: process.env.SANITY_API_READ_TOKEN,
+    webhookSecret: process.env.SANITY_WEBHOOK_SECRET,
+    previewSecret: process.env.SANITY_PREVIEW_SECRET,
 } as const
 
 if (!sanityConfig.projectId) {
