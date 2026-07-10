@@ -12,6 +12,7 @@ import {
     getCoverImageUrl,
 } from "@/lib/sanity/image"
 import { cn } from "@/lib/utils"
+import { blogCoverVTName } from "@/lib/project-transition"
 
 interface PostCardProps {
     post: BlogPostCard
@@ -46,7 +47,7 @@ export function PostCard({
         >
             <Link
                 href={`/blog/${post.slug}`}
-                className="block overflow-hidden rounded-xl border border-text-secondary/2 bg-post-bg transition-all duration-200 hover:-translate-y-0.5 hover:border-text-secondary/12 hover:bg-post-bg/4"
+                className="block overflow-hidden rounded-xl border border-text-secondary/2 bg-post-bg transition-all duration-200 hover:-translate-y-0.5 hover:border-text-secondary/12 hover:bg-post-bg/4 active:-translate-y-0.5 active:border-text-secondary/12 active:bg-post-bg/4 "
             >
                 {showImage && (
                     <div className="relative aspect-video overflow-hidden">
@@ -68,6 +69,7 @@ export function PostCard({
                             }
                             sizes="(max-width:768px) 100vw, (max-width:1024px) 50vw, 640px"
                             className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                            style={{ viewTransitionName: blogCoverVTName(post.slug) }}
                         />
                     </div>
                 )}

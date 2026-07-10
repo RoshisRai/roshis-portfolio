@@ -5,6 +5,7 @@ import { getCoverImageUrl, getBlurDataUrl } from "@/lib/sanity/image";
 import { formatDate } from "@/lib/blog-utils";
 import { cn } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
+import { blogCoverVTName } from "@/lib/project-transition";
 
 interface PostHeaderProps {
   post: BlogPost;
@@ -29,11 +30,11 @@ export function PostHeader({ post }: PostHeaderProps) {
     <header className="mb-10">
       <Link
         href="/blog"
-        className="inline-flex items-center gap-1.5 text-[14px] text-foreground/50 hover:text-foreground transition-colors mb-6"
+        className="group inline-flex items-center gap-1.5 text-[14px] text-foreground/50 hover:text-foreground transition-colors mb-6"
         aria-label="Back to blog"
       >
-        <ArrowLeft size={14} />
-        <span>Back to Blog</span>
+        <ArrowLeft size={14} className="transition-[transform,colors] duration-200 group-hover:-translate-x-0.5 group-hover:text-text-secondary" />
+        <span className="transition-colors duration-200 group-hover:text-text-secondary">Back to Blog</span>
       </Link>
 
       <div className="flex flex-wrap items-center gap-2 mb-4 text-[13px] text-foreground/40">
@@ -79,6 +80,7 @@ export function PostHeader({ post }: PostHeaderProps) {
             priority
             placeholder="blur"
             blurDataURL={getBlurDataUrl(cover)}
+            style={{ viewTransitionName: blogCoverVTName(post.slug) }}
           />
         </div>
       ) : null}

@@ -5,6 +5,7 @@ import { getRecentPosts } from "@/lib/sanity/queries";
 import { cn } from "@/lib/utils";
 
 import { PostCard } from "../../blog/post-card";
+import { CursorZone } from "@/components/global/cursor/cursor-zone";
 
 interface LatestPostsSectionProps {
     className?: string;
@@ -18,17 +19,19 @@ function ViewAllLink({
     mobile?: boolean;
 }) {
     return (
-        <Link
-            href="/blog"
-            className={cn(
-                "inline-flex items-center gap-1.5 text-[14px] font-medium text-indigo-400 transition-colors hover:text-indigo-300",
-                mobile ? "md:hidden" : "hidden md:inline-flex",
-            )}
-        >
-            View all articles
+        <CursorZone variant="link" className="content">
+            <Link
+                href="/blog"
+                className={cn(
+                    "inline-flex items-center gap-1.5 text-[14px] font-medium text-indigo-400 transition-colors hover:text-indigo-300",
+                    mobile ? "md:hidden" : "hidden md:inline-flex",
+                )}
+            >
+                View all articles
 
-            <ArrowRight size={14} />
-        </Link>
+                <ArrowRight size={14} />
+            </Link>
+        </CursorZone>
     );
 }
 

@@ -45,12 +45,16 @@ export function Navbar() {
     }
 
     const handleNavLinkClick = (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+        if(!href.startsWith("/#")) {
+            disableProjectSharedVTForNextNav()
+            return
+        }
+
+        e.preventDefault()
         if (isHome) {
-            e.preventDefault()
             scrollTo(href)
         } 
         else {
-            e.preventDefault()
             disableProjectSharedVTForNextNav()
             scrollTo(href)
         }
@@ -106,7 +110,10 @@ export function Navbar() {
                     <div className="hidden items-center gap-8 md:flex">
                         {navLinks.map((link) => {
                             const sectionId = link.href.replace('/#', '')
-                            const isActive = isHome && activeSection === sectionId
+
+                            const isActive = link.href.startsWith("#/")
+                                ? isHome && activeSection === sectionId
+                                : pathname.startsWith(link.href)
 
                             return (
                                 <CursorZone
