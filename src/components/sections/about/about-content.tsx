@@ -3,9 +3,9 @@ export const AboutContent = () => {
         <div className="flex flex-col gap-6">
             <h2
                 id="about-heading"
-                className="about-animate text-[36px] font-bold leading-tight tracking-tight text-foreground"
+                className="about-animate text-[36px] font-bold leading-tight tracking-tight"
             >
-                About Me
+                <span className="bg-linear-to-r from-text-primary to-text-secondary bg-clip-text text-transparent">About Me</span>
             </h2>
             <div className="space-y-5 text-[17px] leading-[1.7] text-text-secondary font-normal">
                 <p className="about-animate">

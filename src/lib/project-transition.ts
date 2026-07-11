@@ -1,5 +1,6 @@
 // Shared-element view transition names
 export const projectMediaVTName  = (slug: string) => `project-media-${slug}`
+export const blogCoverVTName = (slug: string) => `blog-cover-${slug}`
 
 // Navigation direction tags (Next.js Link transitionTypes).
 export const navForward: string[] = ['nav-forward']
