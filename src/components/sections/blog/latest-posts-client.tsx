@@ -131,19 +131,6 @@ export function LatestPostsClient({
                         post={post}
                     />
                 ))}
-                <div
-                    className={cn(
-                        "h-105 max-w-100 bg-accent-hover rounded-lg"
-                    )}
-                >
-                </div>
-                <div
-                    className={cn(
-                        "h-105 max-w-100 bg-accent-hover rounded-lg"
-                    )}
-                >
-                </div>
-                
             </div>
 
             <div className="mt-8 flex justify-center">

@@ -12,6 +12,7 @@ import {
     getCoverImageUrl,
 } from "@/lib/sanity/image"
 import { cn } from "@/lib/utils"
+import { CursorZone } from "../global/cursor/cursor-zone"
 
 interface FeaturedPostProps {
     post: BlogPostCard
@@ -40,71 +41,86 @@ export function FeaturedPost({
         <article
             className={cn("group", className)}
         >
-            <Link
-                href={`/blog/${post.slug}`}
-                className="grid overflow-hidden rounded-xl border border-white/6 bg-white/2 transition-[background-color,border-color] duration-200 hover:border-white/12 hover:bg-white/4 lg:grid-cols-2"
-            >
-                <div className="relative aspect-video overflow-hidden lg:aspect-auto">
-                    <Image
-                        src={imageUrl}
-                        alt={post.coverImage.alt}
-                        fill
-                        priority
-                        loading="eager"
-                        placeholder="blur"
-                        blurDataURL={
-                            blurDataUrl
-                        }
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                        className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                    />
-                </div>
-
-                <div className="flex flex-col justify-center p-6 lg:px-5 lg:py-8 lg:pr-8">
-                    <div className="mb-3 flex items-center gap-2">
-                        <span
-                            className={cn(
-                                "rounded-md px-2.5 py-0.5 text-[12px] font-medium",
-                                categoryColor,
-                            )}
-                        >
-                            {
-                                post.category
-                                    .title
+            <CursorZone variant="project" className="content">
+                <Link
+                    href={`/blog/${post.slug}`}
+                    className={cn(
+                        "grid lg:grid-cols-2 overflow-hidden rounded-xl", 
+                        "border border-text-secondary/2 bg-post-bg",
+                        "transition-all duration-200", 
+                        'hover:-translate-y-1 hover:border-accent/40',
+                        'hover:shadow-[0_4px_10px_var(--color-accent-glow)]',
+                        "active:-translate-y-0.4 active:border-text-secondary/12 active:bg-post-bg/4"
+                    )}
+                >
+                    <div className="relative aspect-video overflow-hidden lg:aspect-auto">
+                        <Image
+                            src={imageUrl}
+                            alt={post.coverImage.alt}
+                            fill
+                            priority
+                            loading="eager"
+                            placeholder="blur"
+                            blurDataURL={
+                                blurDataUrl
                             }
-                        </span>
-
-                        {post.readingTime && (
-                            <span className="text-[13px] text-foreground/40">
-                                &middot;{" "}
-                                {
-                                    post.readingTime
-                                }{" "}
-                                min read
-                            </span>
-                        )}
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                            className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                        />
                     </div>
 
-                    <h2 className="mb-3 text-[22px] font-bold leading-tight text-foreground transition-colors duration-200 group-hover:text-indigo-400 lg:text-[26px]">
-                        {post.title}
-                    </h2>
+                    <div className="relative flex flex-col justify-center p-6 lg:px-5 lg:py-8 lg:pr-8">
+                        <div className="mb-3 flex items-center gap-2">
+                            <span
+                                className={cn(
+                                    "rounded-md px-2.5 py-0.5 text-[12px] font-medium",
+                                    categoryColor,
+                                )}
+                            >
+                                {
+                                    post.category
+                                        .title
+                                }
+                            </span>
 
-                    <p className="mb-4 line-clamp-3 text-[15px] leading-relaxed text-foreground/50">
-                        {post.excerpt}
-                    </p>
+                            {post.readingTime && (
+                                <span className="text-[13px] text-foreground/40">
+                                    &middot;{" "}
+                                    {
+                                        post.readingTime
+                                    }{" "}
+                                    min read
+                                </span>
+                            )}
+                        </div>
 
-                    <time
-                        dateTime={
-                            post.publishedAt
-                        }
-                        className="text-[13px] text-foreground/30"
-                    >
-                        {formatDateShort(
-                            post.publishedAt,
-                        )}
-                    </time>
-                </div>
-            </Link>
+                        <h2 className="mb-3 text-[22px] font-bold leading-tight text-foreground transition-colors duration-200 group-hover:text-indigo-400 lg:text-[26px]">
+                            {post.title}
+                        </h2>
+
+                        <p className="mb-4 line-clamp-3 text-[15px] leading-relaxed text-foreground/50">
+                            {post.excerpt}
+                        </p>
+
+                        <time
+                            dateTime={
+                                post.publishedAt
+                            }
+                            className="text-[13px] text-foreground/30"
+                        >
+                            {formatDateShort(
+                                post.publishedAt,
+                            )}
+                        </time>
+
+                        <div className={cn(
+                            'absolute inset-0 opacity-0 transition-opacity duration-300',
+                            'bg-linear-to-br from-accent/10 to-transparent',
+                            'group-hover:opacity-60',
+                        )} />
+                    </div>
+                </Link>
+            </CursorZone>
         </article>
     )
 }

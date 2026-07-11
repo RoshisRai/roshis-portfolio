@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 
 import { cn } from "@/lib/utils"
 import type { BlogCategory } from "@/types/blog"
+import { CursorZone } from "../global/cursor/cursor-zone"
 
 interface CategoryFilterProps {
     categories: BlogCategory[]
@@ -48,36 +49,39 @@ export function CategoryFilter({
             aria-label="Filter posts by category"
             className="flex flex-wrap items-center justify-center gap-2"
         >
-            <button
-                type="button"
-                onClick={() => handleFilter(null)}
-                aria-pressed={!activeCategory}
-                className={cn(
-                    BUTTON_BASE_CLASS,
-                    !activeCategory
-                        ? "border-indigo-600 bg-indigo-600 text-white"
-                        : "border-white/10 text-foreground/60 hover:border-white/20 hover:text-foreground",
-                )}
-            >
-                All
-            </button>
-
-            {categories.map((category) => (
+            <CursorZone className="content" variant="category">
                 <button
-                    key={category._id}
                     type="button"
-                    onClick={() => handleFilter(category.slug)}
-                    aria-pressed={activeCategory === category.slug}
+                    onClick={() => handleFilter(null)}
+                    aria-pressed={!activeCategory}
                     className={cn(
                         BUTTON_BASE_CLASS,
-                        activeCategory ===
-                            category.slug
-                            ? "border-indigo-600 bg-indigo-600 text-white"
+                        !activeCategory
+                            ? "border-accent bg-accent text-white"
                             : "border-white/10 text-foreground/60 hover:border-white/20 hover:text-foreground",
                     )}
                 >
-                    {category.title}
+                    All
                 </button>
+            </CursorZone>
+
+            {categories.map((category) => (
+                <CursorZone className="content" variant="category" key={category._id}>
+                    <button
+                        type="button"
+                        onClick={() => handleFilter(category.slug)}
+                        aria-pressed={activeCategory === category.slug}
+                        className={cn(
+                            BUTTON_BASE_CLASS,
+                            activeCategory ===
+                                category.slug
+                                ? "border-accent bg-accent text-white"
+                                : "border-white/10 text-foreground/60 hover:border-white/20 hover:text-foreground",
+                        )}
+                    >
+                        {category.title}
+                    </button>
+                </CursorZone>
             ))}
         </nav>
     )

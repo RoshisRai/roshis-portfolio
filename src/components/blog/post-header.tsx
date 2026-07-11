@@ -6,6 +6,7 @@ import { formatDate } from "@/lib/blog-utils";
 import { cn } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
 import { blogCoverVTName } from "@/lib/project-transition";
+import { CursorZone } from "../global/cursor/cursor-zone";
 
 interface PostHeaderProps {
   post: BlogPost;
@@ -28,16 +29,18 @@ export function PostHeader({ post }: PostHeaderProps) {
 
   return (
     <header className="mb-10">
-      <Link
-        href="/blog"
-        className="group inline-flex items-center gap-1.5 text-[14px] text-foreground/50 hover:text-foreground transition-colors mb-6"
-        aria-label="Back to blog"
-      >
-        <ArrowLeft size={14} className="transition-[transform,colors] duration-200 group-hover:-translate-x-0.5 group-hover:text-text-secondary" />
-        <span className="transition-colors duration-200 group-hover:text-text-secondary">Back to Blog</span>
-      </Link>
+      <CursorZone variant="link" className="content">
+        <Link
+          href="/blog"
+          className="group inline-flex items-center gap-1.5 text-[14px] text-foreground/50 hover:text-foreground transition-colors mb-6"
+          aria-label="Back to blog"
+        >
+          <ArrowLeft size={14} className="transition-[transform,colors] duration-200 group-hover:-translate-x-0.5 group-hover:text-text-primary/90" />
+          <span className="transition-colors duration-200 group-hover:text-text-primary/90">More Blogs</span>
+        </Link>
+      </CursorZone>
 
-      <div className="flex flex-wrap items-center gap-2 mb-4 text-[13px] text-foreground/40">
+      <div className="flex flex-wrap items-center gap-2 mb-4 text-[13px] text-text-primary/80">
         <span
           className={cn(
             "px-2.5 py-0.5 rounded-md text-[12px] font-medium",
@@ -59,18 +62,18 @@ export function PostHeader({ post }: PostHeaderProps) {
         </span>
       </div>
 
-      <h1 className="text-[30px] md:text-[36px] font-bold leading-tight tracking-tight text-foreground mb-4">
+      <h1 className="text-[30px] md:text-[36px] font-bold leading-tight tracking-tight text-text-primary mb-4">
         {post.title}
       </h1>
 
       {post.excerpt ? (
-        <p className="text-[17px] text-foreground/60 leading-relaxed mb-8 max-w-160">
+        <p className="text-[17px] text-text-primary/80 leading-relaxed mb-8 max-w-160">
           {post.excerpt}
         </p>
       ) : null}
 
       {cover ? (
-        <div className="relative aspect-2/1 rounded-xl overflow-hidden border border-white/6 mb-6">
+        <div className="relative aspect-2/1 rounded-xl overflow-hidden border border-text-secondary/10 mb-6">
           <Image
             src={getCoverImageUrl(cover, 1400)}
             alt={cover.alt ?? post.title}
@@ -90,7 +93,7 @@ export function PostHeader({ post }: PostHeaderProps) {
           {post.tags.map((tag) => (
             <span
               key={tag._id}
-              className="px-2.5 py-1 rounded-lg text-[12px] font-medium border border-white/8 text-foreground/50"
+              className="px-2.5 py-1 rounded-lg text-[12px] font-medium border border-text-secondary/20 text-text-secondary"
             >
               {tag.title}
             </span>

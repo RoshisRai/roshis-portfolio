@@ -11,6 +11,8 @@ import { Pagination } from "@/components/blog/pagination";
 
 import type { Metadata } from "next";
 import { siteConfig } from "@/seo/config/site";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { cn } from "@/lib/utils";
 
 const url = `${siteConfig.url}/blog`;
 const ogImage = siteConfig.ogImage;
@@ -101,10 +103,14 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       <div className="mx-auto max-w-275 px-4 md:px-8">
         {/* Hero */}
         <div className="text-center mb-10">
-          <h1 className="text-[36px] md:text-[40px] font-bold tracking-tight text-foreground mb-3">
+          <h1 className={cn(
+            'font-display font-bold text-text-primary leading-[1.1] tracking-tight',
+            'text-[clamp(32px,5vw,48px)]',
+            'bg-linear-to-r from-text-primary to-text-secondary bg-clip-text text-transparent inline-block',
+          )}>
             Writing
           </h1>
-          <p className="text-[17px] text-foreground/50 max-w-130 mx-auto">
+          <p className="text-[18px] font-normal text-text-secondary leading-relaxed max-w-130 mx-auto">
             Thoughts on system design, full-stack engineering, and building
             software that scales.
           </p>

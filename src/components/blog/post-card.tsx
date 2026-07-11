@@ -57,7 +57,7 @@ export function PostCard({
                         "border border-text-secondary/2 bg-post-bg",
                         "transition-all duration-200", 
                         'hover:-translate-y-1 hover:border-accent/40',
-                        'hover:shadow-[0_4px_10px_var(--color-accent-glow)]',
+                        'hover:shadow-[0_4px_6px_var(--color-accent-glow)]',
                         "active:-translate-y-0.4 active:border-text-secondary/12 active:bg-post-bg/4"
                     )}
                 >
@@ -132,7 +132,7 @@ export function PostCard({
                         <div className={cn(
                             'absolute inset-0 opacity-0 transition-opacity duration-300',
                             'bg-linear-to-br from-accent/10 to-transparent',
-                            'group-hover:opacity-100',
+                            'group-hover:opacity-60',
                         )} />
                     </div>
                 </Link>
