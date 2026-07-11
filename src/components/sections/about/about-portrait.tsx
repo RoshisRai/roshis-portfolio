@@ -7,11 +7,11 @@ export const AboutPortrait = () => {
                 
                 <div className="relative overflow-hidden rounded-2xl shadow-2xl shadow-indigo-500/10">
                     <Image
-                        src="/images/portrait.png"
+                        src="/images/portrait.jpg"
                         alt="Roshis Rai – Full-Stack Software Engineer"
                         width={400}
                         height={500}
-                        className="w-full h-auto max-h-90 lg:max-h-90 object-cover"
+                        className="w-full h-auto max-h-120 lg:max-h-120 object-cover"
                         priority={false}
                     />
                     <div

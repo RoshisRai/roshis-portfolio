@@ -16,6 +16,7 @@ import { TableOfContents } from "@/components/blog/table-of-contents";
 import { RelatedPosts } from "@/components/blog/related-posts";
 import { PostFooterCta } from "@/components/blog/post-footer-cta";
 import { JsonLd } from "@/components/blog/json-ld";
+import { CursorZone } from "@/components/global/cursor/cursor-zone";
 interface PostPageProps {
   params: Promise<{ slug: string }>;
 }
@@ -105,26 +106,28 @@ export default async function PostPage({ params }: PostPageProps) {
       <JsonLd post={post} />
 
       <main className="min-h-screen py-16 md:py-24">
-        <div className="mx-auto max-w-275 px-4 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_200px] gap-12">
-            {/* Main Content */}
-            <article className="max-w-prose">
-              <PostHeader post={post} />
-              <PostBody body={post.body} />
-              <PostFooterCta />
-              <RelatedPosts posts={relatedPosts} />
-            </article>
+        <CursorZone className="content" variant="default">
+          <div className="mx-auto max-w-275 px-4 md:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_200px] gap-12">
+              {/* Main Content */}
+              <article className="max-w-prose">
+                <PostHeader post={post} />
+                <PostBody body={post.body} />
+                <PostFooterCta />
+                <RelatedPosts posts={relatedPosts} />
+              </article>
 
-            {/* Sidebar TOC */}
-            {tocItems.length > 0 && (
-              <aside className="hidden lg:block">
-                <div className="sticky top-24">
-                  <TableOfContents items={tocItems} />
-                </div>
-              </aside>
-            )}
+              {/* Sidebar TOC */}
+              {tocItems.length > 0 && (
+                <aside className="hidden lg:block">
+                  <div className="sticky top-24">
+                    <TableOfContents items={tocItems} />
+                  </div>
+                </aside>
+              )}
+            </div>
           </div>
-        </div>
+        </CursorZone>
       </main>
     </>
   );

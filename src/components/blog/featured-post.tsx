@@ -12,7 +12,6 @@ import {
     getCoverImageUrl,
 } from "@/lib/sanity/image"
 import { cn } from "@/lib/utils"
-import { blogCoverVTName } from "@/lib/project-transition"
 
 interface FeaturedPostProps {
     post: BlogPostCard

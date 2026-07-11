@@ -14,7 +14,7 @@
   --color-accent: #6366f1;
   --color-accent-hover: #818cf8;
   --color-accent-glow: oklch(0.585 0.233 277.117 / 0.2);
-  --color-post-bg: #121216;
+  --color-post-bg: #101013;
 
   /* Typography */
   --font-sans: 'Inter', 'Inter Variable', system-ui, sans-serif;
@@ -129,7 +129,7 @@
     --color-accent-hover: #6366f1;
     --color-accent-glow: oklch(0.455 0.233 277.117 / 0.15);
     --color-input-bg-focus: #eaeaea;
-    --color-post-bg: #fafafa;
+    --color-post-bg: #f8f8f8;
   }
 
   html {
