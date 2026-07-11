@@ -112,13 +112,14 @@ export default function RootLayout({
       className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable}`}
       suppressHydrationWarning
     >
-      <body suppressHydrationWarning>
+      <head>
         <Script
           id="theme-init"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: themeScript }}
         />
-
+      </head>
+      <body suppressHydrationWarning>
         <JsonLd data={getWebsiteJsonLd()} />
         <JsonLd data={getPersonJsonLd()} />
 

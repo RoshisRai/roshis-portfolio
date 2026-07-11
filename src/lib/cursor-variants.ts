@@ -11,7 +11,8 @@ export type CursorVariant =
   | "hidden"      // inside inputs, code blocks, etc.
   | "project"
   | "icon"
-  | "tooltip";
+  | "tooltip"
+  | "category";
 
 export interface CursorVariantConfig {
   /** Inner dot size in px */
@@ -146,5 +147,14 @@ export const CURSOR_VARIANTS: Record<CursorVariant, CursorVariantConfig> = {
     glow: 120,
     ringDamping: 0.2,
     ringScale: 1.1
-  }
+  },
+  category: {
+    dotSize: 16,
+    ringSize: 2,
+    ringOpacity: 0.8,
+    dotOpacity: .5,
+    ringBorder: 1,
+    glow: 50,
+    ringDamping: BASE_DAMPING
+  },
 };

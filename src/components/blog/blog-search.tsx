@@ -7,6 +7,7 @@ import { Search, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import type { BlogSearchIndex } from "@/types/blog"
+import { CursorZone } from "../global/cursor/cursor-zone"
 
 interface BlogSearchProps {
     posts: BlogSearchIndex[]
@@ -68,33 +69,37 @@ export function BlogSearch({
     }, [onResults])
 
     return (
-        <div className="relative mx-auto w-full max-w-md">
+        <div className="relative group mx-auto w-full max-w-md">
             <Search
                 aria-hidden="true"
                 size={18}
                 className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-foreground/30"
             />
 
-            <input
-                type="search"
-                value={query}
-                autoComplete="off"
-                spellCheck={false}
-                enterKeyHint="search"
-                placeholder="Search by title, category, or tag..."
-                aria-label="Search blog articles"
-                onChange={(event) =>
-                    handleSearch(
-                        event.target.value,
-                    )
-                }
-                className={cn(
-                    "h-11 w-full rounded-xl border border-white/8 bg-white/4 pl-11 pr-10 text-[15px] text-foreground",
-                    "placeholder:text-foreground/30",
-                    "outline-none transition-colors duration-200",
-                    "focus:border-indigo-500/50 focus:bg-white/6",
-                )}
-            />
+            <CursorZone variant="text" className="content">
+                <input
+                    type="search"
+                    value={query}
+                    autoComplete="off"
+                    spellCheck={false}
+                    enterKeyHint="search"
+                    placeholder="Search by title, category, or tag..."
+                    aria-label="Search blog articles"
+                    onChange={(event) =>
+                        handleSearch(
+                            event.target.value,
+                        )
+                    }
+                    className={cn(
+                        "h-11 w-full rounded-xl border border-white/8 bg-white/4 pl-11 pr-10 text-[15px] text-foreground",
+                        "placeholder:text-foreground/30",
+                        "outline-none transition-colors duration-200",
+                        "focus:border-indigo-500/50 focus:bg-white/6",
+                        "group-hover:border-indigo-500/50 group-hover:bg-white/6",
+                        "[&::-webkit-search-cancel-button]:hidden",
+                    )}
+                />
+            </CursorZone>
 
             {query && (
                 <button

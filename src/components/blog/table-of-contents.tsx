@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import type { TableOfContentsItem } from '@/types/blog';
 import { cn } from '@/lib/utils';
+import { CursorZone } from '../global/cursor/cursor-zone';
 
 interface TableOfContentsProps {
     items: TableOfContentsItem[];
@@ -66,36 +67,38 @@ export function TableOfContents({ items, className }: TableOfContentsProps) {
                     const active = activeId === item.id;
 
                     return (
-                        <li key={item.id}>
-                            <a
-                                href={`#${item.id}`}
-                                aria-current={active ? 'location' : undefined}
-                                onClick={(event) => {
-                                    event.preventDefault();
+                        <li key={item.id} className='mb-3'>
+                            <CursorZone variant="project" className='content' label='Go To'>
+                                <a
+                                    href={`#${item.id}`}
+                                    aria-current={active ? 'location' : undefined}
+                                    onClick={(event) => {
+                                        event.preventDefault();
 
-                                    const heading = document.getElementById(item.id);
+                                        const heading = document.getElementById(item.id);
 
-                                    if (!heading) {
-                                        return;
-                                    }
+                                        if (!heading) {
+                                            return;
+                                        }
 
-                                    heading.scrollIntoView({
-                                        behavior: prefersReducedMotion ? 'auto' : 'smooth',
-                                        block: 'start',
-                                    });
+                                        heading.scrollIntoView({
+                                            behavior: prefersReducedMotion ? 'auto' : 'smooth',
+                                            block: 'start',
+                                        });
 
-                                    setActiveId(item.id);
-                                }}
-                                className={cn(
-                                    'block border-l-2 py-1 text-[13px] leading-snug transition-colors duration-150',
-                                    item.level === 2 ? 'pl-3' : 'pl-5',
-                                    active
-                                        ? 'text-foreground border-indigo-500 font-medium'
-                                        : 'text-foreground/40 hover:text-foreground/70 border-transparent',
-                                )}
-                            >
-                                {item.text}
-                            </a>
+                                        setActiveId(item.id);
+                                    }}
+                                    className={cn(
+                                        'block border-l-2 text-[13px] leading-snug transition-colors duration-150',
+                                        item.level === 2 ? 'pl-3' : 'pl-5',
+                                        active
+                                            ? 'text-text-primary border-indigo-500 font-medium'
+                                            : 'text-text-secondary hover:text-text-secondary border-transparent',
+                                    )}
+                                >
+                                    {item.text}
+                                </a>
+                            </CursorZone>
                         </li>
                     );
                 })}

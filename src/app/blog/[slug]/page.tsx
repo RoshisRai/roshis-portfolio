@@ -12,6 +12,7 @@ import { extractTableOfContents } from "@/lib/blog-utils";
 
 import { PostHeader } from "@/components/blog/post-header";
 import { PostBody } from "@/components/blog/post-body";
+import { MobileToc } from "@/components/blog/mobile-toc";
 import { TableOfContents } from "@/components/blog/table-of-contents";
 import { RelatedPosts } from "@/components/blog/related-posts";
 import { PostFooterCta } from "@/components/blog/post-footer-cta";
@@ -113,6 +114,7 @@ export default async function PostPage({ params }: PostPageProps) {
               <article className="max-w-prose">
                 <PostHeader post={post} />
                 <PostBody body={post.body} />
+                {tocItems.length > 0 && (<MobileToc items={tocItems} />)}
                 <PostFooterCta />
                 <RelatedPosts posts={relatedPosts} />
               </article>
