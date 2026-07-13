@@ -11,7 +11,6 @@ import { Pagination } from "@/components/blog/pagination";
 
 import type { Metadata } from "next";
 import { siteConfig } from "@/seo/config/site";
-import { SectionHeading } from "@/components/ui/section-heading";
 import { cn } from "@/lib/utils";
 
 const url = `${siteConfig.url}/blog`;
