@@ -69,7 +69,7 @@ export function BlogSearch({
     }, [onResults])
 
     return (
-        <div className="relative group mx-auto w-full max-w-md">
+        <div className="relative group mx-auto w-full max-w-md border border-border rounded-2xl">
             <Search
                 aria-hidden="true"
                 size={18}
@@ -91,11 +91,11 @@ export function BlogSearch({
                         )
                     }
                     className={cn(
-                        "h-11 w-full rounded-xl border border-white/8 bg-white/4 pl-11 pr-10 text-[15px] text-foreground",
+                        "h-11 w-full rounded-xl border border-border bg-surface pl-11 pr-10 text-[15px] text-text-primary",
                         "placeholder:text-foreground/30",
                         "outline-none transition-colors duration-200",
-                        "focus:border-indigo-500/50 focus:bg-white/6",
-                        "group-hover:border-indigo-500/50 group-hover:bg-white/6",
+                        "focus:border-accent-hover/70",
+                        "group-hover:border-accent-hover/50",
                         "[&::-webkit-search-cancel-button]:hidden",
                     )}
                 />

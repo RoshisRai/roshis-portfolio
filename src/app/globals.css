@@ -129,7 +129,7 @@
     --color-accent-hover: #6366f1;
     --color-accent-glow: oklch(0.455 0.233 277.117 / 0.15);
     --color-input-bg-focus: #eaeaea;
-    --color-post-bg: #f8f8f8;
+    --color-post-bg: #fcfcff;
   }
 
   html {

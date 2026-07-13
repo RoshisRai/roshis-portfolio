@@ -42,7 +42,7 @@ const Tag = ({
                     'border',
                     active
                         ? 'bg-accent text-white border-accent'
-                        : 'bg-transparent text-text-secondary border-border hover:border-text-secondary hover:text-text-primary',
+                        : 'bg-transparent text-text-secondary border-border hover:border-accent-hover/50 hover:text-text-primary',
                 ],
                 className,
             )}

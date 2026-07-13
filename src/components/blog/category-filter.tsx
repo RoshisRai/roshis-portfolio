@@ -3,16 +3,13 @@
 import { useCallback } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
-import { cn } from "@/lib/utils"
 import type { BlogCategory } from "@/types/blog"
 import { CursorZone } from "../global/cursor/cursor-zone"
+import { Tag } from "../ui/tag"
 
 interface CategoryFilterProps {
     categories: BlogCategory[]
 }
-
-const BUTTON_BASE_CLASS =
-    "rounded-full border px-4 py-1.5 text-[14px] font-medium transition-colors duration-200"
 
 export function CategoryFilter({
     categories,
@@ -50,37 +47,27 @@ export function CategoryFilter({
             className="flex flex-wrap items-center justify-center gap-2"
         >
             <CursorZone className="content" variant="category">
-                <button
-                    type="button"
+                <Tag 
+                    variant="filter" 
+                    active={!activeCategory}
                     onClick={() => handleFilter(null)}
                     aria-pressed={!activeCategory}
-                    className={cn(
-                        BUTTON_BASE_CLASS,
-                        !activeCategory
-                            ? "border-accent bg-accent text-white"
-                            : "border-white/10 text-foreground/60 hover:border-white/20 hover:text-foreground",
-                    )}
                 >
                     All
-                </button>
+                </Tag>
+
             </CursorZone>
 
             {categories.map((category) => (
                 <CursorZone className="content" variant="category" key={category._id}>
-                    <button
-                        type="button"
+                    <Tag 
+                        variant="filter" 
+                        active={activeCategory === category.slug}
                         onClick={() => handleFilter(category.slug)}
                         aria-pressed={activeCategory === category.slug}
-                        className={cn(
-                            BUTTON_BASE_CLASS,
-                            activeCategory ===
-                                category.slug
-                                ? "border-accent bg-accent text-white"
-                                : "border-white/10 text-foreground/60 hover:border-white/20 hover:text-foreground",
-                        )}
                     >
                         {category.title}
-                    </button>
+                    </Tag>
                 </CursorZone>
             ))}
         </nav>

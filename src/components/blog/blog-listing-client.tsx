@@ -5,7 +5,6 @@ import type { BlogPostCard } from "@/types/blog";
 import { BlogSearch } from "./blog-search";
 import { PostCard } from "./post-card";
 import { FeaturedPost } from "./featured-post";
-import { cn } from "@/lib/utils";
 
 interface SearchablePost {
   _id: string;
