@@ -54,11 +54,11 @@ export function PostCard({
                     href={`/blog/${post.slug}`}
                     className={cn(
                         "block overflow-hidden rounded-xl",
-                        "border border-text-secondary/2 bg-post-bg",
+                        "border border-border bg-post-bg",
                         "transition-all duration-200", 
                         'hover:-translate-y-1 hover:border-accent/40',
                         'hover:shadow-[0_4px_6px_var(--color-accent-glow)]',
-                        "active:-translate-y-0.4 active:border-text-secondary/12 active:bg-post-bg/4"
+                        'active:-translate-y-1 active:border-accent/40',
                     )}
                 >
                     {showImage && (

@@ -100,7 +100,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
   return (
     <main className="min-h-screen py-20 md:py-28">
-      <div className="mx-auto max-w-275 px-4 md:px-8">
+      <div className="mx-auto w-full max-w-(--max-width-content) px-6 md:px-12">
         {/* Hero */}
         <div className="text-center mb-10">
           <h1 className={cn(

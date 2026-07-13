@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
 import { blogCoverVTName } from "@/lib/project-transition";
 import { CursorZone } from "../global/cursor/cursor-zone";
+import { Tag } from "../ui/tag";
 
 interface PostHeaderProps {
   post: BlogPost;
@@ -35,8 +36,8 @@ export function PostHeader({ post }: PostHeaderProps) {
           className="group inline-flex items-center gap-1.5 text-[14px] text-foreground/50 hover:text-foreground transition-colors mb-6"
           aria-label="Back to blog"
         >
-          <ArrowLeft size={14} className="transition-[transform,colors] duration-200 group-hover:-translate-x-0.5 group-hover:text-text-primary/90" />
-          <span className="transition-colors duration-200 group-hover:text-text-primary/90">More Blogs</span>
+          <ArrowLeft size={14} className="text-text-primary-80 transition-all duration-200 group-hover:-translate-x-0.5 group-hover:text-text-primary/90" />
+          <span className="text-text-primary/80 transition-colors duration-200 group-hover:text-text-primary/90">More Blogs</span>
         </Link>
       </CursorZone>
 
@@ -91,12 +92,7 @@ export function PostHeader({ post }: PostHeaderProps) {
       {post.tags?.length ? (
         <div className="flex flex-wrap gap-2">
           {post.tags.map((tag) => (
-            <span
-              key={tag._id}
-              className="px-2.5 py-1 rounded-lg text-[12px] font-medium border border-text-secondary/20 text-text-secondary"
-            >
-              {tag.title}
-            </span>
+            <Tag variant="tech" key={tag._id}>{tag.title}</Tag>
           ))}
         </div>
       ) : null}

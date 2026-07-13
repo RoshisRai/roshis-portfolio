@@ -108,7 +108,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
       <main className="min-h-screen py-16 md:py-24">
         <CursorZone className="content" variant="default">
-          <div className="mx-auto max-w-275 px-4 md:px-8">
+          <div className="mx-auto w-full max-w-(--max-width-content) px-6 md:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_200px] gap-12">
               {/* Main Content */}
               <article className="max-w-prose">
