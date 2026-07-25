@@ -3,7 +3,7 @@ import { streamText, convertToModelMessages, type UIMessage } from "ai"
 import { headers } from "next/headers"
 
 import { retrieveRelevantChunks } from "@/lib/rag/retrieval"
-import { chatRatelimit } from "@/lib/ratelimit"
+import { chatRatelimit, isRatelimitConfigured } from "@/lib/ratelimit"
 import { SYSTEM_PROMPT } from "@/lib/rag/system-prompt"
 
 export const maxDuration = 30
@@ -18,7 +18,9 @@ export async function POST(req: Request) {
             headersList.get("x-real-ip") ??
             "anonymous"
 
-        const { success, remaining } = await chatRatelimit.limit(ip)
+        const { success, remaining } = isRatelimitConfigured
+            ? await chatRatelimit!.limit(ip)
+            : { success: true, remaining: Number.POSITIVE_INFINITY }
 
         if (!success) {
             return new Response(
