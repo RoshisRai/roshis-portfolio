@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import type { TableOfContentsItem } from '@/types/blog';
+import { getLenis } from '@/lib/animations';
 import { cn } from '@/lib/utils';
 import { CursorZone } from '../global/cursor/cursor-zone';
 
@@ -11,8 +12,17 @@ interface TableOfContentsProps {
     className?: string;
 }
 
+/**
+ * Line used both to park a heading after a click and to decide which
+ * title is active. Must match visually: just below the 64px navbar.
+ * Do not scroll to the heading element itself — Lenis subtracts
+ * `scroll-mt-24` from element targets, which lands the heading below
+ * this line and keeps the previous section highlighted.
+ */
+const ACTIVATION_LINE = 96;
+
 export function TableOfContents({ items, className }: TableOfContentsProps) {
-    const [activeId, setActiveId] = useState('');
+    const [activeId, setActiveId] = useState(items[0]?.id ?? '');
 
     useEffect(() => {
         if (items.length === 0) {
@@ -27,34 +37,60 @@ export function TableOfContents({ items, className }: TableOfContentsProps) {
             return;
         }
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const visible = entries
-                    .filter((entry) => entry.isIntersecting)
-                    .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        const updateActive = () => {
+            let current = headings[0].id;
+            let closest = Number.POSITIVE_INFINITY;
 
-                if (visible.length > 0) {
-                    setActiveId(visible[0].target.id);
+            for (const heading of headings) {
+                const distance = Math.abs(
+                    heading.getBoundingClientRect().top - ACTIVATION_LINE,
+                );
+
+                if (distance < closest) {
+                    closest = distance;
+                    current = heading.id;
                 }
-            },
-            {
-                rootMargin: '-96px 0px -65% 0px',
-                threshold: 0,
-            },
-        );
+            }
 
-        headings.forEach((heading) => observer.observe(heading));
+            setActiveId((previous) => (previous === current ? previous : current));
+        };
 
-        return () => observer.disconnect();
+        const lenis = getLenis();
+
+        lenis?.on('scroll', updateActive);
+        window.addEventListener('scroll', updateActive, { passive: true });
+        updateActive();
+
+        return () => {
+            lenis?.off('scroll', updateActive);
+            window.removeEventListener('scroll', updateActive);
+        };
     }, [items]);
+
+    const scrollToHeading = (id: string) => {
+        const heading = document.getElementById(id);
+
+        if (!heading) {
+            return;
+        }
+
+        const lenis = getLenis();
+        const scrollY = lenis?.scroll ?? window.scrollY;
+        const top =
+            scrollY + heading.getBoundingClientRect().top - ACTIVATION_LINE + 1;
+
+        if (lenis) {
+            lenis.start();
+            lenis.scrollTo(top, { duration: 1.2 });
+            return;
+        }
+
+        window.scrollTo({ top, behavior: 'smooth' });
+    };
 
     if (items.length === 0) {
         return null;
     }
-
-    const prefersReducedMotion =
-        typeof window !== 'undefined' &&
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     return (
         <nav aria-label="Table of contents" className={cn('space-y-3', className)}>
@@ -74,22 +110,10 @@ export function TableOfContents({ items, className }: TableOfContentsProps) {
                                     aria-current={active ? 'location' : undefined}
                                     onClick={(event) => {
                                         event.preventDefault();
-
-                                        const heading = document.getElementById(item.id);
-
-                                        if (!heading) {
-                                            return;
-                                        }
-
-                                        heading.scrollIntoView({
-                                            behavior: prefersReducedMotion ? 'auto' : 'smooth',
-                                            block: 'start',
-                                        });
-
-                                        setActiveId(item.id);
+                                        scrollToHeading(item.id);
                                     }}
                                     className={cn(
-                                        'block border-l-2 text-[13px] leading-snug transition-colors duration-150',
+                                        'block border-l-2 text-[13px] leading-snug transition-colors duration-300',
                                         item.level === 2 ? 'pl-3' : 'pl-5',
                                         active
                                             ? 'text-text-primary border-indigo-500 font-medium'
