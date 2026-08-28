@@ -1,6 +1,6 @@
 /**
  * Run with:
- * pnpm tsx scripts/ingest-knowledge-base.ts
+ * pnpm ingest
  *
  * Reads all markdown files in content/knowledge-base/,
  * chunks them, generates embeddings,
@@ -32,8 +32,9 @@ async function main() {
     }
 
     /**
-     * Remove stale chunks that no longer exist
-     * in the current markdown source files.
+     * Remove stale markdown chunks that no longer exist
+     * in the current source files. Blog rows (section like
+     * blog/%) are excluded by delete_stale_chunks.
      */
     if (activeHashes.length === 0) {
         console.warn(
@@ -44,6 +45,7 @@ async function main() {
             "delete_stale_chunks",
             {
                 active_hashes: activeHashes,
+                exclude_section_prefix: "blog/",
             }
         )
 

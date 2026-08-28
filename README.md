@@ -11,16 +11,17 @@ An engineering-forward, highly interactive portfolio architected to showcase bot
 ## Key Features Overview
 
 ### **AI & Data Engineering**
-- **Custom RAG Search Pipeline**: Built with Supabase, OpenAI, and native PostgreSQL vector capabilities.
-- **Structure-Aware Chunking**: Intelligently splits markdown on heading boundaries and normalizes lists to preserve logical document layout for superior retrieval continuity.
-- **Idempotent Upserts via Content Hashing**: Prevents database duplication by generating stable SHA256 hashes of markdown contents.
+- **Custom RAG Search Pipeline**: Built with Supabase, OpenAI, and native PostgreSQL vector capabilities. Markdown knowledge-base files and Sanity blog posts share the same `knowledge_chunks` table and `hybrid_search` retriever.
+- **Structure-Aware Chunking**: Intelligently splits markdown (and Portable Text posts) on heading boundaries and normalizes lists to preserve logical document layout for superior retrieval continuity.
+- **Idempotent Upserts via Content Hashing**: Prevents database duplication by generating stable SHA256 hashes of section, title, and content.
 - **Advanced Hybrid Search**: PostgreSQL RPC resolving query ranking with both **Reciprocal Rank Fusion (RRF)** over Semantic representations (HNSW) and Full-Text Search (`tsvector`/`tsquery`).
-- **Automated Data Lifecycle**: Built-in garbage collection via `delete_stale_chunks` prevents database bloat from orphaned data.
+- **Automated Data Lifecycle**: Markdown ingest uses `delete_stale_chunks` to remove orphaned KB rows without touching `blog/{slug}` chunks. Blog ingest cleans up per post.
 
 ### **Creative Frontend UI/UX**
 - **Complex GSAP Sequencing**: Orchestrates timeline-based, scroll-triggered animations to construct a cinematic user experience seamlessly integrating with React.
 - **State-Driven Custom Cursor**: Fluidly adapts to DOM bounding boxes (magnetic attraction, morphing radii, and dynamic intersection zones).
 - **Case Study Subsystem**: Next.js App Router and Velite for dynamic MDX-based project generation.
+- **Sanity Blog**: CMS-backed writing with draft preview, on-demand revalidation, and optional RAG indexing.
 - **Serverless Contact Pipeline**: Streamlined contact form via Server Actions, Zod validation, and Resend + React Email for immediate notifications.
 - **Interactive 3D Hero Scene**: Utilizes React Three Fiber (THREE.js) to render a dynamic, cursor-responsive WebGL particle morphing visualization and floating orbs with custom shaders.
 - **WebGL Globe Integration**: Employs `cobe` to render a highly performant, draggable 3D globe visualization. 
@@ -35,7 +36,12 @@ Unlike naive text-splitting—which often arbitrarily severs semantic context—
 ### **Supabase PostgreSQL & Vector Operations**
 The backend leverages Supabase as a managed PostgreSQL instance, deeply integrated with the `vector` and `pg_trgm` extensions. To maintain data integrity across builds and content updates, the ingestion pipeline relies exclusively on **idempotent operations**. Uses `upsert` transactions matching on deterministic `content_hash` strings to seamlessly propagate updates.
 
-Before ingestion completes, the `delete_stale_chunks` function ensures optimal data hygiene by sweeping the database for obsolete node hashes.
+Two ingest paths write to the same table:
+
+- `pnpm ingest` — markdown files in `content/knowledge-base/` (`about`, `experience`, `projects`, `skills`, `meta`)
+- `pnpm ingest:blog` (or the `/api/ingest-post` webhook) — published Sanity posts with `ragEnabled`, stored under `section = blog/{slug}`
+
+Before markdown ingestion completes, `delete_stale_chunks` removes KB hashes that are no longer in source files. It is scoped with `exclude_section_prefix = 'blog/'` so Sanity post chunks are never garbage-collected by a markdown run. Blog ingest deletes stale hashes only within that post's section.
 
 ### **Hybrid Search RPC (Full-Text + Semantic Vector)**
 The query engine operates via a custom PostgreSQL Remote Procedure Call (RPC) called `hybrid_search`. This function ranks lexical accuracy via **PostgreSQL Full-Text Search (ts_rank_cd)** alongside semantic matching evaluated by **Cosine Vector Similarity (HNSW)**. The combined scores are algorithmically blended using **Reciprocal Rank Fusion (RRF)** yielding extremely robust search results.
@@ -126,10 +132,12 @@ CREATE INDEX IF NOT EXISTS knowledge_chunks_content_trgm_idx
     USING GIN(content gin_trgm_ops);
 
 -- ==========================================
--- CLEANUP FUNCTION (idempotent ingestion)
+-- CLEANUP FUNCTION (markdown ingest only)
+-- Scoped so blog/{slug} rows survive `pnpm ingest`.
 -- ==========================================
 CREATE OR REPLACE FUNCTION delete_stale_chunks(
-    active_hashes TEXT[]
+    active_hashes TEXT[],
+    exclude_section_prefix TEXT DEFAULT 'blog/'
 )
 RETURNS VOID
 LANGUAGE SQL
@@ -137,7 +145,12 @@ SECURITY DEFINER
 SET search_path = public
 AS $$
     DELETE FROM knowledge_chunks
-    WHERE content_hash != ALL(active_hashes);
+    WHERE content_hash != ALL(active_hashes)
+      AND (
+          exclude_section_prefix IS NULL
+          OR exclude_section_prefix = ''
+          OR section NOT LIKE exclude_section_prefix || '%'
+      );
 $$;
 
 -- ==========================================
@@ -283,6 +296,21 @@ UPSTASH_REDIS_REST_TOKEN=
 
 # ANALYTICS
 NEXT_PUBLIC_GA_ID="G-XXXXXXXXXX"
+
+# SANITY
+NEXT_PUBLIC_SANITY_PROJECT_ID=
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_READ_TOKEN=
+SANITY_PREVIEW_SECRET=
+SANITY_WEBHOOK_SECRET=
+
+# SANITY STUDIO (npx sanity dev)
+SANITY_STUDIO_PROJECT_ID=
+SANITY_STUDIO_DATASET=production
+SANITY_APP_ID=
+
+# RAG INGESTION (webhook auth for /api/ingest-post)
+INGEST_SECRET=
 ```
 
 ### 4. Initialize Local Development
@@ -292,6 +320,24 @@ pnpm dev
 ```
 Navigate to `http://localhost:3000` to inspect the build.
 
+Studio (content editor) is a separate local process, not mounted on the Next app:
+
+```bash
+npx sanity dev
+```
+
+That opens at `http://localhost:3333`.
+
+### 5. Ingest knowledge into the vector store
+Apply `src/lib/supabase/migrations/schema.sql` (or `protect-blog-chunks.sql` if the table already exists) in the Supabase SQL editor, then:
+
+```bash
+pnpm ingest        # markdown knowledge base
+pnpm ingest:blog   # published, RAG-enabled Sanity posts
+```
+
+These can be run in either order. Markdown cleanup will not delete `blog/{slug}` chunks. Existing posts are backfilled with `pnpm ingest:blog`; later publishes are ingested via a Sanity webhook to `/api/ingest-post` (`x-ingest-secret: INGEST_SECRET`).
+
 ---
 
 ## Engineering Highlights
@@ -299,7 +345,7 @@ Navigate to `http://localhost:3000` to inspect the build.
 - Custom RAG implementation without external frameworks
 - Hybrid semantic + lexical retrieval
 - PostgreSQL-native vector search architecture
-- Idempotent ingestion pipeline
+- Idempotent ingestion pipeline (markdown KB + Sanity blog, shared vector table)
 - GPU-accelerated WebGL rendering (React Three Fiber, THREE.js)
 - Type-safe MDX content system
 - Serverless email infrastructure

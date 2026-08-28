@@ -68,7 +68,8 @@ CREATE INDEX IF NOT EXISTS knowledge_chunks_content_trgm_idx
 -- CLEANUP FUNCTION
 -- ==========================================
 CREATE OR REPLACE FUNCTION delete_stale_chunks(
-    active_hashes TEXT[]
+    active_hashes TEXT[],
+    exclude_section_prefix TEXT DEFAULT 'blog/'
 )
 RETURNS VOID
 LANGUAGE SQL
@@ -76,7 +77,12 @@ SECURITY DEFINER
 SET search_path = public
 AS $$
     DELETE FROM knowledge_chunks
-    WHERE content_hash != ALL(active_hashes);
+    WHERE content_hash != ALL(active_hashes)
+      AND (
+          exclude_section_prefix IS NULL
+          OR exclude_section_prefix = ''
+          OR section NOT LIKE exclude_section_prefix || '%'
+      );
 $$;
 
 -- ==========================================
