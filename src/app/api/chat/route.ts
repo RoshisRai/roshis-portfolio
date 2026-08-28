@@ -97,11 +97,13 @@ export async function POST(req: Request) {
 
          response.headers.set(
             "X-Sources",
-            JSON.stringify(
-                trimmedChunks.map(c => ({
-                    section: c.section,
-                    title: c.title
-                }))
+            encodeURIComponent(
+                JSON.stringify(
+                    trimmedChunks.map(c => ({
+                        section: c.section,
+                        title: c.title
+                    }))
+                )
             )
         )
 

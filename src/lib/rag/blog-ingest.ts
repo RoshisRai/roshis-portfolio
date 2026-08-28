@@ -218,15 +218,42 @@ async function upsertBlogPostChunks(
   return inserted;
 }
 
-export async function ingestBlogPost(postId: string): Promise<{
-  chunksInserted: number;
+function publishedDocumentId(id: string): string {
+  return id.replace(/^drafts\./, "");
+}
+
+export async function deleteBlogPostChunks(slug: string): Promise<{
+  deleted: number;
   error?: string;
 }> {
-  const query = `*[_type == "post" && _id == $postId && ragEnabled == true][0] {
+  const supabase = createServerSupabaseClient();
+  const section = blogSection(slug);
+
+  const { data, error } = await supabase
+    .from("knowledge_chunks")
+    .delete()
+    .eq("section", section)
+    .select("id");
+
+  if (error) {
+    console.error(`Failed to delete chunks for ${section}:`, error.message);
+    return { deleted: 0, error: error.message };
+  }
+
+  return { deleted: data?.length ?? 0 };
+}
+
+export async function ingestBlogPost(postId: string): Promise<{
+  chunksInserted: number;
+  slug?: string;
+  error?: string;
+}> {
+  const publishedId = publishedDocumentId(postId);
+  const query = `*[_type == "post" && _id == $postId && ragEnabled == true && defined(publishedAt)][0] {
     ${RAG_POST_PROJECTION}
   }`;
 
-  const post = await sanityFetch<RagPost | null>(query, { postId });
+  const post = await sanityFetch<RagPost | null>(query, { postId: publishedId });
 
   if (!post) {
     return { chunksInserted: 0, error: "Post not found or RAG disabled" };
@@ -237,7 +264,7 @@ export async function ingestBlogPost(postId: string): Promise<{
   }
 
   const chunksInserted = await upsertBlogPostChunks(post);
-  return { chunksInserted };
+  return { chunksInserted, slug: post.slug };
 }
 
 export async function ingestAllBlogPosts(): Promise<{

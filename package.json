@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "typecheck": "velite && tsc --noEmit",
     "content": "velite --clean",
-    "ingest": "tsx src/scripts/ingest-knowledge-base.ts"
+    "ingest": "tsx src/scripts/ingest-knowledge-base.ts",
+    "ingest:blog": "tsx src/scripts/ingest-blog-posts.ts"
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.66",

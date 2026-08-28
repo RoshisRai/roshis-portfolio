@@ -52,7 +52,9 @@ function createTransport(
 
             if (sourcesHeader) {
                 try {
-                    const sources: Source[] = JSON.parse(sourcesHeader)
+                    const sources: Source[] = JSON.parse(
+                        decodeURIComponent(sourcesHeader)
+                    )
                     onSourcesParsed(sources)
                 } catch (err) {
                     console.error("Failed to parse source metadata: ", err)
