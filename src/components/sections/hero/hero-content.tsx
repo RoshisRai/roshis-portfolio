@@ -9,6 +9,7 @@ import { ArrowDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { CursorZone } from '@/components/global/cursor/cursor-zone'
 import { Magnetic } from '@/components/global/cursor/magnetic'
+import { ResumeDownloadLink } from '@/components/global/resume-download-link'
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -37,6 +38,7 @@ export default function HeroContent() {
     const roleRef       = useRef<HTMLSpanElement>(null)
     const cursorRef     = useRef<HTMLSpanElement>(null)
     const ctaRef        = useRef<HTMLDivElement>(null)
+    const resumeRef     = useRef<HTMLDivElement>(null)
     const roleWrapperRef = useRef<HTMLDivElement>(null)
     const roleTimerRef  = useRef<ReturnType<typeof setTimeout> | null>(null)
     const isMountedRef  = useRef(true)
@@ -57,6 +59,7 @@ export default function HeroContent() {
             })
 
             gsap.set(buttons, { autoAlpha: 0, opacity: 0})
+            gsap.set(resumeRef.current, { opacity: 0, y: 12 })
 
             tl
                 .to(statusRef.current, {
@@ -89,6 +92,11 @@ export default function HeroContent() {
                     duration: 0.5,
                     stagger: 0.1,
                 }, '-=0.1')
+                .to(resumeRef.current, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.45,
+                }, '-=0.15')
         }, containerRef)
 
         return () => ctx.revert()
@@ -221,33 +229,38 @@ export default function HeroContent() {
             </div>
 
             {/* CTA buttons */}
-            <div
-                ref={ctaRef}
-                className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center"
-            >
-                <CursorZone variant='button'>
-                    <Button
-                        onClick={() => scrollTo('/#projects')}
-                        className="group h-12 w-full px-6 text-[15px] cursor-pointer sm:w-auto transition"
-                    >
-                        View My Work
-                        <ArrowDown
-                            size={16}
-                            className="transition-transform duration-(--duration-fast) group-hover:translate-y-0.5"
-                        />
-                    </Button>
-                </CursorZone>
-                <Magnetic strength={0.8} elementPull={0.1}>
+            <div className="flex flex-col items-start gap-3">
+                <div
+                    ref={ctaRef}
+                    className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center"
+                >
                     <CursorZone variant='button'>
                         <Button
-                            variant="ghost"
-                            onClick={() => scrollTo('/#contact')}
-                            className="h-12 w-full px-6 text-[15px] cursor-pointer sm:w-auto transition"
+                            onClick={() => scrollTo('/#projects')}
+                            className="group h-12 w-full px-6 text-[15px] cursor-pointer sm:w-auto transition"
                         >
-                            Get In Touch
+                            View My Work
+                            <ArrowDown
+                                size={16}
+                                className="transition-transform duration-(--duration-fast) group-hover:translate-y-0.5"
+                            />
                         </Button>
                     </CursorZone>
-                </Magnetic>
+                    <Magnetic strength={0.8} elementPull={0.1}>
+                        <CursorZone variant='button'>
+                            <Button
+                                variant="ghost"
+                                onClick={() => scrollTo('/#contact')}
+                                className="h-12 w-full px-6 text-[15px] cursor-pointer sm:w-auto transition"
+                            >
+                                Get In Touch
+                            </Button>
+                        </CursorZone>
+                    </Magnetic>
+                </div>
+                <div ref={resumeRef}>
+                    <ResumeDownloadLink />
+                </div>
             </div>
         </div>
     )

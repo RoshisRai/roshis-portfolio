@@ -6,6 +6,7 @@ import { disableProjectSharedVTForNextNav, FOOTER_VT_NAME } from "@/lib/project-
 import { ViewTransition, type MouseEvent } from "react"
 import { Tag } from "@/components/ui/tag"
 import { CursorZone } from "../global/cursor/cursor-zone"
+import { ResumeDownloadLink } from "../global/resume-download-link"
 import { usePathname } from "next/navigation"
 import { scrollToTop } from "@/lib/animations"
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll"
@@ -66,23 +67,26 @@ export function Footer() {
               </Link>
             </CursorZone>
 
-            {/* Availability */}
-            <CursorZone variant="link">
-              <Link 
-                href="/#contact"
-                onClick={handleContactClick('/#contact')}
-              >
-                <Tag
-                  variant="status"
-                  statusColor="#4ade80"
-                  className="bg-accent-glow/60 border border-[#4ade80]/20 transition-opacity duration-200 hover:bg-accent-glow/80"
+            {/* Availability + resume */}
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:justify-end">
+              <CursorZone variant="link">
+                <Link 
+                  href="/#contact"
+                  onClick={handleContactClick('/#contact')}
                 >
-                  <span className="text-xs text-text-primary/80 z-1">
-                    Available for work
-                  </span>
-                </Tag>
-              </Link>
-            </CursorZone>
+                  <Tag
+                    variant="status"
+                    statusColor="#4ade80"
+                    className="bg-accent-glow/60 border border-[#4ade80]/20 transition-opacity duration-200 hover:bg-accent-glow/80"
+                  >
+                    <span className="text-xs text-text-primary/80 z-1">
+                      Available for work
+                    </span>
+                  </Tag>
+                </Link>
+              </CursorZone>
+              <ResumeDownloadLink />
+            </div>
 
           </div>
 
